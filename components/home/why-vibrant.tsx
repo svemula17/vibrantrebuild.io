@@ -39,20 +39,20 @@ export function WhyVibrant() {
         {/* Right — anniversary graphic + value tiles */}
         <div className="flex flex-col gap-6">
 
-          {/* Full anniversary image — no crop */}
+          {/* Anniversary badge — constrained size, centred */}
           <motion.div
             initial={{ opacity: 0, y: 32 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-8%" }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="overflow-hidden rounded-2xl shadow-cardHover"
+            className="flex justify-center"
           >
             <Image
               src={anniversary}
               alt="Vibrant Inc — Celebrating 25 Years in Business"
-              width={780}
-              height={960}
-              className="w-full h-auto object-contain"
+              width={260}
+              height={320}
+              className="w-52 h-auto object-contain drop-shadow-xl"
             />
           </motion.div>
 
