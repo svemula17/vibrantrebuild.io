@@ -56,7 +56,7 @@ export default function AboutPage() {
                 alt="Vibrant Inc — Celebrating 25 Years in Business"
                 width={780}
                 height={960}
-                className="w-full h-auto object-cover max-h-72 object-top"
+                className="w-full h-auto object-contain"
                 priority
               />
             </div>

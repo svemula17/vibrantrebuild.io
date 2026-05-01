@@ -21,37 +21,66 @@
 }
 
 @layer components {
-  /* ─── buttons ─── */
+  /* ─── buttons ─────────────────────────────────────────────────────────── */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200 focus-visible:ring-2 focus-visible:ring-sky focus-visible:ring-offset-2;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold
+           transition-all duration-200 focus-visible:ring-2 focus-visible:ring-sky focus-visible:ring-offset-2;
   }
-  .btn-primary { @apply btn bg-sky text-white shadow-card hover:bg-sky-600 hover:-translate-y-0.5 hover:shadow-cardHover; }
-  .btn-secondary { @apply btn bg-navy-700 text-white hover:bg-navy-800 hover:-translate-y-0.5; }
-  .btn-ghost { @apply btn border border-line text-navy-700 hover:bg-navy-50 hover:border-navy-200; }
-  .btn-outline-light { @apply btn border border-white/30 text-white hover:bg-white/10; }
 
-  /* ─── typography helpers ─── */
-  .eyebrow { @apply text-xs font-semibold uppercase tracking-[0.18em] text-sky-600; }
-  .section { @apply py-20 md:py-28; }
+  /* Primary: logo gradient (deep crimson → brand orange-red) */
+  .btn-primary {
+    @apply btn text-white shadow-card hover:-translate-y-0.5 hover:shadow-cardHover;
+    background-image: linear-gradient(135deg, #A33315 0%, #C8401A 55%, #E05A1F 100%);
+    background-color: #C8401A; /* fallback */
+  }
+  .btn-primary:hover {
+    background-image: linear-gradient(135deg, #7D250E 0%, #A33315 55%, #C8401A 100%);
+  }
+
+  .btn-secondary    { @apply btn bg-navy-700 text-white hover:bg-navy-800 hover:-translate-y-0.5; }
+  .btn-ghost        { @apply btn border border-line text-navy-700 hover:bg-navy-50 hover:border-navy-200; }
+  .btn-outline-light{ @apply btn border border-white/30 text-white hover:bg-white/10; }
+
+  /* ─── typography helpers ──────────────────────────────────────────────── */
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.18em];
+    color: #C8401A; /* brand orange-red */
+  }
+  .section      { @apply py-20 md:py-28; }
   .section-soft { @apply py-20 md:py-28 bg-navy-50/40; }
 
-  /* ─── breadcrumbs ─── */
-  .crumbs { @apply flex flex-wrap items-center gap-2 text-xs font-medium text-muted; }
+  /* ─── breadcrumbs ────────────────────────────────────────────────────── */
+  .crumbs   { @apply flex flex-wrap items-center gap-2 text-xs font-medium text-muted; }
   .crumbs a { @apply text-navy-700 hover:text-sky transition-colors; }
   .crumbs > span { @apply text-line; }
 
-  /* ─── card ─── */
+  /* ─── card ───────────────────────────────────────────────────────────── */
   .card { @apply bg-white border border-line rounded-2xl shadow-card; }
 
-  /* ─── feature list ─── */
+  /* ─── feature list ───────────────────────────────────────────────────── */
   .svc-list { @apply space-y-2; }
   .svc-list li {
-    @apply relative pl-7 text-sm text-ink/80 leading-relaxed before:content-[''] before:absolute before:left-0 before:top-2 before:h-1.5 before:w-1.5 before:rounded-full before:bg-sky;
+    @apply relative pl-7 text-sm text-ink/80 leading-relaxed
+           before:content-[''] before:absolute before:left-0 before:top-2
+           before:h-1.5 before:w-1.5 before:rounded-full before:bg-sky;
   }
 
-  /* ─── icon tile ─── */
-  .icon-tile {
-    @apply grid place-items-center h-9 w-9 rounded-lg bg-sky/10 text-sky shrink-0;
-  }
+  /* ─── icon tile ──────────────────────────────────────────────────────── */
+  .icon-tile { @apply grid place-items-center h-9 w-9 rounded-lg bg-sky/10 text-sky shrink-0; }
   .icon-tile svg { @apply h-4 w-4; }
+}
+
+/* ─── Parallax fixed-background utility ──────────────────────────────────── */
+@layer utilities {
+  .bg-parallax {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+  }
+  /* iOS Safari doesn't support fixed attachment — fall back gracefully */
+  @supports (-webkit-touch-callout: none) {
+    .bg-parallax {
+      background-attachment: scroll;
+    }
+  }
 }
