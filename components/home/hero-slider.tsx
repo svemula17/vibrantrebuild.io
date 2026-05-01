@@ -8,10 +8,10 @@ import { serviceCards, siteSettings } from "@/content/site-content";
 
 /* ─── Slide images — one per service ──────────────────────────────────── */
 import imgAI     from "@/pexels-tara-winstead-8386440.jpg";           // keep
-import imgCloud  from "@/EA5BBA79-D574-4E5B-91F5-07F4A98C3EF3_1_102_a.jpeg"; // keep
+import imgCloud  from "@/Banner-Image-Cloud-Computing-in-Digital-Transformation.jpg"; // updated
 import imgCyber  from "@/cyber.jpg";                                  // new
 import imgAuto   from "@/automation.jpg";                             // new
-import imgERP    from "@/9EBDBB46-F678-4876-9A7B-B8CED32853DD_1_102_a.jpeg"; // keep
+import imgERP    from "@/272362-0-27498000-1741330535-enterprise_resource_planning-ERP.jpg"; // updated
 import imgData   from "@/data.jpg";                                   // new
 import imgMIT    from "@/pexels-tima-miroshnichenko-5380596.jpg";     // keep
 
