@@ -1,12 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { contactDetails, navigationItems, serviceCards, siteSettings } from "@/content/site-content";
-import logoSrc    from "@/Vibrant-Logo-1024x867.png";
-import deloitte   from "@/1.jpg";
-import cosyn      from "@/2.jpg";
-import rcn        from "@/3.jpg";
-import acta       from "@/4.jpg";
-import infojini   from "@/7.jpg";
+import logoSrc  from "@/Vibrant-Logo-1024x867.png";
+import deloitte from "@/1.jpg";
+import cosyn    from "@/2.jpg";
+import rcn      from "@/3.jpg";
+import acta     from "@/4.jpg";
+import infojini from "@/7.jpg";
 
 const socialLinks = [
   {
@@ -27,22 +27,39 @@ const socialLinks = [
 ];
 
 const clientLogos = [
-  { src: deloitte,  alt: "Deloitte" },
-  { src: cosyn,     alt: "COSYN" },
-  { src: rcn,       alt: "RCN" },
-  { src: acta,      alt: "acta" },
-  { src: infojini,  alt: "Infojini" },
+  { src: deloitte, alt: "Deloitte" },
+  { src: cosyn,    alt: "COSYN"    },
+  { src: rcn,      alt: "RCN"      },
+  { src: acta,     alt: "acta"     },
+  { src: infojini, alt: "Infojini" },
 ];
 
-/* Sitemap nav minus Home (already in logo) */
 const footerNav = navigationItems.filter((n) => n.href !== "/");
 
 export function Footer() {
   return (
-    <footer className="bg-navy-700 text-white/85">
+    <footer
+      className="relative text-white overflow-hidden"
+      style={{ background: "#0A121E" }}
+    >
+      {/* ── Brand gradient glow overlays ── */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse at 0% 0%, rgba(200,64,26,0.22) 0%, transparent 50%), radial-gradient(ellipse at 100% 100%, rgba(163,51,21,0.16) 0%, transparent 50%)"
+        }}
+      />
+
+      {/* ── Brand-colour top accent bar ── */}
+      <div
+        className="w-full h-1"
+        style={{ background: "linear-gradient(90deg, #7D250E 0%, #C8401A 40%, #E05A1F 70%, #A33315 100%)" }}
+      />
 
       {/* ── Main 4-col grid ── */}
-      <div className="container py-16 grid gap-12 lg:grid-cols-4">
+      <div className="container relative py-16 grid gap-12 lg:grid-cols-4">
 
         {/* Brand + tagline + social */}
         <div>
@@ -53,17 +70,27 @@ export function Footer() {
             height={867}
             className="h-12 w-auto object-contain brightness-0 invert"
           />
-          <p className="mt-4 text-sm leading-relaxed text-white/65">
-            Your efficiency and bottom line is our business. Established in 2000, Vibrant delivers
-            cloud, data, ERP, and managed IT solutions across North America.
+          <p className="mt-4 text-sm leading-relaxed text-white/60">
+            Your efficiency and bottom line is our business. Established in 2000,
+            Vibrant delivers cloud, data, ERP, and managed IT solutions across North America.
           </p>
+
+          {/* Address */}
+          <p className="mt-4 text-xs text-white/45 flex items-start gap-1.5">
+            <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 mt-0.5 shrink-0 text-sky" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
+            </svg>
+            Princeton, New Jersey, USA
+          </p>
+
+          {/* Social icons */}
           <div className="mt-6 flex gap-3">
             {socialLinks.map((s) => (
               <a
                 key={s.label}
                 href={s.href}
                 aria-label={s.label}
-                className="grid h-10 w-10 place-items-center rounded-full bg-white/10 hover:bg-sky transition-colors"
+                className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 hover:bg-[#C8401A] hover:border-[#C8401A] hover:text-white transition-all"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -77,11 +104,24 @@ export function Footer() {
 
         {/* Sitemap */}
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-[0.16em] text-white">Sitemap</h4>
-          <ul className="mt-4 space-y-2 text-sm">
+          <h4
+            className="text-xs font-bold uppercase tracking-[0.2em]"
+            style={{ color: "#E05A1F" }}
+          >
+            Sitemap
+          </h4>
+          <div className="mt-2 mb-4 h-px w-8" style={{ background: "#C8401A" }} />
+          <ul className="space-y-2.5 text-sm">
             {footerNav.map((n) => (
               <li key={n.href}>
-                <Link href={n.href} className="text-white/65 hover:text-white transition-colors">
+                <Link
+                  href={n.href}
+                  className="text-white/55 hover:text-white transition-colors flex items-center gap-1.5 group"
+                >
+                  <span
+                    className="h-1 w-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity shrink-0"
+                    style={{ background: "#C8401A" }}
+                  />
                   {n.label}
                 </Link>
               </li>
@@ -91,11 +131,24 @@ export function Footer() {
 
         {/* Services */}
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-[0.16em] text-white">Services</h4>
-          <ul className="mt-4 space-y-2 text-sm">
+          <h4
+            className="text-xs font-bold uppercase tracking-[0.2em]"
+            style={{ color: "#E05A1F" }}
+          >
+            Services
+          </h4>
+          <div className="mt-2 mb-4 h-px w-8" style={{ background: "#C8401A" }} />
+          <ul className="space-y-2.5 text-sm">
             {serviceCards.map((s) => (
               <li key={s.slug}>
-                <Link href={`/services/${s.slug}`} className="text-white/65 hover:text-white transition-colors">
+                <Link
+                  href={`/services/${s.slug}`}
+                  className="text-white/55 hover:text-white transition-colors flex items-center gap-1.5 group"
+                >
+                  <span
+                    className="h-1 w-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity shrink-0"
+                    style={{ background: "#C8401A" }}
+                  />
                   {s.title}
                 </Link>
               </li>
@@ -105,49 +158,71 @@ export function Footer() {
 
         {/* Contact */}
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-[0.16em] text-white">Contact Us</h4>
-          <ul className="mt-4 space-y-3 text-sm">
+          <h4
+            className="text-xs font-bold uppercase tracking-[0.2em]"
+            style={{ color: "#E05A1F" }}
+          >
+            Contact Us
+          </h4>
+          <div className="mt-2 mb-4 h-px w-8" style={{ background: "#C8401A" }} />
+          <ul className="space-y-4 text-sm">
             {contactDetails.map((c) => (
               <li key={c.label} className="flex flex-col gap-0.5">
-                <span className="text-white/45 text-[11px] uppercase tracking-[0.12em]">{c.label}</span>
-                <span className="text-white/80">{c.value}</span>
+                <span className="text-[11px] uppercase tracking-[0.14em] text-white/35">{c.label}</span>
+                <span className="text-white/75">{c.value}</span>
               </li>
             ))}
           </ul>
-          <div className="mt-6">
-            <Link href="/contact" className="btn-primary text-xs px-5 py-2.5">
-              Get a Call Back
-            </Link>
-          </div>
+
+          <Link
+            href="/contact"
+            className="mt-6 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5"
+            style={{ background: "linear-gradient(135deg, #A33315 0%, #C8401A 60%, #E05A1F 100%)" }}
+          >
+            Get a Call Back →
+          </Link>
         </div>
       </div>
 
-      {/* ── Client logos row (matches official site footer) ── */}
-      <div className="border-t border-white/10">
-        <div className="container py-8">
-          <p className="text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40 mb-6">
+      {/* ── Client logos — white cards so they're always visible ── */}
+      <div className="relative border-t" style={{ borderColor: "rgba(255,255,255,0.07)" }}>
+        <div className="container py-10">
+          <p className="text-center text-[11px] font-bold uppercase tracking-[0.22em] mb-8" style={{ color: "#C8401A" }}>
             Clients we&apos;ve served
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14">
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
             {clientLogos.map((c) => (
-              <Image
+              <div
                 key={c.alt}
-                src={c.src}
-                alt={c.alt}
-                height={28}
-                width={100}
-                className="h-7 w-auto object-contain brightness-0 invert opacity-40 hover:opacity-80 transition-opacity"
-              />
+                className="flex items-center justify-center rounded-xl px-5 py-3 transition-all hover:scale-105"
+                style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.10)" }}
+              >
+                <Image
+                  src={c.src}
+                  alt={c.alt}
+                  height={32}
+                  width={110}
+                  className="h-8 w-auto object-contain brightness-0 invert opacity-75 hover:opacity-100 transition-opacity"
+                />
+              </div>
             ))}
           </div>
         </div>
       </div>
 
       {/* ── Copyright bar ── */}
-      <div className="border-t border-white/10">
-        <div className="container py-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-xs text-white/50">
+      <div className="relative border-t" style={{ borderColor: "rgba(255,255,255,0.07)" }}>
+        <div className="container py-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-xs text-white/35">
           <p>© {new Date().getFullYear()} {siteSettings.brandName}. All rights reserved.</p>
-          <p>E-Verify Partner · NMSDC Certified MBE · Oracle NetSuite Solution Partner · Wrike Solution Partner</p>
+          <p className="flex flex-wrap gap-x-3 gap-y-1">
+            <span>E-Verify Partner</span>
+            <span style={{ color: "#C8401A" }}>·</span>
+            <span>NMSDC Certified MBE</span>
+            <span style={{ color: "#C8401A" }}>·</span>
+            <span>Oracle NetSuite Solution Partner</span>
+            <span style={{ color: "#C8401A" }}>·</span>
+            <span>Wrike Solution Partner</span>
+          </p>
         </div>
       </div>
     </footer>
