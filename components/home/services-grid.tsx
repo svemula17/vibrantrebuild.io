@@ -41,8 +41,14 @@ export function ServicesGrid() {
             >
               <Link
                 href={`/services/${service.slug}`}
-                className="group flex h-full flex-col rounded-2xl border border-line bg-white p-7 shadow-card transition-all hover:-translate-y-1.5 hover:shadow-cardHover hover:border-sky/40"
+                className="group relative flex h-full flex-col rounded-2xl border border-line bg-white p-7 shadow-card transition-all hover:-translate-y-1.5 hover:shadow-cardHover hover:border-sky/40 overflow-hidden"
               >
+                {/* Left accent bar — slides in on hover */}
+                <span
+                  className="absolute left-0 top-6 bottom-6 w-1 rounded-r-full opacity-0 group-hover:opacity-100 transition-all duration-300"
+                  style={{ background: "linear-gradient(to bottom, #C8401A, #E05A1F)" }}
+                />
+
                 {/* Icon with brand gradient background on hover */}
                 <span className="grid h-12 w-12 place-items-center rounded-xl bg-sky/10 text-sky transition-colors group-hover:bg-sky group-hover:text-white">
                   <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">

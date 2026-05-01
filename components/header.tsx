@@ -39,6 +39,25 @@ export function Header() {
           : "bg-white"
       }`}
     >
+      {/* Top announcement strip — hides on scroll */}
+      <div
+        className={`w-full text-white text-xs transition-all duration-300 overflow-hidden ${
+          scrolled ? "max-h-0 py-0 opacity-0" : "max-h-10 py-2 opacity-100"
+        }`}
+        style={{ background: "linear-gradient(90deg, #7D250E 0%, #C8401A 50%, #A33315 100%)" }}
+      >
+        <div className="container flex items-center justify-center gap-4 flex-wrap">
+          <span className="hidden sm:inline opacity-80">📍 Princeton, New Jersey</span>
+          <span className="hidden sm:inline opacity-40">|</span>
+          <a href={`tel:${siteSettings.phonePrimary}`} className="font-semibold hover:opacity-80 transition-opacity">
+            📞 {siteSettings.phonePrimary}
+          </a>
+          <span className="opacity-40">|</span>
+          <a href={`mailto:${siteSettings.email}`} className="opacity-80 hover:opacity-100 transition-opacity">
+            {siteSettings.email}
+          </a>
+        </div>
+      </div>
       <div className="container flex h-20 items-center justify-between gap-6">
         <Link href="/" aria-label={`${siteSettings.brandName} home`}>
           <Image
