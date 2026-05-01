@@ -1,27 +1,92 @@
 "use client";
 
-import { useActionState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { initialContactState, submitContactForm } from "@/app/contact/actions";
 import { interestOptions } from "@/content/site-content";
 
-type Props = {
-  heading?: string;
-  showRequiredNote?: boolean;
-};
+type Status = "idle" | "submitting" | "success" | "error";
+type FieldErrors = Partial<Record<string, string>>;
+
+function validate(d: Record<string, string>): FieldErrors {
+  const e: FieldErrors = {};
+  if (!d.firstName?.trim()) e.firstName = "Please enter your first name.";
+  if (!d.lastName?.trim())  e.lastName  = "Please enter your last name.";
+  if (!d.email?.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email))
+    e.email = "Please enter a valid email address.";
+  if (!d.company?.trim())  e.company   = "Please enter your company name.";
+  return e;
+}
+
+type Props = { heading?: string; showRequiredNote?: boolean };
 
 export function CallbackForm({ heading, showRequiredNote }: Props) {
-  const [state, formAction, pending] = useActionState(submitContactForm, initialContactState);
+  const [status, setStatus]       = useState<Status>("idle");
+  const [message, setMessage]     = useState("");
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (status === "submitting") return;
+
+    const form = e.currentTarget;
+    const fd   = new FormData(form);
+
+    // Honeypot — if the hidden website field is filled, silently drop
+    if (fd.get("website")) return;
+
+    const data: Record<string, string> = {
+      firstName: String(fd.get("firstName") ?? ""),
+      lastName:  String(fd.get("lastName")  ?? ""),
+      email:     String(fd.get("email")     ?? ""),
+      company:   String(fd.get("company")   ?? ""),
+      phone:     String(fd.get("phone")     ?? ""),
+      interest:  String(fd.get("interest")  ?? ""),
+      message:   String(fd.get("message")   ?? ""),
+    };
+
+    const errors = validate(data);
+    if (Object.keys(errors).length) {
+      setFieldErrors(errors);
+      return;
+    }
+    setFieldErrors({});
+    setStatus("submitting");
+
+    try {
+      // FormSubmit.co — free, no account needed.
+      // First submission triggers a one-time verification email to info@vibrantinc.com.
+      const res = await fetch("https://formsubmit.co/ajax/info@vibrantinc.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          ...data,
+          _subject: `New inquiry from ${data.firstName} ${data.lastName} — ${data.company}`,
+          _captcha: "false",
+        }),
+      });
+
+      if (res.ok) {
+        setStatus("success");
+        setMessage("Thanks — a senior advisor will be in touch within one business day.");
+        form.reset();
+      } else {
+        throw new Error("server");
+      }
+    } catch {
+      setStatus("error");
+      setMessage("Something went wrong. Please email us directly at info@vibrantinc.com");
+    }
+  }
 
   return (
     <motion.form
-      action={formAction}
+      onSubmit={handleSubmit}
+      noValidate
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10%" }}
       transition={{ duration: 0.5 }}
       className="bg-white rounded-2xl shadow-card p-6 md:p-8 border border-line"
-      noValidate
     >
       {heading && <h3 className="text-xl font-semibold text-navy-700">{heading}</h3>}
       {showRequiredNote && (
@@ -31,14 +96,14 @@ export function CallbackForm({ heading, showRequiredNote }: Props) {
       )}
 
       <div className={`grid gap-4 sm:grid-cols-2 ${heading ? "mt-5" : ""}`}>
-        <Field label="First name" name="firstName" autoComplete="given-name" required error={state.fieldErrors?.firstName?.[0]} />
-        <Field label="Last name" name="lastName" autoComplete="family-name" required error={state.fieldErrors?.lastName?.[0]} />
-        <Field label="Work email" name="email" type="email" autoComplete="email" required error={state.fieldErrors?.email?.[0]} />
-        <Field label="Phone" name="phone" type="tel" autoComplete="tel" error={state.fieldErrors?.phone?.[0]} />
+        <Field label="First name" name="firstName" autoComplete="given-name"  required error={fieldErrors.firstName} />
+        <Field label="Last name"  name="lastName"  autoComplete="family-name" required error={fieldErrors.lastName} />
+        <Field label="Work email" name="email"   type="email" autoComplete="email" required error={fieldErrors.email} />
+        <Field label="Phone"      name="phone"   type="tel"   autoComplete="tel" />
       </div>
 
       <div className="mt-4">
-        <Field label="Company" name="company" autoComplete="organization" required error={state.fieldErrors?.company?.[0]} />
+        <Field label="Company" name="company" autoComplete="organization" required error={fieldErrors.company} />
       </div>
 
       <div className="mt-4">
@@ -52,9 +117,7 @@ export function CallbackForm({ heading, showRequiredNote }: Props) {
           className="w-full rounded-lg border-line bg-white text-ink focus:border-sky focus:ring-sky"
         >
           {interestOptions.map((o) => (
-            <option key={o} value={o}>
-              {o}
-            </option>
+            <option key={o} value={o}>{o}</option>
           ))}
         </select>
       </div>
@@ -72,47 +135,37 @@ export function CallbackForm({ heading, showRequiredNote }: Props) {
         />
       </div>
 
-      {/* honeypot */}
+      {/* Honeypot — bots fill this, humans don't */}
       <input type="text" name="website" tabIndex={-1} autoComplete="off" defaultValue="" className="hidden" aria-hidden="true" />
 
       <div className="mt-6 flex flex-col-reverse md:flex-row md:items-center md:justify-between gap-3">
-        <p className="text-xs text-muted">
-          We&apos;ll respond within one business day. Your info is never shared.
-        </p>
-        <button type="submit" disabled={pending} className="btn-primary disabled:opacity-60">
-          {pending ? "Sending..." : "Request a call back"}
+        <p className="text-xs text-muted">We&apos;ll respond within one business day. Your info is never shared.</p>
+        <button
+          type="submit"
+          disabled={status === "submitting"}
+          className="btn-primary disabled:opacity-60"
+        >
+          {status === "submitting" ? "Sending…" : "Request a call back"}
         </button>
       </div>
 
-      {state.status === "success" && (
-        <p
-          className="mt-4 rounded-lg border border-sky/30 bg-sky/10 px-4 py-3 text-sm text-navy-700"
-          role="status"
-        >
-          {state.message}
+      {status === "success" && (
+        <p className="mt-4 rounded-lg border border-sky/30 bg-sky/10 px-4 py-3 text-sm text-navy-700" role="status">
+          {message}
         </p>
       )}
-      {state.status === "error" && state.message && (
-        <p className="mt-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">{state.message}</p>
+      {status === "error" && (
+        <p className="mt-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">{message}</p>
       )}
     </motion.form>
   );
 }
 
 function Field({
-  label,
-  name,
-  type = "text",
-  required,
-  autoComplete,
-  error
+  label, name, type = "text", required, autoComplete, error
 }: {
-  label: string;
-  name: string;
-  type?: string;
-  required?: boolean;
-  autoComplete?: string;
-  error?: string;
+  label: string; name: string; type?: string;
+  required?: boolean; autoComplete?: string; error?: string;
 }) {
   return (
     <div>
@@ -120,11 +173,8 @@ function Field({
         {label} {required && <span className="text-sky">*</span>}
       </label>
       <input
-        id={name}
-        name={name}
-        type={type}
-        required={required}
-        autoComplete={autoComplete}
+        id={name} name={name} type={type}
+        required={required} autoComplete={autoComplete}
         className="w-full rounded-lg border-line bg-white text-ink focus:border-sky focus:ring-sky"
       />
       {error && <p className="mt-1 text-xs text-red-600">{error}</p>}

@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { serviceCards, siteSettings } from "@/content/site-content";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = ["", "/services", "/about", "/partners", "/careers", "/contact", "/social-responsibility"];
 
