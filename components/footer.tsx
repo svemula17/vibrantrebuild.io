@@ -40,7 +40,7 @@ export function Footer() {
   return (
     <footer
       className="relative text-white overflow-hidden"
-      style={{ background: "#0A121E" }}
+      style={{ background: "#1A2E45" }}
     >
       {/* ── Brand gradient glow overlays ── */}
       <div
@@ -48,7 +48,7 @@ export function Footer() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at 0% 0%, rgba(200,64,26,0.22) 0%, transparent 50%), radial-gradient(ellipse at 100% 100%, rgba(163,51,21,0.16) 0%, transparent 50%)"
+            "radial-gradient(ellipse at 0% 0%, rgba(200,64,26,0.18) 0%, transparent 50%), radial-gradient(ellipse at 100% 100%, rgba(163,51,21,0.12) 0%, transparent 50%)"
         }}
       />
 
@@ -184,25 +184,24 @@ export function Footer() {
         </div>
       </div>
 
-      {/* ── Client logos — white cards so they're always visible ── */}
-      <div className="relative border-t" style={{ borderColor: "rgba(255,255,255,0.07)" }}>
-        <div className="container py-10">
-          <p className="text-center text-[11px] font-bold uppercase tracking-[0.22em] mb-8" style={{ color: "#C8401A" }}>
+      {/* ── Client logos — solid white strip so logos are always visible ── */}
+      <div className="relative bg-white">
+        <div className="container py-8">
+          <p className="text-center text-[11px] font-bold uppercase tracking-[0.22em] mb-7 text-muted">
             Clients we&apos;ve served
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
             {clientLogos.map((c) => (
               <div
                 key={c.alt}
-                className="flex items-center justify-center rounded-xl px-5 py-3 transition-all hover:scale-105"
-                style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.10)" }}
+                className="flex items-center justify-center rounded-xl border border-line px-6 py-3 transition-all hover:shadow-card hover:border-sky/30 hover:scale-105"
               >
                 <Image
                   src={c.src}
                   alt={c.alt}
-                  height={32}
-                  width={110}
-                  className="h-8 w-auto object-contain brightness-0 invert opacity-75 hover:opacity-100 transition-opacity"
+                  height={36}
+                  width={120}
+                  className="h-9 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
                 />
               </div>
             ))}
