@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Services — Vibrant Inc</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="Vibrant Homepage.html" class="brand" aria-label="Vibrant Inc home">
+      <span class="brand-mark" aria-hidden="true">V</span>
+      <span class="brand-text">
+        <span class="brand-name">Vibrant Inc</span>
+        <span class="brand-tag">Established 2000</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="Vibrant Homepage.html">Home</a>
+      <a href="About.html">About</a>
+      <a href="Services.html" class="active">Services</a>
+      <a href="Partners.html">Partners</a>
+      <a href="Careers.html">Careers</a>
+      <a href="Contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="tel:609-945-2244" class="nav-phone">609-945-2244</a>
+      <a href="Contact.html" class="btn btn-primary">Get a Call Back</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Toggle navigation">
+      <span class="menu-btn-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="container">
+      <nav aria-label="Mobile">
+        <a href="Vibrant Homepage.html">Home</a>
+        <a href="About.html">About</a>
+        <a href="Services.html" class="active">Services</a>
+        <a href="Partners.html">Partners</a>
+        <a href="Careers.html">Careers</a>
+        <a href="Contact.html">Contact</a>
+      </nav>
+      <div class="actions">
+        <a href="tel:609-945-2244" class="btn btn-ghost">Call 609-945-2244</a>
+        <a href="Contact.html" class="btn btn-primary">Get a Call Back</a>
+      </div>
+    </div>
+  </div>
+</header>
+<style>
+.services-grid{margin-top:3.5rem;display:grid;gap:1.5rem;grid-template-columns:1fr}
+@media(min-width:640px){.services-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.services-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1280px){.services-grid{grid-template-columns:repeat(4,1fr)}}
+.service-card{display:flex;flex-direction:column;height:100%;border:1px solid var(--line);background:#fff;padding:1.75rem;border-radius:1rem;box-shadow:var(--shadow-card);transition:all .25s ease}
+.service-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-cardhover);border-color:rgba(74,144,226,.4)}
+.service-icon{display:grid;place-items:center;height:3rem;width:3rem;border-radius:.75rem;background:rgba(74,144,226,.10);color:var(--sky)}
+.service-icon svg{height:1.5rem;width:1.5rem}
+.service-kicker{margin-top:1.5rem;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.18em;color:var(--sky-600)}
+.service-card h3{margin-top:.5rem;font-size:1.2rem}
+.service-summary{margin-top:.75rem;font-size:.875rem;color:var(--muted);line-height:1.6;flex:1}
+.service-cta{margin-top:1.5rem;display:inline-flex;align-items:center;gap:.4rem;font-size:.875rem;font-weight:600;color:var(--sky);transition:gap .2s}
+.service-card:hover .service-cta{gap:.7rem}
+.service-cta svg{width:1rem;height:1rem}
+</style>
+<section class="page-hero">
+  <div class="container page-hero-inner reveal">
+    <p class="crumbs"><a href="Vibrant Homepage.html">Home</a><span>/</span>Services</p>
+    <p class="eyebrow">Services</p>
+    <h1>Seven practices, one trusted partner.</h1>
+    <p>From AI readiness to managed IT — we cover the full enterprise technology stack with senior practitioners and a 25-year delivery track record.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="services-grid">
+      
+<a href="Services-AI-Readiness.html" class="service-card reveal">
+  <span class="service-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4v1a4 4 0 0 1 0 8v1a4 4 0 1 1-8 0v-1a4 4 0 0 1 0-8V6a4 4 0 0 1 4-4zM9 10h.01M15 10h.01M9 14h.01M15 14h.01"/></svg>
+  </span>
+  <p class="service-kicker">AI Readiness</p>
+  <h3>AI Readiness</h3>
+  <p class="service-summary">Assess your data, talent, and infrastructure readiness — then deploy AI use cases that move real business KPIs.</p>
+  <span class="service-cta">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+</a>
+
+<a href="Services-Cloud-Modernization.html" class="service-card reveal">
+  <span class="service-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+  </span>
+  <p class="service-kicker">Cloud Modernization</p>
+  <h3>Cloud Modernization</h3>
+  <p class="service-summary">Rationalize, replatform, and refactor your estate on Azure, AWS, or GCP — without the rip-and-replace risk.</p>
+  <span class="service-cta">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+</a>
+
+<a href="Services-Cybersecurity.html" class="service-card reveal">
+  <span class="service-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/></svg>
+  </span>
+  <p class="service-kicker">Cybersecurity</p>
+  <h3>Cybersecurity</h3>
+  <p class="service-summary">Zero-trust architectures, identity, and 24×7 SOC operations — security that scales with the business, not against it.</p>
+  <span class="service-cta">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+</a>
+
+<a href="Services-Automation.html" class="service-card reveal">
+  <span class="service-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+  </span>
+  <p class="service-kicker">Automation</p>
+  <h3>Automation</h3>
+  <p class="service-summary">Process discovery, RPA, and intelligent automation that take repetitive work off your team’s plate.</p>
+  <span class="service-cta">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+</a>
+
+<a href="Services-ERP-Optimization.html" class="service-card reveal">
+  <span class="service-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M3 12h18M3 17h12"/></svg>
+  </span>
+  <p class="service-kicker">ERP Optimization</p>
+  <h3>ERP Optimization</h3>
+  <p class="service-summary">NetSuite, WorkDay, Microsoft Dynamics, and Oracle E-Business — implementation, post go-live optimization, and managed support.</p>
+  <span class="service-cta">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+</a>
+
+<a href="Services-Data-Analytics.html" class="service-card reveal">
+  <span class="service-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 15l4-4 4 4 5-7"/></svg>
+  </span>
+  <p class="service-kicker">Data &amp; Analytics</p>
+  <h3>Data &amp; Analytics</h3>
+  <p class="service-summary">Modern data platforms, self-service BI, and decision-grade reporting on Snowflake, Databricks, Power BI, and Oracle BI.</p>
+  <span class="service-cta">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+</a>
+
+<a href="Services-Managed-IT.html" class="service-card reveal">
+  <span class="service-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4M12 17v4M8 21h8"/></svg>
+  </span>
+  <p class="service-kicker">Managed IT</p>
+  <h3>Managed IT</h3>
+  <p class="service-summary">24×7 managed services across cloud, security, ERP, and end-user computing — so your internal team stays focused on growth.</p>
+  <span class="service-cta">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+</a>
+    </div>
+  </div>
+</section>
+
+<section class="section surface-soft">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">How we work</p>
+      <h2>One delivery model — tuned to each engagement.</h2>
+      <p>Every engagement is led by a senior advisor and supported by our onshore + offshore delivery teams.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><h3>Discover</h3><p>Working sessions with your team to map current-state systems, gaps, and the business outcomes you're chasing.</p></div>
+      <div class="step reveal"><h3>Design</h3><p>Practical target-state architecture, sequencing, and a delivery plan you can defend internally.</p></div>
+      <div class="step reveal"><h3>Deliver</h3><p>Senior-led implementation with onshore + offshore execution, weekly demos, and tight change control.</p></div>
+      <div class="step reveal"><h3>Operate</h3><p>Hypercare, managed support, and continuous improvement once you're live.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container footer-top">
+    <div class="footer-brand">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">V</span>
+        <span class="brand-name" style="color:#fff">Vibrant Inc</span>
+      </div>
+      <p>Vibrant Inc, established in 2000, is a trusted provider of value-added IT solutions helping businesses navigate AI, cloud, security, and data transformation.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13 22v-8h3l1-4h-4V7.5c0-1.2.4-2 2.1-2H17V2h-3c-3 0-4 1.8-4 4.3V10H7v4h3v8h3z"/></svg></a>
+        <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M22 5.9c-.7.3-1.5.5-2.4.6.9-.5 1.5-1.3 1.8-2.3-.8.5-1.7.8-2.6 1A4.1 4.1 0 0011.7 9c0 .3 0 .6.1.9-3.4-.2-6.4-1.8-8.4-4.3-.4.6-.6 1.3-.6 2.1 0 1.4.7 2.7 1.8 3.4-.7 0-1.3-.2-1.9-.5v.1c0 2 1.4 3.7 3.3 4.1-.4.1-.7.1-1.1.1-.3 0-.5 0-.8-.1.5 1.7 2.1 2.9 3.9 2.9A8.3 8.3 0 012 18.6 11.7 11.7 0 008.3 20c7.5 0 11.6-6.2 11.6-11.6v-.5c.8-.6 1.5-1.3 2.1-2z"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8h4.56v14H.22V8zm7.4 0h4.36v1.92h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.48 3.04 5.48 7v7.44h-4.56v-6.6c0-1.58-.03-3.62-2.2-3.62-2.2 0-2.54 1.72-2.54 3.5V22H7.62V8z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Sitemap</h4>
+      <ul>
+        <li><a href="Vibrant Homepage.html">Home</a></li>
+        <li><a href="About.html">About</a></li>
+        <li><a href="Services.html">Services</a></li>
+        <li><a href="Partners.html">Partners</a></li>
+        <li><a href="Careers.html">Careers</a></li>
+        <li><a href="Social-Responsibility.html">Social Responsibility</a></li>
+        <li><a href="Contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="Services-AI-Readiness.html">AI Readiness</a></li>
+        <li><a href="Services-Cloud-Modernization.html">Cloud Modernization</a></li>
+        <li><a href="Services-Cybersecurity.html">Cybersecurity</a></li>
+        <li><a href="Services-Automation.html">Automation</a></li>
+        <li><a href="Services-ERP-Optimization.html">ERP Optimization</a></li>
+        <li><a href="Services-Data-Analytics.html">Data &amp; Analytics</a></li>
+        <li><a href="Services-Managed-IT.html">Managed IT</a></li>
+      </ul>
+    </div>
+    <div class="footer-col footer-contact">
+      <h4>Contact</h4>
+      <ul>
+        <li><span class="lbl">General inquiries</span><span class="val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="31585f575e7147585343505f45585f521f525e5c">[email&#160;protected]</a></span></li>
+        <li><span class="lbl">Phone</span><span class="val">609-945-2244</span></li>
+        <li><span class="lbl">Alternate phone</span><span class="val">609-945-0442</span></li>
+        <li><span class="lbl">Headquarters</span><span class="val">Princeton, New Jersey</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <div class="container footer-bot-inner">
+      <p>© <span id="year"></span> Vibrant Inc. All rights reserved.</p>
+      <p>E-Verify Partner · NMSDC Certified · Oracle NetSuite Solution Partner · Wrike Solution Partner</p>
+    </div>
+  </div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/site.js"></script>
+</body>
+</html>
