@@ -1,9 +1,9 @@
-name: Deploy to GitHub Pages
+name: Deploy Vibrant Inc to GitHub Pages
 
 on:
   push:
     branches: [main]
-  workflow_dispatch:          # lets you trigger a deploy manually from GitHub UI
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -15,7 +15,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # ── 1. Build ─────────────────────────────────────────────────────────────
   build:
     runs-on: ubuntu-latest
     steps:
@@ -31,18 +30,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build (static export)
+      - name: Build static export
         run: npm run build
         env:
-          # If your repo is  github.com/YOU/vibrant-inc-rebuild  the site lives at
-          # https://YOU.github.io/vibrant-inc-rebuild  → basePath must be /vibrant-inc-rebuild
-          #
-          # If your repo is  github.com/YOU/YOU.github.io  the site lives at
-          # https://YOU.github.io  → leave basePath empty by removing the line below.
-          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+          NEXT_PUBLIC_BASE_PATH: /vibrantrebuild.io
 
-      # GitHub Pages strips folders that start with _ (like _next) unless we add this file
-      - name: Add .nojekyll
+      - name: Add .nojekyll (prevents GitHub stripping _next folder)
         run: touch out/.nojekyll
 
       - name: Upload Pages artifact
@@ -50,7 +43,6 @@ jobs:
         with:
           path: out
 
-  # ── 2. Deploy ─────────────────────────────────────────────────────────────
   deploy:
     needs: build
     runs-on: ubuntu-latest
