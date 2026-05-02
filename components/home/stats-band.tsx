@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { AnimatedCounter } from "@/components/animated-counter";
+import { RevealWords } from "@/components/reveal-on-scroll";
 import { stats } from "@/content/site-content";
 
 export function StatsBand() {
@@ -28,7 +29,9 @@ export function StatsBand() {
           <p className="text-xs font-bold uppercase tracking-[0.22em]" style={{ color: "#E8703A" }}>
             By the numbers
           </p>
-          <h2 className="mt-3 text-white">A quarter century of measurable impact.</h2>
+          <h2 className="mt-3 text-white">
+            <RevealWords text="A quarter century of measurable impact." />
+          </h2>
         </motion.div>
 
         <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-8">

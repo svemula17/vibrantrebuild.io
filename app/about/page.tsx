@@ -118,6 +118,63 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* ── Brochure download ── */}
+      <section className="section">
+        <div className="container">
+          <div
+            className="relative overflow-hidden rounded-3xl p-10 md:p-14"
+            style={{ background: "linear-gradient(135deg, #1A0A04 0%, #2C1008 50%, #1A0A04 100%)" }}
+          >
+            {/* Glow */}
+            <div aria-hidden className="absolute inset-0 pointer-events-none"
+              style={{ background: "radial-gradient(ellipse at 30% 50%, rgba(200,64,26,0.25) 0%, transparent 60%)" }} />
+
+            <div className="relative grid gap-10 lg:grid-cols-2 lg:items-center">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.22em]" style={{ color: "#E05A1F" }}>Company Brochure</p>
+                <h2 className="mt-3 text-white" style={{ fontSize: "clamp(1.6rem, 3vw, 2.1rem)" }}>
+                  Learn more about Vibrant Inc.
+                </h2>
+                <p className="mt-4 text-white/65 leading-relaxed">
+                  Our company brochure covers our full range of services, delivery model, corporate values, and career opportunities — everything you need to know about partnering with Vibrant.
+                </p>
+                <div className="mt-8 flex flex-wrap gap-4">
+                  <a
+                    href="/Vibrant-Company-Brochure.pdf"
+                    download
+                    className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 transition-transform"
+                    style={{ background: "linear-gradient(135deg, #A33315 0%, #C8401A 60%, #E05A1F 100%)" }}
+                  >
+                    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+                    </svg>
+                    Download Brochure (PDF)
+                  </a>
+                  <Link href="/contact" className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold border border-white/25 text-white hover:bg-white/10 transition-colors">
+                    Contact us →
+                  </Link>
+                </div>
+              </div>
+
+              {/* Highlights from brochure */}
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  { title: "Strategic IT Consulting", body: "Spanning the full SDLC from planning through post-implementation." },
+                  { title: "Global Delivery Model", body: "Staff augmentation, fixed price, T&M, and global delivery options." },
+                  { title: "Custom Development", body: "Onshore + offshore blended teams for bespoke applications." },
+                  { title: "People-First Culture", body: "CMM-aligned talent model — 8+ years average practitioner experience." },
+                ].map((item) => (
+                  <div key={item.title} className="rounded-2xl p-5" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                    <h3 className="text-sm font-semibold text-white">{item.title}</h3>
+                    <p className="mt-1.5 text-xs text-white/55 leading-relaxed">{item.body}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section-soft">
         <div className="container grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>

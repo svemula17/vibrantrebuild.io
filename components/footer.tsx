@@ -40,7 +40,7 @@ export function Footer() {
   return (
     <footer
       className="relative text-white overflow-hidden"
-      style={{ background: "#1A2E45" }}
+      style={{ background: "#160A04" }}
     >
       {/* ── Brand gradient glow overlays ── */}
       <div
@@ -48,7 +48,7 @@ export function Footer() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at 0% 0%, rgba(200,64,26,0.18) 0%, transparent 50%), radial-gradient(ellipse at 100% 100%, rgba(163,51,21,0.12) 0%, transparent 50%)"
+            "radial-gradient(ellipse at 0% 0%, rgba(200,64,26,0.30) 0%, transparent 55%), radial-gradient(ellipse at 100% 80%, rgba(163,51,21,0.20) 0%, transparent 50%)"
         }}
       />
 
@@ -210,16 +210,29 @@ export function Footer() {
       </div>
 
       {/* ── Copyright bar ── */}
-      <div className="relative border-t" style={{ borderColor: "rgba(255,255,255,0.07)" }}>
-        <div className="container py-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-xs text-white/35">
-          <p>© {new Date().getFullYear()} {siteSettings.brandName}. All rights reserved.</p>
-          <p className="flex flex-wrap gap-x-3 gap-y-1">
+      <div className="relative border-t" style={{ borderColor: "rgba(255,255,255,0.10)" }}>
+        <div className="container py-6 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 text-xs">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+            <p className="text-white/70">© {new Date().getFullYear()} {siteSettings.brandName}. All rights reserved.</p>
+            <a
+              href="/Vibrant-Company-Brochure.pdf"
+              download
+              className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold text-white transition-all hover:-translate-y-0.5"
+              style={{ background: "linear-gradient(135deg, #A33315 0%, #C8401A 100%)" }}
+            >
+              <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+              </svg>
+              Download Brochure
+            </a>
+          </div>
+          <p className="flex flex-wrap gap-x-3 gap-y-1 text-white/60">
             <span>E-Verify Partner</span>
-            <span style={{ color: "#C8401A" }}>·</span>
+            <span style={{ color: "#E05A1F" }}>·</span>
             <span>NMSDC Certified MBE</span>
-            <span style={{ color: "#C8401A" }}>·</span>
+            <span style={{ color: "#E05A1F" }}>·</span>
             <span>Oracle NetSuite Solution Partner</span>
-            <span style={{ color: "#C8401A" }}>·</span>
+            <span style={{ color: "#E05A1F" }}>·</span>
             <span>Wrike Solution Partner</span>
           </p>
         </div>

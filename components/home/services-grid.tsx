@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { serviceCards } from "@/content/site-content";
+import { RevealWords } from "@/components/reveal-on-scroll";
 
 export function ServicesGrid() {
   return (
@@ -18,7 +19,9 @@ export function ServicesGrid() {
           transition={{ duration: 0.55, ease: "easeOut" }}
         >
           <p className="eyebrow">What we do</p>
-          <h2 className="mt-3">Seven practices, one trusted partner.</h2>
+          <h2 className="mt-3">
+            <RevealWords text="Seven practices, one trusted partner." />
+          </h2>
           <p className="mt-4 text-muted">
             From AI readiness to managed IT — covering the full enterprise technology stack
             with senior practitioners.

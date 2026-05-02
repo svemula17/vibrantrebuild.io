@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import anniversary from "@/image.png";
+import { RevealWords } from "@/components/reveal-on-scroll";
 
 const points = [
   { title: "Established in 2000",    body: "25 years of trusted, value-added IT delivery across cloud, data, and ERP." },
@@ -25,7 +26,9 @@ export function WhyVibrant() {
           transition={{ duration: 0.6 }}
         >
           <p className="eyebrow">Why Vibrant</p>
-          <h2 className="mt-3">Trusted, value-added IT solutions since 2000.</h2>
+          <h2 className="mt-3">
+            <RevealWords text="Trusted, value-added IT solutions since 2000." />
+          </h2>
           <p className="mt-5 text-muted leading-relaxed">
             Vibrant Inc helps businesses navigate the digital landscape through cloud and data analytics —
             with practical execution, senior delivery teams, and a 25-year reputation for getting it right.
