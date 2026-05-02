@@ -31,7 +31,7 @@ const industries = [
 
 export function IndustryVerticals() {
   return (
-    <section className="section bg-white">
+    <section className="py-14 md:py-20 bg-white">
       <div className="container">
 
         <motion.div

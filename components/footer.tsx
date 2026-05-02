@@ -190,18 +190,18 @@ export function Footer() {
           <p className="text-center text-[11px] font-bold uppercase tracking-[0.22em] mb-7 text-muted">
             Clients we&apos;ve served
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 md:gap-6">
             {clientLogos.map((c) => (
               <div
                 key={c.alt}
-                className="flex items-center justify-center rounded-xl border border-line px-6 py-3 transition-all hover:shadow-card hover:border-sky/30 hover:scale-105"
+                className="flex items-center justify-center rounded-xl border border-line px-4 py-3 transition-all hover:shadow-card hover:border-sky/30 hover:scale-105"
               >
                 <Image
                   src={c.src}
                   alt={c.alt}
                   height={36}
-                  width={120}
-                  className="h-9 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+                  width={110}
+                  className="h-8 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
                 />
               </div>
             ))}

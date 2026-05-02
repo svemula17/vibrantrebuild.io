@@ -90,7 +90,7 @@ export function HeroSlider() {
 
   return (
     <section
-      className="relative isolate overflow-hidden text-white"
+      className="relative isolate overflow-hidden text-white bg-navy-900"
       style={{ minHeight: "min(100vh, 720px)" }}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
@@ -119,15 +119,20 @@ export function HeroSlider() {
         </motion.div>
       </AnimatePresence>
 
-      {/* ── Overlay: strong left vignette, transparent right ─────────────── */}
-      {/* Left panel — text readable */}
+      {/* ── Overlay: full dark on mobile, left-vignette on desktop ─────── */}
       <div
         aria-hidden
         className="absolute inset-0 -z-10 pointer-events-none"
         style={{
           background:
-            "linear-gradient(to right, rgba(15,31,51,0.92) 0%, rgba(15,31,51,0.75) 45%, rgba(15,31,51,0.25) 70%, rgba(15,31,51,0.05) 100%)",
+            "linear-gradient(to right, rgba(15,31,51,0.93) 0%, rgba(15,31,51,0.80) 40%, rgba(15,31,51,0.55) 65%, rgba(15,31,51,0.30) 100%)",
         }}
+      />
+      {/* Extra full overlay on mobile so text is always readable */}
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10 pointer-events-none md:hidden"
+        style={{ background: "rgba(10,20,36,0.45)" }}
       />
       {/* Bottom fade so controls bar text stays readable */}
       <div
@@ -164,7 +169,7 @@ export function HeroSlider() {
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="mt-3 font-bold leading-none tracking-tight text-white"
-              style={{ fontSize: "clamp(2.8rem, 6.5vw, 5rem)" }}
+              style={{ fontSize: "clamp(2.2rem, 6.5vw, 5rem)" }}
             >
               {service.kicker}
             </motion.h1>

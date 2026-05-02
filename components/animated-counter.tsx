@@ -11,7 +11,7 @@ type Props = {
 
 export function AnimatedCounter({ value, suffix = "", duration = 1600 }: Props) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-20%" });
+  const inView = useInView(ref, { once: true, margin: "0px" });
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {

@@ -26,7 +26,7 @@ export function ServicesGrid() {
         </motion.div>
 
         {/* Cards — cascade in */}
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {serviceCards.map((service, i) => (
             <motion.div
               key={service.slug}
@@ -69,6 +69,16 @@ export function ServicesGrid() {
               </Link>
             </motion.div>
           ))}
+        </div>
+
+        {/* View all CTA */}
+        <div className="mt-10 flex justify-center">
+          <Link href="/services" className="btn-ghost inline-flex items-center gap-2">
+            Explore all 7 services
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+          </Link>
         </div>
       </div>
     </section>

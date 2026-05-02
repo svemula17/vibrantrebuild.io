@@ -10,7 +10,7 @@ export function FloatingCta() {
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 2.5, duration: 0.5, ease: "easeOut" }}
-      className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2"
+      className="hidden sm:flex fixed bottom-6 right-6 z-50 flex-col items-end gap-2"
     >
       {/* Quick-call chip */}
       <a
