@@ -12,16 +12,16 @@ const config: Config = {
     extend: {
       colors: {
         navy: {
-          50: "#f3f6fa",
-          100: "#e2eaf3",
-          200: "#c1d1e3",
+          50:  "#FFF6F2",   /* warm cream — section bg tint        */
+          100: "#FFE8DC",   /* light warm peach                    */
+          200: "#FFD0BC",   /* soft peach                          */
           300: "#90afcc",
           400: "#5a83b0",
           500: "#386396",
           600: "#2a4d7a",
-          700: "#1e3a5f",
+          700: "#1e3a5f",   /* dark navy — headings/text           */
           800: "#172e4a",
-          900: "#0f1f33"
+          900: "#0f1f33"    /* darkest navy                        */
         },
         sky: {
           DEFAULT: "#C8401A",   /* Vibrant brand orange-red  */
