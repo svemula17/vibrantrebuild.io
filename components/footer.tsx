@@ -71,7 +71,7 @@ export function Footer() {
             className="h-12 w-auto object-contain brightness-0 invert"
           />
           <p className="mt-4 text-sm leading-relaxed text-white/60">
-            Your efficiency and bottom line is our business. Established in 2000,
+            {siteSettings.tagline} Established in 2000,
             Vibrant delivers cloud, data, ERP, and managed IT solutions across North America.
           </p>
 

@@ -40,7 +40,7 @@ export function Hero({ image }: { image: StaticImageData }) {
             Celebrating 25 Years of <span className="text-sky">Innovation</span> and Trust
           </h1>
           <p className="mt-6 text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed">
-            Your efficiency and bottom line is our business. Vibrant Inc helps enterprises modernize
+            Optimizing your efficiency. Strengthening your bottom line. Vibrant Inc helps enterprises modernize
             cloud, data, ERP, and managed IT — with senior practitioners and a 25-year delivery track record.
           </p>
 
