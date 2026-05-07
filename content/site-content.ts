@@ -563,10 +563,10 @@ export const interestOptions = [
   "AI Readiness",
   "Cloud Modernization (Azure / AWS / GCP)",
   "Cybersecurity & AI Shield",
-  "Automation & RPA",
+  "Automation",
   "ERP Optimization (JD Edwards, SAP, PeopleSoft, WorkDay, MS Dynamics, Oracle)",
   "Data & Analytics",
-  "Managed IT Services",
+  "Managed IT",
   "Partnership inquiry",
   "Other / not sure"
 ];
