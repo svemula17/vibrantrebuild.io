@@ -21,7 +21,7 @@ export const siteSettings = {
   siteUrl: "https://vibrantinc.com",
   defaultTitle: "Vibrant Inc — Enterprise Technology Consulting",
   defaultDescription:
-    "Vibrant Inc is an award-winning IT consulting firm established in 2000. We help North America-based businesses achieve competitive advantage through cloud modernization, data analytics, ERP solutions, cybersecurity, and managed IT — with 25 years of trusted delivery.",
+    "Vibrant Inc is an award-winning IT consulting firm established in 2000. We help North America-based businesses achieve competitive advantage through cloud modernization, data analytics, ERP (JD Edwards, SAP, PeopleSoft, WorkDay, Dynamics 365), Cybersecurity & AI Shield, and managed IT — with 25 years of trusted delivery.",
   careersUrl: "/careers",
   phonePrimary: "609-945-2244",
   phoneSecondary: "609-945-0442",
@@ -122,7 +122,7 @@ export const serviceCards: ServiceCard[] = [
   },
   {
     slug: "cybersecurity",
-    kicker: "Cybersecurity",
+    kicker: "Cybersecurity & AI Shield",
     title: "Cybersecurity & AI Shield",
     summary:
       "Zero-trust architectures, AI-powered threat detection, and 24×7 SOC operations — security that anticipates threats before they strike.",
@@ -562,7 +562,7 @@ export const socialResponsibilityCommitments = [
 export const interestOptions = [
   "AI Readiness",
   "Cloud Modernization (Azure / AWS / GCP)",
-  "Cybersecurity & Zero Trust",
+  "Cybersecurity & AI Shield",
   "Automation & RPA",
   "ERP Optimization (JD Edwards, SAP, PeopleSoft, WorkDay, MS Dynamics, Oracle)",
   "Data & Analytics",
