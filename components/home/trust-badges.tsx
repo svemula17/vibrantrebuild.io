@@ -7,7 +7,7 @@ import everifyBadge from "@/i-e-verify-seal-v2-600x600.jpg";
 
 const textBadges = [
   { label: "25 Years", sub: "of trusted delivery" },
-  { label: "Oracle NetSuite", sub: "Solution Partner" },
+  { label: "Oracle", sub: "Partner" },
   { label: "Wrike", sub: "Solution Partner" }
 ];
 

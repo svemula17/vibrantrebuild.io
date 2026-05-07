@@ -20,7 +20,7 @@ const caseStudies = [
     challenge:
       "Legacy ERP with manual workarounds causing significant inventory write-offs annually",
     result:
-      "NetSuite implementation delivered on time and under budget — full ROI realized within 14 months.",
+      "JD Edwards ERP modernization delivered on time and under budget — full ROI realized within 14 months.",
     metric: "$2M+",
     metricLabel: "annual savings",
     service: "ERP Optimization",

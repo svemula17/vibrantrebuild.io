@@ -6,10 +6,10 @@ import {
   aboutFacts,
   companyOverview,
   coreValues,
-  deliverySteps,
   siteSettings,
   visionStatement
 } from "@/content/site-content";
+import { VibrantMethod } from "@/components/vibrant-method";
 import anniversary from "@/image.png";
 
 export const metadata: Metadata = {
@@ -100,23 +100,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section">
-        <div className="container">
-          <div className="max-w-2xl">
-            <p className="eyebrow">Service delivery model</p>
-            <h2 className="mt-3">How we run engagements.</h2>
-          </div>
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {deliverySteps.map((s, i) => (
-              <div key={s.title} className="rounded-2xl border border-line bg-white p-6 shadow-card">
-                <div className="text-xs font-semibold text-sky">{`0${i + 1}`}</div>
-                <h3 className="mt-3 text-base font-semibold text-navy-700">{s.title}</h3>
-                <p className="mt-2 text-sm text-muted leading-relaxed">{s.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <VibrantMethod />
 
       {/* ── Brochure download ── */}
       <section className="section">

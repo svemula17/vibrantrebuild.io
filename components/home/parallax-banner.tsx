@@ -48,7 +48,7 @@ export function ParallaxBanner() {
           className="mt-4 text-white max-w-3xl"
           style={{ fontSize: "clamp(2rem, 4.5vw, 3.25rem)", lineHeight: 1.1 }}
         >
-          Your efficiency and bottom line<br className="hidden sm:block" /> is our business.
+          Optimizing your efficiency.<br className="hidden sm:block" /> Strengthening your bottom line.
         </motion.h2>
 
         <motion.p

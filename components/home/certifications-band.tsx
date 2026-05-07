@@ -6,7 +6,7 @@ import nmsdcSrc from "@/NMSDC_CERIFIED_2024.jpg";
 import everifySrc from "@/i-e-verify-seal-v2-600x600.jpg";
 
 const textBadges = [
-  { name: "Oracle NetSuite", sub: "Solution Partner", initials: "NS" },
+  { name: "Oracle", sub: "Partner", initials: "OR" },
   { name: "Microsoft", sub: "Partner Network", initials: "MS" },
   { name: "Wrike", sub: "Solution Partner", initials: "W" },
   { name: "25 Years", sub: "in Business since 2000", initials: "25" },

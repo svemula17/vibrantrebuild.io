@@ -17,7 +17,7 @@ export type ContactDetail = { label: string; value: string };
 
 export const siteSettings = {
   brandName: "Vibrant Inc",
-  tagline: "Your efficiency and bottom line is our business",
+  tagline: "Optimizing your efficiency. Strengthening your bottom line.",
   siteUrl: "https://vibrantinc.com",
   defaultTitle: "Vibrant Inc — Enterprise Technology Consulting",
   defaultDescription:
@@ -123,14 +123,14 @@ export const serviceCards: ServiceCard[] = [
   {
     slug: "cybersecurity",
     kicker: "Cybersecurity",
-    title: "Cybersecurity",
+    title: "Cybersecurity & AI Shield",
     summary:
-      "Zero-trust architectures, identity, and 24×7 SOC operations — security that scales with the business, not against it.",
+      "Zero-trust architectures, AI-powered threat detection, and 24×7 SOC operations — security that anticipates threats before they strike.",
     longDescription:
-      "Security as an enabler, not a brake. We assess gaps, design zero-trust architecture, harden identity, and stand up 24×7 detection — aligned to compliance frameworks the business already lives in.",
+      "Security as an enabler, not a brake. Our AI Shield capability uses machine learning and behavioral analytics to detect, investigate, and neutralize threats faster than any manual approach. We assess gaps, design zero-trust architecture, harden identity, and stand up AI-driven 24×7 detection — aligned to compliance frameworks the business already lives in.",
     iconPath: ICONS.shield,
     metaTags: [
-      "Security assessments & gap analysis",
+      "AI Shield threat detection",
       "Zero-trust architecture",
       "Identity & access management",
       "SOC & threat detection"
@@ -138,18 +138,22 @@ export const serviceCards: ServiceCard[] = [
     outcomes: [
       "Reduced breach exposure and faster detection",
       "Audit-ready compliance posture",
-      "Identity-first architecture"
+      "AI-driven threat response in minutes, not hours"
     ],
     capabilities: [
+      "AI Shield — ML-powered threat detection & response",
+      "Behavioral analytics (UEBA)",
+      "Automated incident response playbooks",
+      "Predictive threat intelligence",
       "Security assessments & gap analysis",
-      "Zero-trust architecture",
+      "Zero-trust architecture design",
       "Identity & access management",
-      "SOC & threat detection",
-      "Cloud security posture",
-      "Compliance (SOC 2, HIPAA, PCI)"
+      "SOC operations (24×7 managed)",
+      "Cloud security posture management",
+      "Compliance (SOC 2, HIPAA, PCI, CMMC)"
     ],
     bestFit:
-      "Mid-market and enterprise companies modernizing security alongside cloud and AI programs."
+      "Mid-market and enterprise companies modernizing security alongside cloud and AI programs — especially those seeking AI-augmented threat response."
   },
   {
     slug: "automation",
@@ -187,31 +191,37 @@ export const serviceCards: ServiceCard[] = [
     kicker: "ERP Optimization",
     title: "ERP Optimization",
     summary:
-      "NetSuite, WorkDay, Microsoft Dynamics, and Oracle E-Business — implementation, post go-live optimization, and managed support.",
+      "JD Edwards CNC, SAP, PeopleSoft, WorkDay, Microsoft Dynamics 365, and Oracle E-Business Suite — implementation, CNC administration, post go-live support, and managed services.",
     longDescription:
-      "Whether you're standing up a new ERP or stabilizing one that under-delivered, Vibrant's 25-year ERP practice covers NetSuite, WorkDay HCM/Financials, Microsoft Dynamics 365, and Oracle E-Business Suite.",
+      "Whether you're running a complex JD Edwards environment, launching a PeopleSoft or SAP program, or stabilizing a Dynamics 365 rollout that under-delivered — Vibrant's 25-year ERP practice covers the full Oracle stack (JD Edwards EnterpriseOne, PeopleSoft, Oracle E-Business Suite), SAP (ECC / S/4HANA), WorkDay HCM/Financials, and Microsoft Dynamics 365. Our certified practitioners take ownership from blueprint through hypercare.",
     iconPath: ICONS.layers,
     metaTags: [
-      "Oracle NetSuite implementation",
+      "JD Edwards (JDE) CNC",
+      "SAP Implementation & Support",
+      "PeopleSoft Implementation & Support",
       "WorkDay HCM & Financials",
       "Microsoft Dynamics 365",
       "Oracle E-Business Suite"
     ],
     outcomes: [
       "On-time, on-budget go-lives",
-      "Lower total cost of ownership",
-      "Higher user adoption and ROI"
+      "Lower total cost of ERP ownership",
+      "Higher user adoption and measurable ROI"
     ],
     capabilities: [
-      "Oracle NetSuite implementation",
+      "JD Edwards EnterpriseOne CNC Administration",
+      "JD Edwards Functional & Technical Implementation",
+      "SAP Implementation & Support (ECC / S/4HANA)",
+      "PeopleSoft Implementation & Support",
       "WorkDay HCM & Financials",
-      "Microsoft Dynamics 365",
+      "Microsoft Dynamics 365 (F&O / CE)",
       "Oracle E-Business Suite",
-      "Post go-live stabilization",
-      "ERP managed support"
+      "Post go-live stabilization & managed support",
+      "ERP data migration & integrations",
+      "ERP upgrade & modernization"
     ],
     bestFit:
-      "Companies replacing legacy ERP, rolling out a new platform, or rescuing a stalled program."
+      "Companies replacing legacy ERP, running JD Edwards or PeopleSoft environments needing CNC expertise, or rescuing a stalled SAP or Dynamics program."
   },
   {
     slug: "data-analytics",
@@ -280,8 +290,8 @@ export const serviceCards: ServiceCard[] = [
 export const trustBadges = [
   { label: "25 Years", sub: "of trusted delivery" },
   { label: "E-Verify", sub: "Partner" },
-  { label: "NMSDC", sub: "Certified" },
-  { label: "Oracle NetSuite", sub: "Solution Partner" },
+  { label: "NMSDC", sub: "Certified MBE" },
+  { label: "Oracle", sub: "Partner" },
   { label: "Wrike", sub: "Solution Partner" }
 ];
 
@@ -302,11 +312,11 @@ export type Partner = {
 
 export const partners: Partner[] = [
   {
-    name: "Oracle NetSuite",
-    logo: "NS",
-    category: "ERP · CRM · Accounting",
+    name: "Oracle",
+    logo: "OR",
+    category: "ERP · Database · Cloud",
     description:
-      "Vibrant Inc is an authorized Reseller and Implementation Partner of Oracle NetSuite Software. NetSuite is the #1 Cloud ERP — one unified solution for ERP/Financials, CRM, and ecommerce used by more than 40,000 organizations worldwide. Our partnership covers licensing, implementation, data migration, customization, and post go-live managed support.",
+      "Vibrant Inc is an Oracle Partner with deep delivery expertise across JD Edwards EnterpriseOne (CNC administration and functional implementation), PeopleSoft, and Oracle E-Business Suite. Our Oracle practice spans full-cycle implementations, CNC administration, system upgrades, data migrations, and post go-live managed support — backed by practitioners averaging 15+ years of hands-on Oracle delivery.",
     href: "/services/erp-optimization"
   },
   {
@@ -348,9 +358,9 @@ export const partnerBenefits = [
 
 export const companyOverview = [
   "Vibrant Inc was established in 2000 as a trusted provider of value-added, cost-effective IT solutions to customers across North America. For 25 years, we have helped businesses navigate the digital landscape through cloud and data analytics — working as true partners to deliver measurable outcomes.",
-  "Our practice areas span cloud modernization on Azure and leading platforms, data and analytics strategy, Oracle NetSuite ERP and multi-platform ERP implementations, cybersecurity, intelligent automation, AI readiness, and managed IT services.",
+  "Our practice areas span cloud modernization on Azure and leading platforms, data and analytics strategy, multi-platform ERP (JD Edwards, SAP, PeopleSoft, WorkDay, Microsoft Dynamics 365, Oracle E-Business Suite), cybersecurity with AI Shield, intelligent automation, AI readiness, and managed IT services.",
   "Vibrant combines onshore senior leadership with a hybrid delivery model to maximize efficiency without sacrificing quality. Our engagement managers, architects, and subject-matter experts take full ownership of every engagement — from discovery through hypercare and beyond.",
-  "We are NMSDC certified, E-Verify compliant, and an Oracle NetSuite Solution Partner — credentials that reflect how we build our teams and support our clients' diversity and compliance programs."
+  "We are NMSDC Certified, E-Verify compliant, and Oracle and Microsoft partners — credentials that reflect how we build our teams, support our clients' diversity programs, and deliver with accountability at every engagement."
 ];
 
 export const visionStatement =
@@ -396,6 +406,45 @@ export const deliverySteps = [
   {
     title: "Customer partnership",
     body: "Tailored solutions to your unique challenges, with quarterly business reviews and senior advisor access."
+  }
+];
+
+/* ── The VIBRANT Method™ — Vibrant's proprietary delivery framework ───── */
+export const vibrantMethod = [
+  {
+    letter: "V",
+    step: "Validate",
+    body: "Deep discovery sessions — map current state, surface hidden gaps, and define measurable success criteria together."
+  },
+  {
+    letter: "I",
+    step: "Ideate",
+    body: "Co-design your target architecture and a practical, defensible roadmap built with your team, not handed to them."
+  },
+  {
+    letter: "B",
+    step: "Build",
+    body: "Senior-led sprints with weekly demos, transparent progress tracking, and tight change control — no surprises at go-live."
+  },
+  {
+    letter: "R",
+    step: "Refine",
+    body: "Iterative testing, user validation, and performance tuning so what ships is battle-tested before it matters."
+  },
+  {
+    letter: "A",
+    step: "Activate",
+    body: "Go-live with full hypercare, structured training, and change management — your team confident from day one."
+  },
+  {
+    letter: "N",
+    step: "Nurture",
+    body: "Managed support, quarterly business reviews, and continuous improvement so value compounds, not decays."
+  },
+  {
+    letter: "T",
+    step: "Transform",
+    body: "Realize measurable KPI impact — and a platform built to absorb whatever comes next."
   }
 ];
 
@@ -447,10 +496,16 @@ export type Opening = {
 
 export const careerOpenings: Opening[] = [
   {
-    category: "Functional",
-    title: "NetSuite Functional Consultant",
+    category: "ERP",
+    title: "JD Edwards EnterpriseOne Functional Consultant",
     summary:
-      "Lead implementations and post go-live optimization for SMB clients moving off QuickBooks or fragmented stacks."
+      "Lead JDE implementations, CNC administration, and post go-live optimization for clients modernizing their Oracle ERP estate."
+  },
+  {
+    category: "ERP",
+    title: "SAP Functional / Technical Consultant",
+    summary:
+      "Deliver SAP ECC and S/4HANA implementations, support engagements, and system integrations across mid-market and enterprise clients."
   },
   {
     category: "Cloud",
@@ -483,24 +538,24 @@ export const careerOpenings: Opening[] = [
 
 export const socialResponsibilityCommitments = [
   {
-    title: "Community involvement",
+    title: "Real community action",
     body:
-      "Founder involvement in Rotary-led social projects and broader community support across the regions where our team lives and works."
+      "Not just donations — our team shows up. Founder-led involvement in Rotary social projects, employee volunteer days, and hands-on community support in the regions where we live and work."
   },
   {
-    title: "Employee participation",
+    title: "Environmental responsibility",
     body:
-      "Employees contribute through financial donations and paid volunteer hours to causes they care about most."
+      "Remote-first, distributed delivery that cuts commute emissions. We track, measure, and reduce our footprint — because being responsible for the planet isn't optional, it's who we are."
   },
   {
-    title: "Ethics, diversity, and environment",
+    title: "Diversity, equity & inclusion",
     body:
-      "A standing commitment to ethical business practices, diversity and inclusion, and environmental responsibility — measured, not just stated."
+      "NMSDC Certified Minority Business Enterprise. We hire for merit, build inclusive teams, and believe diverse perspectives build better technology and stronger businesses."
   },
   {
-    title: "Long-term local impact",
+    title: "Building for future generations",
     body:
-      "A long-term pledge to create positive impact in local communities and for future generations — building on 25 years of consistent giving."
+      "25 years of giving back — mentoring emerging technologists, supporting STEM pathways, and making decisions today that the next generation won't have to undo."
   }
 ];
 
@@ -509,7 +564,7 @@ export const interestOptions = [
   "Cloud Modernization (Azure / AWS / GCP)",
   "Cybersecurity & Zero Trust",
   "Automation & RPA",
-  "ERP Optimization (NetSuite, WorkDay, MS Dynamics, Oracle)",
+  "ERP Optimization (JD Edwards, SAP, PeopleSoft, WorkDay, MS Dynamics, Oracle)",
   "Data & Analytics",
   "Managed IT Services",
   "Partnership inquiry",

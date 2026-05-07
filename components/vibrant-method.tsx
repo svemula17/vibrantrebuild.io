@@ -1,0 +1,75 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { vibrantMethod } from "@/content/site-content";
+
+export function VibrantMethod() {
+  return (
+    <section className="section-dotted">
+      <div className="container">
+
+        <motion.div
+          className="max-w-2xl"
+          initial={{ opacity: 0, x: -24 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-8%" }}
+          transition={{ duration: 0.55, ease: "easeOut" }}
+        >
+          <p className="eyebrow">Our Methodology</p>
+          <h2 className="mt-3">The VIBRANT Method™</h2>
+          <p className="mt-4 text-muted leading-relaxed">
+            Every engagement — from a 4-week AI pilot to a multi-year ERP program — runs on the same
+            proven 7-phase framework. Predictable, accountable, and built around your outcomes.
+          </p>
+        </motion.div>
+
+        {/* Letter grid */}
+        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
+          {vibrantMethod.map((item, i) => (
+            <motion.div
+              key={item.letter}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-6%" }}
+              transition={{ duration: 0.45, delay: i * 0.07, ease: "easeOut" }}
+              className="group relative flex flex-col rounded-2xl border border-line bg-white p-6 shadow-card hover:shadow-cardHover hover:border-sky/40 hover:-translate-y-1 transition-all overflow-hidden"
+            >
+              {/* Watermark letter */}
+              <span
+                aria-hidden
+                className="absolute -top-2 -right-1 text-7xl font-black leading-none select-none pointer-events-none"
+                style={{ color: "rgba(200,64,26,0.06)" }}
+              >
+                {item.letter}
+              </span>
+
+              {/* Brand letter badge */}
+              <span
+                className="inline-flex h-10 w-10 items-center justify-center rounded-xl text-lg font-black text-white shadow-sm"
+                style={{ background: "linear-gradient(135deg, #A33315 0%, #C8401A 60%, #E05A1F 100%)" }}
+              >
+                {item.letter}
+              </span>
+
+              <h3 className="mt-4 text-base font-semibold text-navy-700">{item.step}</h3>
+              <p className="mt-2 text-sm text-muted leading-relaxed flex-1">{item.body}</p>
+
+              {/* Step number */}
+              <span className="mt-4 text-xs font-bold uppercase tracking-widest" style={{ color: "#C8401A" }}>
+                Phase {i + 1}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Connector line — desktop only */}
+        <div
+          aria-hidden
+          className="hidden xl:block mt-6 mx-auto h-px max-w-5xl"
+          style={{ background: "linear-gradient(90deg, transparent 0%, #C8401A 20%, #E05A1F 50%, #C8401A 80%, transparent 100%)" }}
+        />
+
+      </div>
+    </section>
+  );
+}

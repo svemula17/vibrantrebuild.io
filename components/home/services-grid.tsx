@@ -20,7 +20,7 @@ export function ServicesGrid() {
         >
           <p className="eyebrow">What we do</p>
           <h2 className="mt-3">
-            <RevealWords text="Seven practices, one trusted partner." />
+            <RevealWords text="Seven Capabilities. One Vibrant Partner." />
           </h2>
           <p className="mt-4 text-muted">
             From AI readiness to managed IT — covering the full enterprise technology stack

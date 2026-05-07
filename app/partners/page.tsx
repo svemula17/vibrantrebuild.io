@@ -6,19 +6,19 @@ import { partnerBenefits, partners, siteSettings } from "@/content/site-content"
 export const metadata: Metadata = {
   title: "Partners",
   description:
-    "Vibrant Inc maintains certified partnerships with Oracle NetSuite, Wrike, and Microsoft — giving clients right-sized licensing, vendor-validated architecture, and fast support escalation."
+    "Vibrant Inc maintains certified partnerships with Oracle, Wrike, and Microsoft — giving clients right-sized licensing, vendor-validated architecture, and fast support escalation."
 };
 
 const partnerAccent: Record<string, string> = {
-  "Oracle NetSuite": "bg-orange-50 text-orange-700 border-orange-200",
-  "Wrike":           "bg-green-50  text-green-700  border-green-200",
-  "Microsoft":       "bg-blue-50   text-blue-700   border-blue-200"
+  "Oracle":    "bg-orange-50 text-orange-700 border-orange-200",
+  "Wrike":     "bg-green-50  text-green-700  border-green-200",
+  "Microsoft": "bg-blue-50   text-blue-700   border-blue-200"
 };
 
 const partnerLogos: Record<string, { lines: string[] }> = {
-  "Oracle NetSuite": { lines: ["Oracle", "NetSuite"] },
-  "Wrike":           { lines: ["Wrike"] },
-  "Microsoft":       { lines: ["Microsoft", "Partner"] }
+  "Oracle":    { lines: ["Oracle", "Partner"] },
+  "Wrike":     { lines: ["Wrike"] },
+  "Microsoft": { lines: ["Microsoft", "Partner"] }
 };
 
 export default function PartnersPage() {

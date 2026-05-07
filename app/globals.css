@@ -49,6 +49,13 @@
   .section      { @apply py-20 md:py-28; }
   .section-soft { @apply py-20 md:py-28 bg-navy-50/40; }
 
+  /* ─── subtle dot texture for white sections ─────────────────────────── */
+  .section-dotted {
+    @apply py-20 md:py-28;
+    background-image: radial-gradient(circle, rgba(200,64,26,0.07) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
   /* ─── breadcrumbs ────────────────────────────────────────────────────── */
   .crumbs   { @apply flex flex-wrap items-center gap-2 text-xs font-medium text-muted; }
   .crumbs a { @apply text-navy-700 hover:text-sky transition-colors; }

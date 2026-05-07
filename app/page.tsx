@@ -10,6 +10,7 @@ import { CaseStudies }          from "@/components/home/case-studies";
 import { CertificationsBand }   from "@/components/home/certifications-band";
 import { StatsBand }            from "@/components/home/stats-band";
 import { CtaCallback }          from "@/components/home/cta-callback";
+import { VibrantMethod }         from "@/components/vibrant-method";
 
 export default function HomePage() {
   return (
@@ -21,6 +22,7 @@ export default function HomePage() {
       <ParallaxBanner />
       <WhyVibrant />
       <HowWeWork />
+      <VibrantMethod />
       <ParallaxMid />
       <CaseStudies />
       <CertificationsBand />

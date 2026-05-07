@@ -16,8 +16,8 @@ export default function SocialResponsibilityPage() {
     <>
       <PageHero
         eyebrow="Social Responsibility"
-        title="Quiet, consistent impact."
-        description="We don't do CSR for the press release. We do it because it's the kind of company we want to be — and the kind our employees and clients want to be associated with."
+        title="Impact isn't a checkbox. It's who we are."
+        description="We show up for our communities, protect our planet, champion diversity, and invest in future generations — because building better technology means building a better world alongside it."
         crumbs={[{ label: "Home", href: "/" }, { label: "Social Responsibility" }]}
       />
 

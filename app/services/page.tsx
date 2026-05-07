@@ -2,11 +2,12 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { PageHero } from "@/components/page-hero";
 import { serviceCards, servicesProcess } from "@/content/site-content";
+import { VibrantMethod } from "@/components/vibrant-method";
 
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Seven practices, one trusted partner. From AI readiness to managed IT — covering the full enterprise technology stack."
+    "Seven Capabilities. One Vibrant Partner. From AI readiness to managed IT — covering the full enterprise technology stack."
 };
 
 export default function ServicesPage() {
@@ -14,7 +15,7 @@ export default function ServicesPage() {
     <>
       <PageHero
         eyebrow="Services"
-        title="Seven practices, one trusted partner."
+        title="Seven Capabilities. One Vibrant Partner."
         description="From AI readiness to managed IT — we cover the full enterprise technology stack with senior practitioners and a 25-year delivery track record."
         crumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
       />
@@ -48,26 +49,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="section-soft">
-        <div className="container">
-          <div className="max-w-2xl">
-            <p className="eyebrow">How we work</p>
-            <h2 className="mt-3">One delivery model — tuned to each engagement.</h2>
-            <p className="mt-4 text-muted">
-              Every engagement is led by a senior advisor and supported by our onshore + offshore delivery teams.
-            </p>
-          </div>
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {servicesProcess.map((s, i) => (
-              <div key={s.title} className="rounded-2xl border border-line bg-white p-6 shadow-card">
-                <div className="text-xs font-semibold text-sky">{`0${i + 1}`}</div>
-                <h3 className="mt-3 text-base font-semibold text-navy-700">{s.title}</h3>
-                <p className="mt-2 text-sm text-muted leading-relaxed">{s.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <VibrantMethod />
     </>
   );
 }

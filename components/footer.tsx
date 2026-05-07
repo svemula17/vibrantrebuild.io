@@ -231,7 +231,7 @@ export function Footer() {
             <span style={{ color: "#E05A1F" }}>·</span>
             <span>NMSDC Certified MBE</span>
             <span style={{ color: "#E05A1F" }}>·</span>
-            <span>Oracle NetSuite Solution Partner</span>
+            <span>Oracle Partner</span>
             <span style={{ color: "#E05A1F" }}>·</span>
             <span>Wrike Solution Partner</span>
           </p>
