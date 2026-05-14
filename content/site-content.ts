@@ -95,7 +95,8 @@ export const serviceCards: ServiceCard[] = [
       "Change management & enablement"
     ],
     bestFit:
-      "Mid-market and enterprise leaders moving past AI experimentation into production value."
+      "Mid-market and enterprise leaders moving past AI experimentation into production value.",
+    featured: true
   },
   {
     slug: "cloud-modernization",
@@ -162,7 +163,8 @@ export const serviceCards: ServiceCard[] = [
       "Compliance (SOC 2, HIPAA, PCI, CMMC)"
     ],
     bestFit:
-      "Mid-market and enterprise companies modernizing security alongside cloud and AI programs — especially those seeking AI-augmented threat response."
+      "Mid-market and enterprise companies modernizing security alongside cloud and AI programs — especially those seeking AI-augmented threat response.",
+    featured: true
   },
   {
     slug: "automation",
@@ -193,7 +195,8 @@ export const serviceCards: ServiceCard[] = [
       "Citizen developer enablement"
     ],
     bestFit:
-      "Operations-heavy organizations with measurable manual workload to compress."
+      "Operations-heavy organizations with measurable manual workload to compress.",
+    featured: true
   },
   {
     slug: "erp-optimization",
@@ -262,7 +265,8 @@ export const serviceCards: ServiceCard[] = [
       "Self-service analytics enablement"
     ],
     bestFit:
-      "Organizations with data, but no consistent decision-grade reporting."
+      "Organizations with data, but no consistent decision-grade reporting.",
+    featured: true
   },
   {
     slug: "managed-it",
@@ -294,10 +298,53 @@ export const serviceCards: ServiceCard[] = [
     ],
     bestFit:
       "Lean IT teams that need depth, coverage, and senior escalation paths without hiring.",
-    category: "Managed Services"
+    category: "Managed Services",
+    featured: true
   },
 
-  /* ───── SAP & ERP SOLUTIONS (New) ───── */
+  /* ───── SAP SOLUTIONS — One umbrella carousel slide ───── */
+  {
+    slug: "sap-solutions",
+    kicker: "SAP Solutions",
+    title: "SAP Solutions",
+    summary:
+      "End-to-end SAP expertise: S/4HANA Implementation · Application Management (AMS) · Supply Chain (EWM, TM, IBP) · BTP & Integrations · Fiori/UI5 UX · Clean Core · ABAP Development · JD Edwards CNC · PeopleSoft HCM/FSCM.",
+    longDescription:
+      "Vibrant delivers the full spectrum of SAP and ERP platform services — from greenfield S/4HANA implementations and AMS support to supply chain transformation, BTP cloud integrations, and legacy platform management. Whether you're modernizing to S/4HANA, optimizing JD Edwards, or maintaining PeopleSoft, our certified SAP consultants take ownership from blueprint through hypercare.",
+    iconPath: ICONS.database,
+    metaTags: [
+      "SAP S/4HANA Implementation",
+      "SAP AMS & Support",
+      "Supply Chain (EWM, TM, IBP)",
+      "SAP BTP & Integrations",
+      "Fiori/UI5 UX",
+      "JD Edwards CNC",
+      "PeopleSoft HCM/FSCM"
+    ],
+    outcomes: [
+      "On-time, on-budget SAP go-lives",
+      "Stable, optimized SAP landscape post-go-live",
+      "Measurable supply chain & operational efficiency gains"
+    ],
+    capabilities: [
+      "SAP S/4HANA Implementation & Migration",
+      "SAP Application Management Services (AMS)",
+      "Supply Chain Solutions – EWM, TM, IBP & PP",
+      "SAP Business Technology Platform (BTP)",
+      "SAP Integration Services (EDI, IDoc, API)",
+      "Enterprise User Experience – Fiori & UI5",
+      "SAP Clean Core & Upgrade Services",
+      "SAP ABAP & Custom Development",
+      "JD Edwards CNC Administration",
+      "PeopleSoft HCM/FSCM Implementation & Support"
+    ],
+    bestFit:
+      "Enterprises running or implementing SAP, JD Edwards, or PeopleSoft who need a single trusted partner across the full ERP lifecycle.",
+    category: "SAP Solutions",
+    featured: true
+  },
+
+  /* ───── Individual SAP detail pages (not in carousel) ───── */
   {
     slug: "sap-s4hana-implementation",
     kicker: "SAP S/4HANA",
@@ -330,8 +377,7 @@ export const serviceCards: ServiceCard[] = [
     ],
     bestFit:
       "Enterprise organizations replacing legacy ERP systems or modernizing to cloud SAP.",
-    category: "SAP Solutions",
-    featured: true
+    category: "SAP Solutions"
   },
   {
     slug: "sap-ams",
@@ -365,8 +411,7 @@ export const serviceCards: ServiceCard[] = [
     ],
     bestFit:
       "Mid-market and enterprise companies running SAP who need reliable, hands-on post-go-live support.",
-    category: "SAP Solutions",
-    featured: true
+    category: "SAP Solutions"
   },
   {
     slug: "sap-supply-chain",
@@ -400,8 +445,7 @@ export const serviceCards: ServiceCard[] = [
     ],
     bestFit:
       "Manufacturing, retail, and logistics organizations seeking modern, data-driven supply chain execution.",
-    category: "SAP Solutions",
-    featured: true
+    category: "SAP Solutions"
   },
   {
     slug: "sap-btp",
@@ -605,8 +649,7 @@ export const serviceCards: ServiceCard[] = [
     ],
     bestFit:
       "Mid-market and enterprise organizations running complex JD Edwards environments.",
-    category: "ERP Platforms",
-    featured: true
+    category: "ERP Platforms"
   },
   {
     slug: "peoplesoft-implementation",
@@ -640,8 +683,7 @@ export const serviceCards: ServiceCard[] = [
     ],
     bestFit:
       "Mid-market and enterprise organizations implementing or optimizing PeopleSoft for HR and finance.",
-    category: "ERP Platforms",
-    featured: true
+    category: "ERP Platforms"
   }
 ];
 

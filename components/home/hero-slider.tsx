@@ -24,7 +24,9 @@ const SLIDE_IMAGES: Record<string, StaticImageData> = {
   "erp-optimization":   imgERP,
   "data-analytics":      imgData,
   "managed-it":          imgMIT,
-  // SAP & ERP services (using relevant existing images for now)
+  // SAP Solutions umbrella slide
+  "sap-solutions":              imgERP,
+  // Individual SAP detail pages (not in carousel, but image mapping kept for safety)
   "sap-s4hana-implementation": imgERP,
   "sap-ams":            imgERP,
   "sap-supply-chain":   imgERP,
