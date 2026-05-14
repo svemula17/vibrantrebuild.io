@@ -7,10 +7,10 @@ import anniversary from "@/image.png";
 import { RevealWords } from "@/components/reveal-on-scroll";
 
 const points = [
-  { title: "Established in 2000",    body: "25 years of trusted, value-added IT delivery across cloud, data, and ERP." },
-  { title: "Senior practitioners",   body: "A deep professional pool of architects, functional leads, and engineers." },
-  { title: "Long-term relationships",body: "Most clients return — built on outcomes, not transactions." },
-  { title: "Proven delivery",        body: "Repeatable methodology, accelerators, and onshore + offshore execution." }
+  { title: "25 years of trusted delivery", body: "Since 2000, we've helped enterprises modernize, grow, and run better — with measurable outcomes every time." },
+  { title: "Senior practitioners only",    body: "Deep professional pool of architects, functional leads, and engineers. No juniors staffed on your account." },
+  { title: "Built for impact",             body: "We optimize for outcomes that matter — efficiency, sustainability, economic growth — not just project completion." },
+  { title: "Partners, not vendors",        body: "Most clients return. We build long-term relationships around trust, not transactions or recurring license fees." }
 ];
 
 export function WhyVibrant() {
@@ -30,8 +30,9 @@ export function WhyVibrant() {
             <RevealWords text="Trusted, value-added IT solutions since 2000." />
           </h2>
           <p className="mt-5 text-muted leading-relaxed">
-            Vibrant Inc helps businesses navigate the digital landscape through cloud and data analytics —
-            with practical execution, senior delivery teams, and a 25-year reputation for getting it right.
+            We believe technology should do more than cut costs — it should create jobs, reduce waste, and
+            power businesses that do good in the world. Vibrant combines deep SAP and ERP expertise with a
+            genuine commitment to people, planet, and performance.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href="/about"    className="btn-primary">About Vibrant</Link>

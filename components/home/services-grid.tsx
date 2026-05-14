@@ -6,8 +6,10 @@ import { serviceCards } from "@/content/site-content";
 import { RevealWords } from "@/components/reveal-on-scroll";
 
 export function ServicesGrid() {
+  const gridServices = serviceCards.filter(s => !s.hideFromGrid);
+
   return (
-    <section className="section bg-white">
+    <section className="section section-soft">
       <div className="container">
 
         {/* Section header — slides in from left */}
@@ -20,17 +22,18 @@ export function ServicesGrid() {
         >
           <p className="eyebrow">What we do</p>
           <h2 className="mt-3">
-            <RevealWords text="Seven Capabilities. One Vibrant Partner." />
+            <RevealWords text="Eighteen Capabilities. One Vibrant Partner." />
           </h2>
           <p className="mt-4 text-muted">
-            From AI readiness to managed IT — covering the full enterprise technology stack
-            with senior practitioners.
+            From AI readiness and cloud modernization to SAP S/4HANA, JD Edwards, and managed IT —
+            real expertise across the full enterprise technology stack. We help businesses grow,
+            operate sustainably, and create lasting impact.
           </p>
         </motion.div>
 
         {/* Cards — cascade in */}
         <div className="mt-14 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {serviceCards.map((service, i) => (
+          {gridServices.map((service, i) => (
             <motion.div
               key={service.slug}
               initial={{ opacity: 0, y: 28 }}
@@ -77,7 +80,7 @@ export function ServicesGrid() {
         {/* View all CTA */}
         <div className="mt-10 flex justify-center">
           <Link href="/services" className="btn-ghost inline-flex items-center gap-2">
-            Explore all {serviceCards.length} services
+            Explore all {gridServices.length} services
             <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14M13 5l7 7-7 7" />
             </svg>

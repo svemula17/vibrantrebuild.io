@@ -5,6 +5,7 @@ import { IndustryVerticals }    from "@/components/home/industry-verticals";
 import { ParallaxBanner }       from "@/components/home/parallax-banner";
 import { WhyVibrant }           from "@/components/home/why-vibrant";
 import { HowWeWork }            from "@/components/home/how-we-work";
+import { ValueAdds }            from "@/components/home/value-adds";
 import { ParallaxMid }          from "@/components/home/parallax-mid";
 import { CaseStudies }          from "@/components/home/case-studies";
 import { CertificationsBand }   from "@/components/home/certifications-band";
@@ -23,6 +24,7 @@ export default function HomePage() {
       <WhyVibrant />
       <HowWeWork />
       <VibrantMethod />
+      <ValueAdds />
       <ParallaxMid />
       <CaseStudies />
       <CertificationsBand />

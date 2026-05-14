@@ -7,15 +7,16 @@ import { VibrantMethod } from "@/components/vibrant-method";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Seventeen Capabilities. One Vibrant Partner. From AI readiness to SAP implementation — covering the full enterprise technology stack with SAP expertise and managed IT."
+    "Eighteen Capabilities. One Vibrant Partner. From AI readiness to SAP implementation — covering the full enterprise technology stack with SAP expertise and managed IT."
 };
 
 export default function ServicesPage() {
+  const gridServices = serviceCards.filter(s => !s.hideFromGrid);
   return (
     <>
       <PageHero
         eyebrow="Services"
-        title="Seventeen Capabilities. One Vibrant Partner."
+        title="Eighteen Capabilities. One Vibrant Partner."
         description="From AI readiness and cloud modernization to SAP S/4HANA implementation and managed IT — we cover the full enterprise technology stack with certified practitioners and 25 years of trusted delivery."
         crumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
       />
@@ -23,7 +24,7 @@ export default function ServicesPage() {
       <section className="section">
         <div className="container">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {serviceCards.map((service) => (
+            {gridServices.map((service) => (
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
