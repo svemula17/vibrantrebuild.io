@@ -12,11 +12,15 @@ type Props = {
 export function AnimatedCounter({ value, suffix = "", duration = 1600 }: Props) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "0px" });
-  const [display, setDisplay] = useState(0);
+  // Start at the real value — animate only after first hydrated client render
+  const [display, setDisplay] = useState(value);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
-    if (!inView) return;
+    if (!inView || hasAnimated) return;
+    setHasAnimated(true);
     let raf = 0;
+    setDisplay(0);
     const start = performance.now();
     const tick = (t: number) => {
       const p = Math.min(1, (t - start) / duration);
@@ -26,7 +30,7 @@ export function AnimatedCounter({ value, suffix = "", duration = 1600 }: Props) 
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [inView, value, duration]);
+  }, [inView, value, duration, hasAnimated]);
 
   return (
     <span ref={ref} className="tabular-nums">

@@ -72,7 +72,8 @@ export function ScaleIn({
   );
 }
 
-/* Word-by-word headline reveal */
+/* Word-by-word headline reveal — keeps real spaces inside each word span
+   so SEO crawlers and screen readers read natural prose. */
 export function RevealWords({
   text,
   className = "",
@@ -86,11 +87,12 @@ export function RevealWords({
 }) {
   const words = text.split(" ");
   return (
-    <span className={`inline-flex flex-wrap gap-x-[0.28em] ${className}`}>
+    <span className={className}>
       {words.map((word, i) => (
         <motion.span
           key={i}
           className={`inline-block ${wordClassName}`}
+          style={{ whiteSpace: "pre" }}
           initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, margin: "-6%" }}
@@ -100,7 +102,7 @@ export function RevealWords({
             ease: [0.22, 1, 0.36, 1],
           }}
         >
-          {word}
+          {word}{i < words.length - 1 ? " " : ""}
         </motion.span>
       ))}
     </span>

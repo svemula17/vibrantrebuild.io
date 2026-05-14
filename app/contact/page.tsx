@@ -105,7 +105,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <CallbackForm heading="Get a call back" showRequiredNote />
+          <CallbackForm heading="Get a Callback" showRequiredNote />
         </div>
       </section>
     </>

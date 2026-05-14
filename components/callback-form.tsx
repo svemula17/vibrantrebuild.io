@@ -14,6 +14,7 @@ function validate(d: Record<string, string>): FieldErrors {
   if (!d.email?.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email))
     e.email = "Please enter a valid email address.";
   if (!d.company?.trim())  e.company   = "Please enter your company name.";
+  if (!d.interest?.trim()) e.interest  = "Please select a service area.";
   return e;
 }
 
@@ -108,18 +109,21 @@ export function CallbackForm({ heading, showRequiredNote }: Props) {
 
       <div className="mt-4">
         <label htmlFor="interest" className="block text-sm font-semibold text-navy-700 mb-1.5">
-          I&apos;m interested in
+          Service area of interest <span className="text-sky">*</span>
         </label>
         <select
           id="interest"
           name="interest"
-          defaultValue={interestOptions[0]}
+          required
+          defaultValue=""
           className="w-full rounded-lg border-line bg-white text-ink focus:border-sky focus:ring-sky"
         >
+          <option value="" disabled>Select a service area…</option>
           {interestOptions.map((o) => (
             <option key={o} value={o}>{o}</option>
           ))}
         </select>
+        {fieldErrors.interest && <p className="mt-1 text-xs text-red-600">{fieldErrors.interest}</p>}
       </div>
 
       <div className="mt-4">
@@ -145,7 +149,7 @@ export function CallbackForm({ heading, showRequiredNote }: Props) {
           disabled={status === "submitting"}
           className="btn-primary disabled:opacity-60"
         >
-          {status === "submitting" ? "Sending…" : "Request a call back"}
+          {status === "submitting" ? "Sending…" : "Get a Callback"}
         </button>
       </div>
 

@@ -13,18 +13,28 @@ export const metadata: Metadata = {
     template: `%s | ${siteSettings.brandName}`
   },
   description: siteSettings.defaultDescription,
+  alternates: { canonical: "/" },
   openGraph: {
     title: siteSettings.defaultTitle,
     description: siteSettings.defaultDescription,
     url: siteSettings.siteUrl,
     siteName: siteSettings.brandName,
     locale: "en_US",
-    type: "website"
+    type: "website",
+    images: [
+      {
+        url: "/Vibrant-Logo-1024x867.png",
+        width: 1024,
+        height: 867,
+        alt: "Vibrant Inc — Enterprise Technology Consulting"
+      }
+    ]
   },
   twitter: {
     card: "summary_large_image",
     title: siteSettings.defaultTitle,
-    description: siteSettings.defaultDescription
+    description: siteSettings.defaultDescription,
+    images: ["/Vibrant-Logo-1024x867.png"]
   }
 };
 

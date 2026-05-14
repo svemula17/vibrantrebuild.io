@@ -51,7 +51,7 @@ export function Hero({ image }: { image: StaticImageData }) {
             className="mt-10 flex flex-col sm:flex-row gap-3"
           >
             <Link href="/contact" className="btn-primary">
-              Get a Call Back
+              Get a Callback
             </Link>
             <Link
               href="/services"

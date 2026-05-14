@@ -177,10 +177,17 @@ export function HeroSlider() {
             {String(current + 1).padStart(2, "0")} &nbsp;/&nbsp; {String(total).padStart(2, "0")}
           </motion.p>
 
-          {/* ── BIG technology name — the hero of each slide ── */}
+          {/* Static H1 for SEO — visually hidden, semantic only */}
+          <h1 className="sr-only">
+            Vibrant Inc — Enterprise SAP, ERP, Cloud & AI Consulting
+          </h1>
+
+          {/* ── BIG technology name — the hero of each slide (div, not H1) ── */}
           <AnimatePresence mode="wait">
-            <motion.h1
+            <motion.div
               key={`title-${service.slug}`}
+              role="heading"
+              aria-level={2}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -16 }}
@@ -189,7 +196,7 @@ export function HeroSlider() {
               style={{ fontSize: "clamp(2.2rem, 6.5vw, 5rem)" }}
             >
               {service.kicker}
-            </motion.h1>
+            </motion.div>
           </AnimatePresence>
 
           {/* Service icon + summary */}
@@ -216,7 +223,7 @@ export function HeroSlider() {
           {/* CTAs */}
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
             <Link href="/contact" className="btn-primary">
-              Get a Call Back
+              Get a Callback
             </Link>
             <Link
               href={`/services/${service.slug}`}
@@ -228,14 +235,24 @@ export function HeroSlider() {
 
           {/* Contact strip */}
           <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-2 text-sm text-white/55">
-            <a href={`tel:${siteSettings.phonePrimary}`} className="hover:text-white transition-colors">
-              📞 {siteSettings.phonePrimary}
+            <a href={`tel:${siteSettings.phonePrimary}`} className="inline-flex items-center gap-2 hover:text-white transition-colors">
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.59 3.42 2 2 0 0 1 3.56 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.19a16 16 0 0 0 6.09 6.09l.91-.81a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z" />
+              </svg>
+              {siteSettings.phonePrimary}
             </a>
-            <a href={`tel:${siteSettings.phoneSecondary}`} className="hover:text-white transition-colors">
-              📞 {siteSettings.phoneSecondary}
+            <a href={`tel:${siteSettings.phoneSecondary}`} className="inline-flex items-center gap-2 hover:text-white transition-colors">
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.59 3.42 2 2 0 0 1 3.56 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.19a16 16 0 0 0 6.09 6.09l.91-.81a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z" />
+              </svg>
+              {siteSettings.phoneSecondary}
             </a>
-            <a href={`mailto:${siteSettings.email}`} className="hover:text-white transition-colors">
-              ✉ {siteSettings.email}
+            <a href={`mailto:${siteSettings.email}`} className="inline-flex items-center gap-2 hover:text-white transition-colors">
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+              {siteSettings.email}
             </a>
           </div>
         </div>

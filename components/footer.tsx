@@ -26,6 +26,8 @@ const socialLinks = [
   }
 ];
 
+const validSocialLinks = socialLinks.filter(s => s.href && s.href.trim() !== "");
+
 const clientLogos = [
   { src: deloitte, alt: "Deloitte" },
   { src: cosyn,    alt: "COSYN"    },
@@ -35,6 +37,23 @@ const clientLogos = [
 ];
 
 const footerNav = navigationItems.filter((n) => n.href !== "/");
+
+// Footer shows only top-level services, not the full 18-item catalog.
+// Exclude carousel-only umbrella entries and individual SAP detail pages.
+const footerSlugs = [
+  "ai-readiness",
+  "cloud-modernization",
+  "cybersecurity",
+  "ai-shield",
+  "automation",
+  "erp-optimization",
+  "sap-solutions",
+  "data-analytics",
+  "managed-it"
+];
+const footerServices = footerSlugs
+  .map((slug) => serviceCards.find((s) => s.slug === slug))
+  .filter((s): s is NonNullable<typeof s> => Boolean(s));
 
 export function Footer() {
   return (
@@ -83,23 +102,25 @@ export function Footer() {
             Princeton, New Jersey, USA
           </p>
 
-          {/* Social icons */}
-          <div className="mt-6 flex gap-3">
-            {socialLinks.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                aria-label={s.label}
-                className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 hover:bg-[#C8401A] hover:border-[#C8401A] hover:text-white transition-all"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
-                  <path d={s.icon} />
-                </svg>
-              </a>
-            ))}
-          </div>
+          {/* Social icons — hidden if no real URLs configured */}
+          {validSocialLinks.length > 0 && (
+            <div className="mt-6 flex gap-3">
+              {validSocialLinks.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  aria-label={s.label}
+                  className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 hover:bg-[#C8401A] hover:border-[#C8401A] hover:text-white transition-all"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+                    <path d={s.icon} />
+                  </svg>
+                </a>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Sitemap */}
@@ -139,7 +160,7 @@ export function Footer() {
           </h4>
           <div className="mt-2 mb-4 h-px w-8" style={{ background: "#C8401A" }} />
           <ul className="space-y-2.5 text-sm">
-            {serviceCards.map((s) => (
+            {footerServices.map((s) => (
               <li key={s.slug}>
                 <Link
                   href={`/services/${s.slug}`}
@@ -153,6 +174,14 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+            <li className="pt-2">
+              <Link
+                href="/services"
+                className="inline-flex items-center gap-1 text-sky hover:text-white text-xs font-semibold transition-colors"
+              >
+                View all 18 services →
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -179,7 +208,7 @@ export function Footer() {
             className="mt-6 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5"
             style={{ background: "linear-gradient(135deg, #A33315 0%, #C8401A 60%, #E05A1F 100%)" }}
           >
-            Get a Call Back →
+            Get a Callback →
           </Link>
         </div>
       </div>

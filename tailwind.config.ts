@@ -32,7 +32,7 @@ const config: Config = {
           700: "#7D250E"
         },
         ink: "#0f1f33",
-        muted: "#6c757d",
+        muted: "#525a64",      /* WCAG AA: 7.0:1 contrast on white at 12-14px */
         line: "#e9ecef"
       },
       fontFamily: {

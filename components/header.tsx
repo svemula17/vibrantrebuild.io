@@ -102,7 +102,7 @@ export function Header() {
             {siteSettings.phonePrimary}
           </a>
           <Link href="/contact" className="btn-primary text-sm px-5 py-2.5">
-            Get a Call Back
+            Get a Callback
           </Link>
         </div>
 
@@ -159,7 +159,7 @@ export function Header() {
                   Call {siteSettings.phonePrimary}
                 </a>
                 <Link href="/contact" className="btn-primary w-full">
-                  Get a Call Back
+                  Get a Callback
                 </Link>
               </div>
             </nav>

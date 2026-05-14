@@ -5,7 +5,29 @@ import { motion } from "framer-motion";
 
 const caseStudies = [
   {
-    sector: "Healthcare",
+    sector: "Global Manufacturer",
+    challenge:
+      "Aging SAP ECC blocking innovation, with 200+ heavily customized objects making upgrades risky",
+    result:
+      "SAP S/4HANA brownfield migration with custom-code cleanup — clean core achieved, go-live on time.",
+    metric: "40%",
+    metricLabel: "faster month-end close",
+    service: "SAP S/4HANA",
+    slug: "sap-s4hana-implementation",
+  },
+  {
+    sector: "Retail Distributor",
+    challenge:
+      "Warehouse operations relying on manual processes — picking errors and inventory inaccuracy growing",
+    result:
+      "SAP EWM rollout across 8 distribution centers with mobile RF integration and automated cycle counting.",
+    metric: "$3M+",
+    metricLabel: "annual savings",
+    service: "Supply Chain Solutions",
+    slug: "sap-supply-chain",
+  },
+  {
+    sector: "Healthcare Network",
     challenge:
       "Fragmented on-prem data across 12 hospitals preventing unified executive reporting",
     result:
@@ -14,28 +36,6 @@ const caseStudies = [
     metricLabel: "faster reporting",
     service: "Cloud Modernization",
     slug: "cloud-modernization",
-  },
-  {
-    sector: "Manufacturing",
-    challenge:
-      "Legacy ERP with manual workarounds causing significant inventory write-offs annually",
-    result:
-      "JD Edwards ERP modernization delivered on time and under budget — full ROI realized within 14 months.",
-    metric: "$2M+",
-    metricLabel: "annual savings",
-    service: "ERP Optimization",
-    slug: "erp-optimization",
-  },
-  {
-    sector: "Financial Services",
-    challenge:
-      "No single source of truth for risk reporting — over 40 manual spreadsheets compiled weekly",
-    result:
-      "Power BI + Snowflake platform with automated data pipelines eliminated manual aggregation entirely.",
-    metric: "90%",
-    metricLabel: "less manual effort",
-    service: "Data & Analytics",
-    slug: "data-analytics",
   },
 ];
 

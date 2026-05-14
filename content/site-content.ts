@@ -34,9 +34,10 @@ export const siteSettings = {
   emailCommunity: "community@vibrantinc.com",
   address: "Princeton, New Jersey",
   social: {
-    facebook: "https://facebook.com/",
-    twitter: "https://twitter.com/",
-    linkedin: "https://www.linkedin.com/"
+    // Set these to real Vibrant Inc profile URLs when available
+    facebook: "",
+    twitter: "",
+    linkedin: ""
   }
 };
 
@@ -723,10 +724,11 @@ export const serviceCards: ServiceCard[] = [
 
 export const trustBadges = [
   { label: "25 Years", sub: "of trusted delivery" },
-  { label: "E-Verify", sub: "Partner" },
-  { label: "NMSDC", sub: "Certified MBE" },
+  { label: "SAP", sub: "Certified Consultants" },
   { label: "Oracle", sub: "Partner" },
-  { label: "Wrike", sub: "Solution Partner" }
+  { label: "Microsoft", sub: "Partner Network" },
+  { label: "NMSDC", sub: "Certified MBE" },
+  { label: "E-Verify", sub: "Partner" }
 ];
 
 export const stats = [

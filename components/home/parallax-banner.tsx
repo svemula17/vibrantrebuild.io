@@ -70,7 +70,7 @@ export function ParallaxBanner() {
           className="mt-10 flex flex-wrap justify-center gap-4"
         >
           <Link href="/contact" className="btn-primary">
-            Get a Call Back
+            Get a Callback
           </Link>
           <Link
             href="/about"

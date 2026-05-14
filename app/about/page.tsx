@@ -168,7 +168,7 @@ export default function AboutPage() {
               Tell us where you want to be in 12 months. We&apos;ll help you get there with senior practitioners and a 25-year delivery track record.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/contact" className="btn-primary">Get a call back</Link>
+              <Link href="/contact" className="btn-primary">Get a Callback</Link>
               <Link href="/services" className="btn-ghost">See our services</Link>
             </div>
           </div>

@@ -16,8 +16,8 @@ export default function ServicesPage() {
     <>
       <PageHero
         eyebrow="Services"
-        title="Eighteen Capabilities. One Vibrant Partner."
-        description="From AI readiness and cloud modernization to SAP S/4HANA implementation and managed IT — we cover the full enterprise technology stack with certified practitioners and 25 years of trusted delivery."
+        title="The full enterprise technology stack — under one partner."
+        description="From AI readiness and cloud modernization to SAP S/4HANA implementation and managed IT — 18 specialized capabilities delivered by certified practitioners with 25 years of trusted delivery."
         crumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
       />
 

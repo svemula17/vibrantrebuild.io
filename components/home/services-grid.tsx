@@ -5,8 +5,23 @@ import { motion } from "framer-motion";
 import { serviceCards } from "@/content/site-content";
 import { RevealWords } from "@/components/reveal-on-scroll";
 
+// Homepage grid: top 8 curated services (carousel-featured set). Full catalog on /services.
+const homepageSlugs = [
+  "ai-readiness",
+  "cloud-modernization",
+  "cybersecurity",
+  "ai-shield",
+  "automation",
+  "erp-optimization",
+  "sap-solutions",
+  "data-analytics"
+];
+
 export function ServicesGrid() {
-  const gridServices = serviceCards.filter(s => !s.hideFromGrid);
+  const gridServices = homepageSlugs
+    .map(slug => serviceCards.find(s => s.slug === slug))
+    .filter((s): s is NonNullable<typeof s> => Boolean(s));
+  const totalServices = serviceCards.filter(s => !s.hideFromGrid).length;
 
   return (
     <section className="section section-soft">
@@ -22,12 +37,12 @@ export function ServicesGrid() {
         >
           <p className="eyebrow">What we do</p>
           <h2 className="mt-3">
-            <RevealWords text="Eighteen Capabilities. One Vibrant Partner." />
+            <RevealWords text="Eight capabilities. One Vibrant partner." />
           </h2>
           <p className="mt-4 text-muted">
-            From AI readiness and cloud modernization to SAP S/4HANA, JD Edwards, and managed IT —
-            real expertise across the full enterprise technology stack. We help businesses grow,
-            operate sustainably, and create lasting impact.
+            From AI and cloud to SAP S/4HANA, JD Edwards, and managed IT — real expertise across
+            the enterprise technology stack. We help businesses grow, operate sustainably, and
+            create lasting impact.
           </p>
         </motion.div>
 
@@ -80,7 +95,7 @@ export function ServicesGrid() {
         {/* View all CTA */}
         <div className="mt-10 flex justify-center">
           <Link href="/services" className="btn-ghost inline-flex items-center gap-2">
-            Explore all {gridServices.length} services
+            Explore all {totalServices} services
             <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14M13 5l7 7-7 7" />
             </svg>

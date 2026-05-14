@@ -90,7 +90,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
                 A 30-minute call to understand your situation and share what we&apos;d typically recommend.
               </p>
               <div className="mt-5 flex flex-col gap-2.5">
-                <Link href="/contact" className="btn-primary">Get a Call Back</Link>
+                <Link href="/contact" className="btn-primary">Get a Callback</Link>
                 <a href={`tel:${siteSettings.phonePrimary}`} className="btn-ghost">{siteSettings.phonePrimary}</a>
               </div>
               <hr className="my-6 border-line" />
