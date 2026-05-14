@@ -77,7 +77,7 @@ export function ServicesGrid() {
         {/* View all CTA */}
         <div className="mt-10 flex justify-center">
           <Link href="/services" className="btn-ghost inline-flex items-center gap-2">
-            Explore all 7 services
+            Explore all {serviceCards.length} services
             <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14M13 5l7 7-7 7" />
             </svg>

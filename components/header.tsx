@@ -60,7 +60,7 @@ export function Header() {
           </div>
         </div>
       )}
-      <div className="container flex h-20 items-center justify-between gap-6">
+      <div className="container flex h-24 items-center justify-between gap-6">
         <Link href="/" aria-label={`${siteSettings.brandName} home`}>
           <Image
             src={logoSrc}
@@ -68,7 +68,7 @@ export function Header() {
             width={1024}
             height={867}
             priority
-            className="h-12 w-auto object-contain"
+            className="h-16 w-auto object-contain"
           />
         </Link>
 

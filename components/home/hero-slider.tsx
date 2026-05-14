@@ -16,6 +16,7 @@ import imgData   from "@/data.jpg";                                   // new
 import imgMIT    from "@/pexels-tima-miroshnichenko-5380596.jpg";     // keep
 
 const SLIDE_IMAGES: Record<string, StaticImageData> = {
+  // Existing services
   "ai-readiness":       imgAI,
   "cloud-modernization": imgCloud,
   "cybersecurity":       imgCyber,
@@ -23,6 +24,17 @@ const SLIDE_IMAGES: Record<string, StaticImageData> = {
   "erp-optimization":   imgERP,
   "data-analytics":      imgData,
   "managed-it":          imgMIT,
+  // SAP & ERP services (using relevant existing images for now)
+  "sap-s4hana-implementation": imgERP,
+  "sap-ams":            imgERP,
+  "sap-supply-chain":   imgERP,
+  "sap-btp":            imgCloud,
+  "sap-integration":    imgCloud,
+  "sap-fiori-ux":       imgCloud,
+  "sap-clean-core":     imgERP,
+  "sap-abap":           imgData,
+  "jd-edwards-cnc":     imgERP,
+  "peoplesoft-implementation": imgERP,
 };
 
 const INTERVAL = 5500;
@@ -50,7 +62,10 @@ export function HeroSlider() {
   const rafRef    = useRef<number | null>(null);
   const startRef  = useRef<number>(0);
 
-  const total = serviceCards.length;
+  // Filter to featured services for carousel (6-8 curated services)
+  const featuredServices = serviceCards.filter(s => s.featured === true);
+  const carouselServices = featuredServices.length > 0 ? featuredServices : serviceCards;
+  const total = carouselServices.length;
 
   const goTo = useCallback((idx: number) => {
     setCurrent((idx + total) % total);
@@ -85,7 +100,7 @@ export function HeroSlider() {
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, [current, paused, total]);
 
-  const service = serviceCards[current];
+  const service = carouselServices[current];
   const slideImg = SLIDE_IMAGES[service.slug];
 
   return (
@@ -239,7 +254,7 @@ export function HeroSlider() {
 
           {/* Dot / label tabs */}
           <div className="flex items-center gap-2" role="tablist" aria-label="Slide indicators">
-            {serviceCards.map((s, i) => (
+            {carouselServices.map((s, i) => (
               <button
                 key={s.slug}
                 role="tab"

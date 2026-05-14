@@ -11,6 +11,8 @@ export type ServiceCard = {
   outcomes: string[];
   capabilities: string[];
   bestFit: string;
+  category?: string; // SAP, Cloud, Security, ERP, etc.
+  featured?: boolean; // For homepage carousel curation
 };
 
 export type ContactDetail = { label: string; value: string };
@@ -54,7 +56,13 @@ const ICONS = {
   bolt: "M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83",
   layers: "M3 7h18M3 12h18M3 17h12",
   chart: "M3 3v18h18M7 15l4-4 4 4 5-7",
-  monitor: "M9 17H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4M12 17v4M8 21h8"
+  monitor: "M9 17H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4M12 17v4M8 21h8",
+  database: "M12 3c3.866 0 7 1.79 7 4v3c0 2.21-3.134 4-7 4s-7-1.79-7-4V7c0-2.21 3.134-4 7-4zM5 10c0 2.21 3.134 4 7 4s7-1.79 7-4M5 17c0 2.21 3.134 4 7 4s7-1.79 7-4",
+  package: "M12.89 1.45l8 4v6.5c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5.45l8-4z",
+  truck: "M1 6v12h4v3h12v-3h4V6H1zm9 11H6v-2h4v2zm8-2v2h-3v-2h3zM3 8h14v5H3V8z",
+  settings: "M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.62l-1.92-3.32c-.12-.22-.39-.3-.61-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94L14.4 2.81c-.04-.25-.25-.43-.5-.43h-3.84c-.25 0-.46.18-.49.43L9.13 5.5C8.54 5.74 8 6.06 7.44 6.46L5.05 5.5c-.22-.09-.49 0-.61.22L2.52 9.04c-.13.21-.08.48.1.62l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.1.62l1.92 3.32c.12.22.39.3.61.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.25.25.43.5.43h3.84c.25 0 .46-.18.49-.43l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.49 0 .61-.22l1.92-3.32c.12-.22.07-.47-.12-.62l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z",
+  zap: "M13 2L3 14h9l-1 8 10-12h-9l1-8z",
+  users: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M16 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM7.5 11c1.933 0 3.5-1.791 3.5-4S9.433 3 7.5 3 4 4.791 4 7s1.567 4 3.5 4z"
 };
 
 export const serviceCards: ServiceCard[] = [
@@ -118,7 +126,8 @@ export const serviceCards: ServiceCard[] = [
       "FinOps & cost optimization"
     ],
     bestFit:
-      "Organizations with legacy data centers or fragmented cloud estates needing a defensible plan."
+      "Organizations with legacy data centers or fragmented cloud estates needing a defensible plan.",
+    featured: true
   },
   {
     slug: "cybersecurity",
@@ -221,7 +230,8 @@ export const serviceCards: ServiceCard[] = [
       "ERP upgrade & modernization"
     ],
     bestFit:
-      "Companies replacing legacy ERP, running JD Edwards or PeopleSoft environments needing CNC expertise, or rescuing a stalled SAP or Dynamics program."
+      "Companies replacing legacy ERP, running JD Edwards or PeopleSoft environments needing CNC expertise, or rescuing a stalled SAP or Dynamics program.",
+    featured: true
   },
   {
     slug: "data-analytics",
@@ -283,7 +293,355 @@ export const serviceCards: ServiceCard[] = [
       "Staff augmentation"
     ],
     bestFit:
-      "Lean IT teams that need depth, coverage, and senior escalation paths without hiring."
+      "Lean IT teams that need depth, coverage, and senior escalation paths without hiring.",
+    category: "Managed Services"
+  },
+
+  /* ───── SAP & ERP SOLUTIONS (New) ───── */
+  {
+    slug: "sap-s4hana-implementation",
+    kicker: "SAP S/4HANA",
+    title: "SAP S/4HANA Implementation",
+    summary:
+      "End-to-end SAP implementation, migration, rollout, and transformation services for enterprise modernization.",
+    longDescription:
+      "Vibrant delivers comprehensive SAP S/4HANA implementations and migrations with proven methodologies, certified consultants, and accelerators that compress timelines and de-risk go-live. From legacy ECC to cloud-native S/4HANA, we handle discovery, design, build, testing, and hypercare with full ownership and accountability.",
+    iconPath: ICONS.database,
+    metaTags: [
+      "SAP S/4HANA",
+      "ECC Migration",
+      "Greenfield Implementation",
+      "Cloud Deployment"
+    ],
+    outcomes: [
+      "On-time, on-budget SAP go-live",
+      "Faster modernization with reduced rework",
+      "Cloud-ready enterprise foundation"
+    ],
+    capabilities: [
+      "SAP S/4HANA greenfield implementation",
+      "ECC to S/4HANA migration",
+      "Implementation roadmap & sequencing",
+      "Blueprint & design workshops",
+      "Custom development & extensions",
+      "Data migration & cleansing",
+      "Testing strategy & execution",
+      "Go-live & hypercare support"
+    ],
+    bestFit:
+      "Enterprise organizations replacing legacy ERP systems or modernizing to cloud SAP.",
+    category: "SAP Solutions",
+    featured: true
+  },
+  {
+    slug: "sap-ams",
+    kicker: "SAP AMS",
+    title: "SAP Application Management Services",
+    summary:
+      "Reliable SAP support, monitoring, enhancements, incident resolution, and continuous improvement services.",
+    longDescription:
+      "Keep your SAP environment stable, performant, and aligned with business evolution. Our Application Management Services include 24×7 proactive monitoring, rapid incident response, post-go-live stabilization, enhancements, and optimizations — backed by certified senior consultants with deep SAP expertise.",
+    iconPath: ICONS.settings,
+    metaTags: [
+      "SAP Support",
+      "Monitoring & Operations",
+      "Enhancement Management",
+      "Performance Tuning"
+    ],
+    outcomes: [
+      "Reduced downtime & incident response time",
+      "Continuous system optimization",
+      "Predictable support costs"
+    ],
+    capabilities: [
+      "24×7 SAP monitoring & alerting",
+      "Incident management & resolution",
+      "Performance tuning & optimization",
+      "SAP Enhancement Package (SP) management",
+      "Basis & system administration",
+      "Database optimization",
+      "Backup & disaster recovery",
+      "Quarterly business reviews"
+    ],
+    bestFit:
+      "Mid-market and enterprise companies running SAP who need reliable, hands-on post-go-live support.",
+    category: "SAP Solutions",
+    featured: true
+  },
+  {
+    slug: "sap-supply-chain",
+    kicker: "Supply Chain Solutions",
+    title: "Supply Chain Solutions – EWM, TM, IBP & PP",
+    summary:
+      "Integrated supply chain optimization solutions for warehouse, transportation, planning, and manufacturing operations.",
+    longDescription:
+      "Transform supply chain execution with SAP Extended Warehouse Management (EWM), Transportation Management (TM), Integrated Business Planning (IBP), and Production Planning (PP). Vibrant designs and implements end-to-end supply chain solutions that drive visibility, agility, and cost optimization across procurement, planning, manufacturing, and logistics.",
+    iconPath: ICONS.truck,
+    metaTags: [
+      "SAP Extended Warehouse Management",
+      "Transportation Management",
+      "Integrated Business Planning",
+      "Production Planning"
+    ],
+    outcomes: [
+      "Reduced supply chain costs",
+      "Improved on-time delivery",
+      "Real-time supply chain visibility"
+    ],
+    capabilities: [
+      "SAP Extended Warehouse Management (EWM)",
+      "Transportation Management (TM)",
+      "Integrated Business Planning (IBP)",
+      "Production Planning (PP/GATP)",
+      "Network optimization",
+      "Demand-driven planning",
+      "Inventory optimization",
+      "Warehouse automation integration"
+    ],
+    bestFit:
+      "Manufacturing, retail, and logistics organizations seeking modern, data-driven supply chain execution.",
+    category: "SAP Solutions",
+    featured: true
+  },
+  {
+    slug: "sap-btp",
+    kicker: "SAP BTP",
+    title: "SAP Business Technology Platform",
+    summary:
+      "Cloud integrations, workflow automation, analytics, extensions, and AI-driven enterprise applications.",
+    longDescription:
+      "Extend SAP functionality and integrate with your broader ecosystem using SAP's cloud-native platform. BTP enables low-code workflow automation, real-time analytics, API-driven integrations, and intelligent extensions — all without customizing core SAP.",
+    iconPath: ICONS.cloud,
+    metaTags: [
+      "SAP BTP",
+      "Cloud Integrations",
+      "Workflow Automation",
+      "API Management"
+    ],
+    outcomes: [
+      "Faster integrations with cleaner core",
+      "Reduced integration backlog",
+      "Faster time-to-value for new capabilities"
+    ],
+    capabilities: [
+      "SAP BTP architecture design",
+      "Cloud Integration Suite",
+      "Workflow automation (low-code)",
+      "API management & governance",
+      "Analytics Cloud extensions",
+      "Mobile app development",
+      "AI & ML services integration",
+      "Third-party SaaS connectivity"
+    ],
+    bestFit:
+      "Enterprises needing rapid, cloud-native integrations and extensions while maintaining SAP clean core.",
+    category: "SAP Solutions"
+  },
+  {
+    slug: "sap-integration",
+    kicker: "SAP Integration",
+    title: "SAP Integration Services",
+    summary:
+      "EDI, IDoc, API, middleware, cloud integrations, and third-party application connectivity solutions.",
+    longDescription:
+      "Seamlessly integrate SAP with your broader enterprise ecosystem — legacy systems, cloud applications, EDI partners, and real-time data pipelines. We architect and implement scalable integration solutions using APIs, iPaaS, message queues, and modern middleware.",
+    iconPath: ICONS.zap,
+    metaTags: [
+      "SAP Integration",
+      "API Management",
+      "EDI/IDoc",
+      "Middleware"
+    ],
+    outcomes: [
+      "Seamless cross-system data flow",
+      "Reduced manual data entry",
+      "Real-time business process visibility"
+    ],
+    capabilities: [
+      "SAP API management",
+      "EDI & IDoc configuration",
+      "Message brokers & async patterns",
+      "REST & SOAP integrations",
+      "Cloud middleware (BTP, iPaaS)",
+      "Real-time data pipelines",
+      "Process automation integration",
+      "Partner ecosystem connectivity"
+    ],
+    bestFit:
+      "Organizations with complex integration landscapes needing reliable, maintainable SAP connectivity.",
+    category: "SAP Solutions"
+  },
+  {
+    slug: "sap-fiori-ux",
+    kicker: "Enterprise UX",
+    title: "Enterprise User Experience – Fiori & UI5",
+    summary:
+      "Modern SAP Fiori/UI5 applications delivering simplified, responsive, and user-friendly experiences.",
+    longDescription:
+      "Replace clunky SAP transactions with intuitive Fiori interfaces. We design and build responsive, mobile-first UX that delights users — from standard SAP Fiori apps to custom UI5 applications tailored to your workflows.",
+    iconPath: ICONS.monitor,
+    metaTags: [
+      "SAP Fiori",
+      "UI5 Development",
+      "User Experience",
+      "Mobile-First Design"
+    ],
+    outcomes: [
+      "Faster user adoption",
+      "Reduced training costs",
+      "Higher employee satisfaction"
+    ],
+    capabilities: [
+      "SAP Fiori UX assessment",
+      "Custom UI5 application development",
+      "Responsive web design",
+      "Mobile app development",
+      "Design system creation",
+      "User research & usability testing",
+      "Analytics integration",
+      "Portal & launchpad configuration"
+    ],
+    bestFit:
+      "Enterprises prioritizing user experience in SAP deployments or modernizing legacy interfaces.",
+    category: "SAP Solutions"
+  },
+  {
+    slug: "sap-clean-core",
+    kicker: "Clean Core & Upgrades",
+    title: "SAP Clean Core & Upgrade Services",
+    summary:
+      "Future-ready SAP architecture with clean core strategy, system modernization, and S/4 upgrades.",
+    longDescription:
+      "Prepare your SAP landscape for the future with clean core architecture — removing technical debt, retiring custom code where possible, and moving to standard SAP. We manage your upgrade roadmap, handle complex data migrations, and ensure your system is positioned for years of value.",
+    iconPath: ICONS.layers,
+    metaTags: [
+      "SAP Clean Core",
+      "S/4HANA Upgrade",
+      "Technical Debt Removal",
+      "System Modernization"
+    ],
+    outcomes: [
+      "Simpler, more maintainable SAP landscape",
+      "Lower upgrade and support costs",
+      "Faster adoption of SAP innovations"
+    ],
+    capabilities: [
+      "Clean core assessment",
+      "Custom code analysis & remediation",
+      "S/4HANA readiness evaluation",
+      "Phased upgrade planning",
+      "Enhancement replacement with standard SAP",
+      "Performance optimization",
+      "Documentation & knowledge transfer",
+      "Post-upgrade stabilization"
+    ],
+    bestFit:
+      "SAP ECC customers with significant technical debt seeking a clear path to S/4HANA.",
+    category: "SAP Solutions"
+  },
+  {
+    slug: "sap-abap",
+    kicker: "ABAP & Development",
+    title: "SAP ABAP & Custom Development",
+    summary:
+      "Custom reports, interfaces, enhancements, forms, workflows, and technical development services.",
+    longDescription:
+      "When standard SAP doesn't fit, our ABAP experts build custom solutions. Reports, interfaces, form enhancements, workflow automation — all with production-grade quality, testing, and documentation.",
+    iconPath: ICONS.zap,
+    metaTags: [
+      "ABAP Development",
+      "Custom Reports",
+      "Enhancements & Forms",
+      "Interfaces & APIs"
+    ],
+    outcomes: [
+      "Custom solutions exactly matching business needs",
+      "Faster time-to-value than workarounds",
+      "Production-ready code quality"
+    ],
+    capabilities: [
+      "ABAP custom development",
+      "SAP Query & InfoSet development",
+      "Form design (SAPScript, Adobe Forms)",
+      "Enhancement points & exits (BADI, User Exits)",
+      "Batch jobs & background processing",
+      "Smartforms & function modules",
+      "Testing & quality assurance",
+      "Code documentation & handover"
+    ],
+    bestFit:
+      "Enterprises needing specific custom functionality that standard SAP cannot provide.",
+    category: "SAP Solutions"
+  },
+  {
+    slug: "jd-edwards-cnc",
+    kicker: "JD Edwards CNC",
+    title: "JD Edwards CNC Services",
+    summary:
+      "CNC administration, environment management, security, upgrades, deployments, and managed support.",
+    longDescription:
+      "Master the complexity of JD Edwards environments. From Oracle-level administration (OneWorld, EnterpriseOne) to CNC environment setup, security hardening, release management, and 24×7 monitoring — our JDE experts keep your systems running reliably and performing optimally.",
+    iconPath: ICONS.settings,
+    metaTags: [
+      "JD Edwards CNC",
+      "Environment Management",
+      "System Administration",
+      "JDE Support"
+    ],
+    outcomes: [
+      "Stable, well-maintained JDE environment",
+      "Reduced system incidents",
+      "Predictable upgrade cycles"
+    ],
+    capabilities: [
+      "JD Edwards CNC administration",
+      "OneWorld & EnterpriseOne support",
+      "Environment provisioning & patching",
+      "Security & access control",
+      "Database tuning & optimization",
+      "Release & deployment management",
+      "Backup & disaster recovery",
+      "24×7 monitoring & incident response"
+    ],
+    bestFit:
+      "Mid-market and enterprise organizations running complex JD Edwards environments.",
+    category: "ERP Platforms",
+    featured: true
+  },
+  {
+    slug: "peoplesoft-implementation",
+    kicker: "PeopleSoft",
+    title: "PeopleSoft Implementation & Support",
+    summary:
+      "PeopleSoft HCM/FSCM consulting, integrations, upgrades, maintenance, and production support.",
+    longDescription:
+      "Deploy, maintain, and optimize PeopleSoft across HCM and FSCM. From implementation and configuration to ongoing support, upgrades, and integrations — Vibrant's PeopleSoft team delivers on time and on budget.",
+    iconPath: ICONS.users,
+    metaTags: [
+      "PeopleSoft HCM",
+      "PeopleSoft FSCM",
+      "Implementation & Support",
+      "PeopleSoft Upgrades"
+    ],
+    outcomes: [
+      "Successful PeopleSoft deployment",
+      "Smooth system upgrades with zero downtime",
+      "Optimized HR and financial operations"
+    ],
+    capabilities: [
+      "PeopleSoft HCM implementation",
+      "PeopleSoft FSCM (Financials Supply Chain Management)",
+      "PeopleCode & customization",
+      "System upgrades & patches",
+      "Performance tuning",
+      "Integrations (payroll, benefits, GL)",
+      "User enablement & training",
+      "24×7 production support"
+    ],
+    bestFit:
+      "Mid-market and enterprise organizations implementing or optimizing PeopleSoft for HR and finance.",
+    category: "ERP Platforms",
+    featured: true
   }
 ];
 
@@ -413,38 +771,38 @@ export const deliverySteps = [
 export const vibrantMethod = [
   {
     letter: "V",
-    step: "Validate",
-    body: "Deep discovery sessions — map current state, surface hidden gaps, and define measurable success criteria together."
+    step: "Value Discovery",
+    body: "Deep discovery sessions mapping your current state, pain points, and measurable success criteria. We surface hidden opportunities and align on what value looks like."
   },
   {
     letter: "I",
-    step: "Ideate",
-    body: "Co-design your target architecture and a practical, defensible roadmap built with your team, not handed to them."
+    step: "Ideate & Design",
+    body: "Co-create your target architecture and roadmap with your team. We design defensible solutions, not one-size-fits-all blueprints — your business context drives every decision."
   },
   {
     letter: "B",
-    step: "Build",
-    body: "Senior-led sprints with weekly demos, transparent progress tracking, and tight change control — no surprises at go-live."
+    step: "Build with Agility",
+    body: "Senior-led iterative sprints with weekly demos, transparent progress, and tight change control. You see exactly what you're getting, when."
   },
   {
     letter: "R",
-    step: "Refine",
-    body: "Iterative testing, user validation, and performance tuning so what ships is battle-tested before it matters."
+    step: "Refine & Validate",
+    body: "Rigorous testing, user validation, and performance tuning. What ships is battle-tested, not hoped-for — we catch and fix issues before they matter."
   },
   {
     letter: "A",
-    step: "Activate",
-    body: "Go-live with full hypercare, structured training, and change management — your team confident from day one."
+    step: "Activate & Launch",
+    body: "Go-live with full hypercare, structured training, and change management. Your team is confident and prepared from day one."
   },
   {
     letter: "N",
-    step: "Nurture",
-    body: "Managed support, quarterly business reviews, and continuous improvement so value compounds, not decays."
+    step: "Nurture & Optimize",
+    body: "Managed support, quarterly business reviews, and continuous improvement. We stay invested in your success long after go-live — value compounds."
   },
   {
     letter: "T",
-    step: "Transform",
-    body: "Realize measurable KPI impact — and a platform built to absorb whatever comes next."
+    step: "Transform & Scale",
+    body: "Realize measurable KPI impact and build a foundation ready for growth. The platform evolves with your business — not a rip-and-replace nightmare."
   }
 ];
 
@@ -564,11 +922,68 @@ export const interestOptions = [
   "Cloud Modernization (Azure / AWS / GCP)",
   "Cybersecurity & AI Shield",
   "Automation",
-  "ERP Optimization (JD Edwards, SAP, PeopleSoft, WorkDay, MS Dynamics, Oracle)",
+  "SAP S/4HANA Implementation",
+  "SAP Application Management Services (AMS)",
+  "Supply Chain Solutions (EWM, TM, IBP, PP)",
+  "SAP BTP & Integration",
+  "Enterprise UX (Fiori / UI5)",
+  "SAP Clean Core & Upgrades",
+  "ABAP & Custom Development",
+  "JD Edwards CNC Services",
+  "PeopleSoft Implementation & Support",
+  "ERP Optimization",
   "Data & Analytics",
   "Managed IT",
   "Partnership inquiry",
   "Other / not sure"
+];
+
+export type ValueAdd = {
+  title: string;
+  description: string;
+};
+
+export const valueAdds: ValueAdd[] = [
+  {
+    title: "SAP Certified Consultants",
+    description:
+      "Experienced SAP professionals delivering industry-focused solutions and best practices."
+  },
+  {
+    title: "Discovery & Assessment Workshops",
+    description:
+      "Business process evaluations and roadmap planning for digital transformation initiatives."
+  },
+  {
+    title: "Accelerators & Reusable Solutions",
+    description:
+      "Prebuilt frameworks, templates, and automation accelerators for faster project delivery."
+  },
+  {
+    title: "Generative AI & Intelligent Automation",
+    description:
+      "AI-powered enterprise solutions for analytics, automation, document processing, and decision support."
+  },
+  {
+    title: "Global Delivery Model",
+    description:
+      "Flexible onsite, offshore, and hybrid engagement models with worldwide delivery capabilities."
+  },
+  {
+    title: "24×7 Production Support",
+    description:
+      "Continuous monitoring and support services ensuring business continuity and system stability."
+  },
+  {
+    title: "Industry-Specific Expertise",
+    description:
+      "Experience across manufacturing, retail, pharma, logistics, healthcare, and consumer goods sectors."
+  },
+  {
+    title: "Cloud & Integration Expertise",
+    description:
+      "Specialized services for SAP Cloud, APIs, middleware, and enterprise integrations."
+  }
 ];
 
 export const contactDetails: ContactDetail[] = [
