@@ -7,13 +7,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import { serviceCards, siteSettings } from "@/content/site-content";
 
 /* ─── Slide images — one per service ──────────────────────────────────── */
-import imgAI     from "@/pexels-tara-winstead-8386440.jpg";           // keep
-import imgCloud  from "@/Banner-Image-Cloud-Computing-in-Digital-Transformation.jpg"; // updated
-import imgCyber  from "@/cyber.jpg";                                  // new
-import imgAuto   from "@/automation.jpg";                             // new
-import imgERP    from "@/272362-0-27498000-1741330535-enterprise_resource_planning-ERP.jpg"; // updated
-import imgData   from "@/data.jpg";                                   // new
-import imgMIT    from "@/pexels-tima-miroshnichenko-5380596.jpg";     // keep
+import imgAI     from "@/assets/services/ai.jpg";           // keep
+import imgCloud  from "@/assets/services/cloud.jpg"; // updated
+import imgCyber  from "@/assets/services/cybersecurity.jpg";                                  // new
+import imgAuto   from "@/assets/services/automation.jpg";                             // new
+import imgERP    from "@/assets/services/erp.jpg"; // updated
+import imgData   from "@/assets/services/data-analytics.jpg";                                   // new
+import imgMIT    from "@/assets/services/managed-it.jpg";     // keep
 
 const SLIDE_IMAGES: Record<string, StaticImageData> = {
   // Existing services

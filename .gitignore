@@ -1,4 +1,6 @@
+# build output
 .next
+/out
 node_modules
 .env.local
 npm-debug.log*
@@ -7,3 +9,6 @@ yarn-error.log*
 pnpm-debug.log*
 dist
 tsconfig.tsbuildinfo
+
+# macOS
+.DS_Store

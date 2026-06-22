@@ -10,7 +10,7 @@ import {
   visionStatement
 } from "@/content/site-content";
 import { VibrantMethod } from "@/components/vibrant-method";
-import anniversary from "@/image.png";
+import anniversary from "@/assets/anniversary.png";
 
 export const metadata: Metadata = {
   title: "About",

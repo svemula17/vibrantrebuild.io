@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import deloitte  from "@/1.jpg";
-import cosyn     from "@/2.jpg";
-import rcn       from "@/3.jpg";
-import acta      from "@/4.jpg";
-import infojini  from "@/7.jpg";
+import deloitte  from "@/assets/clients/deloitte.jpg";
+import cosyn     from "@/assets/clients/cosyn.jpg";
+import rcn       from "@/assets/clients/rcn.jpg";
+import acta      from "@/assets/clients/acta.jpg";
+import infojini  from "@/assets/clients/infojini.jpg";
 
 const clients = [
   { src: deloitte,  alt: "Deloitte" },

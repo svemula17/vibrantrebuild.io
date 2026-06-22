@@ -1,12 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { contactDetails, navigationItems, serviceCards, siteSettings } from "@/content/site-content";
-import logoSrc  from "@/Vibrant-Logo-1024x867.png";
-import deloitte from "@/1.jpg";
-import cosyn    from "@/2.jpg";
-import rcn      from "@/3.jpg";
-import acta     from "@/4.jpg";
-import infojini from "@/7.jpg";
+import logoSrc  from "@/public/vibrant-logo.png";
+import deloitte from "@/assets/clients/deloitte.jpg";
+import cosyn    from "@/assets/clients/cosyn.jpg";
+import rcn      from "@/assets/clients/rcn.jpg";
+import acta     from "@/assets/clients/acta.jpg";
+import infojini from "@/assets/clients/infojini.jpg";
 
 const socialLinks = [
   {

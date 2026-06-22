@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { navigationItems, siteSettings } from "@/content/site-content";
-import logoSrc from "@/Vibrant-Logo-1024x867.png";
+import logoSrc from "@/public/vibrant-logo.png";
 
 export function Header() {
   const [open, setOpen] = useState(false);

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import bgSrc from "@/pexels-rdne-7948005.jpg";
+import bgSrc from "@/assets/parallax.jpg";
 
 export function ParallaxBanner() {
   return (

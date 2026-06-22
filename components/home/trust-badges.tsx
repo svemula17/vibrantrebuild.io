@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import nmsdcBadge from "@/NMSDC_CERIFIED_2024.jpg";
-import everifyBadge from "@/i-e-verify-seal-v2-600x600.jpg";
+import nmsdcBadge from "@/assets/badges/nmsdc-cert.jpg";
+import everifyBadge from "@/assets/badges/everify-seal.jpg";
 
 const textBadges = [
   { label: "25 Years", sub: "of trusted delivery" },

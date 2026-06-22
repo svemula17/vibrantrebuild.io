@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import nmsdcSrc from "@/NMSDC_CERIFIED_2024.jpg";
-import everifySrc from "@/i-e-verify-seal-v2-600x600.jpg";
+import nmsdcSrc from "@/assets/badges/nmsdc-cert.jpg";
+import everifySrc from "@/assets/badges/everify-seal.jpg";
 
 const textBadges = [
   { name: "Oracle", sub: "Partner", initials: "OR" },

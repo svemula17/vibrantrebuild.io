@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/Vibrant-Logo-1024x867.png",
+        url: "/vibrant-logo.png",
         width: 1024,
         height: 867,
         alt: "Vibrant Inc — Enterprise Technology Consulting"
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteSettings.defaultTitle,
     description: siteSettings.defaultDescription,
-    images: ["/Vibrant-Logo-1024x867.png"]
+    images: ["/vibrant-logo.png"]
   }
 };
 

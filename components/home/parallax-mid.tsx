@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import bgSrc from "@/pexels-tima-miroshnichenko-5380596.jpg";
+import bgSrc from "@/assets/services/managed-it.jpg";
 
 export function ParallaxMid() {
   return (

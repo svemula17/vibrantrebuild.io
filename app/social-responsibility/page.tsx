@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/page-hero";
 import { siteSettings, socialResponsibilityCommitments } from "@/content/site-content";
-import nmsdcCert from "@/NMSDC_CERIFIED_2024.jpg";
-import nmsdcBadge from "@/blob.png";
+import nmsdcCert from "@/assets/badges/nmsdc-cert.jpg";
+import nmsdcBadge from "@/assets/badges/nmsdc-badge.png";
 
 export const metadata: Metadata = {
   title: "Social Responsibility",
