@@ -7,7 +7,7 @@ import { VibrantMethod } from "@/components/vibrant-method";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Eighteen Capabilities. One Vibrant Partner. From AI readiness to SAP implementation — covering the full enterprise technology stack with SAP expertise and managed IT."
+    "Seventeen Capabilities. One Vibrant Partner. From AI readiness to SAP implementation — covering the full enterprise technology stack with SAP expertise and managed IT."
 };
 
 export default function ServicesPage() {
@@ -17,7 +17,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Services"
         title="The full enterprise technology stack — under one partner."
-        description="From AI readiness and cloud modernization to SAP S/4HANA implementation and managed IT — 18 specialized capabilities delivered by certified practitioners with 25 years of trusted delivery."
+        description="From AI readiness and cloud modernization to SAP S/4HANA implementation and managed IT — 17 specialized capabilities delivered by certified practitioners with 25 years of trusted delivery."
         crumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
       />
 

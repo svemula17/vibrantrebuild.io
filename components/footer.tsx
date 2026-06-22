@@ -44,7 +44,6 @@ const footerSlugs = [
   "ai-readiness",
   "cloud-modernization",
   "cybersecurity",
-  "ai-shield",
   "automation",
   "erp-optimization",
   "sap-solutions",
@@ -54,6 +53,9 @@ const footerSlugs = [
 const footerServices = footerSlugs
   .map((slug) => serviceCards.find((s) => s.slug === slug))
   .filter((s): s is NonNullable<typeof s> => Boolean(s));
+
+// Count of services shown on /services (everything except carousel-only umbrella entries)
+const totalServices = serviceCards.filter((s) => !s.hideFromGrid).length;
 
 export function Footer() {
   return (
@@ -179,7 +181,7 @@ export function Footer() {
                 href="/services"
                 className="inline-flex items-center gap-1 text-sky hover:text-white text-xs font-semibold transition-colors"
               >
-                View all 18 services →
+                View all {totalServices} services →
               </Link>
             </li>
           </ul>

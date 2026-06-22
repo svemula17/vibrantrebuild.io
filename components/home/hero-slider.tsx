@@ -3,7 +3,7 @@
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useCallback, useRef } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { serviceCards, siteSettings } from "@/content/site-content";
 
 /* ─── Slide images — one per service ──────────────────────────────────── */
@@ -63,6 +63,7 @@ export function HeroSlider() {
   const timerRef  = useRef<ReturnType<typeof setTimeout> | null>(null);
   const rafRef    = useRef<number | null>(null);
   const startRef  = useRef<number>(0);
+  const reduceMotion = useReducedMotion();
 
   // Filter to featured services for carousel (6-8 curated services)
   const featuredServices = serviceCards.filter(s => s.featured === true);
@@ -93,14 +94,14 @@ export function HeroSlider() {
 
   /* Auto-advance */
   useEffect(() => {
-    if (paused) return;
+    if (paused || reduceMotion) return;
     timerRef.current = setTimeout(() => {
       setCurrent((c) => (c + 1) % total);
       setProgress(0);
       startRef.current = performance.now();
     }, INTERVAL);
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
-  }, [current, paused, total]);
+  }, [current, paused, total, reduceMotion]);
 
   const service = carouselServices[current];
   const slideImg = SLIDE_IMAGES[service.slug];

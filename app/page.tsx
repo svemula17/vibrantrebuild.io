@@ -8,7 +8,6 @@ import { HowWeWork }            from "@/components/home/how-we-work";
 import { ValueAdds }            from "@/components/home/value-adds";
 import { ParallaxMid }          from "@/components/home/parallax-mid";
 import { CaseStudies }          from "@/components/home/case-studies";
-import { CertificationsBand }   from "@/components/home/certifications-band";
 import { StatsBand }            from "@/components/home/stats-band";
 import { CtaCallback }          from "@/components/home/cta-callback";
 import { VibrantMethod }         from "@/components/vibrant-method";
@@ -27,7 +26,6 @@ export default function HomePage() {
       <ValueAdds />
       <ParallaxMid />
       <CaseStudies />
-      <CertificationsBand />
       <StatsBand />
       <CtaCallback />
     </>

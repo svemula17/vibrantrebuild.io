@@ -10,7 +10,7 @@ const homepageSlugs = [
   "ai-readiness",
   "cloud-modernization",
   "cybersecurity",
-  "ai-shield",
+  "managed-it",
   "automation",
   "erp-optimization",
   "sap-solutions",

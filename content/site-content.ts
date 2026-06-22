@@ -169,38 +169,6 @@ export const serviceCards: ServiceCard[] = [
     featured: true
   },
   {
-    slug: "ai-shield",
-    kicker: "AI Shield",
-    title: "AI Shield",
-    summary:
-      "ML-powered threat detection, behavioral analytics, and automated response — security that thinks faster than attackers.",
-    longDescription:
-      "AI Shield is Vibrant's proprietary intelligent security capability. Using machine learning, behavioral analytics (UEBA), and automated playbooks, AI Shield detects and neutralizes threats in minutes — not hours. It's the difference between reacting to breaches and preventing them. Intrigued? Let's show you what it can do for your environment.",
-    iconPath: ICONS.shield,
-    metaTags: [
-      "ML-powered threat detection",
-      "Behavioral analytics (UEBA)",
-      "Automated incident response",
-      "Predictive threat intelligence"
-    ],
-    outcomes: [
-      "Threats detected and contained in minutes",
-      "Fewer false positives with ML-tuned signals",
-      "Audit-ready incident reporting"
-    ],
-    capabilities: [
-      "AI Shield — ML-powered threat detection",
-      "User & Entity Behavioral Analytics (UEBA)",
-      "Automated incident response playbooks",
-      "Predictive threat intelligence feeds",
-      "Anomaly detection across cloud & on-prem",
-      "Integration with existing SIEM/SOC tooling"
-    ],
-    bestFit:
-      "Organizations ready to move from reactive security to AI-driven prevention — especially those on cloud modernization journeys.",
-    category: "Security"
-  },
-  {
     slug: "automation",
     kicker: "Automation",
     title: "Automation",

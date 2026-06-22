@@ -8,6 +8,7 @@ import everifyBadge from "@/assets/badges/everify-seal.jpg";
 const textBadges = [
   { label: "25 Years", sub: "of trusted delivery" },
   { label: "Oracle", sub: "Partner" },
+  { label: "Microsoft", sub: "Partner Network" },
   { label: "Wrike", sub: "Solution Partner" }
 ];
 
@@ -24,7 +25,7 @@ export function TrustBadges() {
           Trusted partnerships &amp; certifications
         </p>
 
-        <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 md:gap-4">
+        <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 md:gap-4">
 
           {/* Real certification image badges */}
           {imageBadges.map((b, i) => (
