@@ -7,3 +7,5 @@ yarn-error.log*
 pnpm-debug.log*
 dist
 tsconfig.tsbuildinfo
+.DS_Store
+out

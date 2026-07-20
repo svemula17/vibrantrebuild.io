@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { contactDetails, navigationItems, serviceCards, siteSettings } from "@/content/site-content";
-import logoSrc  from "@/Vibrant-Logo-1024x867.png";
+import logoSrc  from "@/vibrant-logo-full.png";
 import deloitte from "@/1.jpg";
 import cosyn    from "@/2.jpg";
 import rcn      from "@/3.jpg";
@@ -85,9 +85,9 @@ export function Footer() {
           <Image
             src={logoSrc}
             alt="Vibrant Inc"
-            width={1024}
-            height={867}
-            className="h-12 w-auto object-contain brightness-0 invert"
+            width={1175}
+            height={995}
+            className="h-14 w-auto object-contain brightness-0 invert"
           />
           <p className="mt-4 text-sm leading-relaxed text-white/60">
             {siteSettings.tagline} Established in 2000,

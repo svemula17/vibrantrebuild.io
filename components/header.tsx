@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { navigationItems, siteSettings } from "@/content/site-content";
-import logoSrc from "@/Vibrant-Logo-1024x867.png";
+import logoSrc from "@/vibrant-logo-full.png";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -65,10 +65,10 @@ export function Header() {
           <Image
             src={logoSrc}
             alt="Vibrant Inc"
-            width={1024}
-            height={867}
+            width={1175}
+            height={995}
             priority
-            className="h-16 w-auto object-contain"
+            className="h-16 md:h-20 w-auto object-contain"
           />
         </Link>
 
