@@ -2,11 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { contactDetails, navigationItems, serviceCards, siteSettings } from "@/content/site-content";
 import logoSrc  from "@/vibrant-logo-full.png";
-import deloitte from "@/1.jpg";
-import cosyn    from "@/2.jpg";
-import rcn      from "@/3.jpg";
-import acta     from "@/4.jpg";
-import infojini from "@/7.jpg";
+import deloitte from "@/assets/clients/deloitte.jpg";
+import cosyn    from "@/assets/clients/cosyn.jpg";
+import rcn      from "@/assets/clients/rcn.jpg";
+import acta     from "@/assets/clients/acta.jpg";
+import infojini from "@/assets/clients/infojini.jpg";
 
 const socialLinks = [
   {
@@ -54,6 +54,9 @@ const footerSlugs = [
 const footerServices = footerSlugs
   .map((slug) => serviceCards.find((s) => s.slug === slug))
   .filter((s): s is NonNullable<typeof s> => Boolean(s));
+
+// Count of services shown on /services (everything except carousel-only umbrella entries)
+const totalServices = serviceCards.filter((s) => !s.hideFromGrid).length;
 
 export function Footer() {
   return (
@@ -182,7 +185,7 @@ export function Footer() {
                 href="/services"
                 className="inline-flex items-center gap-1 text-sky hover:text-white text-xs font-semibold transition-colors"
               >
-                View all 18 services →
+                View all {totalServices} services →
               </Link>
             </li>
           </ul>

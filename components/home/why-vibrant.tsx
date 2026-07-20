@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import anniversary from "@/image.png";
+import anniversary from "@/assets/anniversary.png";
 import { RevealWords } from "@/components/reveal-on-scroll";
 
 const points = [

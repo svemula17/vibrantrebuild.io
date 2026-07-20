@@ -116,6 +116,8 @@ export function CallbackForm({ heading, showRequiredNote }: Props) {
           name="interest"
           required
           defaultValue=""
+          aria-invalid={fieldErrors.interest ? true : undefined}
+          aria-describedby={fieldErrors.interest ? "interest-error" : undefined}
           className="w-full rounded-lg border-line bg-white text-ink focus:border-sky focus:ring-sky"
         >
           <option value="" disabled>Select a service area…</option>
@@ -123,7 +125,7 @@ export function CallbackForm({ heading, showRequiredNote }: Props) {
             <option key={o} value={o}>{o}</option>
           ))}
         </select>
-        {fieldErrors.interest && <p className="mt-1 text-xs text-red-600">{fieldErrors.interest}</p>}
+        {fieldErrors.interest && <p id="interest-error" className="mt-1 text-xs text-red-600">{fieldErrors.interest}</p>}
       </div>
 
       <div className="mt-4">
@@ -159,7 +161,7 @@ export function CallbackForm({ heading, showRequiredNote }: Props) {
         </p>
       )}
       {status === "error" && (
-        <p className="mt-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">{message}</p>
+        <p className="mt-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">{message}</p>
       )}
     </motion.form>
   );
@@ -179,9 +181,11 @@ function Field({
       <input
         id={name} name={name} type={type}
         required={required} autoComplete={autoComplete}
+        aria-invalid={error ? true : undefined}
+        aria-describedby={error ? `${name}-error` : undefined}
         className="w-full rounded-lg border-line bg-white text-ink focus:border-sky focus:ring-sky"
       />
-      {error && <p className="mt-1 text-xs text-red-600">{error}</p>}
+      {error && <p id={`${name}-error`} className="mt-1 text-xs text-red-600">{error}</p>}
     </div>
   );
 }

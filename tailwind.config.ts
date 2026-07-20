@@ -36,7 +36,7 @@ const config: Config = {
         line: "#e9ecef"
       },
       fontFamily: {
-        sans: ["Inter", "Avenir Next", "Segoe UI", "ui-sans-serif", "system-ui", "sans-serif"]
+        sans: ["var(--font-sans)", "Inter", "Avenir Next", "Segoe UI", "ui-sans-serif", "system-ui", "sans-serif"]
       },
       fontSize: {
         h1: ["clamp(2.25rem, 4.5vw, 3rem)", { lineHeight: "1.1", letterSpacing: "-0.02em" }],

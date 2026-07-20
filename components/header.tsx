@@ -111,6 +111,7 @@ export function Header() {
           onClick={() => setOpen((o) => !o)}
           className="xl:hidden inline-flex h-11 w-11 items-center justify-center rounded-lg border border-line text-navy-700"
           aria-expanded={open}
+          aria-controls="mobile-menu"
           aria-label="Toggle navigation menu"
         >
           <span className="sr-only">Menu</span>

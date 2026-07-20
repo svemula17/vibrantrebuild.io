@@ -3,17 +3,17 @@
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useCallback, useRef } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { serviceCards, siteSettings } from "@/content/site-content";
 
 /* ─── Slide images — one per service ──────────────────────────────────── */
-import imgAI     from "@/pexels-tara-winstead-8386440.jpg";           // keep
-import imgCloud  from "@/Banner-Image-Cloud-Computing-in-Digital-Transformation.jpg"; // updated
-import imgCyber  from "@/cyber.jpg";                                  // new
-import imgAuto   from "@/automation.jpg";                             // new
-import imgERP    from "@/272362-0-27498000-1741330535-enterprise_resource_planning-ERP.jpg"; // updated
-import imgData   from "@/data.jpg";                                   // new
-import imgMIT    from "@/pexels-tima-miroshnichenko-5380596.jpg";     // keep
+import imgAI     from "@/assets/services/ai.jpg";           // keep
+import imgCloud  from "@/assets/services/cloud.jpg"; // updated
+import imgCyber  from "@/assets/services/cybersecurity.jpg";                                  // new
+import imgAuto   from "@/assets/services/automation.jpg";                             // new
+import imgERP    from "@/assets/services/erp.jpg"; // updated
+import imgData   from "@/assets/services/data-analytics.jpg";                                   // new
+import imgMIT    from "@/assets/services/managed-it.jpg";     // keep
 
 const SLIDE_IMAGES: Record<string, StaticImageData> = {
   // Existing services
@@ -63,6 +63,7 @@ export function HeroSlider() {
   const timerRef  = useRef<ReturnType<typeof setTimeout> | null>(null);
   const rafRef    = useRef<number | null>(null);
   const startRef  = useRef<number>(0);
+  const reduceMotion = useReducedMotion();
 
   // Featured services, in explicit carouselOrder — ERP leads, AI is an accelerator not the identity
   const featuredServices = serviceCards
@@ -95,14 +96,14 @@ export function HeroSlider() {
 
   /* Auto-advance */
   useEffect(() => {
-    if (paused) return;
+    if (paused || reduceMotion) return;
     timerRef.current = setTimeout(() => {
       setCurrent((c) => (c + 1) % total);
       setProgress(0);
       startRef.current = performance.now();
     }, INTERVAL);
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
-  }, [current, paused, total]);
+  }, [current, paused, total, reduceMotion]);
 
   /* Pause while the tab is hidden — otherwise the timer keeps advancing while
      animation frames are throttled and the slide content desyncs from the counter */
