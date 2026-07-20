@@ -159,6 +159,7 @@ export const navigationItems: NavigationItem[] = [
   { href: "/about", label: "About Us" },
   { href: "/team", label: "Leadership" },
   { href: "/services", label: "Services" },
+  { href: "/resources", label: "Resources" },
   { href: "/careers", label: "Careers" },
   { href: "/social-responsibility", label: "Social Responsibility" },
   { href: "/partners", label: "Partners" },
@@ -1220,6 +1221,351 @@ export const contactDetails: ContactDetail[] = [
 
 export function getServiceBySlug(slug: string) {
   return serviceCards.find((service) => service.slug === slug);
+}
+
+/* ── Resource center ─────────────────────────────────────────────────── */
+
+export type ResourceSection = {
+  heading: string;
+  body?: string;
+  bullets?: string[];
+};
+
+export type ResourceGuide = {
+  slug: string;
+  category: "White Paper" | "Guide" | "Checklist" | "Roadmap";
+  title: string;
+  description: string;
+  readTime: string;
+  relatedServices: string[]; // service slugs for the sidebar
+  sections: ResourceSection[];
+};
+
+export const resourceGuides: ResourceGuide[] = [
+  {
+    slug: "sap-s4hana-migration-guide",
+    category: "Guide",
+    title: "SAP S/4HANA Migration Guide",
+    description:
+      "Greenfield, brownfield, or selective data transition? A practical walkthrough of the three migration paths, the timeline phases, and the pitfalls that blow up budgets.",
+    readTime: "9 min read",
+    relatedServices: ["sap-s4hana-implementation", "sap-clean-core", "sap-ams"],
+    sections: [
+      {
+        heading: "Choosing your migration path",
+        body:
+          "There are three ways to get to S/4HANA, and the right one depends on how much of your current system is worth keeping. Greenfield means a fresh implementation — best when your ECC system carries years of process debt you'd rather not bring along. Brownfield (system conversion) keeps your configuration, custom code, and history — fastest and cheapest when your current system is fundamentally sound. Selective data transition sits in between: a new system, but with chosen data and configuration migrated — powerful for mergers, carve-outs, and multi-instance consolidations, at the cost of more planning."
+      },
+      {
+        heading: "Building the business case",
+        body:
+          "Boards don't fund technology upgrades; they fund outcomes. The strongest S/4HANA cases stack three layers: unavoidable facts (ECC mainstream maintenance ends in 2027), hard savings (infrastructure, database licensing, integration simplification), and new capability (real-time close, embedded analytics, clean-core extensibility). Put a number on the cost of doing nothing — rising support costs and shrinking ECC talent pool included."
+      },
+      {
+        heading: "The migration timeline",
+        bullets: [
+          "Discover (4–8 weeks): system assessment, custom-code analysis, data profiling, path decision",
+          "Prepare (4–6 weeks): business case, team formation, environment provisioning, cleanup start",
+          "Convert / Build (3–9 months): the conversion or new build, integration rework, custom-code remediation",
+          "Test (6–10 weeks): multiple conversion rehearsals, integration testing, user acceptance, performance",
+          "Cutover (1 weekend, planned like a moon landing): final conversion run, validation, go/no-go gates",
+          "Hypercare (4–8 weeks): on-site support, issue triage, stabilization, handover to AMS"
+        ]
+      },
+      {
+        heading: "The pitfalls that blow up budgets",
+        bullets: [
+          "Skipping custom-code analysis until after the path decision — it changes the answer",
+          "Treating data cleanup as a technical task instead of a business one",
+          "One conversion rehearsal instead of three — the third run is where the timeline gets real",
+          "No decision-maker in the cutover room",
+          "Letting the integration list grow during the project instead of freezing scope"
+        ]
+      },
+      {
+        heading: "Clean core from day one",
+        body:
+          "Whatever path you choose, adopt the clean-core discipline immediately: keep the S/4HANA core as close to standard as possible and build extensions on BTP with released APIs. It's the difference between future upgrades taking weeks versus quarters — and it's much easier to enforce from day one than to retrofit."
+      }
+    ]
+  },
+  {
+    slug: "ai-readiness-checklist",
+    category: "Checklist",
+    title: "AI Readiness Checklist",
+    description:
+      "20 checkpoints across data, talent, infrastructure, and governance to score your organization before the first AI dollar is spent.",
+    readTime: "6 min read",
+    relatedServices: ["ai-readiness", "data-analytics", "automation"],
+    sections: [
+      {
+        heading: "Data foundation",
+        bullets: [
+          "A defined owner exists for each core data domain (customer, product, finance, operations)",
+          "Critical reports reconcile — two teams asking the same question get the same number",
+          "Data needed for your first AI use cases is accessible without a 6-month integration project",
+          "PII and sensitive data are classified, with access controls that would survive an audit",
+          "History depth is sufficient (most forecasting use cases want 2–3 years of clean history)"
+        ]
+      },
+      {
+        heading: "Talent & operating model",
+        bullets: [
+          "At least one business leader owns an AI use case with a KPI attached — not 'innovation' in the abstract",
+          "You can name the people who will maintain a model after the consultants leave",
+          "The teams whose workflow changes have been told — and someone owns that change",
+          "There's a defined path from pilot to production, with budget for the production half",
+          "Legal/compliance has reviewed how you'll handle AI-generated output in your industry"
+        ]
+      },
+      {
+        heading: "Infrastructure & security",
+        bullets: [
+          "Your cloud platform supports the AI services you plan to use without a migration first",
+          "Model access is gated by identity, not shared API keys in a spreadsheet",
+          "Cost guardrails exist — token and compute budgets with alerts, per use case",
+          "A sandbox exists where teams can experiment without touching production data",
+          "Vendor AI features (in your ERP, CRM, service desk) are inventoried — you may already own what you're about to buy"
+        ]
+      },
+      {
+        heading: "Governance & responsible AI",
+        bullets: [
+          "A human owns every decision an AI system influences — on paper, not in spirit",
+          "You log model inputs and outputs somewhere you could actually retrieve them",
+          "There's a defined review before any AI output reaches a customer",
+          "Bias and quality are measured for use cases that touch people (hiring, credit, pricing)",
+          "You know which regulations apply (EU AI Act, sector rules) and someone tracks them"
+        ]
+      },
+      {
+        heading: "Scoring your result",
+        body:
+          "Count your checked boxes. 16–20: you're ready — pick the highest-ROI use case and move. 10–15: ready for pilots, not production; fix the gaps in parallel. Below 10: spend the next two quarters on data and governance foundations first — an AI pilot on a weak foundation produces a demo, not a capability. Either way, the checklist tells you exactly what to fix and in what order."
+      }
+    ]
+  },
+  {
+    slug: "erp-modernization-roadmap",
+    category: "Roadmap",
+    title: "ERP Modernization Roadmap",
+    description:
+      "A sequenced, board-defensible plan for moving off legacy ERP — assess, rationalize, sequence, execute, measure.",
+    readTime: "8 min read",
+    relatedServices: ["erp-optimization", "jd-edwards-cnc", "peoplesoft-implementation"],
+    sections: [
+      {
+        heading: "Assess the estate",
+        body:
+          "Start with an unsentimental inventory: every ERP instance, version, customization, interface, and the business capability each one serves. Score each on three axes — business fit (does it still match how you operate?), technical health (support status, security posture, talent availability), and cost of ownership (licenses, infrastructure, people). Most estates cluster into keep, fix, and replace buckets faster than you'd expect."
+      },
+      {
+        heading: "Rationalize & prioritize",
+        body:
+          "Modernization fails when it's framed as 'replace everything.' The defensible version sequences by risk and value: systems out of vendor support get dates, not debates. Overlapping instances consolidate. Heavily customized modules get re-evaluated against today's standard functionality — ERP products have absorbed a decade of the customizations you're paying to maintain."
+      },
+      {
+        heading: "Sequencing the program",
+        bullets: [
+          "Wave 0 — foundations: integration platform, data quality, environment strategy, governance",
+          "Wave 1 — burning platforms: anything out of support or blocking the business",
+          "Wave 2 — high-value consolidation: duplicate instances, finance harmonization",
+          "Wave 3 — experience & intelligence: analytics, automation, user-experience modernization",
+          "Rule of thumb: no wave longer than 9 months, every wave ends with something in production"
+        ]
+      },
+      {
+        heading: "Execution & change management",
+        body:
+          "Run each wave with senior-led delivery and weekly demos — ERP programs die in the dark. Pair every technical workstream with a named business owner. Budget change management at 10–15% of program cost; adoption is engineered, not assumed. And keep a stabilization period in every wave plan — the go-live isn't the finish line, the first clean month-end close is."
+      },
+      {
+        heading: "Measuring ROI",
+        bullets: [
+          "Run-cost per user before and after (licenses + infrastructure + support headcount)",
+          "Days to close the books — the classic ERP health metric for a reason",
+          "Interface count and integration incident rate",
+          "Percentage of transactions touched by a human that didn't need to be",
+          "Time to onboard an acquisition onto your ERP — the hidden strategic metric"
+        ]
+      }
+    ]
+  },
+  {
+    slug: "cloud-migration-checklist",
+    category: "Checklist",
+    title: "Cloud Migration Checklist",
+    description:
+      "Everything to verify before, during, and after a production cloud migration — landing zones, security, waves, cutover, and the first 90 days of FinOps.",
+    readTime: "7 min read",
+    relatedServices: ["cloud-modernization", "managed-it", "cybersecurity"],
+    sections: [
+      {
+        heading: "Before you migrate",
+        bullets: [
+          "Application inventory with owners, dependencies, and a 6R disposition (rehost, replatform, refactor, retire, retain, repurchase)",
+          "Baseline performance metrics captured — you can't prove 'it's slower now' claims wrong without them",
+          "Licensing reviewed for cloud terms (some vendors price differently on shared tenancy)",
+          "Egress and DR costs modeled, not discovered",
+          "A named decision-maker for each application's go/no-go"
+        ]
+      },
+      {
+        heading: "Landing zone & security",
+        bullets: [
+          "Account/subscription structure with separated prod and non-prod",
+          "Identity federated to your directory — no local cloud admin accounts",
+          "Network segmentation and private connectivity (ExpressRoute / Direct Connect) in place",
+          "Guardrails as policy-as-code: encryption on, public buckets blocked, regions restricted",
+          "Centralized logging and alerting live before the first workload lands"
+        ]
+      },
+      {
+        heading: "Migration waves",
+        bullets: [
+          "Wave 1 is low-risk, internal, and rehearsable — never the ERP",
+          "Each wave has a rollback plan that's been read by someone other than its author",
+          "Dependencies migrate together or get a latency test first",
+          "Every migrated app gets a burn-in period before its old environment is decommissioned",
+          "Decommission dates are in the plan — the savings aren't real until the old servers are off"
+        ]
+      },
+      {
+        heading: "Cutover weekend",
+        bullets: [
+          "A minute-by-minute runbook with named owners and go/no-go checkpoints",
+          "DNS TTLs dropped in advance",
+          "Data sync validated with counts and checksums, not vibes",
+          "Comms drafted for both outcomes — success and rollback",
+          "The first business-day-after has extra support staffed, not hoped for"
+        ]
+      },
+      {
+        heading: "The first 90 days — FinOps",
+        bullets: [
+          "Right-size everything 30 days in — lift-and-shift sizing is always generous",
+          "Reserved instances / savings plans purchased once usage stabilizes",
+          "Orphaned resources (unattached disks, idle IPs, forgotten snapshots) swept monthly",
+          "Showback per team or product so cost has an owner",
+          "One cost-anomaly alert that a human actually reads"
+        ]
+      }
+    ]
+  },
+  {
+    slug: "vibrant-method-white-paper",
+    category: "White Paper",
+    title: "The VIBRANT Method™ — Agile Delivery for Enterprise Programs",
+    description:
+      "How a seven-phase agile framework keeps ERP, cloud, and AI programs on time and on budget — without disrupting operations. The methodology behind every Vibrant engagement.",
+    readTime: "5 min read",
+    relatedServices: ["erp-optimization", "cloud-modernization", "ai-readiness"],
+    sections: [
+      {
+        heading: "Why enterprise programs fail",
+        body:
+          "Large technology programs rarely fail on technology. They fail on ambiguity — value never defined, scope never frozen, adoption never owned. Waterfall hides these failures until late; pure product-team agile ignores the governance enterprises actually need. The VIBRANT Method is our answer: agile execution inside enterprise accountability."
+      },
+      {
+        heading: "Seven letters, seven phases",
+        bullets: [
+          "V — Value Discovery: current state, pain points, and measurable success criteria before anything is built",
+          "I — Iterative Design: architecture and roadmap co-created in working sessions, not handed down in a binder",
+          "B — Build in Sprints: senior-led agile sprints, weekly demos, tight change control",
+          "R — Refine & Validate: continuous testing and user validation inside each sprint",
+          "A — Activate & Adopt: go-live with hypercare, training, and engineered adoption",
+          "N — Nurture & Optimize: managed support, quarterly reviews, continuous improvement",
+          "T — Transform & Scale: KPIs move, the platform scales, the roadmap evolves"
+        ]
+      },
+      {
+        heading: "What makes it agile — and what makes it enterprise",
+        body:
+          "Agile: two-week sprints, demos every Friday, a groomed backlog the client can reprioritize, and working software as the only measure of progress. Enterprise: phase gates with go/no-go criteria, architecture review before build, a change-control board for scope, and audit-ready documentation produced as a by-product of delivery rather than as an afterthought."
+      },
+      {
+        heading: "The operating rhythm",
+        body:
+          "Every engagement runs the same weekly cadence: Monday sprint planning, Friday demo, a written status your CFO can read in ninety seconds, and a monthly steering committee with decisions — not updates — on the agenda. Escalations reach a Vibrant principal within one business day. It's a rhythm clients keep long after go-live, because it works."
+      }
+    ]
+  }
+];
+
+export type Insight = {
+  slug: string;
+  title: string;
+  date: string;
+  tag: string;
+  summary: string;
+  body: string[];
+};
+
+export const insights: Insight[] = [
+  {
+    slug: "five-signs-your-erp-is-costing-too-much",
+    title: "Five Signs Your ERP Is Costing More Than It Should",
+    date: "July 2026",
+    tag: "ERP",
+    summary:
+      "Rising maintenance, shadow spreadsheets, and a shrinking talent pool — the symptoms show up long before the invoice does.",
+    body: [
+      "ERP cost problems rarely announce themselves. They accumulate quietly: another year of maintenance uplift, another customization nobody remembers the reason for, another spreadsheet built because the system report 'doesn't quite work.' By the time the run-rate gets executive attention, the estate has usually been overpaying for years.",
+      "The five signs we see most: maintenance and support costs rising faster than usage; a customization portfolio nobody can fully inventory; month-end close that takes longer every year; critical knowledge held by one or two people near retirement; and a growing shadow layer of spreadsheets and Access databases doing what the ERP was bought to do.",
+      "None of these requires a rip-and-replace to fix. A customization rationalization pass, targeted managed services, and honest version-strategy decisions routinely cut ERP run costs 20–30% — and they fund the modernization the board actually wants to talk about.",
+      "Start with a two-week assessment: inventory, cost baseline, and a keep/fix/replace map. It's the cheapest money an ERP owner can spend."
+    ]
+  },
+  {
+    slug: "genai-start-with-the-workflow",
+    title: "GenAI in the Enterprise: Start with the Workflow, Not the Model",
+    date: "June 2026",
+    tag: "AI",
+    summary:
+      "The model is the easy part. Value comes from picking a workflow where minutes saved multiply — and wiring AI into it properly.",
+    body: [
+      "Most enterprise GenAI conversations start in the wrong place: which model, which vendor, which platform. Those questions matter, but they're third. The first question is: which workflow, done thousands of times a year by expensive people, has a step where a draft would save real minutes?",
+      "Contract review first-pass. Support ticket triage and suggested responses. RFP response assembly. Invoice exception handling. These aren't glamorous, but they share the profile that works: high volume, text-heavy, a human already reviews the output, and minutes saved multiply across a team.",
+      "The second question is integration: AI that lives in a separate tab gets abandoned in six weeks. AI that appears inside the tool people already use — the CRM, the service desk, the ERP — compounds. That's an engineering problem, not a data-science one, and it's where most of the real work lives.",
+      "Only then pick the model. By that point the choice is usually obvious from the workflow's privacy, latency, and cost constraints — and you'll have a KPI to hold it accountable to."
+    ]
+  },
+  {
+    slug: "zero-trust-is-a-roadmap",
+    title: "Zero Trust Is a Roadmap, Not a Product",
+    date: "May 2026",
+    tag: "Security",
+    summary:
+      "Nobody sells zero trust in a box. It's a multi-year re-architecture of identity, network, and access — sequenced right, it pays for itself early.",
+    body: [
+      "Every security vendor now sells 'zero trust.' None of them can, because zero trust isn't a product — it's an architectural principle: never trust by default, verify explicitly, grant least privilege, assume breach. Getting there is a sequence of projects, not a purchase order.",
+      "The sequence that works: identity first (MFA everywhere, single directory, conditional access), because identity is the new perimeter. Then device posture — you can't trust a session from a laptop you know nothing about. Then network segmentation, replacing the flat internal network where one phished credential reaches everything. Application-level access policies come last, once the foundations make them meaningful.",
+      "The early phases pay for themselves fast: MFA and conditional access alone neutralize the majority of credential-based attacks — still the most common breach entry point. That makes zero trust one of the rare security programs where the first budget request is also the highest-ROI one.",
+      "Treat it as a two-to-three-year roadmap with quarterly milestones, and measure progress in attack paths eliminated, not tools deployed."
+    ]
+  },
+  {
+    slug: "clean-core-discipline",
+    title: "Clean Core: The Discipline That Makes S/4HANA Upgrades Cheap",
+    date: "April 2026",
+    tag: "SAP",
+    summary:
+      "Every customization inside the core is a tax on every future upgrade. Clean core moves them out — and turns upgrades from projects into events.",
+    body: [
+      "Ask anyone who has run an ECC upgrade what made it expensive, and the answer is always the same: the customizations. Thousands of custom objects, each needing analysis, remediation, and retesting — that's where the quarters and the millions go.",
+      "Clean core is the discipline that stops the cycle: keep the S/4HANA core as standard as possible, and build what makes you different as extensions on BTP using released APIs. The core stays upgradeable; your differentiation lives where SAP's upgrades can't break it.",
+      "The payoff is structural. Customers who hold the discipline upgrade S/4HANA in weeks, with regression testing focused on a stable, documented API surface. Customers who don't are quietly rebuilding the same upgrade debt they just paid to escape.",
+      "The hard part isn't technical — it's governance. Every 'small tweak in the core' request needs a gate: can this be standard config? An extension? Only then, core. Hold that line for two years and upgrades become a line item, not a program."
+    ]
+  }
+];
+
+export function getResourceGuideBySlug(slug: string) {
+  return resourceGuides.find((guide) => guide.slug === slug);
+}
+
+export function getInsightBySlug(slug: string) {
+  return insights.find((insight) => insight.slug === slug);
 }
 
 // ───── Legacy aliases for compatibility ─────
