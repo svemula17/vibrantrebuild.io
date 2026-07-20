@@ -25,8 +25,9 @@ export const siteSettings = {
   brandName: "Vibrant Inc",
   tagline: "Optimizing your efficiency. Strengthening your bottom line.",
   siteUrl: "https://vibrantinc.com",
-  defaultTitle:
-    "Helping Mid-Market & Enterprise Companies Modernize ERP, Cloud & AI — Without Disrupting Operations | Vibrant Inc",
+  // ~60 chars so search results don't truncate; the full positioning
+  // statement lives in the homepage H1 (hero-slider).
+  defaultTitle: "Vibrant Inc — ERP, Cloud & AI Modernization Without Disruption",
   defaultDescription:
     "Vibrant Inc helps mid-market and enterprise companies modernize ERP (SAP, JD Edwards, PeopleSoft, Oracle EBS, WorkDay, Dynamics 365), cloud, cybersecurity & compliance, data, and AI — without disrupting operations. 25+ years of trusted delivery since 2000.",
   careersUrl: "/careers",

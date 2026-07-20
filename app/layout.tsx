@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
-import { FloatingCta } from "@/components/floating-cta";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { siteSettings } from "@/content/site-content";
 
@@ -61,7 +60,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           {children}
         </main>
         <Footer />
-        <FloatingCta />
       </body>
     </html>
   );
