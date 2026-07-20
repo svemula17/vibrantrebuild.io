@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { CallbackForm } from "@/components/callback-form";
 import { PageHero } from "@/components/page-hero";
-import { siteSettings } from "@/content/site-content";
+import { SocialLinks } from "@/components/social-links";
+import { offices, siteSettings } from "@/content/site-content";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get a call back from a senior advisor — we'll respond within one business day."
+    "Reach Vibrant Inc in Princeton, NJ or Hyderabad, India — get a call back from a senior advisor within one business day."
 };
 
 export default function ContactPage() {
@@ -74,38 +75,95 @@ export default function ContactPage() {
               </div>
             </dl>
 
-            {/* Stylized "map" placeholder */}
-            <div
-              className="relative mt-10 h-64 overflow-hidden rounded-2xl border border-line bg-navy-50"
-              role="img"
-              aria-label="Map showing Princeton, New Jersey"
-            >
-              <div
-                aria-hidden
-                className="absolute inset-0 opacity-50"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(rgba(30,58,95,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(30,58,95,.12) 1px, transparent 1px)",
-                  backgroundSize: "32px 32px"
-                }}
-              />
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                <span className="relative grid h-10 w-10 place-items-center">
-                  <span className="absolute inline-flex h-full w-full rounded-full bg-sky opacity-30 animate-ping" />
-                  <span className="relative grid h-5 w-5 place-items-center rounded-full bg-sky text-white">
-                    <svg viewBox="0 0 24 24" className="h-3 w-3" fill="currentColor">
-                      <circle cx="12" cy="12" r="6" />
-                    </svg>
-                  </span>
-                </span>
+            {/* Follow us */}
+            <div className="mt-8">
+              <p className="text-xs uppercase tracking-[0.16em] text-muted">Follow Vibrant</p>
+              <div className="mt-3">
+                <SocialLinks variant="light" />
               </div>
-              <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 text-xs font-medium text-navy-700 shadow-sm">
-                {siteSettings.address}
-              </span>
             </div>
+
+            {/* Live map — keyless Google Maps embed */}
+            <iframe
+              title={`Map — ${siteSettings.address}`}
+              src={`https://www.google.com/maps?q=${encodeURIComponent(offices[0].mapsQuery)}&output=embed`}
+              className="mt-10 h-64 w-full rounded-2xl border border-line"
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
 
           <CallbackForm heading="Get a Callback" showRequiredNote />
+        </div>
+      </section>
+
+      {/* Our offices */}
+      <section className="section-soft">
+        <div className="container">
+          <div className="max-w-2xl">
+            <p className="eyebrow">Where we are</p>
+            <h2 className="mt-3">Two offices, one delivery model.</h2>
+            <p className="mt-4 text-muted">
+              Senior leadership in Princeton, engineering depth in Hyderabad — the follow-the-sun
+              model that keeps costs sensible and quality high.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
+            {offices.map((office) => (
+              <div key={office.id} className="card overflow-hidden">
+                {/* Office photo slot — drop /us-office.jpg + /india-office.jpg in the repo root,
+                    import them here and swap this gradient band for an <Image>. */}
+                <div
+                  className="relative h-40 w-full"
+                  role="img"
+                  aria-label={office.photoAlt}
+                  style={{
+                    background:
+                      office.id === "us"
+                        ? "linear-gradient(135deg, #0f1f33 0%, #1d3a5f 55%, #C8401A 160%)"
+                        : "linear-gradient(135deg, #7D250E -40%, #1d3a5f 45%, #0f1f33 100%)"
+                  }}
+                >
+                  <span className="absolute bottom-4 left-5 inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-navy-700 shadow-sm">
+                    <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 text-sky" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
+                    </svg>
+                    {office.id === "us" ? "United States" : "India"}
+                  </span>
+                </div>
+
+                <div className="p-7">
+                  <h3 className="text-lg text-navy-700">{office.label}</h3>
+                  <p className="mt-1 text-sm font-medium text-sky">{office.company}</p>
+                  <address className="mt-4 not-italic text-sm leading-relaxed text-ink/75">
+                    {office.addressLines.map((line) => (
+                      <span key={line} className="block">{line}</span>
+                    ))}
+                  </address>
+                  {office.phone && (
+                    <p className="mt-3 text-sm">
+                      <a href={`tel:${office.phone}`} className="font-medium text-navy-700 hover:text-sky">
+                        {office.phone}
+                      </a>
+                    </p>
+                  )}
+                  <a
+                    href={`https://www.google.com/maps?q=${encodeURIComponent(office.mapsQuery)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-sky hover:gap-2.5 transition-all"
+                  >
+                    View on Google Maps
+                    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14M13 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </>

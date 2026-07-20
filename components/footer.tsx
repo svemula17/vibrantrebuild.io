@@ -99,7 +99,10 @@ export function Footer() {
             <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 mt-0.5 shrink-0 text-sky" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
             </svg>
-            Princeton, New Jersey, USA
+            <span>
+              {siteSettings.address}
+              <span className="block mt-0.5">Delivery center: Gachibowli, Hyderabad, India</span>
+            </span>
           </p>
 
           {/* Social icons — hidden if no real URLs configured */}

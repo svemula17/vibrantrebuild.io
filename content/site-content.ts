@@ -36,18 +36,128 @@ export const siteSettings = {
   emailCareers: "careers@vibrantinc.com",
   emailPartnerships: "partnerships@vibrantinc.com",
   emailCommunity: "community@vibrantinc.com",
-  address: "Princeton, New Jersey",
+  address: "5 Independence Way, Suite 300, Princeton, NJ 08540",
+  addressShort: "Princeton, New Jersey",
   social: {
-    // Set these to real Vibrant Inc profile URLs when available
-    facebook: "",
-    twitter: "",
-    linkedin: ""
+    facebook: "https://www.facebook.com/VibrantIncNJ/",
+    twitter: "https://x.com/VibrantInc",
+    linkedin: "https://www.linkedin.com/company/11160088/"
   }
 };
+
+export type Office = {
+  id: "us" | "india";
+  label: string;
+  company: string;
+  addressLines: string[];
+  phone?: string;
+  mapsQuery: string;
+  photoAlt: string;
+};
+
+export const offices: Office[] = [
+  {
+    id: "us",
+    label: "Princeton, New Jersey — Headquarters",
+    company: "Vibrant Inc",
+    addressLines: ["5 Independence Way, Suite 300", "Princeton, NJ 08540", "United States"],
+    phone: "609-945-2244",
+    mapsQuery: "5 Independence Way, Suite 300, Princeton, NJ 08540",
+    photoAlt: "Vibrant Inc headquarters at 5 Independence Way, Princeton, New Jersey"
+  },
+  {
+    id: "india",
+    label: "Hyderabad, India — Delivery Center",
+    company: "PYS IT Services Private Limited",
+    addressLines: [
+      "Door No 1-60/8/A & B, 3rd Floor, KNR Square",
+      "Opp. 'The Platina', Gachibowli, Kondapur",
+      "Hyderabad 500032, India"
+    ],
+    mapsQuery: "KNR Square, Gachibowli, Kondapur, Hyderabad 500032",
+    photoAlt: "Vibrant delivery center at KNR Square, Gachibowli, Hyderabad"
+  }
+];
+
+export type Leader = {
+  id: string;
+  name?: string; // unset = unnamed role card (practice-led)
+  role: string;
+  bio: string[];
+  expertise: string[];
+  credentials?: string[];
+  initials?: string;
+  hasPhoto?: boolean;
+  featured?: boolean; // founder gets the wide two-column treatment
+};
+
+export const leadership: Leader[] = [
+  {
+    id: "suresh-reddy",
+    name: "Suresh Reddy",
+    role: "Founder & President",
+    featured: true,
+    hasPhoto: true,
+    initials: "SR",
+    credentials: ["ITIL Foundation Certified"],
+    bio: [
+      "With more than 25 years of experience leading enterprise technology transformation initiatives, Suresh Reddy is the Founder and President of Vibrant Inc., where he helps organizations modernize their technology landscape through cloud transformation, enterprise applications, DevOps, and AI-driven innovation.",
+      "Throughout his career, Suresh has successfully led complex IT initiatives across the entire systems lifecycle — from strategy and architecture to implementation, operations, and continuous improvement. He has extensive experience partnering with Fortune 500 organizations to deliver scalable, secure, and resilient technology solutions that align with business objectives.",
+      "A recognized leader in cloud and DevOps transformation, Suresh has built and led high-performing engineering teams responsible for migrating enterprise workloads from traditional data centers to Amazon Web Services (AWS) and implementing modern cloud operating models. He has established enterprise DevOps governance frameworks, standardized delivery practices, and automated deployment pipelines using industry-leading technologies including GitLab, Jenkins, Ansible, Artifactory, Jira, Confluence, Jira Service Management, and ServiceNow.",
+      "His expertise extends to enterprise business applications — implementation, modernization, integration, and support of Oracle E-Business Suite, PeopleSoft, and JD Edwards EnterpriseOne. His broad understanding of enterprise platforms enables organizations to maximize the value of their technology investments while accelerating digital transformation.",
+      "As an ITIL Foundation Certified professional, Suresh is passionate about helping organizations simplify complexity, improve operational efficiency, and embrace emerging technologies to achieve sustainable business growth. Under his leadership, Vibrant Inc. is committed to delivering practical, innovative, and results-driven technology solutions that enable clients to thrive in an increasingly digital world."
+    ],
+    expertise: [
+      "Cloud Transformation (AWS)",
+      "DevOps Governance",
+      "Oracle EBS · PeopleSoft · JD Edwards",
+      "AI-Driven Innovation"
+    ]
+  },
+  {
+    id: "chaitanya-komatireddy",
+    name: "Chaitanya Kumar Komatireddy",
+    role: "Principal Enterprise Architect",
+    initials: "CK",
+    bio: [
+      "Chaitanya is an accomplished enterprise technology leader with over 22 years of experience in cloud transformation, Azure architecture, AI, DevOps, and application modernization. He has led enterprise programs for Fortune 500 organizations, delivering scalable cloud-native solutions, modern engineering practices, and digital transformation initiatives that drive business innovation and operational excellence."
+    ],
+    expertise: ["Azure Architecture", "Cloud Transformation", "App Modernization", "DevOps", "AI"]
+  },
+  {
+    id: "sathish-donthula",
+    name: "Sathish Donthula",
+    role: "Principal SAP Solution Architect",
+    initials: "SD",
+    bio: [
+      "A seasoned SAP technology leader with over 15 years of experience delivering enterprise SAP solutions across S/4HANA, SAP ECC, and SAP BTP. He has led complex SAP transformation initiatives for global organizations including Chevron, Johnson & Johnson, Toshiba, Canon Medical, and Hanes — helping clients modernize their SAP environments through scalable architecture, innovation, and technical excellence."
+    ],
+    expertise: ["S/4HANA", "SAP ECC", "SAP BTP", "SAP Integration"]
+  },
+  {
+    id: "dushanth",
+    name: "Dushanth",
+    role: "Principal Cybersecurity Architect",
+    initials: "D",
+    bio: [
+      "A seasoned cybersecurity leader with extensive experience in enterprise security architecture, cloud security, Zero Trust, governance, risk management, and regulatory compliance. He helps organizations build secure, resilient technology environments by integrating cybersecurity into every phase of digital transformation — enabling businesses to innovate with confidence."
+    ],
+    expertise: ["Zero Trust", "Cloud Security", "GRC & Compliance", "Security Architecture"]
+  },
+  {
+    id: "ai-solutions-architect",
+    role: "Principal AI Solutions Architect",
+    bio: [
+      "Our AI practice is led at the principal-architect level, specializing in Generative AI, Agentic AI, machine learning, intelligent automation, and enterprise AI integration. We partner with organizations to design and implement secure, scalable AI solutions that improve business performance, accelerate innovation, and enable successful digital transformation."
+    ],
+    expertise: ["Generative AI", "Agentic AI", "Machine Learning", "Intelligent Automation"]
+  }
+];
 
 export const navigationItems: NavigationItem[] = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About Us" },
+  { href: "/team", label: "Leadership" },
   { href: "/services", label: "Services" },
   { href: "/careers", label: "Careers" },
   { href: "/social-responsibility", label: "Social Responsibility" },

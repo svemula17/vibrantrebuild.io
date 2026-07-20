@@ -48,7 +48,7 @@ export function Header() {
           style={{ background: "linear-gradient(90deg, #7D250E 0%, #C8401A 50%, #A33315 100%)" }}
         >
           <div className="container flex items-center justify-center gap-4 flex-wrap">
-            <span className="hidden sm:inline opacity-80">📍 Princeton, New Jersey</span>
+            <span className="hidden sm:inline opacity-80">📍 Princeton, NJ · Hyderabad, IN</span>
             <span className="hidden sm:inline opacity-40">|</span>
             <a href={`tel:${siteSettings.phonePrimary}`} className="font-semibold hover:opacity-80 transition-opacity">
               📞 {siteSettings.phonePrimary}
@@ -81,7 +81,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative px-3 py-2 text-[13px] font-medium rounded-full whitespace-nowrap transition-colors ${
+                className={`relative px-2.5 py-2 text-[13px] font-medium rounded-full whitespace-nowrap transition-colors ${
                   active ? "text-navy-700" : "text-ink/70 hover:text-navy-700"
                 }`}
               >
@@ -98,7 +98,7 @@ export function Header() {
         </nav>
 
         <div className="hidden xl:flex items-center gap-3 shrink-0">
-          <a href={`tel:${siteSettings.phonePrimary}`} className="text-sm font-medium text-navy-700 hover:text-sky">
+          <a href={`tel:${siteSettings.phonePrimary}`} className="hidden 2xl:inline text-sm font-medium text-navy-700 hover:text-sky">
             {siteSettings.phonePrimary}
           </a>
           <Link href="/contact" className="btn-primary text-sm px-5 py-2.5">

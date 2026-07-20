@@ -4,7 +4,7 @@ import { serviceCards, siteSettings } from "@/content/site-content";
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes = ["", "/services", "/about", "/partners", "/careers", "/contact", "/social-responsibility"];
+  const staticRoutes = ["", "/services", "/about", "/team", "/partners", "/careers", "/contact", "/social-responsibility"];
 
   return [
     ...staticRoutes.map((route) => ({
