@@ -64,8 +64,10 @@ export function HeroSlider() {
   const rafRef    = useRef<number | null>(null);
   const startRef  = useRef<number>(0);
 
-  // Filter to featured services for carousel (6-8 curated services)
-  const featuredServices = serviceCards.filter(s => s.featured === true);
+  // Featured services, in explicit carouselOrder — ERP leads, AI is an accelerator not the identity
+  const featuredServices = serviceCards
+    .filter(s => s.featured === true)
+    .sort((a, b) => (a.carouselOrder ?? 99) - (b.carouselOrder ?? 99));
   const carouselServices = featuredServices.length > 0 ? featuredServices : serviceCards;
   const total = carouselServices.length;
 
@@ -166,21 +168,22 @@ export function HeroSlider() {
         {/* max width keeps text on the readable left half */}
         <div className="max-w-xl lg:max-w-2xl">
 
+          {/* Persistent headline — stays put while slides rotate beneath it */}
+          <h1 className="text-sm md:text-base font-semibold text-white/85 leading-snug max-w-2xl">
+            Helping Mid-Market &amp; Enterprise Companies Modernize ERP, Cloud &amp; AI —
+            Without Disrupting Operations
+          </h1>
+
           {/* Small counter pill */}
           <motion.p
             key={`counter-${service.slug}`}
             initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35 }}
-            className="text-xs font-bold uppercase tracking-[0.22em] text-sky/90"
+            className="mt-5 text-xs font-bold uppercase tracking-[0.22em] text-sky/90"
           >
             {String(current + 1).padStart(2, "0")} &nbsp;/&nbsp; {String(total).padStart(2, "0")}
           </motion.p>
-
-          {/* Static H1 for SEO — visually hidden, semantic only */}
-          <h1 className="sr-only">
-            Vibrant Inc — Enterprise SAP, ERP, Cloud & AI Consulting
-          </h1>
 
           {/* ── BIG technology name — the hero of each slide (div, not H1) ── */}
           <AnimatePresence mode="wait">
@@ -199,7 +202,7 @@ export function HeroSlider() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Service icon + summary */}
+          {/* Service icon + teaser + proof chips */}
           <AnimatePresence mode="wait">
             <motion.div
               key={`body-${service.slug}`}
@@ -207,16 +210,31 @@ export function HeroSlider() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4, delay: 0.08 }}
-              className="mt-5 flex items-start gap-3"
+              className="mt-5"
             >
-              <span className="mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-sky/20 border border-sky/30">
-                <svg viewBox="0 0 24 24" className="h-5 w-5 text-sky" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <path d={service.iconPath} />
-                </svg>
-              </span>
-              <p className="text-base md:text-lg text-white/80 leading-relaxed">
-                {service.summary}
-              </p>
+              <div className="flex items-start gap-3">
+                <span className="mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-sky/20 border border-sky/30">
+                  <svg viewBox="0 0 24 24" className="h-5 w-5 text-sky" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d={service.iconPath} />
+                  </svg>
+                </span>
+                <p className="text-base md:text-lg text-white/80 leading-relaxed">
+                  {service.heroTeaser ?? service.summary}
+                </p>
+              </div>
+              {service.heroHighlights && service.heroHighlights.length > 0 && (
+                <div className="mt-4 flex flex-wrap gap-2 md:pl-12">
+                  {service.heroHighlights.map((h) => (
+                    <span
+                      key={h}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-semibold text-white/85"
+                    >
+                      <span className="h-1.5 w-1.5 rounded-full bg-sky" />
+                      {h}
+                    </span>
+                  ))}
+                </div>
+              )}
             </motion.div>
           </AnimatePresence>
 

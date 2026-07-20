@@ -31,8 +31,8 @@ export function WhyVibrant() {
           </h2>
           <p className="mt-5 text-muted leading-relaxed">
             We believe technology should do more than cut costs — it should create jobs, reduce waste, and
-            power businesses that do good in the world. Vibrant combines deep SAP and ERP expertise with a
-            genuine commitment to people, planet, and performance.
+            power businesses that do good in the world. Vibrant combines deep ERP, cloud, and security
+            expertise with a genuine commitment to people, planet, and performance.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href="/about"    className="btn-primary">About Vibrant</Link>

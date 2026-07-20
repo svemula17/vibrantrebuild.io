@@ -41,14 +41,14 @@ const footerNav = navigationItems.filter((n) => n.href !== "/");
 // Footer shows only top-level services, not the full 18-item catalog.
 // Exclude carousel-only umbrella entries and individual SAP detail pages.
 const footerSlugs = [
-  "ai-readiness",
+  "erp-optimization",
+  "sap-solutions",
   "cloud-modernization",
   "cybersecurity",
   "ai-shield",
-  "automation",
-  "erp-optimization",
-  "sap-solutions",
   "data-analytics",
+  "automation",
+  "ai-readiness",
   "managed-it"
 ];
 const footerServices = footerSlugs

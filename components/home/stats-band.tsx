@@ -45,10 +45,41 @@ export function StatsBand() {
               className="border-l-2 pl-5"
               style={{ borderColor: "#C8401A" }}
             >
-              <div className="text-5xl font-semibold tracking-tight text-white">
-                <AnimatedCounter value={s.value} suffix={s.suffix} />
-              </div>
-              <p className="mt-2 text-sm text-white/65">{s.label}</p>
+              {s.highlight ? (
+                <>
+                  {/* Anniversary medallion — celebratory treatment for the 25+ stat */}
+                  <div
+                    className="text-6xl md:text-7xl font-bold tracking-tight"
+                    style={{
+                      background: "linear-gradient(135deg, #FFB347 0%, #E8703A 45%, #E05A1F 100%)",
+                      WebkitBackgroundClip: "text",
+                      backgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      color: "transparent"
+                    }}
+                  >
+                    <AnimatedCounter value={s.value} suffix={s.suffix} />
+                  </div>
+                  <p className="mt-2 text-sm text-white/65">{s.label}</p>
+                  <span
+                    className="mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em]"
+                    style={{
+                      color: "#E8703A",
+                      border: "1px solid rgba(232,112,58,0.45)",
+                      background: "rgba(200,64,26,0.14)"
+                    }}
+                  >
+                    Est. 2000 · Celebrating 25+ Years
+                  </span>
+                </>
+              ) : (
+                <>
+                  <div className="text-5xl font-semibold tracking-tight text-white">
+                    <AnimatedCounter value={s.value} suffix={s.suffix} />
+                  </div>
+                  <p className="mt-2 text-sm text-white/65">{s.label}</p>
+                </>
+              )}
             </motion.div>
           ))}
         </div>

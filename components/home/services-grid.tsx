@@ -5,16 +5,15 @@ import { motion } from "framer-motion";
 import { serviceCards } from "@/content/site-content";
 import { RevealWords } from "@/components/reveal-on-scroll";
 
-// Homepage grid: top 8 curated services (carousel-featured set). Full catalog on /services.
+// Homepage grid: the seven capability pillars, ERP first. Full catalog on /services.
 const homepageSlugs = [
-  "ai-readiness",
+  "erp-optimization",
   "cloud-modernization",
   "cybersecurity",
-  "ai-shield",
+  "data-analytics",
   "automation",
-  "erp-optimization",
-  "sap-solutions",
-  "data-analytics"
+  "ai-readiness",
+  "managed-it"
 ];
 
 export function ServicesGrid() {
@@ -37,12 +36,12 @@ export function ServicesGrid() {
         >
           <p className="eyebrow">What we do</p>
           <h2 className="mt-3">
-            <RevealWords text="Eight capabilities. One Vibrant partner." />
+            <RevealWords text="Seven Capabilities. One Vibrant Partner." />
           </h2>
           <p className="mt-4 text-muted">
-            From AI and cloud to SAP S/4HANA, JD Edwards, and managed IT — real expertise across
-            the enterprise technology stack. We help businesses grow, operate sustainably, and
-            create lasting impact.
+            From ERP and cloud to cybersecurity, data, automation, and AI — seven capability
+            pillars covering the full enterprise technology stack, delivered by senior
+            practitioners who&apos;ve been doing this since 2000.
           </p>
         </motion.div>
 
@@ -59,6 +58,7 @@ export function ServicesGrid() {
                 delay: (i % 4) * 0.08,
                 ease: "easeOut"
               }}
+              className={i === 0 ? "sm:col-span-2" : undefined}
             >
               <Link
                 href={`/services/${service.slug}`}

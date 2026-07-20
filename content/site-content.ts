@@ -14,6 +14,9 @@ export type ServiceCard = {
   category?: string;
   featured?: boolean; // shows in homepage carousel
   hideFromGrid?: boolean; // carousel-only entries hidden from services grid
+  carouselOrder?: number; // hero slide position (lower = earlier); unset featured cards sort last
+  heroTeaser?: string; // richer carousel copy; falls back to summary
+  heroHighlights?: string[]; // short proof chips rendered on the hero slide
 };
 
 export type ContactDetail = { label: string; value: string };
@@ -22,9 +25,10 @@ export const siteSettings = {
   brandName: "Vibrant Inc",
   tagline: "Optimizing your efficiency. Strengthening your bottom line.",
   siteUrl: "https://vibrantinc.com",
-  defaultTitle: "Vibrant Inc — Enterprise Technology Consulting",
+  defaultTitle:
+    "Helping Mid-Market & Enterprise Companies Modernize ERP, Cloud & AI — Without Disrupting Operations | Vibrant Inc",
   defaultDescription:
-    "Vibrant Inc is an award-winning IT consulting firm established in 2000. We help North America-based businesses achieve competitive advantage through cloud modernization, data analytics, ERP (JD Edwards, SAP, PeopleSoft, WorkDay, Dynamics 365), Cybersecurity & AI Shield, and managed IT — with 25 years of trusted delivery.",
+    "Vibrant Inc helps mid-market and enterprise companies modernize ERP (SAP, JD Edwards, PeopleSoft, Oracle EBS, WorkDay, Dynamics 365), cloud, cybersecurity & compliance, data, and AI — without disrupting operations. 25+ years of trusted delivery since 2000.",
   careersUrl: "/careers",
   phonePrimary: "609-945-2244",
   phoneSecondary: "609-945-0442",
@@ -73,7 +77,7 @@ export const serviceCards: ServiceCard[] = [
     kicker: "AI Readiness",
     title: "AI Readiness",
     summary:
-      "Assess your data, talent, and infrastructure readiness — then deploy AI use cases that move real business KPIs.",
+      "AI as an accelerator, not a science project — we assess your data, talent, and infrastructure, then ship use cases that move real business KPIs.",
     longDescription:
       "Vibrant helps enterprises move from AI curiosity to AI value. We assess data, talent, and infrastructure readiness, then prioritize and deliver use cases that show up in the P&L.",
     iconPath: ICONS.ai,
@@ -98,7 +102,11 @@ export const serviceCards: ServiceCard[] = [
     ],
     bestFit:
       "Mid-market and enterprise leaders moving past AI experimentation into production value.",
-    featured: true
+    featured: true,
+    carouselOrder: 4,
+    heroTeaser:
+      "AI should accelerate the business you already run — not become a lab experiment. We assess data, talent, and infrastructure readiness, prioritize the use cases that matter, and ship pilots that show up in the P&L.",
+    heroHighlights: ["Readiness assessment & roadmap", "Generative AI pilots", "MLOps & responsible AI"]
   },
   {
     slug: "cloud-modernization",
@@ -130,22 +138,26 @@ export const serviceCards: ServiceCard[] = [
     ],
     bestFit:
       "Organizations with legacy data centers or fragmented cloud estates needing a defensible plan.",
-    featured: true
+    featured: true,
+    carouselOrder: 2,
+    heroTeaser:
+      "Move to Azure, AWS, or GCP without the rip-and-replace risk. We modernize incrementally — landing zones, migrations, microservices, and platform engineering — so the business keeps shipping while the foundation gets stronger.",
+    heroHighlights: ["Azure · AWS · GCP landing zones", "Migration & replatforming", "FinOps cost optimization"]
   },
   {
     slug: "cybersecurity",
-    kicker: "Cybersecurity & AI Shield",
-    title: "Cybersecurity & AI Shield",
+    kicker: "Cybersecurity & Compliance",
+    title: "Cybersecurity & Compliance",
     summary:
-      "Zero-trust architectures, AI-powered threat detection, and 24×7 SOC operations — security that anticipates threats before they strike.",
+      "Zero-trust architecture, hardened identity, 24×7 SOC operations, and audit-ready compliance across SOC 2, HIPAA, PCI, and CMMC — with our AI Shield platform watching your back.",
     longDescription:
       "Security as an enabler, not a brake. Our AI Shield capability uses machine learning and behavioral analytics to detect, investigate, and neutralize threats faster than any manual approach. We assess gaps, design zero-trust architecture, harden identity, and stand up AI-driven 24×7 detection — aligned to compliance frameworks the business already lives in.",
     iconPath: ICONS.shield,
     metaTags: [
-      "AI Shield threat detection",
       "Zero-trust architecture",
       "Identity & access management",
-      "SOC & threat detection"
+      "SOC 2 · HIPAA · PCI · CMMC",
+      "24×7 SOC operations"
     ],
     outcomes: [
       "Reduced breach exposure and faster detection",
@@ -166,7 +178,11 @@ export const serviceCards: ServiceCard[] = [
     ],
     bestFit:
       "Mid-market and enterprise companies modernizing security alongside cloud and AI programs — especially those seeking AI-augmented threat response.",
-    featured: true
+    featured: true,
+    carouselOrder: 3,
+    heroTeaser:
+      "Security that enables the business instead of slowing it down. We design zero-trust architecture, harden identity, run 24×7 SOC coverage, and keep you audit-ready across SOC 2, HIPAA, PCI, and CMMC — backed by our AI Shield detection platform.",
+    heroHighlights: ["Zero-trust & identity", "24×7 SOC operations", "SOC 2 · HIPAA · PCI · CMMC"]
   },
   {
     slug: "ai-shield",
@@ -230,20 +246,24 @@ export const serviceCards: ServiceCard[] = [
     ],
     bestFit:
       "Operations-heavy organizations with measurable manual workload to compress.",
-    featured: true
+    featured: true,
+    carouselOrder: 5,
+    heroTeaser:
+      "Find the work humans shouldn't be doing — then automate it. Process discovery, RPA, and intelligent document processing that hand hours back to your highest-cost teams, every single week.",
+    heroHighlights: ["Process discovery & mining", "RPA — UiPath · Power Automate", "Intelligent document processing"]
   },
   {
     slug: "erp-optimization",
-    kicker: "ERP Optimization",
-    title: "ERP Optimization",
+    kicker: "ERP & Enterprise Applications",
+    title: "ERP & Enterprise Applications",
     summary:
-      "JD Edwards CNC, SAP, PeopleSoft, WorkDay, Microsoft Dynamics 365, and Oracle E-Business Suite — implementation, CNC administration, post go-live support, and managed services.",
+      "One ERP practice, every major platform — SAP Implementation & Support, JD Edwards CNC Services, PeopleSoft Implementation & Support, plus Oracle E-Business Suite, WorkDay, and Dynamics 365. Blueprint to hypercare, owned end to end.",
     longDescription:
       "Whether you're running a complex JD Edwards environment, launching a PeopleSoft or SAP program, or stabilizing a Dynamics 365 rollout that under-delivered — Vibrant's 25-year ERP practice covers the full Oracle stack (JD Edwards EnterpriseOne, PeopleSoft, Oracle E-Business Suite), SAP (ECC / S/4HANA), WorkDay HCM/Financials, and Microsoft Dynamics 365. Our certified practitioners take ownership from blueprint through hypercare.",
     iconPath: ICONS.layers,
     metaTags: [
-      "JD Edwards (JDE) CNC",
-      "SAP Implementation & Support",
+      "SAP Implementation & Support (ECC / S/4HANA)",
+      "JD Edwards CNC Services",
       "PeopleSoft Implementation & Support",
       "WorkDay HCM & Financials",
       "Microsoft Dynamics 365",
@@ -268,7 +288,11 @@ export const serviceCards: ServiceCard[] = [
     ],
     bestFit:
       "Companies replacing legacy ERP, running JD Edwards or PeopleSoft environments needing CNC expertise, or rescuing a stalled SAP or Dynamics program.",
-    featured: true
+    featured: true,
+    carouselOrder: 1,
+    heroTeaser:
+      "Your ERP is the heart of the business — modernize it without missing a beat. Vibrant's 25-year practice spans SAP Implementation & Support, JD Edwards CNC Services, and PeopleSoft Implementation & Support, alongside Oracle EBS, WorkDay, and Dynamics 365.",
+    heroHighlights: ["SAP ECC / S/4HANA · AMS", "JD Edwards CNC & EnterpriseOne", "PeopleSoft HCM / FSCM"]
   },
   {
     slug: "data-analytics",
@@ -300,7 +324,11 @@ export const serviceCards: ServiceCard[] = [
     ],
     bestFit:
       "Organizations with data, but no consistent decision-grade reporting.",
-    featured: true
+    featured: true,
+    carouselOrder: 6,
+    heroTeaser:
+      "Numbers leadership can trust, dashboards analysts actually use. We build modern data platforms on Snowflake and Databricks — and the governed, decision-grade reporting layer on top in Power BI, Tableau, and Oracle BI.",
+    heroHighlights: ["Snowflake & Databricks platforms", "Power BI · Tableau · Oracle BI", "Governance & data quality"]
   },
   {
     slug: "managed-it",
@@ -333,7 +361,11 @@ export const serviceCards: ServiceCard[] = [
     bestFit:
       "Lean IT teams that need depth, coverage, and senior escalation paths without hiring.",
     category: "Managed Services",
-    featured: true
+    featured: true,
+    carouselOrder: 7,
+    heroTeaser:
+      "24×7 depth for lean IT teams — applications, cloud operations, security, and service desk with senior escalation always on call. Predictable costs, no headcount growth, no 2 a.m. surprises.",
+    heroHighlights: ["24×7 application support", "Cloud ops & FinOps", "Managed SOC & service desk"]
   },
 
   /* ───── SAP SOLUTIONS — One umbrella carousel slide ───── */
@@ -375,7 +407,9 @@ export const serviceCards: ServiceCard[] = [
     bestFit:
       "Enterprises running or implementing SAP, JD Edwards, or PeopleSoft who need a single trusted partner across the full ERP lifecycle.",
     category: "SAP Solutions",
-    featured: true,
+    // SAP lives under the ERP & Enterprise Applications pillar; keep the card for
+    // /services and deep links, but out of the hero carousel and homepage grid.
+    featured: false,
     hideFromGrid: true
   },
 
@@ -723,17 +757,19 @@ export const serviceCards: ServiceCard[] = [
 ];
 
 export const trustBadges = [
-  { label: "25 Years", sub: "of trusted delivery" },
-  { label: "SAP", sub: "Certified Consultants" },
+  { label: "25+ Years", sub: "of trusted delivery" },
+  { label: "ERP", sub: "SAP · Oracle certified practice" },
   { label: "Oracle", sub: "Partner" },
   { label: "Microsoft", sub: "Partner Network" },
   { label: "NMSDC", sub: "Certified MBE" },
   { label: "E-Verify", sub: "Partner" }
 ];
 
-export const stats = [
-  { value: 25, suffix: "+", label: "Years of innovation" },
-  { value: 500, suffix: "+", label: "Successful engagements" },
+export type Stat = { value: number; suffix: string; label: string; highlight?: boolean };
+
+export const stats: Stat[] = [
+  { value: 25, suffix: "+", label: "Years of innovation", highlight: true },
+  { value: 200, suffix: "+", label: "Successful ERP, cloud & digital transformation engagements since 2000" },
   { value: 50, suffix: "+", label: "Enterprise clients" },
   { value: 24, suffix: "/7", label: "Managed IT support" }
 ];
@@ -854,13 +890,13 @@ export const vibrantMethod = [
   },
   {
     letter: "I",
-    step: "Ideate & Design",
-    body: "Co-create your target architecture and roadmap with your team. We design defensible solutions, not one-size-fits-all blueprints — your business context drives every decision."
+    step: "Iterative Design",
+    body: "Architecture and roadmap co-created in working sessions, not handed down in a binder. We design defensible solutions — your business context drives every decision."
   },
   {
     letter: "B",
-    step: "Build with Agility",
-    body: "Senior-led iterative sprints with weekly demos, transparent progress, and tight change control. You see exactly what you're getting, when."
+    step: "Build in Sprints",
+    body: "Senior-led agile sprints with weekly demos, transparent progress, and tight change control. You see working software every week — no black boxes."
   },
   {
     letter: "R",
@@ -869,8 +905,8 @@ export const vibrantMethod = [
   },
   {
     letter: "A",
-    step: "Activate & Launch",
-    body: "Go-live with full hypercare, structured training, and change management. Your team is confident and prepared from day one."
+    step: "Activate & Adopt",
+    body: "Go-live with full hypercare, structured training, and change management. Adoption is engineered, not assumed — your team is confident from day one."
   },
   {
     letter: "N",
@@ -996,9 +1032,11 @@ export const socialResponsibilityCommitments = [
 ];
 
 export const interestOptions = [
-  "AI Readiness",
+  "ERP & Enterprise Applications",
   "Cloud Modernization (Azure / AWS / GCP)",
-  "Cybersecurity & AI Shield",
+  "Cybersecurity & Compliance",
+  "AI Shield",
+  "AI Readiness",
   "Automation",
   "SAP S/4HANA Implementation",
   "SAP Application Management Services (AMS)",
@@ -1009,7 +1047,6 @@ export const interestOptions = [
   "ABAP & Custom Development",
   "JD Edwards CNC Services",
   "PeopleSoft Implementation & Support",
-  "ERP Optimization",
   "Data & Analytics",
   "Managed IT",
   "Partnership inquiry",
@@ -1023,9 +1060,9 @@ export type ValueAdd = {
 
 export const valueAdds: ValueAdd[] = [
   {
-    title: "SAP Certified Consultants",
+    title: "Certified ERP Consultants",
     description:
-      "Experienced SAP professionals delivering industry-focused solutions and best practices."
+      "SAP-, Oracle-, and JD Edwards-certified professionals delivering industry-focused solutions and best practices."
   },
   {
     title: "Discovery & Assessment Workshops",
@@ -1060,7 +1097,7 @@ export const valueAdds: ValueAdd[] = [
   {
     title: "Cloud & Integration Expertise",
     description:
-      "Specialized services for SAP Cloud, APIs, middleware, and enterprise integrations."
+      "Specialized services for cloud platforms, APIs, middleware, and enterprise integrations."
   }
 ];
 
