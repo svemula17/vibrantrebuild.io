@@ -104,6 +104,14 @@ export function HeroSlider() {
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, [current, paused, total]);
 
+  /* Pause while the tab is hidden — otherwise the timer keeps advancing while
+     animation frames are throttled and the slide content desyncs from the counter */
+  useEffect(() => {
+    const onVisibility = () => setPaused(document.hidden);
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => document.removeEventListener("visibilitychange", onVisibility);
+  }, []);
+
   const service = carouselServices[current];
   const slideImg = SLIDE_IMAGES[service.slug];
 

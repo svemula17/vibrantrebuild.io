@@ -5,7 +5,7 @@ import { vibrantMethod } from "@/content/site-content";
 
 export function VibrantMethod() {
   return (
-    <section className="section-dotted">
+    <section className="section-gradient">
       <div className="container">
 
         <motion.div

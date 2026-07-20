@@ -56,6 +56,12 @@
     background-size: 24px 24px;
   }
 
+  /* ─── warm cream → white gradient section ────────────────────────────── */
+  .section-gradient {
+    @apply py-20 md:py-28;
+    background: linear-gradient(180deg, #fff6f2 0%, #ffffff 85%);
+  }
+
   /* ─── breadcrumbs ────────────────────────────────────────────────────── */
   .crumbs   { @apply flex flex-wrap items-center gap-2 text-xs font-medium text-muted; }
   .crumbs a { @apply text-navy-700 hover:text-sky transition-colors; }
@@ -75,6 +81,24 @@
   /* ─── icon tile ──────────────────────────────────────────────────────── */
   .icon-tile { @apply grid place-items-center h-9 w-9 rounded-lg bg-sky/10 text-sky shrink-0; }
   .icon-tile svg { @apply h-4 w-4; }
+}
+
+/* ─── Client-logo marquee ────────────────────────────────────────────────── */
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 45s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 
 /* ─── Parallax fixed-background utility ──────────────────────────────────── */

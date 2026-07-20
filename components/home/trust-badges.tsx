@@ -6,7 +6,7 @@ import nmsdcBadge from "@/NMSDC_CERIFIED_2024.jpg";
 import everifyBadge from "@/i-e-verify-seal-v2-600x600.jpg";
 
 const textBadges = [
-  { label: "25 Years", sub: "of trusted delivery" },
+  { label: "25+ Years", sub: "of trusted delivery" },
   { label: "Oracle", sub: "Partner" },
   { label: "Wrike", sub: "Solution Partner" }
 ];

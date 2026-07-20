@@ -31,7 +31,13 @@ const industries = [
 
 export function IndustryVerticals() {
   return (
-    <section className="py-14 md:py-20 bg-white">
+    <section
+      className="py-14 md:py-20"
+      style={{
+        backgroundImage: "radial-gradient(circle, rgba(200,64,26,0.07) 1px, transparent 1px)",
+        backgroundSize: "24px 24px"
+      }}
+    >
       <div className="container">
 
         <motion.div

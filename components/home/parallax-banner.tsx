@@ -37,7 +37,7 @@ export function ParallaxBanner() {
           className="text-xs font-bold uppercase tracking-[0.24em]"
           style={{ color: "#E8703A" }}
         >
-          Celebrating 25 Years
+          Celebrating 25+ Years
         </motion.p>
 
         <motion.h2

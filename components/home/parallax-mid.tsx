@@ -38,7 +38,7 @@ export function ParallaxMid() {
           className="text-xs font-bold uppercase tracking-[0.24em]"
           style={{ color: "#E8703A" }}
         >
-          Senior-Led · Onshore + Offshore · 25 Years Strong
+          Senior-Led · Onshore + Offshore · 25+ Years Strong
         </motion.p>
 
         <motion.h2
