@@ -4,7 +4,7 @@ import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { serviceCards, siteSettings } from "@/content/site-content";
+import { serviceCards } from "@/content/site-content";
 
 /* ─── Slide images — one per service ──────────────────────────────────── */
 import imgAI     from "@/assets/services/ai.jpg";           // keep
@@ -153,7 +153,7 @@ export function HeroSlider() {
         className="absolute inset-0 -z-10 pointer-events-none"
         style={{
           background:
-            "linear-gradient(to right, rgba(15,31,51,0.93) 0%, rgba(15,31,51,0.80) 40%, rgba(15,31,51,0.55) 65%, rgba(15,31,51,0.30) 100%)",
+            "linear-gradient(to right, rgba(10,18,32,0.96) 0%, rgba(10,18,32,0.88) 45%, rgba(10,18,32,0.62) 70%, rgba(10,18,32,0.38) 100%)",
         }}
       />
       {/* Extra full overlay on mobile so text is always readable */}
@@ -171,81 +171,59 @@ export function HeroSlider() {
 
       {/* ── CONTENT ──────────────────────────────────────────────────────── */}
       <div
-        className="container relative flex flex-col justify-center pt-28 pb-32 md:pt-36 md:pb-40"
+        className="container relative flex flex-col justify-center pt-20 pb-24 md:pt-24 md:pb-24"
         style={{ minHeight: "inherit" }}
       >
-        {/* max width keeps text on the readable left half */}
-        <div className="max-w-xl lg:max-w-2xl">
+        {/* One alignment spine: every element shares this flush-left edge */}
+        <div className="max-w-xl lg:max-w-3xl">
 
-          {/* Persistent headline — stays put while slides rotate beneath it */}
-          <h1 className="text-sm md:text-base font-semibold text-white/85 leading-snug max-w-2xl">
+          {/* Persistent positioning statement — anchored by a brand rule */}
+          <h1 className="border-l-2 border-sky pl-4 text-[13px] md:text-[15px] font-medium text-white/80 leading-snug max-w-lg">
             Helping Mid-Market &amp; Enterprise Companies Modernize ERP, Cloud &amp; AI —
             Without Disrupting Operations
           </h1>
 
-          {/* Small counter pill */}
-          <motion.p
-            key={`counter-${service.slug}`}
-            initial={{ opacity: 0, y: -6 }}
+          {/* ── BIG technology name — the hero of each slide (div, not H1).
+               Keyed re-mount plays the enter animation per slide; no
+               AnimatePresence exit choreography (it can wedge at opacity 0). ── */}
+          <motion.div
+            key={`title-${service.slug}`}
+            role="heading"
+            aria-level={2}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35 }}
-            className="mt-5 text-xs font-bold uppercase tracking-[0.22em] text-sky/90"
+            transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="mt-6 font-bold tracking-tight text-white"
+            style={{ fontSize: "clamp(2.1rem, 5vw, 3.9rem)", lineHeight: 1.06 }}
           >
-            {String(current + 1).padStart(2, "0")} &nbsp;/&nbsp; {String(total).padStart(2, "0")}
-          </motion.p>
+            {service.kicker}
+          </motion.div>
 
-          {/* ── BIG technology name — the hero of each slide (div, not H1) ── */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`title-${service.slug}`}
-              role="heading"
-              aria-level={2}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
-              transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="mt-3 font-bold leading-none tracking-tight text-white"
-              style={{ fontSize: "clamp(2.2rem, 6.5vw, 5rem)" }}
-            >
-              {service.kicker}
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Service icon + teaser + proof chips */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`body-${service.slug}`}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4, delay: 0.08 }}
-              className="mt-5"
-            >
-              <div className="flex items-start gap-3">
-                <span className="mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-sky/20 border border-sky/30">
-                  <svg viewBox="0 0 24 24" className="h-5 w-5 text-sky" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d={service.iconPath} />
-                  </svg>
-                </span>
-                <p className="text-base md:text-lg text-white/80 leading-relaxed">
-                  {service.heroTeaser ?? service.summary}
-                </p>
+          {/* Teaser + proof chips — flush with the spine, no hanging indents */}
+          <motion.div
+            key={`body-${service.slug}`}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.08 }}
+            className="mt-5"
+          >
+            <p className="text-base md:text-lg text-white/85 leading-relaxed max-w-2xl">
+              {service.heroTeaser ?? service.summary}
+            </p>
+            {service.heroHighlights && service.heroHighlights.length > 0 && (
+              <div className="mt-6 flex flex-wrap gap-2.5">
+                {service.heroHighlights.map((h) => (
+                  <span
+                    key={h}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.08] backdrop-blur-sm px-3.5 py-1.5 text-[13px] font-medium text-white/90"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-sky" />
+                    {h}
+                  </span>
+                ))}
               </div>
-              {service.heroHighlights && service.heroHighlights.length > 0 && (
-                <div className="mt-4 flex flex-wrap gap-2 md:pl-12">
-                  {service.heroHighlights.map((h) => (
-                    <span
-                      key={h}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-semibold text-white/85"
-                    >
-                      <span className="h-1.5 w-1.5 rounded-full bg-sky" />
-                      {h}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </motion.div>
-          </AnimatePresence>
+            )}
+          </motion.div>
 
           {/* CTAs */}
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
@@ -260,28 +238,6 @@ export function HeroSlider() {
             </Link>
           </div>
 
-          {/* Contact strip */}
-          <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-2 text-sm text-white/55">
-            <a href={`tel:${siteSettings.phonePrimary}`} className="inline-flex items-center gap-2 hover:text-white transition-colors">
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.59 3.42 2 2 0 0 1 3.56 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.19a16 16 0 0 0 6.09 6.09l.91-.81a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z" />
-              </svg>
-              {siteSettings.phonePrimary}
-            </a>
-            <a href={`tel:${siteSettings.phoneSecondary}`} className="inline-flex items-center gap-2 hover:text-white transition-colors">
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.59 3.42 2 2 0 0 1 3.56 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.19a16 16 0 0 0 6.09 6.09l.91-.81a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z" />
-              </svg>
-              {siteSettings.phoneSecondary}
-            </a>
-            <a href={`mailto:${siteSettings.email}`} className="inline-flex items-center gap-2 hover:text-white transition-colors">
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                <polyline points="22,6 12,13 2,6" />
-              </svg>
-              {siteSettings.email}
-            </a>
-          </div>
         </div>
       </div>
 
@@ -317,18 +273,15 @@ export function HeroSlider() {
           </div>
 
           {/* Current service name — center */}
-          <AnimatePresence mode="wait">
-            <motion.span
-              key={`lbl-${service.slug}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="hidden md:block text-[11px] font-bold uppercase tracking-[0.2em] text-white/50"
-            >
-              {service.kicker}
-            </motion.span>
-          </AnimatePresence>
+          <motion.span
+            key={`lbl-${service.slug}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className="hidden md:block text-[11px] font-bold uppercase tracking-[0.2em] text-white/50"
+          >
+            {service.kicker}
+          </motion.span>
 
           {/* Prev / Next arrows */}
           <div className="flex items-center gap-2">
