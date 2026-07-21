@@ -3,13 +3,15 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { Providers } from "@/components/providers";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { siteSettings } from "@/content/site-content";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-sans"
+  variable: "--font-sans",
+  axes: ["opsz"] // optical sizing: Inter Display cut at heading sizes
 });
 
 export const metadata: Metadata = {
@@ -50,16 +52,18 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className="min-h-screen flex flex-col">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-navy-700 focus:text-white focus:px-4 focus:py-2 focus:rounded"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-neutral-900 focus:text-white focus:px-4 focus:py-2 focus:rounded"
         >
           Skip to content
         </a>
-        <ScrollProgress />
-        <Header />
-        <main id="main" className="flex-1">
-          {children}
-        </main>
-        <Footer />
+        <Providers>
+          <ScrollProgress />
+          <Header />
+          <main id="main" className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

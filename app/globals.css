@@ -3,13 +3,18 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Respect users who ask for reduced motion */
+  /* CSS-level reduced-motion guard; framer-motion is covered separately
+     by <MotionConfig reducedMotion="user"> in components/providers.tsx */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after {
@@ -18,71 +23,93 @@
       transition-duration: 0.01ms !important;
     }
   }
+
   body {
-    @apply bg-white text-ink font-sans;
+    @apply bg-white text-neutral-900 font-sans text-body;
     font-feature-settings: "ss01", "cv11";
+    font-optical-sizing: auto; /* Inter Display cut at heading sizes */
   }
-  h1 { @apply text-h1 font-semibold text-navy-700; }
-  h2 { @apply text-h2 font-semibold text-navy-700; }
-  h3 { @apply text-h3 font-semibold text-navy-700; }
-  p  { @apply text-[17px] leading-relaxed text-ink/80; }
-  ::selection { @apply bg-sky/20 text-navy-700; }
-  :focus-visible { @apply outline-none ring-2 ring-sky ring-offset-2 ring-offset-white rounded; }
+
+  /* Two-tier hierarchy: headings near-black, running copy secondary */
+  h1 { @apply text-h1 text-neutral-900; }
+  h2 { @apply text-h2 text-neutral-900; }
+  h3 { @apply text-h3 text-neutral-900; }
+  h4 { @apply text-h4 text-neutral-900; }
+  p  { @apply text-body text-neutral-600 max-w-[68ch]; }
+
+  ::selection    { @apply bg-brand-600/20 text-neutral-900; }
+  :focus-visible { @apply outline-none ring-2 ring-brand-600 ring-offset-2 ring-offset-white rounded; }
 }
 
 @layer components {
   /* ─── buttons ─────────────────────────────────────────────────────────── */
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold
-           transition-all duration-200 focus-visible:ring-2 focus-visible:ring-sky focus-visible:ring-offset-2;
+           transition-all duration-150 ease-brand active:scale-[0.97]
+           focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2;
   }
-
-  /* Primary: logo gradient (deep crimson → brand orange-red) */
   .btn-primary {
-    @apply btn text-white shadow-card hover:-translate-y-0.5 hover:shadow-cardHover;
-    background-image: linear-gradient(135deg, #A33315 0%, #C8401A 55%, #E05A1F 100%);
-    background-color: #C8401A; /* fallback */
+    @apply btn text-white bg-brand-600 bg-brand-gradient shadow-card
+           hover:bg-brand-gradient-hover hover:-translate-y-0.5 hover:shadow-cardHover;
   }
-  .btn-primary:hover {
-    background-image: linear-gradient(135deg, #7D250E 0%, #A33315 55%, #C8401A 100%);
-  }
+  .btn-secondary     { @apply btn bg-neutral-900 text-white hover:bg-neutral-950 hover:-translate-y-0.5; }
+  .btn-ghost         { @apply btn border border-neutral-200 text-neutral-900 hover:bg-neutral-100 hover:border-neutral-300; }
+  .btn-outline-light { @apply btn border border-white/35 text-white hover:bg-white/10; }
 
-  .btn-secondary    { @apply btn bg-navy-700 text-white hover:bg-navy-800 hover:-translate-y-0.5; }
-  .btn-ghost        { @apply btn border border-line text-navy-700 hover:bg-navy-50 hover:border-navy-200; }
-  .btn-outline-light{ @apply btn border border-white/30 text-white hover:bg-white/10; }
+  /* ─── eyebrow (one recipe, two contexts) ─────────────────────────────── */
+  .eyebrow         { @apply text-eyebrow uppercase text-brand-700; }
+  .eyebrow-on-dark { @apply text-eyebrow uppercase text-brand-400; }
 
-  /* ─── typography helpers ──────────────────────────────────────────────── */
-  .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.18em];
-    color: #C8401A; /* brand orange-red */
-  }
-  .section      { @apply py-20 md:py-28; }
-  .section-soft { @apply py-20 md:py-28 bg-navy-50/40; }
+  /* ─── section rhythm ─────────────────────────────────────────────────── */
+  .section          { @apply py-20 md:py-28; }
+  .section-soft     { @apply py-20 md:py-28 bg-neutral-100; }
+  .section-gradient { @apply py-20 md:py-28 bg-gradient-to-b from-neutral-100 to-white; }
+  .section-dark     { @apply py-20 md:py-28 bg-neutral-900 text-white; }
 
-  /* ─── warm cream → white gradient section ────────────────────────────── */
-  .section-gradient {
-    @apply py-20 md:py-28;
-    background: linear-gradient(180deg, #fff6f2 0%, #ffffff 85%);
+  /* ─── card (one recipe + opt-in hover) ───────────────────────────────── */
+  .card       { @apply bg-white border border-neutral-200 rounded-2xl shadow-card; }
+  .card-hover { @apply transition-all duration-200 ease-brand
+                       hover:-translate-y-1 hover:shadow-cardHover hover:border-brand-600/30; }
+  .card-dark  { @apply rounded-2xl border border-white/10 bg-white/5; }
+
+  /* ─── chips (one recipe, context modifiers) ──────────────────────────── */
+  .chip         { @apply inline-flex w-fit items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium; }
+  .chip-accent  { @apply chip bg-brand-600/10 text-brand-700 font-semibold; }
+  .chip-neutral { @apply chip border border-neutral-200 bg-neutral-100 text-neutral-700; }
+  .chip-on-dark { @apply chip border border-white/15 bg-white/[0.08] text-white/90 backdrop-blur-sm; }
+  .chip-solid   { @apply chip bg-neutral-900 text-white font-semibold; }
+
+  /* ─── animated link underline ────────────────────────────────────────── */
+  .link-underline { @apply relative font-semibold text-brand-700; }
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 2px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 200ms var(--ease-brand);
   }
+  .link-underline:hover::after { transform: scaleX(1); }
 
   /* ─── breadcrumbs ────────────────────────────────────────────────────── */
-  .crumbs   { @apply flex flex-wrap items-center gap-2 text-xs font-medium text-muted; }
-  .crumbs a { @apply text-navy-700 hover:text-sky transition-colors; }
-  .crumbs > span { @apply text-line; }
-
-  /* ─── card ───────────────────────────────────────────────────────────── */
-  .card { @apply bg-white border border-line rounded-2xl shadow-card; }
+  .crumbs   { @apply flex flex-wrap items-center gap-2 text-xs font-medium text-neutral-500; }
+  .crumbs a { @apply text-neutral-700 hover:text-brand-700 transition-colors; }
+  .crumbs > span { @apply text-neutral-300; }
 
   /* ─── feature list ───────────────────────────────────────────────────── */
   .svc-list { @apply space-y-2; }
   .svc-list li {
-    @apply relative pl-7 text-sm text-ink/80 leading-relaxed
+    @apply relative pl-7 text-sm text-neutral-600 leading-relaxed
            before:content-[''] before:absolute before:left-0 before:top-2
-           before:h-1.5 before:w-1.5 before:rounded-full before:bg-sky;
+           before:h-1.5 before:w-1.5 before:rounded-full before:bg-brand-600;
   }
 
   /* ─── icon tile ──────────────────────────────────────────────────────── */
-  .icon-tile { @apply grid place-items-center h-9 w-9 rounded-lg bg-sky/10 text-sky shrink-0; }
+  .icon-tile { @apply grid place-items-center h-9 w-9 rounded-lg bg-brand-600/10 text-brand-700 shrink-0; }
   .icon-tile svg { @apply h-4 w-4; }
 }
 
@@ -103,4 +130,3 @@
     justify-content: center;
   }
 }
-
