@@ -1,7 +1,11 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import Image, { type StaticImageData } from "next/image";
 import { PageHero } from "@/components/page-hero";
 import { partnerBenefits, partners, siteSettings } from "@/content/site-content";
+import oracleLogo    from "@/assets/partners/oracle.svg";
+import wrikeLogo     from "@/assets/partners/wrike.svg";
+import microsoftLogo from "@/assets/partners/microsoft.svg";
 
 export const metadata: Metadata = {
   title: "Partners",
@@ -13,6 +17,14 @@ const partnerAccent: Record<string, string> = {
   "Oracle":    "bg-orange-50 text-orange-700 border-orange-200",
   "Wrike":     "bg-green-50  text-green-700  border-green-200",
   "Microsoft": "bg-blue-50   text-blue-700   border-blue-200"
+};
+
+/* Official partner logos (see assets/partners/) — text tile below is the fallback
+   for any future partner added without a logo file */
+const partnerLogoImages: Record<string, StaticImageData> = {
+  "Oracle":    oracleLogo,
+  "Wrike":     wrikeLogo,
+  "Microsoft": microsoftLogo
 };
 
 const partnerLogos: Record<string, { lines: string[] }> = {
@@ -36,18 +48,29 @@ export default function PartnersPage() {
         <div className="container">
           <div className="grid gap-8 lg:grid-cols-3">
             {partners.map((p) => {
+              const logoImage = partnerLogoImages[p.name];
               const logoLines = partnerLogos[p.name]?.lines ?? [p.logo];
               return (
                 <div
                   key={p.name}
                   className="flex flex-col rounded-2xl border border-line bg-white p-8 shadow-card hover:shadow-cardHover hover:border-sky/30 transition-all"
                 >
-                  {/* Logo mark */}
-                  <div className="flex h-16 w-16 flex-col items-center justify-center rounded-2xl bg-navy-50 leading-tight">
-                    {logoLines.map((l) => (
-                      <span key={l} className="text-xs font-bold text-navy-700 text-center">{l}</span>
-                    ))}
-                  </div>
+                  {/* Logo — official mark, left-aligned on a fixed-height row */}
+                  {logoImage ? (
+                    <div className="flex h-16 items-center">
+                      <Image
+                        src={logoImage}
+                        alt={`${p.name} logo`}
+                        className="h-auto w-auto max-h-9 max-w-[200px] object-contain"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex h-16 w-16 flex-col items-center justify-center rounded-2xl bg-navy-50 leading-tight">
+                      {logoLines.map((l) => (
+                        <span key={l} className="text-xs font-bold text-navy-700 text-center">{l}</span>
+                      ))}
+                    </div>
+                  )}
 
                   {/* Name + category */}
                   <h3 className="mt-5 text-xl font-semibold text-navy-700">{p.name}</h3>
