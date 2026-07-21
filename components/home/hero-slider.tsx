@@ -153,20 +153,20 @@ export function HeroSlider() {
         className="absolute inset-0 -z-10 pointer-events-none"
         style={{
           background:
-            "linear-gradient(to right, rgba(10,18,32,0.96) 0%, rgba(10,18,32,0.88) 45%, rgba(10,18,32,0.62) 70%, rgba(10,18,32,0.38) 100%)",
+            "linear-gradient(to right, rgba(18,12,8,0.96) 0%, rgba(18,12,8,0.88) 45%, rgba(18,12,8,0.62) 70%, rgba(18,12,8,0.38) 100%)",
         }}
       />
       {/* Extra full overlay on mobile so text is always readable */}
       <div
         aria-hidden
         className="absolute inset-0 -z-10 pointer-events-none md:hidden"
-        style={{ background: "rgba(10,20,36,0.45)" }}
+        style={{ background: "rgba(18,12,8,0.45)" }}
       />
       {/* Bottom fade so controls bar text stays readable */}
       <div
         aria-hidden
         className="absolute bottom-0 inset-x-0 h-40 -z-10 pointer-events-none"
-        style={{ background: "linear-gradient(to top, rgba(15,31,51,0.80) 0%, transparent 100%)" }}
+        style={{ background: "linear-gradient(to top, rgba(18,12,8,0.80) 0%, transparent 100%)" }}
       />
 
       {/* ── CONTENT ──────────────────────────────────────────────────────── */}
@@ -215,7 +215,7 @@ export function HeroSlider() {
                 {service.heroHighlights.map((h) => (
                   <span
                     key={h}
-                    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.08] backdrop-blur-sm px-3.5 py-1.5 text-[13px] font-medium text-white/90"
+                    className="chip-on-dark gap-2 px-3.5 py-1.5 text-[13px]"
                   >
                     <span className="h-1.5 w-1.5 rounded-full bg-sky" />
                     {h}
@@ -232,7 +232,7 @@ export function HeroSlider() {
             </Link>
             <Link
               href={`/services/${service.slug}`}
-              className="btn inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold border border-white/35 text-white hover:bg-white/12 transition-colors"
+              className="btn-outline-light"
             >
               Explore {service.kicker}&nbsp;→
             </Link>

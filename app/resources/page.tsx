@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 const CATEGORY_STYLES: Record<string, string> = {
   "White Paper": "bg-navy-700 text-white",
-  Guide: "bg-sky/10 text-sky",
+  Guide: "bg-sky/10 text-brand-700",
   Checklist: "bg-emerald-50 text-emerald-700",
   Roadmap: "bg-amber-50 text-amber-700"
 };
@@ -55,7 +55,7 @@ export default function ResourcesPage() {
                 <p className="mt-3 text-sm text-muted leading-relaxed flex-1">
                   {guide.description}
                 </p>
-                <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-sky group-hover:gap-3 transition-all">
+                <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 group-hover:gap-3 transition-all">
                   Read the {guide.category.toLowerCase()}
                   <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M5 12h14M13 5l7 7-7 7" />
@@ -79,7 +79,7 @@ export default function ResourcesPage() {
         />
         <div className="container relative py-16 md:py-20 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
           <div className="max-w-xl">
-            <p className="eyebrow text-sky">Interactive tool</p>
+            <p className="eyebrow-on-dark">Interactive tool</p>
             <h2 className="mt-3 text-white">SAP S/4HANA Cost Calculator</h2>
             <p className="mt-4 text-white/70">
               Users, modules, landscape, approach — get an indicative budget range for planning
@@ -108,14 +108,14 @@ export default function ResourcesPage() {
                 className="group flex h-full flex-col rounded-2xl border border-line bg-white p-7 shadow-card transition-all hover:-translate-y-1 hover:shadow-cardHover hover:border-sky/40"
               >
                 <div className="flex items-center gap-3 text-xs">
-                  <span className="inline-flex items-center rounded-full bg-sky/10 px-3 py-1 font-semibold text-sky">
+                  <span className="inline-flex items-center rounded-full bg-sky/10 px-3 py-1 font-semibold text-brand-700">
                     {post.tag}
                   </span>
                   <span className="text-muted">{post.date}</span>
                 </div>
                 <h3 className="mt-4 text-xl text-navy-700">{post.title}</h3>
                 <p className="mt-3 text-sm text-muted leading-relaxed flex-1">{post.summary}</p>
-                <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-sky group-hover:gap-3 transition-all">
+                <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 group-hover:gap-3 transition-all">
                   Read article
                   <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M5 12h14M13 5l7 7-7 7" />

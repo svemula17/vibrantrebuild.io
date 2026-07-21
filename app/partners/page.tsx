@@ -74,7 +74,7 @@ export default function PartnersPage() {
 
                   {/* Name + category */}
                   <h3 className="mt-5 text-xl font-semibold text-navy-700">{p.name}</h3>
-                  <span className={`mt-2 inline-flex w-fit rounded-full border px-2.5 py-0.5 text-xs font-semibold ${partnerAccent[p.name] ?? "bg-sky/10 text-sky border-sky/20"}`}>
+                  <span className={`mt-2 inline-flex w-fit rounded-full border px-2.5 py-0.5 text-xs font-semibold ${partnerAccent[p.name] ?? "bg-sky/10 text-brand-700 border-sky/20"}`}>
                     {p.category}
                   </span>
 
@@ -84,7 +84,7 @@ export default function PartnersPage() {
                   {/* CTA */}
                   <Link
                     href={p.href}
-                    className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-sky hover:gap-3 transition-all"
+                    className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:gap-3 transition-all"
                   >
                     Related services →
                   </Link>

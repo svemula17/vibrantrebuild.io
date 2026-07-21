@@ -30,8 +30,8 @@ export function SocialLinks({ variant = "light" }: Props) {
 
   const buttonClass =
     variant === "dark"
-      ? "grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 text-white hover:bg-[#C8401A] hover:border-[#C8401A] transition-all"
-      : "grid h-10 w-10 place-items-center rounded-full border border-line bg-white text-navy-700 shadow-card hover:bg-sky hover:border-sky hover:text-white hover:-translate-y-0.5 transition-all";
+      ? "grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 text-white hover:bg-brand-600 hover:border-brand-600 transition-all"
+      : "grid h-10 w-10 place-items-center rounded-full border border-neutral-200 bg-white text-neutral-900 shadow-card hover:bg-brand-600 hover:border-brand-600 hover:text-white hover:-translate-y-0.5 transition-all";
 
   return (
     <div className="flex gap-3">

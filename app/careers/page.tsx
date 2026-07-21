@@ -67,7 +67,7 @@ export default function CareersPage() {
                 key={b}
                 className="flex items-center gap-3 rounded-xl border border-line bg-white px-4 py-3.5"
               >
-                <span className="grid h-8 w-8 place-items-center rounded-lg bg-sky/10 text-sky shrink-0">
+                <span className="grid h-8 w-8 place-items-center rounded-lg bg-sky/10 text-brand-700 shrink-0">
                   <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M5 13l4 4L19 7" />
                   </svg>
@@ -98,7 +98,7 @@ export default function CareersPage() {
                 <p className="eyebrow text-[0.7rem]">{o.category}</p>
                 <h4 className="mt-2 text-lg font-semibold text-navy-700">{o.title}</h4>
                 <p className="mt-3 text-sm text-muted leading-relaxed flex-1">{o.summary}</p>
-                <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-sky group-hover:gap-2.5 transition-all">
+                <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 group-hover:gap-2.5 transition-all">
                   Apply →
                 </span>
               </Link>

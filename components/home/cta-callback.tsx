@@ -33,7 +33,7 @@ export function CtaCallback() {
 
           <dl className="mt-8 space-y-4 text-sm">
             <div className="flex items-start gap-3">
-              <span className="mt-0.5 grid h-9 w-9 place-items-center rounded-lg bg-sky/10 text-sky"><IconPhone /></span>
+              <span className="mt-0.5 grid h-9 w-9 place-items-center rounded-lg bg-sky/10 text-brand-700"><IconPhone /></span>
               <div>
                 <dt className="text-xs uppercase tracking-[0.16em] text-muted">Call us</dt>
                 <dd className="text-navy-700 font-medium">
@@ -44,7 +44,7 @@ export function CtaCallback() {
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <span className="mt-0.5 grid h-9 w-9 place-items-center rounded-lg bg-sky/10 text-sky"><IconMail /></span>
+              <span className="mt-0.5 grid h-9 w-9 place-items-center rounded-lg bg-sky/10 text-brand-700"><IconMail /></span>
               <div>
                 <dt className="text-xs uppercase tracking-[0.16em] text-muted">Email</dt>
                 <dd className="text-navy-700 font-medium">
@@ -53,7 +53,7 @@ export function CtaCallback() {
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <span className="mt-0.5 grid h-9 w-9 place-items-center rounded-lg bg-sky/10 text-sky"><IconPin /></span>
+              <span className="mt-0.5 grid h-9 w-9 place-items-center rounded-lg bg-sky/10 text-brand-700"><IconPin /></span>
               <div>
                 <dt className="text-xs uppercase tracking-[0.16em] text-muted">Headquarters</dt>
                 <dd className="text-navy-700 font-medium">{siteSettings.address}</dd>

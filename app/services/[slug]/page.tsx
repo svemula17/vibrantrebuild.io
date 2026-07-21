@@ -65,7 +65,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
                   key={o}
                   className="rounded-2xl border border-line bg-white p-5 shadow-card"
                 >
-                  <div className="text-sm font-semibold text-sky">{`0${i + 1}`}</div>
+                  <div className="text-sm font-semibold text-brand-700">{`0${i + 1}`}</div>
                   <p className="mt-2 text-sm text-ink/80 leading-relaxed">{o}</p>
                 </div>
               ))}
@@ -100,7 +100,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
                   .filter((s) => s.slug !== service.slug)
                   .map((s) => (
                     <li key={s.slug}>
-                      <Link href={`/services/${s.slug}`} className="text-navy-700 font-medium hover:text-sky">
+                      <Link href={`/services/${s.slug}`} className="text-navy-700 font-medium hover:text-brand-700">
                         {s.title}
                       </Link>
                     </li>
@@ -124,14 +124,14 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
                 href={`/services/${o.slug}`}
                 className="group rounded-2xl border border-line bg-white p-6 shadow-card hover:-translate-y-0.5 hover:shadow-cardHover hover:border-sky/40 transition-all"
               >
-                <span className="grid h-10 w-10 place-items-center rounded-lg bg-sky/10 text-sky">
+                <span className="grid h-10 w-10 place-items-center rounded-lg bg-sky/10 text-brand-700">
                   <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                     <path d={o.iconPath} />
                   </svg>
                 </span>
                 <h4 className="mt-4 text-base font-semibold text-navy-700">{o.title}</h4>
                 <p className="mt-2 text-sm text-muted leading-relaxed">{o.summary}</p>
-                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-sky group-hover:gap-2.5 transition-all">
+                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 group-hover:gap-2.5 transition-all">
                   Learn more →
                 </span>
               </Link>

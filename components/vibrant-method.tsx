@@ -38,17 +38,13 @@ export function VibrantMethod() {
               {/* Watermark letter */}
               <span
                 aria-hidden
-                className="absolute -top-2 -right-1 text-7xl font-black leading-none select-none pointer-events-none"
-                style={{ color: "rgba(200,64,26,0.06)" }}
+                className="absolute -top-2 -right-1 text-7xl font-black leading-none select-none pointer-events-none text-brand-600/[0.06]"
               >
                 {item.letter}
               </span>
 
               {/* Brand letter badge */}
-              <span
-                className="inline-flex h-10 w-10 items-center justify-center rounded-xl text-lg font-black text-white shadow-sm"
-                style={{ background: "linear-gradient(135deg, #A33315 0%, #C8401A 60%, #E05A1F 100%)" }}
-              >
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-600 text-lg font-black text-white shadow-sm">
                 {item.letter}
               </span>
 
@@ -56,7 +52,7 @@ export function VibrantMethod() {
               <p className="mt-2 text-sm text-muted leading-relaxed flex-1">{item.body}</p>
 
               {/* Step number */}
-              <span className="mt-4 text-xs font-bold uppercase tracking-widest" style={{ color: "#C8401A" }}>
+              <span className="mt-4 text-xs font-bold uppercase tracking-widest text-brand-700">
                 Phase {i + 1}
               </span>
             </motion.div>
@@ -64,11 +60,7 @@ export function VibrantMethod() {
         </div>
 
         {/* Connector line — desktop only */}
-        <div
-          aria-hidden
-          className="hidden xl:block mt-6 mx-auto h-px max-w-5xl"
-          style={{ background: "linear-gradient(90deg, transparent 0%, #C8401A 20%, #E05A1F 50%, #C8401A 80%, transparent 100%)" }}
-        />
+        <div aria-hidden className="hidden xl:block mt-6 mx-auto h-px max-w-5xl bg-neutral-200" />
 
       </div>
     </section>

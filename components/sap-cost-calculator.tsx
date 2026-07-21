@@ -75,7 +75,7 @@ export function SapCostCalculator() {
             <label htmlFor="calc-users" className="text-sm font-semibold text-navy-700">
               SAP users
             </label>
-            <span className="text-sm font-bold text-sky">{users.toLocaleString()}</span>
+            <span className="text-sm font-bold text-brand-700">{users.toLocaleString()}</span>
           </div>
           <input
             id="calc-users"
@@ -85,7 +85,7 @@ export function SapCostCalculator() {
             step={50}
             value={users}
             onChange={(e) => setUsers(Number(e.target.value))}
-            className="mt-3 w-full accent-[#C8401A]"
+            className="mt-3 w-full accent-brand-600"
           />
           <div className="mt-1 flex justify-between text-xs text-muted">
             <span>50</span>
@@ -110,7 +110,7 @@ export function SapCostCalculator() {
                   type="checkbox"
                   checked={modules.includes(m.id)}
                   onChange={() => toggleModule(m.id)}
-                  className="rounded border-line text-[#C8401A] focus:ring-sky"
+                  className="rounded border-line text-brand-600 focus:ring-sky"
                 />
                 {m.label}
               </label>
@@ -155,7 +155,7 @@ export function SapCostCalculator() {
                   name="approach"
                   checked={approach === a.id}
                   onChange={() => setApproach(a.id)}
-                  className="border-line text-[#C8401A] focus:ring-sky"
+                  className="border-line text-brand-600 focus:ring-sky"
                 />
                 {a.label}
               </label>

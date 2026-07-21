@@ -17,11 +17,8 @@ export function ScrollProgress() {
 
   return (
     <div
-      className="fixed top-0 left-0 z-[60] h-[3px] transition-none"
-      style={{
-        width: `${progress}%`,
-        background: "linear-gradient(90deg, #A33315 0%, #C8401A 50%, #E05A1F 100%)",
-      }}
+      className="fixed top-0 left-0 z-[60] h-[3px] bg-brand-600 transition-none"
+      style={{ width: `${progress}%` }}
       aria-hidden
     />
   );

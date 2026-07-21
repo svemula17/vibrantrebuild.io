@@ -49,7 +49,7 @@ export function AiShieldBand() {
             viewport={{ once: true, margin: "-8%" }}
             transition={{ duration: 0.55, ease: "easeOut" }}
           >
-            <p className="eyebrow text-sky">Featured platform</p>
+            <p className="eyebrow-on-dark">Featured platform</p>
             <h2 className="mt-3 text-white">
               <RevealWords text="AI Shield™ — security that thinks faster than attackers." />
             </h2>
@@ -61,9 +61,9 @@ export function AiShieldBand() {
 
             <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-white/60">
               <span>Threats contained in minutes</span>
-              <span className="text-sky">·</span>
+              <span className="text-brand-400" aria-hidden="true">·</span>
               <span>Fewer false positives</span>
-              <span className="text-sky">·</span>
+              <span className="text-brand-400" aria-hidden="true">·</span>
               <span>Audit-ready reporting</span>
             </div>
 
@@ -86,9 +86,9 @@ export function AiShieldBand() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-6%" }}
                 transition={{ duration: 0.45, delay: i * 0.08, ease: "easeOut" }}
-                className="group rounded-2xl border border-white/10 bg-white/5 p-6 hover:bg-white/10 hover:border-sky/40 transition-all"
+                className="group card-dark p-6 hover:bg-white/10 hover:border-brand-600/40 transition-all"
               >
-                <span className="grid h-10 w-10 place-items-center rounded-xl bg-sky/20 text-sky group-hover:bg-sky group-hover:text-white transition-colors">
+                <span className="grid h-10 w-10 place-items-center rounded-xl bg-brand-600/20 text-brand-400 group-hover:bg-brand-600 group-hover:text-white transition-colors">
                   <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <path d={f.icon} />
                   </svg>

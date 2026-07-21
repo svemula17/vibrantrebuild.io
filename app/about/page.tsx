@@ -105,17 +105,14 @@ export default function AboutPage() {
       {/* ── Brochure download ── */}
       <section className="section">
         <div className="container">
-          <div
-            className="relative overflow-hidden rounded-3xl p-10 md:p-14"
-            style={{ background: "linear-gradient(135deg, #1A0A04 0%, #2C1008 50%, #1A0A04 100%)" }}
-          >
+          <div className="relative overflow-hidden rounded-3xl bg-neutral-900 p-10 md:p-14">
             {/* Glow */}
             <div aria-hidden className="absolute inset-0 pointer-events-none"
               style={{ background: "radial-gradient(ellipse at 30% 50%, rgba(200,64,26,0.25) 0%, transparent 60%)" }} />
 
             <div className="relative grid gap-10 lg:grid-cols-2 lg:items-center">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.22em]" style={{ color: "#E05A1F" }}>Company Brochure</p>
+                <p className="eyebrow-on-dark">Company Brochure</p>
                 <h2 className="mt-3 text-white" style={{ fontSize: "clamp(1.6rem, 3vw, 2.1rem)" }}>
                   Learn more about Vibrant Inc.
                 </h2>
@@ -126,15 +123,14 @@ export default function AboutPage() {
                   <a
                     href="/Vibrant-Company-Brochure.pdf"
                     download
-                    className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 transition-transform"
-                    style={{ background: "linear-gradient(135deg, #A33315 0%, #C8401A 60%, #E05A1F 100%)" }}
+                    className="btn-primary"
                   >
                     <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
                     </svg>
                     Download Brochure (PDF)
                   </a>
-                  <Link href="/contact" className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold border border-white/25 text-white hover:bg-white/10 transition-colors">
+                  <Link href="/contact" className="btn-outline-light">
                     Contact us →
                   </Link>
                 </div>
@@ -148,7 +144,7 @@ export default function AboutPage() {
                   { title: "Custom Development", body: "Onshore + offshore blended teams for bespoke applications." },
                   { title: "People-First Culture", body: "CMM-aligned talent model — 8+ years average practitioner experience." },
                 ].map((item) => (
-                  <div key={item.title} className="rounded-2xl p-5" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                  <div key={item.title} className="card-dark p-5">
                     <h3 className="text-sm font-semibold text-white">{item.title}</h3>
                     <p className="mt-1.5 text-xs text-white/55 leading-relaxed">{item.body}</p>
                   </div>
@@ -181,12 +177,12 @@ export default function AboutPage() {
             <hr className="my-6 border-line" />
             <p className="eyebrow">Talk to us</p>
             <p className="mt-2 text-navy-700 font-medium">
-              <a href={`tel:${siteSettings.phonePrimary}`} className="hover:text-sky">{siteSettings.phonePrimary}</a>
+              <a href={`tel:${siteSettings.phonePrimary}`} className="hover:text-brand-700">{siteSettings.phonePrimary}</a>
               <span className="text-muted"> · </span>
-              <a href={`tel:${siteSettings.phoneSecondary}`} className="hover:text-sky">{siteSettings.phoneSecondary}</a>
+              <a href={`tel:${siteSettings.phoneSecondary}`} className="hover:text-brand-700">{siteSettings.phoneSecondary}</a>
             </p>
             <p className="mt-1 text-navy-700 font-medium">
-              <a href={`mailto:${siteSettings.email}`} className="hover:text-sky">{siteSettings.email}</a>
+              <a href={`mailto:${siteSettings.email}`} className="hover:text-brand-700">{siteSettings.email}</a>
             </p>
           </div>
         </div>

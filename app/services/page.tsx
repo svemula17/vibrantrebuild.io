@@ -30,7 +30,7 @@ export default function ServicesPage() {
                 href={`/services/${service.slug}`}
                 className="group flex h-full flex-col rounded-2xl border border-line bg-white p-7 shadow-card transition-all hover:-translate-y-1 hover:shadow-cardHover hover:border-sky/40"
               >
-                <span className="grid h-12 w-12 place-items-center rounded-xl bg-sky/10 text-sky">
+                <span className="grid h-12 w-12 place-items-center rounded-xl bg-sky/10 text-brand-700">
                   <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                     <path d={service.iconPath} />
                   </svg>
@@ -38,7 +38,7 @@ export default function ServicesPage() {
                 <p className="mt-6 eyebrow text-[0.7rem]">{service.kicker}</p>
                 <h3 className="mt-2 text-xl text-navy-700">{service.title}</h3>
                 <p className="mt-3 text-sm text-muted leading-relaxed flex-1">{service.summary}</p>
-                <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-sky group-hover:gap-2.5 transition-all">
+                <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 group-hover:gap-2.5 transition-all">
                   Learn more
                   <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M5 12h14M13 5l7 7-7 7" />

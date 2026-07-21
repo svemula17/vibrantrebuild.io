@@ -30,7 +30,7 @@ export default function SocialResponsibilityPage() {
           <ul className="mt-12 grid gap-5 md:grid-cols-2">
             {socialResponsibilityCommitments.map((c, i) => (
               <li key={c.title} className="card p-7 hover:border-sky/40 hover:shadow-cardHover transition-all">
-                <div className="text-xs font-semibold text-sky">{`0${i + 1}`}</div>
+                <div className="text-xs font-semibold text-brand-700">{`0${i + 1}`}</div>
                 <h3 className="mt-3 text-lg font-semibold text-navy-700">{c.title}</h3>
                 <p className="mt-3 text-muted leading-relaxed">{c.body}</p>
               </li>

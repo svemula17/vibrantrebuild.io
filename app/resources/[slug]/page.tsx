@@ -100,10 +100,10 @@ export default async function ResourceDetailPage({
                       <li key={service.slug}>
                         <Link
                           href={`/services/${service.slug}`}
-                          className="group flex items-center justify-between gap-2 text-sm font-medium text-navy-700 hover:text-sky transition-colors"
+                          className="group flex items-center justify-between gap-2 text-sm font-medium text-navy-700 hover:text-brand-700 transition-colors"
                         >
                           {service.title}
-                          <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0 text-sky opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0 text-brand-700 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <path d="M5 12h14M13 5l7 7-7 7" />
                           </svg>
                         </Link>
@@ -165,7 +165,7 @@ export default async function ResourceDetailPage({
                   <li key={i.slug}>
                     <Link
                       href={`/resources/${i.slug}`}
-                      className="text-navy-700 font-medium hover:text-sky transition-colors"
+                      className="text-navy-700 font-medium hover:text-brand-700 transition-colors"
                     >
                       {i.title} →
                     </Link>

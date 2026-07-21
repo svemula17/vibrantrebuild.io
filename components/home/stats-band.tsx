@@ -26,9 +26,7 @@ export function StatsBand() {
           viewport={{ once: true, margin: "-8%" }}
           transition={{ duration: 0.55 }}
         >
-          <p className="text-xs font-bold uppercase tracking-[0.22em]" style={{ color: "#E8703A" }}>
-            By the numbers
-          </p>
+          <p className="eyebrow-on-dark">By the numbers</p>
           {/* The client-mandated tagline lives here (single source: siteSettings.tagline) */}
           <h2 className="mt-3 text-white">
             <RevealWords text={siteSettings.tagline} />
@@ -43,8 +41,7 @@ export function StatsBand() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-8%" }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="border-l-2 pl-5"
-              style={{ borderColor: "#C8401A" }}
+              className="border-l-2 border-brand-600 pl-5"
             >
               {s.highlight ? (
                 <>
@@ -62,14 +59,7 @@ export function StatsBand() {
                     <AnimatedCounter value={s.value} suffix={s.suffix} />
                   </div>
                   <p className="mt-2 text-sm text-white/65">{s.label}</p>
-                  <span
-                    className="mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em]"
-                    style={{
-                      color: "#E8703A",
-                      border: "1px solid rgba(232,112,58,0.45)",
-                      background: "rgba(200,64,26,0.14)"
-                    }}
-                  >
+                  <span className="mt-3 inline-flex items-center gap-2 rounded-full border border-brand-400/45 bg-brand-600/15 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-brand-400">
                     Est. 2000 · Celebrating 25+ Years
                   </span>
                 </>

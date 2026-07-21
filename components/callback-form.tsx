@@ -92,7 +92,7 @@ export function CallbackForm({ heading, showRequiredNote }: Props) {
       {heading && <h3 className="text-xl font-semibold text-navy-700">{heading}</h3>}
       {showRequiredNote && (
         <p className="mt-1 text-sm text-muted">
-          Fields marked <span className="text-sky">*</span> are required.
+          Fields marked <span className="text-brand-700">*</span> are required.
         </p>
       )}
 
@@ -109,7 +109,7 @@ export function CallbackForm({ heading, showRequiredNote }: Props) {
 
       <div className="mt-4">
         <label htmlFor="interest" className="block text-sm font-semibold text-navy-700 mb-1.5">
-          Service area of interest <span className="text-sky">*</span>
+          Service area of interest <span className="text-brand-700">*</span>
         </label>
         <select
           id="interest"
@@ -176,7 +176,7 @@ function Field({
   return (
     <div>
       <label htmlFor={name} className="block text-sm font-semibold text-navy-700 mb-1.5">
-        {label} {required && <span className="text-sky">*</span>}
+        {label} {required && <span className="text-brand-700">*</span>}
       </label>
       <input
         id={name} name={name} type={type}

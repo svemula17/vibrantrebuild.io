@@ -38,8 +38,7 @@ function Avatar({ leader, size = "lg" }: { leader: Leader; size?: "lg" | "xl" })
   if (size === "xl") {
     return (
       <div
-        className="grid h-64 w-64 md:h-80 md:w-80 place-items-center rounded-2xl text-white shadow-cardHover"
-        style={{ background: "linear-gradient(135deg, #A33315 0%, #C8401A 60%, #E05A1F 100%)" }}
+        className="grid h-64 w-64 md:h-80 md:w-80 place-items-center rounded-2xl bg-brand-600 text-white shadow-cardHover"
         role="img"
         aria-label={leader.name ?? leader.role}
       >
@@ -50,8 +49,7 @@ function Avatar({ leader, size = "lg" }: { leader: Leader; size?: "lg" | "xl" })
 
   return (
     <div
-      className="grid h-16 w-16 shrink-0 place-items-center rounded-full text-white"
-      style={{ background: "linear-gradient(135deg, #A33315 0%, #C8401A 60%, #E05A1F 100%)" }}
+      className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-brand-600 text-white"
       role="img"
       aria-label={leader.name ?? leader.role}
     >
@@ -94,7 +92,7 @@ export default function TeamPage() {
                 {founder.credentials?.map((c) => (
                   <span
                     key={c}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-sky/10 px-3 py-1 text-xs font-semibold text-sky"
+                    className="inline-flex items-center gap-1.5 rounded-full bg-sky/10 px-3 py-1 text-xs font-semibold text-brand-700"
                   >
                     <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="10" />
@@ -145,7 +143,7 @@ export default function TeamPage() {
                     {leader.name && (
                       <h3 className="text-lg text-navy-700">{leader.name}</h3>
                     )}
-                    <p className={leader.name ? "text-sm font-medium text-sky" : "text-lg font-semibold text-navy-700"}>
+                    <p className={leader.name ? "text-sm font-medium text-brand-700" : "text-lg font-semibold text-navy-700"}>
                       {leader.role}
                     </p>
                   </div>
@@ -173,7 +171,7 @@ export default function TeamPage() {
                 {!leader.name && (
                   <Link
                     href="/contact"
-                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-sky hover:gap-2.5 transition-all"
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:gap-2.5 transition-all"
                   >
                     Ask about our AI practice
                     <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

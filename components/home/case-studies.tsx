@@ -73,20 +73,16 @@ export function CaseStudies() {
               {/* Watermark metric */}
               <span
                 aria-hidden
-                className="absolute -top-3 -right-2 text-8xl font-black leading-none select-none pointer-events-none"
-                style={{ color: "rgba(200,64,26,0.06)" }}
+                className="absolute -top-3 -right-2 text-8xl font-black leading-none select-none pointer-events-none text-brand-600/[0.06]"
               >
                 {cs.metric}
               </span>
 
               {/* Left accent line */}
-              <span
-                className="absolute left-0 top-6 bottom-6 w-1 rounded-r-full transition-all duration-300 opacity-0 group-hover:opacity-100"
-                style={{ background: "linear-gradient(to bottom, #C8401A, #E05A1F)" }}
-              />
+              <span className="absolute left-0 top-6 bottom-6 w-1 rounded-r-full bg-brand-600 transition-all duration-300 opacity-0 group-hover:opacity-100" />
 
               {/* Sector pill */}
-              <span className="inline-flex w-fit items-center rounded-full px-3 py-1 text-xs font-semibold bg-sky/10 text-sky">
+              <span className="chip-accent">
                 {cs.sector}
               </span>
 
@@ -104,12 +100,12 @@ export function CaseStudies() {
               </p>
 
               <div className="mt-6 pt-5 border-t border-line flex items-center justify-between">
-                <span className="text-xs font-semibold uppercase tracking-wide" style={{ color: "#C8401A" }}>
+                <span className="text-xs font-semibold uppercase tracking-wide text-brand-700">
                   {cs.service}
                 </span>
                 <Link
                   href={`/services/${cs.slug}`}
-                  className="text-xs font-semibold text-sky inline-flex items-center gap-1 group-hover:gap-2 transition-all"
+                  className="text-xs font-semibold text-brand-700 inline-flex items-center gap-1 group-hover:gap-2 transition-all"
                 >
                   Learn more →
                 </Link>

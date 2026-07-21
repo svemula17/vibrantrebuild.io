@@ -42,19 +42,18 @@ export function Header() {
       {/* Top announcement strip — home page only, hides on scroll */}
       {pathname === "/" && (
         <div
-          className={`w-full text-white text-xs transition-all duration-300 overflow-hidden ${
+          className={`w-full bg-brand-800 text-white text-xs transition-all duration-300 overflow-hidden ${
             scrolled ? "max-h-0 py-0 opacity-0" : "max-h-10 py-2 opacity-100"
           }`}
-          style={{ background: "linear-gradient(90deg, #7D250E 0%, #C8401A 50%, #A33315 100%)" }}
         >
           <div className="container flex items-center justify-center gap-4 flex-wrap">
-            <span className="hidden sm:inline opacity-80">📍 Princeton, NJ · Hyderabad, IN</span>
-            <span className="hidden sm:inline opacity-40">|</span>
-            <a href={`tel:${siteSettings.phonePrimary}`} className="font-semibold hover:opacity-80 transition-opacity">
-              📞 {siteSettings.phonePrimary}
+            <span className="hidden sm:inline text-white/90">Princeton, NJ · Hyderabad, IN</span>
+            <span className="hidden sm:inline text-white/50" aria-hidden="true">|</span>
+            <a href={`tel:${siteSettings.phonePrimary}`} className="font-semibold hover:underline underline-offset-2">
+              {siteSettings.phonePrimary}
             </a>
-            <span className="opacity-40">|</span>
-            <a href={`mailto:${siteSettings.email}`} className="opacity-80 hover:opacity-100 transition-opacity">
+            <span className="text-white/50" aria-hidden="true">|</span>
+            <a href={`mailto:${siteSettings.email}`} className="text-white/90 hover:text-white hover:underline underline-offset-2 transition-colors">
               {siteSettings.email}
             </a>
           </div>
@@ -103,8 +102,8 @@ export function Header() {
             href="/resources"
             className={`btn text-sm px-5 py-2.5 border transition-colors ${
               pathname.startsWith("/resources")
-                ? "border-sky text-sky bg-sky/5"
-                : "border-line text-navy-700 hover:border-sky/50 hover:text-sky"
+                ? "border-brand-600 text-brand-700 bg-brand-600/5"
+                : "border-neutral-200 text-neutral-900 hover:border-brand-600/50 hover:text-brand-700"
             }`}
           >
             Resources
