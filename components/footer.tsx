@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { contactDetails, navigationItems, serviceCards, siteSettings } from "@/content/site-content";
-import logoSrc  from "@/vibrant-logo-full.png";
+import { contactDetails, navigationItems, serviceCards, siteSettings, withBasePath } from "@/content/site-content";
+import logoSrc  from "@/vibrant-logo-header.png";
 import deloitte from "@/assets/clients/deloitte.jpg";
 import cosyn    from "@/assets/clients/cosyn.jpg";
 import rcn      from "@/assets/clients/rcn.jpg";
@@ -75,15 +75,15 @@ export function Footer() {
       <div className="w-full h-1 bg-brand-600" />
 
       {/* ── Main 4-col grid ── */}
-      <div className="container relative py-16 grid gap-12 lg:grid-cols-4">
+      <div className="container relative py-16 grid gap-12 md:grid-cols-2 lg:grid-cols-4">
 
         {/* Brand + tagline + social */}
         <div>
           <Image
             src={logoSrc}
             alt="Vibrant Inc"
-            width={1116}
-            height={944}
+            width={240}
+            height={203}
             className="h-14 w-auto object-contain brightness-0 invert"
           />
           <p className="mt-4 text-sm leading-relaxed text-white/60">
@@ -110,7 +110,7 @@ export function Footer() {
                   key={s.label}
                   href={s.href}
                   aria-label={s.label}
-                  className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 hover:bg-brand-600 hover:border-brand-600 hover:text-white transition-all"
+                  className="grid h-11 w-11 place-items-center rounded-full border border-white/10 bg-white/5 hover:bg-brand-600 hover:border-brand-600 hover:text-white transition-all"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -131,12 +131,12 @@ export function Footer() {
             Sitemap
           </h4>
           <div className="mt-2 mb-4 h-px w-8 bg-brand-600" />
-          <ul className="space-y-2.5 text-sm">
+          <ul className="text-sm">
             {footerNav.map((n) => (
               <li key={n.href}>
                 <Link
                   href={n.href}
-                  className="text-white/70 hover:text-white transition-colors flex items-center gap-1.5 group"
+                  className="text-white/70 hover:text-white transition-colors flex items-center gap-1.5 group py-1.5"
                 >
                   <span
                     className="h-1 w-1 rounded-full bg-brand-600 opacity-0 group-hover:opacity-100 transition-opacity shrink-0"
@@ -156,12 +156,12 @@ export function Footer() {
             Services
           </h4>
           <div className="mt-2 mb-4 h-px w-8 bg-brand-600" />
-          <ul className="space-y-2.5 text-sm">
+          <ul className="text-sm">
             {footerServices.map((s) => (
               <li key={s.slug}>
                 <Link
                   href={`/services/${s.slug}`}
-                  className="text-white/70 hover:text-white transition-colors flex items-center gap-1.5 group"
+                  className="text-white/70 hover:text-white transition-colors flex items-center gap-1.5 group py-1.5"
                 >
                   <span
                     className="h-1 w-1 rounded-full bg-brand-600 opacity-0 group-hover:opacity-100 transition-opacity shrink-0"
@@ -235,7 +235,7 @@ export function Footer() {
           <div className="flex flex-col sm:flex-row sm:items-center gap-3">
             <p className="text-white/70">© {new Date().getFullYear()} {siteSettings.brandName}. All rights reserved.</p>
             <a
-              href="/Vibrant-Company-Brochure.pdf"
+              href={withBasePath("/Vibrant-Company-Brochure.pdf")}
               download
               className="btn-primary gap-1.5 px-3 py-1.5 text-xs"
             >

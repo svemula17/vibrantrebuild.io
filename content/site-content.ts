@@ -1803,6 +1803,10 @@ export function getCaseStudyForService(slug: string) {
   return caseStudies.find((cs) => cs.relatedSlugs.includes(slug));
 }
 
+/* Static-export deploys under a basePath (GitHub Pages project site) don't
+   rewrite raw hrefs to public/ files — prefix them explicitly. */
+export const withBasePath = (p: string) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${p}`;
+
 // ───── Legacy aliases for compatibility ─────
 export const techPills = serviceCards.map((s) => s.title);
 export const proofPoints = trustBadges.map((b) => ({ value: b.label, label: b.sub }));

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { navigationItems, siteSettings } from "@/content/site-content";
-import logoSrc from "@/vibrant-logo-full.png";
+import logoSrc from "@/vibrant-logo-header.png";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -93,8 +93,8 @@ export function Header() {
           <Image
             src={logoSrc}
             alt="Vibrant Inc"
-            width={1116}
-            height={944}
+            width={240}
+            height={203}
             priority
             className="h-10 md:h-14 lg:h-16 w-auto object-contain"
           />

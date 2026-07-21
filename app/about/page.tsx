@@ -7,7 +7,8 @@ import {
   companyOverview,
   coreValues,
   siteSettings,
-  visionStatement
+  visionStatement,
+  withBasePath
 } from "@/content/site-content";
 import { VibrantMethod } from "@/components/vibrant-method";
 import anniversary from "@/assets/anniversary.png";
@@ -121,7 +122,7 @@ export default function AboutPage() {
                 </p>
                 <div className="mt-8 flex flex-wrap gap-4">
                   <a
-                    href="/Vibrant-Company-Brochure.pdf"
+                    href={withBasePath("/Vibrant-Company-Brochure.pdf")}
                     download
                     className="btn-outline-light"
                   >
@@ -137,7 +138,7 @@ export default function AboutPage() {
               </div>
 
               {/* Highlights from brochure */}
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
                   { title: "Strategic IT Consulting", body: "Spanning the full SDLC from planning through post-implementation." },
                   { title: "Global Delivery Model", body: "Staff augmentation, fixed price, T&M, and global delivery options." },

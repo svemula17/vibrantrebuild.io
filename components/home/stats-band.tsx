@@ -24,7 +24,7 @@ export function StatsBand() {
           <h2 className="mt-3 text-white">{siteSettings.tagline}</h2>
         </div>
 
-        <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((s, i) => (
             <motion.div
               key={s.label}

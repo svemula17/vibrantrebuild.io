@@ -1,19 +1,21 @@
 # build output
 .next
 /out
+out
+dist
+tsconfig.tsbuildinfo
+
+# dependencies
 node_modules
+
+# env
 .env.local
+
+# logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-dist
-tsconfig.tsbuildinfo
-<<<<<<< HEAD
-.DS_Store
-out
-=======
 
-# macOS
+# os
 .DS_Store
->>>>>>> 596ff180c8d6ad1b379aaf238e0a1b84e0266aea
