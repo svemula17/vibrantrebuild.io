@@ -58,12 +58,19 @@ function ChevronRight() {
 
 export function HeroSlider() {
   const [current, setCurrent] = useState(0);
-  const [paused, setPaused]   = useState(false);
+  /* One boolean per pause cause; auto-advance runs only when all are clear.
+     userPaused is PERMANENT after any manual interaction (WCAG 2.2.2) —
+     only the play button clears it. */
+  const [userPaused, setUserPaused]     = useState(false);
+  const [hoverPaused, setHoverPaused]   = useState(false);
+  const [focusPaused, setFocusPaused]   = useState(false);
+  const [hiddenPaused, setHiddenPaused] = useState(false);
   const [progress, setProgress] = useState(0);
   const timerRef  = useRef<ReturnType<typeof setTimeout> | null>(null);
   const rafRef    = useRef<number | null>(null);
   const startRef  = useRef<number>(0);
   const reduceMotion = useReducedMotion();
+  const isPaused = userPaused || hoverPaused || focusPaused || hiddenPaused || !!reduceMotion;
 
   // Featured services, in explicit carouselOrder — ERP leads, AI is an accelerator not the identity
   const featuredServices = serviceCards
@@ -76,6 +83,7 @@ export function HeroSlider() {
     setCurrent((idx + total) % total);
     setProgress(0);
     startRef.current = performance.now();
+    setUserPaused(true); // manual interaction stops auto-rotation for good
   }, [total]);
 
   const next = useCallback(() => goTo(current + 1), [current, goTo]);
@@ -83,7 +91,7 @@ export function HeroSlider() {
 
   /* Animated progress bar */
   useEffect(() => {
-    if (paused) { if (rafRef.current) cancelAnimationFrame(rafRef.current); return; }
+    if (isPaused) { if (rafRef.current) cancelAnimationFrame(rafRef.current); return; }
     const tick = (now: number) => {
       const elapsed = now - startRef.current;
       setProgress(Math.min(elapsed / INTERVAL, 1));
@@ -92,23 +100,23 @@ export function HeroSlider() {
     startRef.current = performance.now();
     rafRef.current = requestAnimationFrame(tick);
     return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
-  }, [current, paused]);
+  }, [current, isPaused]);
 
   /* Auto-advance */
   useEffect(() => {
-    if (paused || reduceMotion) return;
+    if (isPaused) return;
     timerRef.current = setTimeout(() => {
       setCurrent((c) => (c + 1) % total);
       setProgress(0);
       startRef.current = performance.now();
     }, INTERVAL);
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
-  }, [current, paused, total, reduceMotion]);
+  }, [current, isPaused, total]);
 
   /* Pause while the tab is hidden — otherwise the timer keeps advancing while
      animation frames are throttled and the slide content desyncs from the counter */
   useEffect(() => {
-    const onVisibility = () => setPaused(document.hidden);
+    const onVisibility = () => setHiddenPaused(document.hidden);
     document.addEventListener("visibilitychange", onVisibility);
     return () => document.removeEventListener("visibilitychange", onVisibility);
   }, []);
@@ -118,11 +126,15 @@ export function HeroSlider() {
 
   return (
     <section
-      className="relative isolate overflow-hidden text-white bg-navy-900"
-      style={{ minHeight: "min(100vh, 720px)" }}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      className="relative isolate overflow-hidden text-white bg-neutral-900 hero-min-h"
+      onMouseEnter={() => setHoverPaused(true)}
+      onMouseLeave={() => setHoverPaused(false)}
+      onFocus={() => setFocusPaused(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) setFocusPaused(false);
+      }}
       aria-label="Services slideshow"
+      aria-roledescription="carousel"
     >
 
       {/* ── PHOTO — full brightness, cross-fades per slide ───────────────── */}
@@ -137,7 +149,7 @@ export function HeroSlider() {
         >
           <Image
             src={slideImg}
-            alt={service.kicker}
+            alt=""
             fill
             priority={current === 0}
             sizes="100vw"
@@ -173,6 +185,7 @@ export function HeroSlider() {
       <div
         className="container relative flex flex-col justify-center pt-20 pb-24 md:pt-24 md:pb-24"
         style={{ minHeight: "inherit" }}
+        aria-live={isPaused ? "polite" : "off"}
       >
         {/* One alignment spine: every element shares this flush-left edge */}
         <div className="max-w-xl lg:max-w-3xl">
@@ -207,11 +220,11 @@ export function HeroSlider() {
             transition={{ duration: 0.4, delay: 0.08 }}
             className="mt-5"
           >
-            <p className="text-base md:text-lg text-white/85 leading-relaxed max-w-2xl">
+            <p className="text-base md:text-lg text-white/85 leading-relaxed max-w-2xl line-clamp-4 sm:line-clamp-none">
               {service.heroTeaser ?? service.summary}
             </p>
             {service.heroHighlights && service.heroHighlights.length > 0 && (
-              <div className="mt-6 flex flex-wrap gap-2.5">
+              <div className="mt-6 hidden sm:flex flex-wrap gap-2.5">
                 {service.heroHighlights.map((h) => (
                   <span
                     key={h}
@@ -254,21 +267,26 @@ export function HeroSlider() {
 
         <div className="container flex items-center justify-between py-4">
 
-          {/* Dot / label tabs */}
-          <div className="flex items-center gap-2" role="tablist" aria-label="Slide indicators">
+          {/* Slide dots — 44px hit areas around small visual dots */}
+          <div className="flex items-center" role="group" aria-label="Choose slide">
             {carouselServices.map((s, i) => (
               <button
                 key={s.slug}
-                role="tab"
-                aria-selected={i === current}
-                aria-label={`Show ${s.kicker}`}
+                type="button"
+                aria-label={`Go to slide ${i + 1} of ${total}: ${s.kicker}`}
+                aria-current={i === current ? "true" : undefined}
                 onClick={() => goTo(i)}
-                className={`rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky ${
-                  i === current
-                    ? "h-2 w-8 bg-sky"
-                    : "h-1.5 w-3 bg-white/30 hover:bg-white/55"
-                }`}
-              />
+                className="flex h-11 min-w-[28px] items-center justify-center px-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-full"
+              >
+                <span
+                  aria-hidden="true"
+                  className={`rounded-full transition-all duration-300 ${
+                    i === current
+                      ? "h-2 w-8 bg-sky"
+                      : "h-1.5 w-3 bg-white/30 hover:bg-white/55"
+                  }`}
+                />
+              </button>
             ))}
           </div>
 
@@ -283,19 +301,46 @@ export function HeroSlider() {
             {service.kicker}
           </motion.span>
 
-          {/* Prev / Next arrows */}
+          {/* Pause/Play + Prev/Next */}
           <div className="flex items-center gap-2">
             <button
+              type="button"
+              onClick={() => {
+                if (userPaused) {
+                  setUserPaused(false);
+                  setProgress(0);
+                  startRef.current = performance.now();
+                } else {
+                  setUserPaused(true);
+                }
+              }}
+              aria-label={userPaused ? "Play slideshow" : "Pause slideshow"}
+              aria-pressed={userPaused}
+              className="grid h-11 w-11 place-items-center rounded-full border border-white/20 bg-black/20 backdrop-blur-sm text-white/70 hover:bg-white/20 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
+            >
+              {userPaused ? (
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true">
+                  <path d="M6 5h4v14H6zM14 5h4v14h-4z" />
+                </svg>
+              )}
+            </button>
+            <button
+              type="button"
               onClick={prev}
               aria-label="Previous slide"
-              className="grid h-9 w-9 place-items-center rounded-full border border-white/20 bg-black/20 backdrop-blur-sm text-white/70 hover:bg-white/20 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-sky"
+              className="grid h-11 w-11 place-items-center rounded-full border border-white/20 bg-black/20 backdrop-blur-sm text-white/70 hover:bg-white/20 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
             >
               <ChevronLeft />
             </button>
             <button
+              type="button"
               onClick={next}
               aria-label="Next slide"
-              className="grid h-9 w-9 place-items-center rounded-full border border-white/20 bg-black/20 backdrop-blur-sm text-white/70 hover:bg-white/20 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-sky"
+              className="grid h-11 w-11 place-items-center rounded-full border border-white/20 bg-black/20 backdrop-blur-sm text-white/70 hover:bg-white/20 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
             >
               <ChevronRight />
             </button>

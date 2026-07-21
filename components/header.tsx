@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { navigationItems, siteSettings } from "@/content/site-content";
 import logoSrc from "@/vibrant-logo-full.png";
@@ -11,6 +11,8 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const panelRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -28,6 +30,34 @@ export function Header() {
     return () => {
       document.body.style.overflow = "";
     };
+  }, [open]);
+
+  /* Mobile menu: focus in on open, trap Tab, Escape closes + restores focus */
+  useEffect(() => {
+    if (!open) return;
+    const panel = panelRef.current;
+    panel?.querySelector<HTMLElement>("a, button")?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        toggleRef.current?.focus();
+        return;
+      }
+      if (e.key !== "Tab" || !panel) return;
+      const items = panel.querySelectorAll<HTMLElement>("a, button");
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
   }, [open]);
 
   return (
@@ -58,7 +88,7 @@ export function Header() {
           </div>
         </div>
       )}
-      <div className="container flex h-24 items-center justify-between gap-6">
+      <div className="container flex h-16 md:h-20 lg:h-24 items-center justify-between gap-6">
         <Link href="/" aria-label={`${siteSettings.brandName} home`}>
           <Image
             src={logoSrc}
@@ -66,13 +96,13 @@ export function Header() {
             width={1116}
             height={944}
             priority
-            className="h-16 md:h-20 w-auto object-contain"
+            className="h-10 md:h-14 lg:h-16 w-auto object-contain"
           />
         </Link>
 
         {/* Desktop nav — Resources is pulled out of the list and rendered as the
             right-side utility button instead */}
-        <nav className="hidden xl:flex items-center gap-0.5" aria-label="Primary">
+        <nav className="hidden lg:flex items-center gap-0.5" aria-label="Primary">
           {navigationItems.filter((item) => item.href !== "/resources").map((item) => {
             const active =
               item.href === "/" ? pathname === "/" : pathname === item.href || pathname.startsWith(item.href + "/");
@@ -80,7 +110,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative px-2.5 py-2 text-[13px] font-medium rounded-full whitespace-nowrap transition-colors ${
+                className={`relative px-2 xl:px-2.5 py-2 text-[13px] font-medium rounded-full whitespace-nowrap transition-colors ${
                   active ? "text-navy-700" : "text-ink/70 hover:text-navy-700"
                 }`}
               >
@@ -93,7 +123,7 @@ export function Header() {
           })}
         </nav>
 
-        <div className="hidden xl:flex items-center shrink-0">
+        <div className="hidden lg:flex items-center shrink-0">
           <Link
             href="/resources"
             className={`btn text-sm px-5 py-2.5 border transition-colors ${
@@ -108,8 +138,9 @@ export function Header() {
 
         <button
           type="button"
+          ref={toggleRef}
           onClick={() => setOpen((o) => !o)}
-          className="xl:hidden inline-flex h-11 w-11 items-center justify-center rounded-lg border border-line text-navy-700"
+          className="lg:hidden inline-flex h-11 w-11 items-center justify-center rounded-lg border border-line text-navy-700"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label="Toggle navigation menu"
@@ -138,15 +169,16 @@ export function Header() {
       {/* Mobile menu — CSS grid-rows transition; kept mounted, inert when closed */}
       <div
         id="mobile-menu"
+        ref={panelRef}
         // @ts-expect-error — inert is a valid HTML attribute; React types lag
         inert={open ? undefined : ""}
         aria-hidden={!open}
-        className={`xl:hidden grid transition-[grid-template-rows,opacity] duration-200 ease-brand ${
+        className={`lg:hidden grid transition-[grid-template-rows,opacity] duration-200 ease-brand ${
           open ? "grid-rows-[1fr] opacity-100 border-t border-line bg-white" : "grid-rows-[0fr] opacity-0"
         }`}
       >
         <div className="overflow-hidden">
-          <nav className="container flex flex-col py-4" aria-label="Mobile">
+          <nav className="container flex flex-col py-4 max-h-[calc(100dvh-4rem)] overflow-y-auto" aria-label="Mobile">
             {navigationItems.map((item) => (
               <Link
                 key={item.href}

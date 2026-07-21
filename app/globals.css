@@ -111,6 +111,12 @@
   /* ─── icon tile ──────────────────────────────────────────────────────── */
   .icon-tile { @apply grid place-items-center h-9 w-9 rounded-lg bg-brand-600/10 text-brand-700 shrink-0; }
   .icon-tile svg { @apply h-4 w-4; }
+
+  /* ─── hero height — svh avoids the mobile URL-bar jump ───────────────── */
+  .hero-min-h { min-height: min(100vh, 720px); }
+  @supports (height: 100svh) {
+    .hero-min-h { min-height: min(100svh, 720px); }
+  }
 }
 
 /* ─── Client-logo marquee ────────────────────────────────────────────────── */
