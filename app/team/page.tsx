@@ -19,6 +19,51 @@ const leaderPhotos: Record<string, StaticImageData> = {
 const AI_ICON =
   "M12 2a4 4 0 0 1 4 4v1a4 4 0 0 1 0 8v1a4 4 0 1 1-8 0v-1a4 4 0 0 1 0-8V6a4 4 0 0 1 4-4zM9 10h.01M15 10h.01M9 14h.01M15 14h.01";
 
+/* Expertise chips deep-link to the service where that work happens */
+const EXPERTISE_LINKS: Record<string, string> = {
+  "Cloud Transformation (AWS)": "cloud-modernization",
+  "Azure Architecture": "cloud-modernization",
+  "Cloud Transformation": "cloud-modernization",
+  "DevOps & Automation": "automation",
+  "DevOps": "automation",
+  "DevOps Governance": "automation",
+  "App Modernization": "cloud-modernization",
+  "Application Modernization": "cloud-modernization",
+  "AI": "ai-readiness",
+  "AI-Driven Innovation": "ai-readiness",
+  "SAP Integration": "sap-integration",
+  "GRC & Compliance": "cybersecurity",
+  "Oracle EBS · PeopleSoft · JD Edwards": "erp-optimization",
+  "Enterprise Applications": "erp-optimization",
+  "S/4HANA": "sap-s4hana-implementation",
+  "SAP ECC": "sap-s4hana-implementation",
+  "SAP BTP": "sap-btp",
+  "SAP Architecture": "sap-solutions",
+  "Zero Trust": "cybersecurity",
+  "Cloud Security": "cybersecurity",
+  "Security Architecture": "cybersecurity",
+  "Governance & Compliance": "cybersecurity",
+  "Risk Management": "cybersecurity",
+  "Generative AI": "ai-readiness",
+  "Agentic AI": "ai-readiness",
+  "Machine Learning": "ai-readiness",
+  "Intelligent Automation": "automation",
+  "AI Integration": "ai-readiness"
+};
+
+function ExpertiseChip({ label, className }: { label: string; className: string }) {
+  const slug = EXPERTISE_LINKS[label];
+  if (!slug) return <span className={className}>{label}</span>;
+  return (
+    <Link
+      href={`/services/${slug}`}
+      className={`${className} transition-colors hover:border-brand-600/50 hover:text-brand-700`}
+    >
+      {label}
+    </Link>
+  );
+}
+
 function Avatar({ leader, size = "lg" }: { leader: Leader; size?: "lg" | "xl" }) {
   const photo = leaderPhotos[leader.id];
   // Photo variant renders smaller than the initials tile — the source headshot is
@@ -101,12 +146,11 @@ export default function TeamPage() {
                   </span>
                 ))}
                 {founder.expertise.map((e) => (
-                  <span
+                  <ExpertiseChip
                     key={e}
+                    label={e}
                     className="inline-flex items-center rounded-full border border-line bg-navy-50/60 px-3 py-1 text-xs font-medium text-navy-700"
-                  >
-                    {e}
-                  </span>
+                  />
                 ))}
               </div>
 
@@ -159,12 +203,11 @@ export default function TeamPage() {
 
                 <div className="mt-5 flex flex-wrap gap-2">
                   {leader.expertise.map((e) => (
-                    <span
+                    <ExpertiseChip
                       key={e}
+                      label={e}
                       className="inline-flex items-center rounded-full border border-line bg-white px-3 py-1 text-xs font-medium text-navy-700"
-                    >
-                      {e}
-                    </span>
+                    />
                   ))}
                 </div>
 

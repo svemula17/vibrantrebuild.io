@@ -2,7 +2,16 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/page-hero";
-import { getServiceBySlug, serviceCards, serviceInterestMap, siteSettings } from "@/content/site-content";
+import {
+  getCaseStudyForService,
+  getRelatedResourcesForService,
+  getRelatedServices,
+  getServiceBySlug,
+  serviceCards,
+  serviceInterestMap,
+  siteSettings
+} from "@/content/site-content";
+import { CaseStudyCard } from "@/components/case-study-card";
 
 type Params = { slug: string };
 
@@ -26,6 +35,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
   if (!service) notFound();
 
   const others = serviceCards.filter((s) => s.slug !== service.slug).slice(0, 3);
+  const relatedResources = getRelatedResourcesForService(service.slug);
+  const relatedServices = getRelatedServices(service.slug);
+  const proof = getCaseStudyForService(service.slug);
 
   return (
     <>
@@ -80,10 +92,44 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
 
             <h3 className="mt-12 text-xl">Best fit</h3>
             <p className="mt-3 text-muted">{service.bestFit}</p>
+
+            {proof && (
+              <>
+                <h3 className="mt-12 text-xl">Proof: client outcome</h3>
+                <div className="mt-5 max-w-md">
+                  <CaseStudyCard cs={proof} />
+                </div>
+              </>
+            )}
+
+            {relatedResources.length > 0 && (
+              <>
+                <h3 className="mt-12 text-xl">Steal our playbooks</h3>
+                <p className="mt-2 text-sm text-muted">
+                  The guides and checklists our architects use on real engagements — free,
+                  ungated, and specific to this kind of work.
+                </p>
+                <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                  {relatedResources.map((r) => (
+                    <Link
+                      key={r.href}
+                      href={r.href}
+                      className="group rounded-2xl border border-line bg-white p-5 shadow-card hover:-translate-y-0.5 hover:shadow-cardHover hover:border-sky/40 transition-all"
+                    >
+                      <span className="chip-accent text-[11px]">{r.category}</span>
+                      <p className="mt-3 text-sm font-semibold text-navy-700 leading-snug">{r.title}</p>
+                      <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-brand-700 group-hover:gap-2.5 transition-all">
+                        {r.readTime ? `Read the guide · ${r.readTime}` : "Open"} →
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
 
           <aside>
-            <div className="sticky top-28 card p-7">
+            <div className="lg:sticky lg:top-28 card p-7">
               <p className="eyebrow">Talk to an expert</p>
               <h3 className="mt-2 text-lg">{`Talk to a ${service.kicker} expert.`}</h3>
               <p className="mt-2 text-sm text-muted">
@@ -101,15 +147,13 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
               <hr className="my-6 border-line" />
               <p className="eyebrow">Related capabilities</p>
               <ul className="mt-3 space-y-2 text-sm">
-                {serviceCards
-                  .filter((s) => s.slug !== service.slug)
-                  .map((s) => (
-                    <li key={s.slug}>
-                      <Link href={`/services/${s.slug}`} className="text-navy-700 font-medium hover:text-brand-700">
-                        {s.title}
-                      </Link>
-                    </li>
-                  ))}
+                {relatedServices.map((s) => (
+                  <li key={s.slug}>
+                    <Link href={`/services/${s.slug}`} className="text-navy-700 font-medium hover:text-brand-700">
+                      {s.title}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </aside>
@@ -134,7 +178,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
                     <path d={o.iconPath} />
                   </svg>
                 </span>
-                <h4 className="mt-4 text-base font-semibold text-navy-700">{o.title}</h4>
+                <h3 className="mt-4 text-base font-semibold text-navy-700">{o.title}</h3>
                 <p className="mt-2 text-sm text-muted leading-relaxed">{o.summary}</p>
                 <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 group-hover:gap-2.5 transition-all">
                   Learn more →

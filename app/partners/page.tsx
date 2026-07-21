@@ -46,6 +46,7 @@ export default function PartnersPage() {
       {/* ── Partner cards ── */}
       <section className="section">
         <div className="container">
+          <h2 className="sr-only">Our technology partners</h2>
           <div className="grid gap-8 lg:grid-cols-3">
             {partners.map((p) => {
               const logoImage = partnerLogoImages[p.name];

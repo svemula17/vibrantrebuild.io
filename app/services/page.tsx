@@ -23,6 +23,7 @@ export default function ServicesPage() {
 
       <section className="section">
         <div className="container">
+          <h2 className="sr-only">All services</h2>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {gridServices.map((service) => (
               <Link

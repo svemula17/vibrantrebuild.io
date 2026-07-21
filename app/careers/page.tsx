@@ -96,7 +96,7 @@ export default function CareersPage() {
                 className="group flex flex-col rounded-2xl border border-line bg-white p-6 shadow-card hover:-translate-y-1 hover:shadow-cardHover hover:border-sky/40 transition-all"
               >
                 <p className="eyebrow text-[0.7rem]">{o.category}</p>
-                <h4 className="mt-2 text-lg font-semibold text-navy-700">{o.title}</h4>
+                <h3 className="mt-2 text-lg font-semibold text-navy-700">{o.title}</h3>
                 <p className="mt-3 text-sm text-muted leading-relaxed flex-1">{o.summary}</p>
                 <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 group-hover:gap-2.5 transition-all">
                   Apply →

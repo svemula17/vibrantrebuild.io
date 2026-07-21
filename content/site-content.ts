@@ -1528,11 +1528,13 @@ export type Insight = {
   tag: string;
   summary: string;
   body: string[];
+  relatedServices: string[]; // service slugs — "Put this into practice" links
 };
 
 export const insights: Insight[] = [
   {
     slug: "five-signs-your-erp-is-costing-too-much",
+    relatedServices: ["erp-optimization", "sap-ams", "managed-it"],
     title: "Five Signs Your ERP Is Costing More Than It Should",
     date: "July 2026",
     tag: "ERP",
@@ -1547,6 +1549,7 @@ export const insights: Insight[] = [
   },
   {
     slug: "genai-start-with-the-workflow",
+    relatedServices: ["ai-readiness", "automation"],
     title: "GenAI in the Enterprise: Start with the Workflow, Not the Model",
     date: "June 2026",
     tag: "AI",
@@ -1561,6 +1564,7 @@ export const insights: Insight[] = [
   },
   {
     slug: "zero-trust-is-a-roadmap",
+    relatedServices: ["cybersecurity", "ai-shield"],
     title: "Zero Trust Is a Roadmap, Not a Product",
     date: "May 2026",
     tag: "Security",
@@ -1575,6 +1579,7 @@ export const insights: Insight[] = [
   },
   {
     slug: "clean-core-discipline",
+    relatedServices: ["sap-clean-core", "sap-s4hana-implementation"],
     title: "Clean Core: The Discipline That Makes S/4HANA Upgrades Cheap",
     date: "April 2026",
     tag: "SAP",
@@ -1595,6 +1600,207 @@ export function getResourceGuideBySlug(slug: string) {
 
 export function getInsightBySlug(slug: string) {
   return insights.find((insight) => insight.slug === slug);
+}
+
+/* ── Internal-linking maps ─────────────────────────────────────────────── */
+
+export type RelatedResourceRef = { slug: string; type: "guide" | "insight" | "tool" };
+
+/* Which guides/articles/tools each service page should surface. The "tool"
+   type resolves to the S/4HANA cost calculator. */
+export const serviceRelatedResources: Record<string, RelatedResourceRef[]> = {
+  "erp-optimization": [
+    { slug: "erp-modernization-roadmap", type: "guide" },
+    { slug: "five-signs-your-erp-is-costing-too-much", type: "insight" }
+  ],
+  "jd-edwards-cnc": [
+    { slug: "erp-modernization-roadmap", type: "guide" },
+    { slug: "five-signs-your-erp-is-costing-too-much", type: "insight" }
+  ],
+  "peoplesoft-implementation": [
+    { slug: "erp-modernization-roadmap", type: "guide" },
+    { slug: "five-signs-your-erp-is-costing-too-much", type: "insight" }
+  ],
+  "sap-solutions": [
+    { slug: "sap-s4hana-migration-guide", type: "guide" },
+    { slug: "sap-cost-calculator", type: "tool" }
+  ],
+  "sap-s4hana-implementation": [
+    { slug: "sap-s4hana-migration-guide", type: "guide" },
+    { slug: "sap-cost-calculator", type: "tool" }
+  ],
+  "sap-ams": [
+    { slug: "sap-s4hana-migration-guide", type: "guide" },
+    { slug: "five-signs-your-erp-is-costing-too-much", type: "insight" }
+  ],
+  "sap-supply-chain": [
+    { slug: "sap-s4hana-migration-guide", type: "guide" },
+    { slug: "sap-cost-calculator", type: "tool" }
+  ],
+  "sap-btp": [
+    { slug: "clean-core-discipline", type: "insight" },
+    { slug: "sap-cost-calculator", type: "tool" }
+  ],
+  "sap-integration": [
+    { slug: "clean-core-discipline", type: "insight" },
+    { slug: "sap-s4hana-migration-guide", type: "guide" }
+  ],
+  "sap-fiori-ux": [
+    { slug: "sap-s4hana-migration-guide", type: "guide" }
+  ],
+  "sap-clean-core": [
+    { slug: "clean-core-discipline", type: "insight" },
+    { slug: "sap-s4hana-migration-guide", type: "guide" }
+  ],
+  "sap-abap": [
+    { slug: "clean-core-discipline", type: "insight" }
+  ],
+  "cybersecurity": [
+    { slug: "zero-trust-is-a-roadmap", type: "insight" },
+    { slug: "vibrant-method-white-paper", type: "guide" }
+  ],
+  "ai-shield": [
+    { slug: "zero-trust-is-a-roadmap", type: "insight" }
+  ],
+  "cloud-modernization": [
+    { slug: "cloud-migration-checklist", type: "guide" }
+  ],
+  "ai-readiness": [
+    { slug: "ai-readiness-checklist", type: "guide" },
+    { slug: "genai-start-with-the-workflow", type: "insight" }
+  ],
+  "automation": [
+    { slug: "genai-start-with-the-workflow", type: "insight" }
+  ],
+  "data-analytics": [
+    { slug: "ai-readiness-checklist", type: "guide" }
+  ],
+  "managed-it": [
+    { slug: "five-signs-your-erp-is-costing-too-much", type: "insight" }
+  ]
+};
+
+export type ResolvedResource = {
+  href: string;
+  title: string;
+  category: string;
+  readTime?: string;
+};
+
+export function getRelatedResourcesForService(slug: string): ResolvedResource[] {
+  const refs = serviceRelatedResources[slug] ?? [];
+  return refs.flatMap((ref): ResolvedResource[] => {
+    if (ref.type === "tool") {
+      return [{
+        href: "/resources/sap-cost-calculator",
+        title: "SAP S/4HANA Cost Calculator",
+        category: "Interactive tool"
+      }];
+    }
+    if (ref.type === "guide") {
+      const g = getResourceGuideBySlug(ref.slug);
+      return g ? [{ href: `/resources/${g.slug}`, title: g.title, category: g.category, readTime: g.readTime }] : [];
+    }
+    const i = getInsightBySlug(ref.slug);
+    return i ? [{ href: `/resources/${i.slug}`, title: i.title, category: i.tag }] : [];
+  });
+}
+
+/* Curated same-family sidebar links per service — replaces the old
+   uncurated everything-but-this-page list. Unmapped slugs fall back to
+   same-category, then featured cards. */
+export const serviceRelatedServices: Record<string, string[]> = {
+  "erp-optimization": ["sap-s4hana-implementation", "jd-edwards-cnc", "peoplesoft-implementation", "sap-ams", "managed-it"],
+  "sap-solutions": ["sap-s4hana-implementation", "sap-ams", "sap-supply-chain", "sap-btp", "sap-clean-core"],
+  "sap-s4hana-implementation": ["sap-clean-core", "sap-ams", "sap-supply-chain", "sap-btp", "sap-integration"],
+  "sap-ams": ["sap-s4hana-implementation", "sap-clean-core", "sap-abap", "managed-it"],
+  "sap-supply-chain": ["sap-s4hana-implementation", "sap-ams", "sap-integration", "erp-optimization"],
+  "sap-btp": ["sap-integration", "sap-clean-core", "sap-fiori-ux", "sap-abap"],
+  "sap-integration": ["sap-btp", "sap-ams", "sap-abap", "data-analytics"],
+  "sap-fiori-ux": ["sap-btp", "sap-s4hana-implementation", "sap-abap"],
+  "sap-clean-core": ["sap-s4hana-implementation", "sap-btp", "sap-abap", "sap-ams"],
+  "sap-abap": ["sap-clean-core", "sap-btp", "sap-fiori-ux", "sap-integration"],
+  "jd-edwards-cnc": ["erp-optimization", "peoplesoft-implementation", "managed-it", "sap-ams"],
+  "peoplesoft-implementation": ["erp-optimization", "jd-edwards-cnc", "managed-it"],
+  "cybersecurity": ["ai-shield", "managed-it", "cloud-modernization", "data-analytics"],
+  "ai-shield": ["cybersecurity", "managed-it", "ai-readiness"],
+  "cloud-modernization": ["managed-it", "data-analytics", "cybersecurity", "automation"],
+  "ai-readiness": ["automation", "data-analytics", "ai-shield"],
+  "automation": ["ai-readiness", "data-analytics", "managed-it"],
+  "data-analytics": ["ai-readiness", "cloud-modernization", "automation"],
+  "managed-it": ["cloud-modernization", "cybersecurity", "sap-ams", "erp-optimization"]
+};
+
+export function getRelatedServices(slug: string, count = 5) {
+  const curated = serviceRelatedServices[slug];
+  if (curated) {
+    return curated
+      .map((s) => serviceCards.find((c) => c.slug === s))
+      .filter((c): c is NonNullable<typeof c> => Boolean(c))
+      .slice(0, count);
+  }
+  const self = getServiceBySlug(slug);
+  const sameCategory = serviceCards.filter(
+    (c) => c.slug !== slug && c.category && c.category === self?.category
+  );
+  const pool = sameCategory.length ? sameCategory : serviceCards.filter((c) => c.featured && c.slug !== slug);
+  return pool.slice(0, count);
+}
+
+/* ── Case studies — shared data, surfaced on home + matching service pages ── */
+
+export type CaseStudy = {
+  sector: string;
+  challenge: string;
+  result: string;
+  metric: string;
+  metricLabel: string;
+  service: string;
+  slug: string;          // primary service link
+  relatedSlugs: string[]; // every service page that should show this proof
+};
+
+export const caseStudies: CaseStudy[] = [
+  {
+    sector: "Global Manufacturer",
+    challenge:
+      "Aging SAP ECC blocking innovation, with 200+ heavily customized objects making upgrades risky",
+    result:
+      "SAP S/4HANA brownfield migration with custom-code cleanup — clean core achieved, go-live on time.",
+    metric: "40%",
+    metricLabel: "faster month-end close",
+    service: "SAP S/4HANA",
+    slug: "sap-s4hana-implementation",
+    relatedSlugs: ["sap-s4hana-implementation", "sap-clean-core", "erp-optimization", "sap-solutions", "sap-abap"]
+  },
+  {
+    sector: "Retail Distributor",
+    challenge:
+      "Warehouse operations relying on manual processes — picking errors and inventory inaccuracy growing",
+    result:
+      "SAP EWM rollout across 8 distribution centers with mobile RF integration and automated cycle counting.",
+    metric: "$3M+",
+    metricLabel: "annual savings",
+    service: "Supply Chain Solutions",
+    slug: "sap-supply-chain",
+    relatedSlugs: ["sap-supply-chain", "sap-solutions", "sap-integration"]
+  },
+  {
+    sector: "Healthcare Network",
+    challenge:
+      "Fragmented on-prem data across 12 hospitals preventing unified executive reporting",
+    result:
+      "Unified data platform on Azure with automated pipelines — leadership now has one source of truth.",
+    metric: "60%",
+    metricLabel: "faster reporting",
+    service: "Cloud Modernization",
+    slug: "cloud-modernization",
+    relatedSlugs: ["cloud-modernization", "data-analytics", "managed-it"]
+  }
+];
+
+export function getCaseStudyForService(slug: string) {
+  return caseStudies.find((cs) => cs.relatedSlugs.includes(slug));
 }
 
 // ───── Legacy aliases for compatibility ─────

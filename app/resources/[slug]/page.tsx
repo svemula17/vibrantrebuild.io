@@ -157,6 +157,32 @@ export default async function ResourceDetailPage({
             </Link>
           </div>
 
+          {article.relatedServices.length > 0 && (
+            <div className="mt-14 max-w-3xl">
+              <p className="eyebrow">Where this gets done</p>
+              <h2 className="mt-2 text-xl">Put this into practice.</h2>
+              <p className="mt-2 text-sm text-muted">
+                These are the services where we do this exact work for clients — senior-led,
+                and scoped in a 30-minute call.
+              </p>
+              <ul className="mt-4 space-y-3">
+                {article.relatedServices
+                  .map((s) => getServiceBySlug(s))
+                  .filter((s): s is NonNullable<typeof s> => Boolean(s))
+                  .map((s) => (
+                    <li key={s.slug}>
+                      <Link
+                        href={`/services/${s.slug}`}
+                        className="text-navy-700 font-medium hover:text-brand-700 transition-colors"
+                      >
+                        {s.title} →
+                      </Link>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          )}
+
           {more.length > 0 && (
             <div className="mt-16 max-w-3xl">
               <p className="eyebrow">More insights</p>
