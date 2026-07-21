@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
 import { insights, resourceGuides } from "@/content/site-content";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Resources",
   description:
-    "White papers, migration guides, readiness checklists, an SAP S/4HANA cost calculator, and insights from 25+ years of ERP, cloud, and AI delivery."
-};
+    "White papers, migration guides, readiness checklists, an SAP S/4HANA cost calculator, and insights from 25+ years of ERP, cloud, and AI delivery.",
+  path: "/resources"
+});
 
 const CATEGORY_STYLES: Record<string, string> = {
   "White Paper": "bg-navy-700 text-white",

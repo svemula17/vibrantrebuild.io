@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { PageHero } from "@/components/page-hero";
 import {
   careersBenefits,
@@ -8,11 +9,12 @@ import {
   siteSettings
 } from "@/content/site-content";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Careers",
   description:
-    "Vibrant is an exciting company to work with and build a career. We hire experienced practitioners and trust them to lead."
-};
+    "Vibrant is an exciting company to work with and build a career. We hire experienced practitioners and trust them to lead.",
+  path: "/careers"
+});
 
 export default function CareersPage() {
   return (

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Image, { type StaticImageData } from "next/image";
 import { CallbackForm } from "@/components/callback-form";
 import { PageHero } from "@/components/page-hero";
@@ -12,11 +13,12 @@ const officePhotos: Record<string, StaticImageData> = {
   india: indiaOfficePhoto
 };
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Contact",
   description:
-    "Reach Vibrant Inc in Princeton, NJ or Hyderabad, India — get a call back from a senior advisor within one business day."
-};
+    "Reach Vibrant Inc in Princeton, NJ or Hyderabad, India — get a call back from a senior advisor within one business day.",
+  path: "/contact"
+});
 
 export default function ContactPage() {
   return (

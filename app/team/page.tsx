@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import Image, { type StaticImageData } from "next/image";
 import { PageHero } from "@/components/page-hero";
 import { leadership, type Leader } from "@/content/site-content";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Leadership",
   description:
-    "Meet the Vibrant Inc leadership team — founder-led delivery backed by principal architects across ERP, cloud, SAP, cybersecurity, and AI."
-};
+    "Meet the Vibrant Inc leadership team — founder-led delivery backed by principal architects across ERP, cloud, SAP, cybersecurity, and AI.",
+  path: "/team"
+});
 
 import sureshPhoto from "@/assets/team/suresh-reddy.jpg";
 

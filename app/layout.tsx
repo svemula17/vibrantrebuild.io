@@ -21,7 +21,6 @@ export const metadata: Metadata = {
     template: `%s | ${siteSettings.brandName}`
   },
   description: siteSettings.defaultDescription,
-  alternates: { canonical: "/" },
   openGraph: {
     title: siteSettings.defaultTitle,
     description: siteSettings.defaultDescription,
@@ -31,10 +30,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/vibrant-logo-full.png",
-        width: 1116,
-        height: 944,
-        alt: "Vibrant Inc — Enterprise Technology Consulting"
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Vibrant Inc — Optimizing your efficiency. Strengthening your bottom line."
       }
     ]
   },
@@ -42,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteSettings.defaultTitle,
     description: siteSettings.defaultDescription,
-    images: ["/vibrant-logo-full.png"]
+    images: ["/og-image.png"]
   }
 };
 

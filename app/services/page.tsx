@@ -1,14 +1,16 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { PageHero } from "@/components/page-hero";
 import { serviceCards, servicesProcess } from "@/content/site-content";
 import { VibrantMethod } from "@/components/vibrant-method";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Services",
   description:
-    "Seven capability pillars. Eighteen specialized services. From ERP and cloud modernization to cybersecurity, data, automation, and AI — the full enterprise technology stack under one partner."
-};
+    "Seven capability pillars. Eighteen specialized services. From ERP and cloud modernization to cybersecurity, data, automation, and AI — the full enterprise technology stack under one partner.",
+  path: "/services"
+});
 
 export default function ServicesPage() {
   const gridServices = serviceCards.filter(s => !s.hideFromGrid);

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Image, { type StaticImageData } from "next/image";
 import { PageHero } from "@/components/page-hero";
 import { partnerBenefits, partners, siteSettings } from "@/content/site-content";
@@ -7,11 +8,12 @@ import oracleLogo    from "@/assets/partners/oracle.svg";
 import wrikeLogo     from "@/assets/partners/wrike.svg";
 import microsoftLogo from "@/assets/partners/microsoft.svg";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Partners",
   description:
-    "Vibrant Inc maintains certified partnerships with Oracle, Wrike, and Microsoft — giving clients right-sized licensing, vendor-validated architecture, and fast support escalation."
-};
+    "Vibrant Inc maintains certified partnerships with Oracle, Wrike, and Microsoft — giving clients right-sized licensing, vendor-validated architecture, and fast support escalation.",
+  path: "/partners"
+});
 
 const partnerAccent: Record<string, string> = {
   "Oracle":    "bg-orange-50 text-orange-700 border-orange-200",

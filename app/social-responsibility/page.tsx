@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Image from "next/image";
 import { PageHero } from "@/components/page-hero";
 import { siteSettings, socialResponsibilityCommitments } from "@/content/site-content";
 import nmsdcCert from "@/assets/badges/nmsdc-cert.jpg";
 import nmsdcBadge from "@/assets/badges/nmsdc-badge.png";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Social Responsibility",
   description:
-    "Quiet, consistent impact. Vibrant's commitments to community, employees, ethics, diversity, and the environment."
-};
+    "Quiet, consistent impact. Vibrant's commitments to community, employees, ethics, diversity, and the environment.",
+  path: "/social-responsibility"
+});
 
 export default function SocialResponsibilityPage() {
   return (

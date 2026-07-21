@@ -12,6 +12,7 @@ import {
   siteSettings
 } from "@/content/site-content";
 import { CaseStudyCard } from "@/components/case-study-card";
+import { pageMeta } from "@/lib/seo";
 
 type Params = { slug: string };
 
@@ -23,10 +24,11 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return { title: "Service not found" };
-  return {
+  return pageMeta({
     title: service.title,
-    description: service.summary
-  };
+    description: service.metaDescription ?? service.summary,
+    path: `/services/${slug}`
+  });
 }
 
 export default async function ServiceDetailPage({ params }: { params: Promise<Params> }) {

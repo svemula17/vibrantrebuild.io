@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { PageHero } from "@/components/page-hero";
 import {
   aboutFacts,
@@ -13,11 +14,12 @@ import {
 import { VibrantMethod } from "@/components/vibrant-method";
 import anniversary from "@/assets/anniversary.png";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "About",
   description:
-    "Vibrant Inc, established in 2000, is a trusted provider of value-added IT solutions helping businesses navigate the digital landscape through cloud and data analytics."
-};
+    "Vibrant Inc, established in 2000, is a trusted provider of value-added IT solutions helping businesses navigate the digital landscape through cloud and data analytics.",
+  path: "/about"
+});
 
 export default function AboutPage() {
   return (

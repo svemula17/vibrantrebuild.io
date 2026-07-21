@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/page-hero";
@@ -23,9 +24,21 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const guide = getResourceGuideBySlug(slug);
-  if (guide) return { title: guide.title, description: guide.description };
+  if (guide) {
+    return pageMeta({
+      title: guide.seoTitle ?? guide.title,
+      description: guide.description,
+      path: `/resources/${slug}`
+    });
+  }
   const post = getInsightBySlug(slug);
-  if (post) return { title: post.title, description: post.summary };
+  if (post) {
+    return pageMeta({
+      title: post.seoTitle ?? post.title,
+      description: post.summary,
+      path: `/resources/${slug}`
+    });
+  }
   return {};
 }
 

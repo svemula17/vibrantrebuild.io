@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { HeroSlider }   from "@/components/home/hero-slider";
 import { ClientLogos }  from "@/components/home/client-logos";
 import { ServicesGrid } from "@/components/home/services-grid";
@@ -6,6 +7,10 @@ import { CaseStudies }  from "@/components/home/case-studies";
 import { StatsBand }    from "@/components/home/stats-band";
 import { ImpactStrip }  from "@/components/home/impact-strip";
 import { CtaCallback }  from "@/components/home/cta-callback";
+
+// Layout no longer sets a global canonical (it leaked onto every child page);
+// the homepage declares its own. Title/description/OG inherit from layout.
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export default function HomePage() {
   return (

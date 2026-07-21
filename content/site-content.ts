@@ -5,6 +5,8 @@ export type ServiceCard = {
   kicker: string;
   title: string;
   summary: string;
+  /** SERP copy (≤160 chars, sentence form) — falls back to summary */
+  metaDescription?: string;
   longDescription: string;
   iconPath: string;
   metaTags: string[];
@@ -1264,6 +1266,8 @@ export type ResourceGuide = {
   slug: string;
   category: "White Paper" | "Guide" | "Checklist" | "Roadmap";
   title: string;
+  /** Shorter <title>/OG title (≤55 chars) — falls back to title */
+  seoTitle?: string;
   description: string;
   readTime: string;
   relatedServices: string[]; // service slugs for the sidebar
@@ -1524,6 +1528,8 @@ export const resourceGuides: ResourceGuide[] = [
 export type Insight = {
   slug: string;
   title: string;
+  /** Shorter <title>/OG title (≤55 chars) — falls back to title */
+  seoTitle?: string;
   date: string;
   tag: string;
   summary: string;
