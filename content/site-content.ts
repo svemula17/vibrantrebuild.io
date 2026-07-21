@@ -140,7 +140,7 @@ export const leadership: Leader[] = [
   },
   {
     id: "dushanth",
-    name: "Dushanth",
+    name: "Dishanth",
     role: "Principal Cybersecurity Architect",
     initials: "D",
     bio: [
