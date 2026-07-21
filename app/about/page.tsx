@@ -17,7 +17,7 @@ import anniversary from "@/assets/anniversary.png";
 export const metadata: Metadata = pageMeta({
   title: "About",
   description:
-    "Vibrant Inc, established in 2000, is a trusted provider of value-added IT solutions helping businesses navigate the digital landscape through cloud and data analytics.",
+    "Founder-led since 2000, Vibrant Inc modernizes ERP, cloud, and data for companies across North America — senior practitioners who own the outcome.",
   path: "/about"
 });
 
@@ -26,8 +26,8 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About Vibrant"
-        title="Trusted, value-added IT solutions since 2000."
-        description="Vibrant Inc helps businesses navigate the digital landscape through cloud and data analytics — combining cloud, analytics, and implementation expertise to help clients achieve sustainable success."
+        title="Twenty-five years of doing what we said we'd do."
+        description="Vibrant Inc modernizes ERP, cloud, and data for companies that can't afford downtime. Founder-led since 2000, senior practitioners on every engagement, and a client list that keeps coming back."
         crumbs={[{ label: "Home", href: "/" }, { label: "About" }]}
       />
 

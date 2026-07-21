@@ -170,8 +170,7 @@ export function Header() {
       <div
         id="mobile-menu"
         ref={panelRef}
-        // @ts-expect-error — inert is a valid HTML attribute; React types lag
-        inert={open ? undefined : ""}
+        inert={!open}
         aria-hidden={!open}
         className={`lg:hidden grid transition-[grid-template-rows,opacity] duration-200 ease-brand ${
           open ? "grid-rows-[1fr] opacity-100 border-t border-line bg-white" : "grid-rows-[0fr] opacity-0"

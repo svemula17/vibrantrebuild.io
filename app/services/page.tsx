@@ -8,7 +8,7 @@ import { VibrantMethod } from "@/components/vibrant-method";
 export const metadata: Metadata = pageMeta({
   title: "Services",
   description:
-    "Seven capability pillars. Eighteen specialized services. From ERP and cloud modernization to cybersecurity, data, automation, and AI — the full enterprise technology stack under one partner.",
+    "ERP and SAP delivery, cloud modernization, cybersecurity, data, automation, AI readiness, and managed IT — the full stack under one senior-led partner.",
   path: "/services"
 });
 

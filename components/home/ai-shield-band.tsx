@@ -16,7 +16,7 @@ const features = [
   },
   {
     title: "Automated response",
-    body: "Pre-approved playbooks contain threats the moment they're confirmed — 24×7, no waiting on a human.",
+    body: "Pre-approved playbooks contain threats the moment they're confirmed — day or night, no waiting on a human.",
     icon: "M13 2L3 14h9l-1 8 10-12h-9l1-8z"
   },
   {

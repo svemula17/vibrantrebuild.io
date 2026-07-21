@@ -31,7 +31,7 @@ export const siteSettings = {
   // statement lives in the homepage H1 (hero-slider).
   defaultTitle: "Vibrant Inc — ERP, Cloud & AI Modernization Without Disruption",
   defaultDescription:
-    "Vibrant Inc helps mid-market and enterprise companies modernize ERP (SAP, JD Edwards, PeopleSoft, Oracle EBS, WorkDay, Dynamics 365), cloud, cybersecurity & compliance, data, and AI — without disrupting operations. 25+ years of trusted delivery since 2000.",
+    "Vibrant Inc modernizes ERP, cloud, security, data, and AI for mid-market and enterprise companies — without disrupting operations. Trusted delivery since 2000.",
   careersUrl: "/careers",
   phonePrimary: "609-945-2244",
   phoneSecondary: "609-945-0442",
@@ -104,12 +104,12 @@ export const leadership: Leader[] = [
     initials: "SR",
     credentials: ["ITIL Foundation Certified"],
     bio: [
-      "With more than 25 years of experience leading enterprise technology transformation initiatives, Suresh Reddy is the Founder and President of Vibrant Inc., where he helps organizations modernize their technology landscape through cloud transformation, enterprise applications, DevOps, and AI-driven innovation.",
+      "With more than 25 years of experience leading enterprise technology transformation initiatives, Suresh Reddy is the Founder and President of Vibrant Inc, where he helps organizations modernize their technology landscape through cloud transformation, enterprise applications, DevOps, and AI-driven innovation.",
       "Throughout his career, Suresh has successfully led complex IT initiatives across the entire systems lifecycle — from strategy and architecture to implementation, operations, and continuous improvement. He has extensive experience partnering with Fortune 500 organizations to deliver scalable, secure, and resilient technology solutions that align with business objectives.",
       "A recognized leader in cloud and DevOps transformation, Suresh has built and led high-performing engineering teams responsible for migrating enterprise workloads from traditional data centers to Amazon Web Services (AWS) and implementing modern cloud operating models. He has established enterprise DevOps governance frameworks, standardized delivery practices, and automated deployment pipelines using industry-leading technologies including GitLab, Jenkins, Ansible, Artifactory, Jira, Confluence, Jira Service Management, and ServiceNow.",
       "His expertise extends to designing enterprise-wide governance, operational standards, security, compliance, and infrastructure automation for large-scale, mission-critical environments. He has successfully led multidisciplinary teams supporting complex hybrid infrastructures while driving operational excellence, reliability, and continuous delivery.",
       "Suresh also brings deep expertise in enterprise business applications, including implementation, modernization, integration, and support of Oracle E-Business Suite, PeopleSoft, and JD Edwards EnterpriseOne. His broad understanding of enterprise platforms enables organizations to maximize the value of their technology investments while accelerating digital transformation.",
-      "As an ITIL Foundation Certified professional, Suresh is passionate about helping organizations simplify complexity, improve operational efficiency, and embrace emerging technologies to achieve sustainable business growth. Under his leadership, Vibrant Inc. is committed to delivering practical, innovative, and results-driven technology solutions that enable clients to thrive in an increasingly digital world."
+      "As an ITIL Foundation Certified professional, Suresh is passionate about helping organizations simplify complexity, improve operational efficiency, and embrace emerging technologies to achieve sustainable business growth. Under his leadership, Vibrant Inc is committed to delivering practical, innovative, and results-driven technology solutions that enable clients to thrive in an increasingly digital world."
     ],
     expertise: [
       "Cloud Transformation (AWS)",
@@ -261,10 +261,12 @@ export const serviceCards: ServiceCard[] = [
   },
   {
     slug: "cybersecurity",
+    metaDescription:
+      "Zero-trust security, 24×7 SOC coverage, and audit-ready SOC 2, HIPAA, PCI, and CMMC compliance — backed by Vibrant's AI Shield detection platform.",
     kicker: "Cybersecurity & Compliance",
     title: "Cybersecurity & Compliance",
     summary:
-      "Zero-trust architecture, hardened identity, 24×7 SOC operations, and audit-ready compliance across SOC 2, HIPAA, PCI, and CMMC — with our AI Shield platform watching your back.",
+      "Zero-trust architecture, hardened identity, always-on SOC operations, and audit-ready compliance across SOC 2, HIPAA, PCI, and CMMC — with our AI Shield platform watching your back.",
     longDescription:
       "Security as an enabler, not a brake. Our AI Shield capability uses machine learning and behavioral analytics to detect, investigate, and neutralize threats faster than any manual approach. We assess gaps, design zero-trust architecture, harden identity, and stand up AI-driven 24×7 detection — aligned to compliance frameworks the business already lives in.",
     iconPath: ICONS.shield,
@@ -296,7 +298,7 @@ export const serviceCards: ServiceCard[] = [
     featured: true,
     carouselOrder: 3,
     heroTeaser:
-      "Security that enables the business instead of slowing it down. We design zero-trust architecture, harden identity, run 24×7 SOC coverage, and keep you audit-ready across SOC 2, HIPAA, PCI, and CMMC — backed by our AI Shield detection platform.",
+      "Security that enables the business instead of slowing it down. We design zero-trust architecture, harden identity, run round-the-clock SOC coverage, and keep you audit-ready across SOC 2, HIPAA, PCI, and CMMC — backed by our AI Shield detection platform.",
     heroHighlights: ["Zero-trust & identity", "24×7 SOC operations", "SOC 2 · HIPAA · PCI · CMMC"]
   },
   {
@@ -369,18 +371,20 @@ export const serviceCards: ServiceCard[] = [
   },
   {
     slug: "erp-optimization",
+    metaDescription:
+      "One partner for SAP, JD Edwards, PeopleSoft, Oracle EBS, Workday, and Dynamics 365 — implementation, upgrades, and managed support, owned end to end.",
     kicker: "ERP & Enterprise Applications",
     title: "ERP & Enterprise Applications",
     summary:
-      "One ERP practice, every major platform — SAP Implementation & Support, JD Edwards CNC Services, PeopleSoft Implementation & Support, plus Oracle E-Business Suite, WorkDay, and Dynamics 365. Blueprint to hypercare, owned end to end.",
+      "One ERP practice, every major platform — SAP Implementation & Support, JD Edwards CNC Services, PeopleSoft Implementation & Support, plus Oracle E-Business Suite, Workday, and Dynamics 365. From first blueprint to the first quiet month after go-live — owned end to end.",
     longDescription:
-      "Whether you're running a complex JD Edwards environment, launching a PeopleSoft or SAP program, or stabilizing a Dynamics 365 rollout that under-delivered — Vibrant's 25-year ERP practice covers the full Oracle stack (JD Edwards EnterpriseOne, PeopleSoft, Oracle E-Business Suite), SAP (ECC / S/4HANA), WorkDay HCM/Financials, and Microsoft Dynamics 365. Our certified practitioners take ownership from blueprint through hypercare.",
+      "Whether you're running a complex JD Edwards environment, launching a PeopleSoft or SAP program, or stabilizing a Dynamics 365 rollout that under-delivered — Vibrant's 25-year ERP practice covers the full Oracle stack (JD Edwards EnterpriseOne, PeopleSoft, Oracle E-Business Suite), SAP (ECC / S/4HANA), Workday HCM/Financials, and Microsoft Dynamics 365. Our certified practitioners take ownership from blueprint through go-live and the stabilization weeks that follow.",
     iconPath: ICONS.layers,
     metaTags: [
       "SAP Implementation & Support (ECC / S/4HANA)",
       "JD Edwards CNC Services",
       "PeopleSoft Implementation & Support",
-      "WorkDay HCM & Financials",
+      "Workday HCM & Financials",
       "Microsoft Dynamics 365",
       "Oracle E-Business Suite"
     ],
@@ -394,7 +398,7 @@ export const serviceCards: ServiceCard[] = [
       "JD Edwards Functional & Technical Implementation",
       "SAP Implementation & Support (ECC / S/4HANA)",
       "PeopleSoft Implementation & Support",
-      "WorkDay HCM & Financials",
+      "Workday HCM & Financials",
       "Microsoft Dynamics 365 (F&O / CE)",
       "Oracle E-Business Suite",
       "Post go-live stabilization & managed support",
@@ -406,7 +410,7 @@ export const serviceCards: ServiceCard[] = [
     featured: true,
     carouselOrder: 1,
     heroTeaser:
-      "Your ERP is the heart of the business — modernize it without missing a beat. Vibrant's 25-year practice spans SAP Implementation & Support, JD Edwards CNC Services, and PeopleSoft Implementation & Support, alongside Oracle EBS, WorkDay, and Dynamics 365.",
+      "Your ERP is the heart of the business — modernize it without missing a beat. Vibrant's 25-year practice spans SAP Implementation & Support, JD Edwards CNC Services, and PeopleSoft Implementation & Support, alongside Oracle EBS, Workday, and Dynamics 365.",
     heroHighlights: ["SAP ECC / S/4HANA · AMS", "JD Edwards CNC & EnterpriseOne", "PeopleSoft HCM / FSCM"]
   },
   {
@@ -450,7 +454,7 @@ export const serviceCards: ServiceCard[] = [
     kicker: "Managed IT",
     title: "Managed IT",
     summary:
-      "24×7 managed services across cloud, security, ERP, and end-user computing — so your internal team stays focused on growth.",
+      "Always-on managed services across cloud, security, ERP, and end-user computing — so your internal team stays focused on growth.",
     longDescription:
       "Vibrant's managed services give lean IT teams the depth, coverage, and senior escalation they need — without growing headcount. From application managed services to FinOps to managed SOC.",
     iconPath: ICONS.monitor,
@@ -479,19 +483,21 @@ export const serviceCards: ServiceCard[] = [
     featured: true,
     carouselOrder: 7,
     heroTeaser:
-      "24×7 depth for lean IT teams — applications, cloud operations, security, and service desk with senior escalation always on call. Predictable costs, no headcount growth, no 2 a.m. surprises.",
+      "Round-the-clock depth for lean IT teams — applications, cloud operations, security, and service desk with senior escalation always on call. Predictable costs, no headcount growth, no 2 a.m. surprises.",
     heroHighlights: ["24×7 application support", "Cloud ops & FinOps", "Managed SOC & service desk"]
   },
 
   /* ───── SAP SOLUTIONS — One umbrella carousel slide ───── */
   {
     slug: "sap-solutions",
+    metaDescription:
+      "Full-lifecycle SAP services from one senior-led team — S/4HANA implementation, AMS support, supply chain, BTP integration, Fiori UX, and clean core.",
     kicker: "SAP Solutions",
     title: "SAP Solutions",
     summary:
-      "End-to-end SAP expertise: S/4HANA Implementation · Application Management (AMS) · Supply Chain (EWM, TM, IBP) · BTP & Integrations · Fiori/UI5 UX · Clean Core · ABAP Development · JD Edwards CNC · PeopleSoft HCM/FSCM.",
+      "Every SAP discipline under one roof — S/4HANA implementations, AMS, supply chain, BTP integration, Fiori UX, and clean core — plus JD Edwards and PeopleSoft depth when your estate spans platforms.",
     longDescription:
-      "Vibrant delivers the full spectrum of SAP and ERP platform services — from greenfield S/4HANA implementations and AMS support to supply chain transformation, BTP cloud integrations, and legacy platform management. Whether you're modernizing to S/4HANA, optimizing JD Edwards, or maintaining PeopleSoft, our certified SAP consultants take ownership from blueprint through hypercare.",
+      "One SAP team, accountable for the whole lifecycle. We implement S/4HANA, keep production stable through AMS, modernize supply chain execution with EWM, TM, and IBP, extend cleanly on BTP, and design Fiori experiences users actually adopt. And because most enterprise estates aren't SAP-only, the same practice carries JD Edwards CNC and PeopleSoft expertise — so one partner covers the estate you actually have.",
     iconPath: ICONS.database,
     metaTags: [
       "SAP S/4HANA Implementation",
@@ -510,10 +516,10 @@ export const serviceCards: ServiceCard[] = [
     capabilities: [
       "SAP S/4HANA Implementation & Migration",
       "SAP Application Management Services (AMS)",
-      "Supply Chain Solutions – EWM, TM, IBP & PP",
+      "Supply Chain Solutions — EWM, TM, IBP & PP",
       "SAP Business Technology Platform (BTP)",
       "SAP Integration Services (EDI, IDoc, API)",
-      "Enterprise User Experience – Fiori & UI5",
+      "Enterprise User Experience — Fiori & UI5",
       "SAP Clean Core & Upgrade Services",
       "SAP ABAP & Custom Development",
       "JD Edwards CNC Administration",
@@ -600,7 +606,7 @@ export const serviceCards: ServiceCard[] = [
   {
     slug: "sap-supply-chain",
     kicker: "Supply Chain Solutions",
-    title: "Supply Chain Solutions – EWM, TM, IBP & PP",
+    title: "Supply Chain Solutions — EWM, TM, IBP & PP",
     summary:
       "Integrated supply chain optimization solutions for warehouse, transportation, planning, and manufacturing operations.",
     longDescription:
@@ -670,9 +676,9 @@ export const serviceCards: ServiceCard[] = [
     kicker: "SAP Integration",
     title: "SAP Integration Services",
     summary:
-      "EDI, IDoc, API, middleware, cloud integrations, and third-party application connectivity solutions.",
+      "Make SAP talk to everything else — EDI partners, cloud apps, and legacy systems connected through APIs and middleware that don't fall over at month-end.",
     longDescription:
-      "Seamlessly integrate SAP with your broader enterprise ecosystem — legacy systems, cloud applications, EDI partners, and real-time data pipelines. We architect and implement scalable integration solutions using APIs, iPaaS, message queues, and modern middleware.",
+      "Integration is where SAP projects quietly succeed or loudly fail. We design and build the connections your business depends on — EDI and IDoc flows with trading partners, REST and SOAP APIs, BTP and iPaaS middleware, and real-time data pipelines — engineered for the volumes of your busiest close, not a demo. Fewer manual re-keys, fewer failed interfaces, and a landscape your team can actually monitor.",
     iconPath: ICONS.zap,
     metaTags: [
       "SAP Integration",
@@ -702,11 +708,11 @@ export const serviceCards: ServiceCard[] = [
   {
     slug: "sap-fiori-ux",
     kicker: "Enterprise UX",
-    title: "Enterprise User Experience – Fiori & UI5",
+    title: "Enterprise User Experience — Fiori & UI5",
     summary:
-      "Modern SAP Fiori/UI5 applications delivering simplified, responsive, and user-friendly experiences.",
+      "Turn ten-screen SAP transactions into apps people finish in one — Fiori and UI5 experiences that cut training time and make adoption the default.",
     longDescription:
-      "Replace clunky SAP transactions with intuitive Fiori interfaces. We design and build responsive, mobile-first UX that delights users — from standard SAP Fiori apps to custom UI5 applications tailored to your workflows.",
+      "Most SAP resistance isn't about SAP — it's about screens designed in another era. We replace clunky transactions with responsive Fiori and UI5 apps built around how your teams actually work: fewer clicks, mobile-ready, and consistent across roles. The payoff shows up fast — shorter onboarding, fewer support tickets, and users who stop building workarounds in Excel.",
     iconPath: ICONS.monitor,
     metaTags: [
       "SAP Fiori",
@@ -772,9 +778,9 @@ export const serviceCards: ServiceCard[] = [
     kicker: "ABAP & Development",
     title: "SAP ABAP & Custom Development",
     summary:
-      "Custom reports, interfaces, enhancements, forms, workflows, and technical development services.",
+      "When standard SAP stops short, senior ABAP engineers build the reports, interfaces, forms, and workflows your business actually runs on — tested, documented, and upgrade-safe.",
     longDescription:
-      "When standard SAP doesn't fit, our ABAP experts build custom solutions. Reports, interfaces, form enhancements, workflow automation — all with production-grade quality, testing, and documentation.",
+      "Custom code is only a liability when it's written badly. Our ABAP engineers build the extensions standard SAP can't cover — reports, interfaces, forms, and workflow automation — to production standard: clean-core aware, performance-tested, and documented so the next team can maintain it. You get functionality that fits the business without mortgaging your next upgrade.",
     iconPath: ICONS.zap,
     metaTags: [
       "ABAP Development",
@@ -840,9 +846,9 @@ export const serviceCards: ServiceCard[] = [
     kicker: "PeopleSoft",
     title: "PeopleSoft Implementation & Support",
     summary:
-      "PeopleSoft HCM/FSCM consulting, integrations, upgrades, maintenance, and production support.",
+      "Keep PeopleSoft HCM and FSCM earning its keep — implementations, PeopleTools upgrades, integrations, and production support from consultants who've run payroll go-lives before.",
     longDescription:
-      "Deploy, maintain, and optimize PeopleSoft across HCM and FSCM. From implementation and configuration to ongoing support, upgrades, and integrations — Vibrant's PeopleSoft team delivers on time and on budget.",
+      "PeopleSoft still runs HR and finance for thousands of organizations — the question is whether yours runs lean. Vibrant implements, upgrades, and supports PeopleSoft HCM and FSCM with consultants who know PeopleCode, Integration Broker, and the realities of a payroll cutover. Whether you're stabilizing, upgrading, or planning the long game, we keep the system fast, current, and quietly reliable.",
     iconPath: ICONS.users,
     metaTags: [
       "PeopleSoft HCM",
@@ -886,7 +892,7 @@ export const stats: Stat[] = [
   { value: 25, suffix: "+", label: "Years of innovation", highlight: true },
   { value: 200, suffix: "+", label: "Successful ERP, cloud & digital transformation engagements since 2000" },
   { value: 50, suffix: "+", label: "Enterprise clients" },
-  { value: 24, suffix: "/7", label: "Managed IT support" }
+  { value: 24, suffix: "×7", label: "Managed IT support" }
 ];
 
 export type Partner = {
@@ -944,17 +950,17 @@ export const partnerBenefits = [
 ];
 
 export const companyOverview = [
-  "Vibrant Inc was established in 2000 as a trusted provider of value-added, cost-effective IT solutions to customers across North America. For 25 years, we have helped businesses navigate the digital landscape through cloud and data analytics — working as true partners to deliver measurable outcomes.",
-  "Our practice areas span cloud modernization on Azure and leading platforms, data and analytics strategy, multi-platform ERP (JD Edwards, SAP, PeopleSoft, WorkDay, Microsoft Dynamics 365, Oracle E-Business Suite), cybersecurity with AI Shield, intelligent automation, AI readiness, and managed IT services.",
-  "Vibrant combines onshore senior leadership with a hybrid delivery model to maximize efficiency without sacrificing quality. Our engagement managers, architects, and subject-matter experts take full ownership of every engagement — from discovery through hypercare and beyond.",
-  "We are NMSDC Certified, E-Verify compliant, and Oracle and Microsoft partners — credentials that reflect how we build our teams, support our clients' diversity programs, and deliver with accountability at every engagement."
+  "Vibrant Inc opened its doors in 2000 with a simple model: put senior practitioners on every engagement and finish what we start. Twenty-five years on, that model still wins — clients across North America call us when ERP, cloud, or data work has to land on time and keep running.",
+  "Our practice areas span cloud modernization on Azure and leading platforms, data and analytics strategy, multi-platform ERP (JD Edwards, SAP, PeopleSoft, Workday, Microsoft Dynamics 365, Oracle E-Business Suite), cybersecurity with AI Shield, intelligent automation, AI readiness, and managed IT services.",
+  "Vibrant combines onshore senior leadership with a hybrid delivery model to maximize efficiency without sacrificing quality. Our engagement managers, architects, and subject-matter experts take full ownership of every engagement — from discovery through go-live and steady state.",
+  "We are NMSDC Certified, an E-Verify Partner, and Oracle and Microsoft partners — credentials that reflect how we build our teams, support our clients' diversity programs, and deliver with accountability at every engagement."
 ];
 
 export const visionStatement =
   "Be the partner of choice, empowering businesses to leverage cloud technology and data analytics for competitive advantage, sustained performance, and long-term growth.";
 
 export const aboutFacts = [
-  { value: "2000", label: "Established to deliver value-added IT solutions" },
+  { value: "2000", label: "Founded in Princeton, New Jersey" },
   { value: "25+", label: "Years of trusted enterprise delivery" },
   { value: "5", label: "Practice areas across cloud, data, ERP & managed IT" },
   { value: "Global", label: "Onshore and offshore delivery" }
@@ -1051,7 +1057,7 @@ export const servicesProcess = [
   },
   {
     title: "Operate",
-    body: "Hypercare, managed support, and continuous improvement once you're live."
+    body: "Post-go-live care, managed support, and continuous improvement once you're live."
   }
 ];
 
@@ -1107,7 +1113,7 @@ export const careerOpenings: Opening[] = [
   },
   {
     category: "ERP",
-    title: "WorkDay HCM Consultant",
+    title: "Workday HCM Consultant",
     summary:
       "Functional configuration, integrations, and stabilization across complex multi-country deployments."
   },
@@ -1487,6 +1493,7 @@ export const resourceGuides: ResourceGuide[] = [
   },
   {
     slug: "vibrant-method-white-paper",
+    seoTitle: "The VIBRANT Method: Agile Enterprise Delivery",
     category: "White Paper",
     title: "The VIBRANT Method™ — Agile Delivery for Enterprise Programs",
     description:
@@ -1540,6 +1547,7 @@ export type Insight = {
 export const insights: Insight[] = [
   {
     slug: "five-signs-your-erp-is-costing-too-much",
+    seoTitle: "Five Signs Your ERP Costs Too Much",
     relatedServices: ["erp-optimization", "sap-ams", "managed-it"],
     title: "Five Signs Your ERP Is Costing More Than It Should",
     date: "July 2026",
@@ -1555,6 +1563,7 @@ export const insights: Insight[] = [
   },
   {
     slug: "genai-start-with-the-workflow",
+    seoTitle: "Enterprise GenAI: Start with the Workflow",
     relatedServices: ["ai-readiness", "automation"],
     title: "GenAI in the Enterprise: Start with the Workflow, Not the Model",
     date: "June 2026",
@@ -1585,6 +1594,7 @@ export const insights: Insight[] = [
   },
   {
     slug: "clean-core-discipline",
+    seoTitle: "SAP Clean Core: Upgrades in Weeks, Not Quarters",
     relatedServices: ["sap-clean-core", "sap-s4hana-implementation"],
     title: "Clean Core: The Discipline That Makes S/4HANA Upgrades Cheap",
     date: "April 2026",
@@ -1826,7 +1836,7 @@ export const newsItems = [
   }
 ];
 export const careersHighlights = [
-  "Vibrant is an exciting company to work with and build a career.",
+  "Senior work, real ownership, and colleagues who've been here for years — that's the career case for Vibrant.",
   "Consultants are distributed across the country and travel to client sites as required, while the company is headquartered in Princeton, New Jersey.",
   "We emphasize customer satisfaction, employee satisfaction, work-life balance, and ongoing training."
 ];

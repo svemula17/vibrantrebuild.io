@@ -12,7 +12,7 @@ import {
 export const metadata: Metadata = pageMeta({
   title: "Careers",
   description:
-    "Vibrant is an exciting company to work with and build a career. We hire experienced practitioners and trust them to lead.",
+    "Careers at Vibrant Inc: senior consulting roles across ERP, cloud, data, and AI — real ownership, ongoing training, and clients who stay for years.",
   path: "/careers"
 });
 
@@ -22,7 +22,7 @@ export default function CareersPage() {
       <PageHero
         eyebrow="Careers"
         title="Build a career, not just a role."
-        description="Vibrant is an exciting company to work with and build a career. We emphasize customer satisfaction, employee satisfaction, work-life balance, and ongoing training."
+        description="We hire experienced practitioners and get out of their way — interesting work, senior teams, and the training, benefits, and balance that make people stay."
         crumbs={[{ label: "Home", href: "/" }, { label: "Careers" }]}
       >
         <div className="flex flex-wrap gap-3">
