@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { AnimatedCounter } from "@/components/animated-counter";
 import { RevealWords } from "@/components/reveal-on-scroll";
-import { stats } from "@/content/site-content";
+import { stats, siteSettings } from "@/content/site-content";
 
 export function StatsBand() {
   return (
@@ -20,7 +20,7 @@ export function StatsBand() {
 
       <div className="container relative py-20 md:py-28">
         <motion.div
-          className="max-w-2xl"
+          className="max-w-3xl"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-8%" }}
@@ -29,8 +29,9 @@ export function StatsBand() {
           <p className="text-xs font-bold uppercase tracking-[0.22em]" style={{ color: "#E8703A" }}>
             By the numbers
           </p>
+          {/* The client-mandated tagline lives here (single source: siteSettings.tagline) */}
           <h2 className="mt-3 text-white">
-            <RevealWords text="A quarter century of measurable impact." />
+            <RevealWords text={siteSettings.tagline} />
           </h2>
         </motion.div>
 

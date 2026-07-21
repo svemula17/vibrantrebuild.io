@@ -1171,6 +1171,8 @@ export type ValueAdd = {
   description: string;
 };
 
+// Currently unrendered — the homepage ValueAdds section was cut in the minimal
+// redesign. Kept for reuse on /services or /about.
 export const valueAdds: ValueAdd[] = [
   {
     title: "Certified ERP Consultants",

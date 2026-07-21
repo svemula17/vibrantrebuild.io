@@ -1,7 +1,6 @@
 "use client";
 
 import Image, { type StaticImageData } from "next/image";
-import { motion } from "framer-motion";
 
 /* Client & partner logos — fetched from each company's official website */
 import ilink     from "@/clients/ilink-digital.svg";
@@ -75,23 +74,15 @@ function LogoItem({ logo }: { logo: ClientLogo }) {
 export function ClientLogos() {
   return (
     <section className="bg-white border-y border-line overflow-hidden">
-      <div className="container py-14">
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-8%" }}
-          transition={{ duration: 0.5 }}
-        >
-          <p className="eyebrow">Our network</p>
-          <h2 className="mt-3 text-2xl md:text-3xl">
-            Trusted by companies across North America.
-          </h2>
-        </motion.div>
+      {/* Sits directly under the hero — one quiet qualifier line, no heading block */}
+      <div className="container pt-10 pb-8">
+        <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-muted">
+          Trusted by companies across North America since 2000
+        </p>
       </div>
 
       {/* Marquee — duplicated track scrolls 50%, pauses on hover */}
-      <div className="relative pb-14">
+      <div className="relative pb-10">
         <div
           aria-hidden
           className="absolute inset-y-0 left-0 w-24 z-10 pointer-events-none"
