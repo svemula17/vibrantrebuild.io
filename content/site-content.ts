@@ -958,10 +958,8 @@ export const partnerBenefits = [
 ];
 
 export const companyOverview = [
-  "Vibrant Inc opened its doors in 2000 with a simple model: put senior practitioners on every engagement and finish what we start. Twenty-five years on, that model still wins — clients across North America call us when ERP, cloud, or data work has to land on time and keep running.",
-  "Our practice areas span cloud modernization on Azure and leading platforms, data and analytics strategy, multi-platform ERP (JD Edwards, SAP, PeopleSoft, Workday, Microsoft Dynamics 365, Oracle E-Business Suite), cybersecurity with AI Shield, intelligent automation, AI readiness, and managed IT services.",
-  "Vibrant combines onshore senior leadership with a hybrid delivery model to maximize efficiency without sacrificing quality. Our engagement managers, architects, and subject-matter experts take full ownership of every engagement — from discovery through go-live and steady state.",
-  "We are NMSDC Certified, an E-Verify Partner, and Oracle and Microsoft partners — credentials that reflect how we build our teams, support our clients' diversity programs, and deliver with accountability at every engagement."
+  "Vibrant Inc opened its doors in 2000 with a simple model: put senior practitioners on every engagement and finish what we start. Twenty-five years on, clients across North America still call us when ERP, cloud, or data work has to land on time and keep running.",
+  "From ERP and cloud to data, cybersecurity, and AI, our architects and engagement managers own every engagement from discovery through steady state. We're NMSDC Certified, an E-Verify Partner, and Oracle and Microsoft partners — credentials that show in how we build teams and deliver."
 ];
 
 export const visionStatement =

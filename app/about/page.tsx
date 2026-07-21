@@ -51,9 +51,9 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Right: 25-year graphic + key facts */}
+          {/* Right: 25-year graphic (kept small) + key facts */}
           <div className="flex flex-col gap-6">
-            <div className="overflow-hidden rounded-2xl shadow-cardHover">
+            <div className="w-full mx-auto overflow-hidden rounded-2xl shadow-card" style={{ maxWidth: 220 }}>
               <Image
                 src={anniversary}
                 alt="Vibrant Inc — Celebrating 25 Years in Business"
