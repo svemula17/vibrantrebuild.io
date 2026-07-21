@@ -1,52 +1,91 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { interestOptions } from "@/content/site-content";
+import { TrustCluster } from "@/components/trust-cluster";
 
-type Status = "idle" | "submitting" | "success" | "error";
+type Status = "idle" | "submitting" | "error";
 type FieldErrors = Partial<Record<string, string>>;
 
-function validate(d: Record<string, string>): FieldErrors {
-  const e: FieldErrors = {};
-  if (!d.firstName?.trim()) e.firstName = "Please enter your first name.";
-  if (!d.lastName?.trim())  e.lastName  = "Please enter your last name.";
-  if (!d.email?.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email))
-    e.email = "Please enter a valid email address.";
-  if (!d.company?.trim())  e.company   = "Please enter your company name.";
-  if (!d.interest?.trim()) e.interest  = "Please select a service area.";
-  return e;
-}
+/* Only name, email, and phone block submission — on a callback form the phone
+   number is the deliverable. Everything else is optional to cut friction. */
+const RULES: Record<string, (v: string) => string | undefined> = {
+  firstName: (v) => (!v.trim() ? "Please enter your first name." : undefined),
+  lastName: (v) => (!v.trim() ? "Please enter your last name." : undefined),
+  email: (v) =>
+    !v.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
+      ? "Please enter a valid email address."
+      : undefined,
+  phone: (v) =>
+    !v.trim() || !/^[+()\d\s.-]{7,}$/.test(v)
+      ? "Please enter a phone number so we can call you back."
+      : undefined
+};
+const FIELD_ORDER = ["firstName", "lastName", "email", "phone"];
 
 type Props = { heading?: string; showRequiredNote?: boolean };
 
-export function CallbackForm({ heading, showRequiredNote }: Props) {
-  const [status, setStatus]       = useState<Status>("idle");
-  const [message, setMessage]     = useState("");
+export function CallbackForm({ heading }: Props) {
+  const router = useRouter();
+  const [status, setStatus] = useState<Status>("idle");
+  const [message, setMessage] = useState("");
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [interest, setInterest] = useState("");
+
+  /* Preselect the interest from ?interest= (service pages + calculator link
+     here with it). window.location instead of useSearchParams — the latter
+     forces a Suspense boundary under static export. */
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get("interest");
+    if (q && interestOptions.includes(q)) setInterest(q);
+  }, []);
+
+  function handleBlur(e: React.FocusEvent<HTMLInputElement>) {
+    const { name, value } = e.target;
+    const rule = RULES[name];
+    if (!rule) return;
+    setTouched((t) => ({ ...t, [name]: true }));
+    setFieldErrors((f) => ({ ...f, [name]: rule(value) }));
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (status === "submitting") return;
 
     const form = e.currentTarget;
-    const fd   = new FormData(form);
+    const fd = new FormData(form);
 
     // Honeypot — if the hidden website field is filled, silently drop
     if (fd.get("website")) return;
 
     const data: Record<string, string> = {
       firstName: String(fd.get("firstName") ?? ""),
-      lastName:  String(fd.get("lastName")  ?? ""),
-      email:     String(fd.get("email")     ?? ""),
-      company:   String(fd.get("company")   ?? ""),
-      phone:     String(fd.get("phone")     ?? ""),
-      interest:  String(fd.get("interest")  ?? ""),
-      message:   String(fd.get("message")   ?? ""),
+      lastName: String(fd.get("lastName") ?? ""),
+      email: String(fd.get("email") ?? ""),
+      phone: String(fd.get("phone") ?? ""),
+      company: String(fd.get("company") ?? ""),
+      interest: String(fd.get("interest") ?? ""),
+      message: String(fd.get("message") ?? "")
     };
 
-    const errors = validate(data);
+    const errors: FieldErrors = {};
+    for (const name of FIELD_ORDER) {
+      const err = RULES[name](data[name]);
+      if (err) errors[name] = err;
+    }
     if (Object.keys(errors).length) {
       setFieldErrors(errors);
+      setTouched((t) => {
+        const all = { ...t };
+        FIELD_ORDER.forEach((n) => (all[n] = true));
+        return all;
+      });
+      const firstInvalid = FIELD_ORDER.find((n) => errors[n]);
+      if (firstInvalid) {
+        setTimeout(() => document.getElementById(firstInvalid)?.focus(), 0);
+      }
       return;
     }
     setFieldErrors({});
@@ -60,15 +99,13 @@ export function CallbackForm({ heading, showRequiredNote }: Props) {
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           ...data,
-          _subject: `New inquiry from ${data.firstName} ${data.lastName} — ${data.company}`,
-          _captcha: "false",
-        }),
+          _subject: `New callback request from ${data.firstName} ${data.lastName}${data.company ? ` — ${data.company}` : ""}`,
+          _captcha: "false"
+        })
       });
 
       if (res.ok) {
-        setStatus("success");
-        setMessage("Thanks — a senior advisor will be in touch within one business day.");
-        form.reset();
+        router.push("/thank-you/");
       } else {
         throw new Error("server");
       }
@@ -85,47 +122,42 @@ export function CallbackForm({ heading, showRequiredNote }: Props) {
       className="bg-white rounded-2xl shadow-card p-6 md:p-8 border border-line"
     >
       {heading && <h3 className="text-xl font-semibold text-navy-700">{heading}</h3>}
-      {showRequiredNote && (
-        <p className="mt-1 text-sm text-muted">
-          Fields marked <span className="text-brand-700">*</span> are required.
-        </p>
-      )}
+      <p className="mt-1 text-sm text-muted">
+        Fields marked <span className="text-brand-700">*</span> are required.
+      </p>
 
-      <div className={`grid gap-4 sm:grid-cols-2 ${heading ? "mt-5" : ""}`}>
-        <Field label="First name" name="firstName" autoComplete="given-name"  required error={fieldErrors.firstName} />
-        <Field label="Last name"  name="lastName"  autoComplete="family-name" required error={fieldErrors.lastName} />
-        <Field label="Work email" name="email"   type="email" autoComplete="email" required error={fieldErrors.email} />
-        <Field label="Phone"      name="phone"   type="tel"   autoComplete="tel" />
+      <div className="grid gap-4 sm:grid-cols-2 mt-5">
+        <Field label="First name" name="firstName" autoComplete="given-name" required error={fieldErrors.firstName} valid={touched.firstName && !fieldErrors.firstName} onBlur={handleBlur} />
+        <Field label="Last name" name="lastName" autoComplete="family-name" required error={fieldErrors.lastName} valid={touched.lastName && !fieldErrors.lastName} onBlur={handleBlur} />
+        <Field label="Work email" name="email" type="email" autoComplete="email" required error={fieldErrors.email} valid={touched.email && !fieldErrors.email} onBlur={handleBlur} />
+        <Field label="Phone" name="phone" type="tel" autoComplete="tel" required error={fieldErrors.phone} valid={touched.phone && !fieldErrors.phone} onBlur={handleBlur} />
       </div>
 
       <div className="mt-4">
-        <Field label="Company" name="company" autoComplete="organization" required error={fieldErrors.company} />
+        <Field label="Company (optional)" name="company" autoComplete="organization" />
       </div>
 
       <div className="mt-4">
         <label htmlFor="interest" className="block text-sm font-semibold text-navy-700 mb-1.5">
-          Service area of interest <span className="text-brand-700">*</span>
+          Service area of interest (optional)
         </label>
         <select
           id="interest"
           name="interest"
-          required
-          defaultValue=""
-          aria-invalid={fieldErrors.interest ? true : undefined}
-          aria-describedby={fieldErrors.interest ? "interest-error" : undefined}
+          value={interest}
+          onChange={(e) => setInterest(e.target.value)}
           className="w-full rounded-lg border-line bg-white text-ink focus:border-sky focus:ring-sky"
         >
-          <option value="" disabled>Select a service area…</option>
+          <option value="">Select a service area…</option>
           {interestOptions.map((o) => (
             <option key={o} value={o}>{o}</option>
           ))}
         </select>
-        {fieldErrors.interest && <p id="interest-error" className="mt-1 text-xs text-red-600">{fieldErrors.interest}</p>}
       </div>
 
       <div className="mt-4">
         <label htmlFor="message" className="block text-sm font-semibold text-navy-700 mb-1.5">
-          What are you trying to solve?
+          What are you trying to solve? (optional)
         </label>
         <textarea
           id="message"
@@ -139,48 +171,63 @@ export function CallbackForm({ heading, showRequiredNote }: Props) {
       {/* Honeypot — bots fill this, humans don't */}
       <input type="text" name="website" tabIndex={-1} autoComplete="off" defaultValue="" className="hidden" aria-hidden="true" />
 
-      <div className="mt-6 flex flex-col-reverse md:flex-row md:items-center md:justify-between gap-3">
-        <p className="text-xs text-muted">We&apos;ll respond within one business day. Your info is never shared.</p>
+      <div className="mt-6 flex justify-end">
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="btn-primary disabled:opacity-60"
+          className="btn-primary disabled:opacity-60 w-full sm:w-auto"
         >
-          {status === "submitting" ? "Sending…" : "Get a Callback"}
+          {status === "submitting" ? "Sending…" : "Get my callback"}
         </button>
       </div>
 
-      {status === "success" && (
-        <p className="mt-4 rounded-lg border border-sky/30 bg-sky/10 px-4 py-3 text-sm text-navy-700" role="status">
-          {message}
-        </p>
-      )}
       {status === "error" && (
         <p className="mt-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">{message}</p>
       )}
+
+      <TrustCluster />
     </form>
   );
 }
 
 function Field({
-  label, name, type = "text", required, autoComplete, error
+  label, name, type = "text", required, autoComplete, error, valid, onBlur
 }: {
   label: string; name: string; type?: string;
   required?: boolean; autoComplete?: string; error?: string;
+  valid?: boolean;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }) {
   return (
     <div>
       <label htmlFor={name} className="block text-sm font-semibold text-navy-700 mb-1.5">
         {label} {required && <span className="text-brand-700">*</span>}
       </label>
-      <input
-        id={name} name={name} type={type}
-        required={required} autoComplete={autoComplete}
-        aria-invalid={error ? true : undefined}
-        aria-describedby={error ? `${name}-error` : undefined}
-        className="w-full rounded-lg border-line bg-white text-ink focus:border-sky focus:ring-sky"
-      />
-      {error && <p id={`${name}-error`} className="mt-1 text-xs text-red-600">{error}</p>}
+      <div className="relative">
+        <input
+          id={name} name={name} type={type}
+          required={required} autoComplete={autoComplete}
+          onBlur={onBlur}
+          aria-invalid={error ? true : undefined}
+          aria-describedby={error ? `${name}-error` : undefined}
+          className={`w-full rounded-lg bg-white text-ink focus:border-sky focus:ring-sky ${
+            error ? "border-red-400" : "border-line"
+          }`}
+        />
+        {valid && (
+          <svg
+            viewBox="0 0 24 24"
+            className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-green-600"
+            fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M20 6L9 17l-5-5" />
+          </svg>
+        )}
+      </div>
+      <p id={`${name}-error`} aria-live="polite" className="mt-1 text-xs text-red-600 min-h-[1rem]">
+        {error ?? ""}
+      </p>
     </div>
   );
 }

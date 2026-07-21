@@ -127,7 +127,7 @@ export function SapCostCalculator() {
             id="calc-landscape"
             value={landscape}
             onChange={(e) => setLandscape(e.target.value)}
-            className="mt-3 w-full rounded-xl border-line text-sm focus:border-sky focus:ring-sky"
+            className="mt-3 w-full rounded-xl border-line text-base sm:text-sm focus:border-sky focus:ring-sky"
           >
             {LANDSCAPES.map((l) => (
               <option key={l.id} value={l.id}>
@@ -184,9 +184,23 @@ export function SapCostCalculator() {
             customizations, integrations, and change-management scope — a 30-minute scoping
             call gets you a real estimate.
           </div>
-          <Link href="/contact" className="btn-primary mt-5 w-full">
-            Get a real estimate
+          <Link
+            href={`/contact/?interest=${encodeURIComponent("SAP S/4HANA Implementation")}`}
+            className="btn-primary mt-5 w-full"
+          >
+            Get these numbers reviewed by an SAP architect
           </Link>
+          <a
+            href={`mailto:info@vibrantinc.com?subject=${encodeURIComponent("My S/4HANA cost estimate")}&body=${encodeURIComponent(
+              `My calculator inputs:\n\n• Users: ${users.toLocaleString()}\n• Modules: ${modules.join(", ") || "none selected"}\n• Landscape: ${LANDSCAPES.find((l) => l.id === landscape)?.label ?? landscape}\n• Approach: ${APPROACHES.find((a) => a.id === approach)?.label ?? approach}\n• Indicative range: ${fmt(low)} – ${fmt(high)}\n\nPlease send me the full cost breakdown.`
+            )}`}
+            className="mt-2.5 block w-full rounded-full border border-white/25 px-6 py-2.5 text-center text-sm font-semibold text-white/85 hover:bg-white/10 transition-colors"
+          >
+            Email me the full breakdown
+          </a>
+          <p className="mt-2 text-center text-[11px] text-white/40">
+            Opens your email app with your inputs prefilled.
+          </p>
         </div>
         <p className="text-xs text-muted leading-relaxed">
           Model assumptions: implementation services only (no SAP licensing or infrastructure),

@@ -1227,6 +1227,31 @@ export function getServiceBySlug(slug: string) {
   return serviceCards.find((service) => service.slug === slug);
 }
 
+/* Maps service slugs to the matching interestOptions entry so service-page CTAs
+   and the calculator can preselect the contact form via ?interest=. Values must
+   match interestOptions exactly. */
+export const serviceInterestMap: Record<string, string> = {
+  "erp-optimization": "ERP & Enterprise Applications",
+  "cloud-modernization": "Cloud Modernization (Azure / AWS / GCP)",
+  "cybersecurity": "Cybersecurity & Compliance",
+  "ai-shield": "AI Shield",
+  "ai-readiness": "AI Readiness",
+  "automation": "Automation",
+  "data-analytics": "Data & Analytics",
+  "managed-it": "Managed IT",
+  "sap-solutions": "SAP S/4HANA Implementation",
+  "sap-s4hana-implementation": "SAP S/4HANA Implementation",
+  "sap-ams": "SAP Application Management Services (AMS)",
+  "sap-supply-chain": "Supply Chain Solutions (EWM, TM, IBP, PP)",
+  "sap-btp": "SAP BTP & Integration",
+  "sap-integration": "SAP BTP & Integration",
+  "sap-fiori-ux": "Enterprise UX (Fiori / UI5)",
+  "sap-clean-core": "SAP Clean Core & Upgrades",
+  "sap-abap": "ABAP & Custom Development",
+  "jd-edwards-cnc": "JD Edwards CNC Services",
+  "peoplesoft-implementation": "PeopleSoft Implementation & Support"
+};
+
 /* ── Resource center ─────────────────────────────────────────────────── */
 
 export type ResourceSection = {

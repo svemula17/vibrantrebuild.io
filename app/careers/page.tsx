@@ -119,9 +119,10 @@ export default function CareersPage() {
           <div className="card p-8 text-center">
             <h3 className="text-lg font-semibold text-navy-700">Email us your résumé</h3>
             <p className="mt-2 text-sm text-muted">A senior recruiter will reach out within one business day.</p>
-            <a href={`mailto:${siteSettings.emailCareers}`} className="btn-primary mt-5">
-              {siteSettings.emailCareers}
+            <a href={`mailto:${siteSettings.emailCareers}`} className="btn-ghost mt-5">
+              Email your résumé
             </a>
+            <p className="mt-2 text-xs text-muted break-all">{siteSettings.emailCareers}</p>
           </div>
         </div>
       </section>

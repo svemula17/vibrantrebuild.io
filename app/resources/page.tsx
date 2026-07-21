@@ -86,7 +86,7 @@ export default function ResourcesPage() {
               conversations in about 60 seconds.
             </p>
           </div>
-          <Link href="/resources/sap-cost-calculator" className="btn-primary shrink-0">
+          <Link href="/resources/sap-cost-calculator" className="btn-outline-light shrink-0">
             Run the calculator →
           </Link>
         </div>
@@ -137,7 +137,7 @@ export default function ResourcesPage() {
           </p>
           <div className="mt-8 flex justify-center">
             <Link href="/contact" className="btn-primary">
-              Get a Callback
+              Get my callback
             </Link>
           </div>
         </div>

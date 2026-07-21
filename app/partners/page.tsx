@@ -132,9 +132,10 @@ export default function PartnersPage() {
           <div className="card p-8 text-center">
             <h3 className="text-lg font-semibold text-navy-700">Partnership inquiries</h3>
             <p className="mt-2 text-sm text-muted">Email our partnerships team and we&apos;ll set up a call.</p>
-            <a href={`mailto:${siteSettings.emailPartnerships}`} className="btn-primary mt-5">
-              {siteSettings.emailPartnerships}
+            <a href={`mailto:${siteSettings.emailPartnerships}`} className="btn-ghost mt-5">
+              Email the partnerships team
             </a>
+            <p className="mt-2 text-xs text-muted break-all">{siteSettings.emailPartnerships}</p>
           </div>
         </div>
       </section>

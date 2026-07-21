@@ -61,12 +61,15 @@ export function AiShieldBand() {
               <span>Audit-ready reporting</span>
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/services/ai-shield" className="btn-primary">
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <Link href="/services/ai-shield" className="btn-outline-light">
                 Explore AI Shield →
               </Link>
-              <Link href="/contact" className="btn-outline-light">
-                See it in action
+              <Link
+                href="/contact"
+                className="text-sm font-semibold text-brand-400 hover:text-brand-300 transition-colors"
+              >
+                See it in action →
               </Link>
             </div>
           </div>

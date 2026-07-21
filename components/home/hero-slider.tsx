@@ -241,7 +241,7 @@ export function HeroSlider() {
           {/* CTAs */}
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
             <Link href="/contact" className="btn-primary">
-              Get a Callback
+              Get my callback
             </Link>
             <Link
               href={`/services/${service.slug}`}

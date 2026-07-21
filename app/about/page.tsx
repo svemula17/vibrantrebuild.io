@@ -123,7 +123,7 @@ export default function AboutPage() {
                   <a
                     href="/Vibrant-Company-Brochure.pdf"
                     download
-                    className="btn-primary"
+                    className="btn-outline-light"
                   >
                     <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
@@ -164,7 +164,7 @@ export default function AboutPage() {
               Tell us where you want to be in 12 months. We&apos;ll help you get there with senior practitioners and a 25-year delivery track record.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/contact" className="btn-primary">Get a Callback</Link>
+              <Link href="/contact" className="btn-primary">Get my callback</Link>
               <Link href="/services" className="btn-ghost">See our services</Link>
             </div>
           </div>

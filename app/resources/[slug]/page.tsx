@@ -153,7 +153,7 @@ export default async function ResourceDetailPage({
               you what to do about it.
             </p>
             <Link href="/contact" className="btn-primary mt-5">
-              Get a Callback
+              Get my callback
             </Link>
           </div>
 

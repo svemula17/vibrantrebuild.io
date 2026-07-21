@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/page-hero";
-import { getServiceBySlug, serviceCards, siteSettings } from "@/content/site-content";
+import { getServiceBySlug, serviceCards, serviceInterestMap, siteSettings } from "@/content/site-content";
 
 type Params = { slug: string };
 
@@ -84,13 +84,18 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
 
           <aside>
             <div className="sticky top-28 card p-7">
-              <p className="eyebrow">Talk to a specialist</p>
-              <h3 className="mt-2 text-lg">Get a senior-led scoping call.</h3>
+              <p className="eyebrow">Talk to an expert</p>
+              <h3 className="mt-2 text-lg">{`Talk to a ${service.kicker} expert.`}</h3>
               <p className="mt-2 text-sm text-muted">
-                A 30-minute call to understand your situation and share what we&apos;d typically recommend.
+                A 30-minute senior-led call to understand your situation and share what we&apos;d typically recommend.
               </p>
               <div className="mt-5 flex flex-col gap-2.5">
-                <Link href="/contact" className="btn-primary">Get a Callback</Link>
+                <Link
+                  href={`/contact/?interest=${encodeURIComponent(serviceInterestMap[service.slug] ?? "")}`}
+                  className="btn-primary"
+                >
+                  Get my callback
+                </Link>
                 <a href={`tel:${siteSettings.phonePrimary}`} className="btn-ghost">{siteSettings.phonePrimary}</a>
               </div>
               <hr className="my-6 border-line" />

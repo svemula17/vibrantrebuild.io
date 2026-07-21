@@ -195,7 +195,7 @@ export default function TeamPage() {
           </p>
           <div className="mt-8 flex justify-center">
             <Link href="/contact" className="btn-primary">
-              Get a Callback
+              Get my callback
             </Link>
           </div>
         </div>

@@ -199,7 +199,7 @@ export function Footer() {
           </ul>
 
           <Link href="/contact" className="mt-6 btn-primary px-5 py-2.5">
-            Get a Callback →
+            Get my callback →
           </Link>
         </div>
       </div>
