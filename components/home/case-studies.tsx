@@ -44,13 +44,7 @@ export function CaseStudies() {
     <section className="section bg-navy-50/40">
       <div className="container">
 
-        <motion.div
-          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-8%" }}
-          transition={{ duration: 0.55 }}
-        >
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
           <div className="max-w-xl">
             <p className="eyebrow">Client outcomes</p>
             <h2 className="mt-3">Results that show up in the business.</h2>
@@ -58,16 +52,16 @@ export function CaseStudies() {
           <Link href="/services" className="btn-ghost shrink-0 self-start sm:self-auto">
             All services →
           </Link>
-        </motion.div>
+        </div>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-3">
           {caseStudies.map((cs, i) => (
             <motion.div
               key={cs.sector}
-              initial={{ opacity: 0, y: 28 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-6%" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              transition={{ duration: 0.35, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
               className="group relative flex flex-col rounded-2xl border border-line bg-white p-8 shadow-card hover:shadow-cardHover hover:border-sky/30 transition-all overflow-hidden"
             >
               {/* Watermark metric */}

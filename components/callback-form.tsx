@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { interestOptions } from "@/content/site-content";
 
 type Status = "idle" | "submitting" | "success" | "error";
@@ -80,13 +79,9 @@ export function CallbackForm({ heading, showRequiredNote }: Props) {
   }
 
   return (
-    <motion.form
+    <form
       onSubmit={handleSubmit}
       noValidate
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-10%" }}
-      transition={{ duration: 0.5 }}
       className="bg-white rounded-2xl shadow-card p-6 md:p-8 border border-line"
     >
       {heading && <h3 className="text-xl font-semibold text-navy-700">{heading}</h3>}
@@ -163,7 +158,7 @@ export function CallbackForm({ heading, showRequiredNote }: Props) {
       {status === "error" && (
         <p className="mt-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">{message}</p>
       )}
-    </motion.form>
+    </form>
   );
 }
 

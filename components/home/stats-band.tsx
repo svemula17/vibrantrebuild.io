@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { AnimatedCounter } from "@/components/animated-counter";
-import { RevealWords } from "@/components/reveal-on-scroll";
 import { stats, siteSettings } from "@/content/site-content";
 
 export function StatsBand() {
@@ -19,28 +18,20 @@ export function StatsBand() {
       />
 
       <div className="container relative py-20 md:py-28">
-        <motion.div
-          className="max-w-3xl"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-8%" }}
-          transition={{ duration: 0.55 }}
-        >
+        <div className="max-w-3xl">
           <p className="eyebrow-on-dark">By the numbers</p>
           {/* The client-mandated tagline lives here (single source: siteSettings.tagline) */}
-          <h2 className="mt-3 text-white">
-            <RevealWords text={siteSettings.tagline} />
-          </h2>
-        </motion.div>
+          <h2 className="mt-3 text-white">{siteSettings.tagline}</h2>
+        </div>
 
         <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((s, i) => (
             <motion.div
               key={s.label}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-8%" }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
+              transition={{ duration: 0.35, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
               className="border-l-2 border-brand-600 pl-5"
             >
               {s.highlight ? (

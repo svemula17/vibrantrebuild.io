@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { serviceCards } from "@/content/site-content";
-import { RevealWords } from "@/components/reveal-on-scroll";
 
 // Homepage grid: the seven capability pillars, ERP first. Full catalog on /services.
 const homepageSlugs = [
@@ -26,37 +25,29 @@ export function ServicesGrid() {
     <section className="section section-soft">
       <div className="container">
 
-        {/* Section header — slides in from left */}
-        <motion.div
-          className="max-w-2xl"
-          initial={{ opacity: 0, x: -24 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-8%" }}
-          transition={{ duration: 0.55, ease: "easeOut" }}
-        >
+        {/* Section header — static; primary content never animates */}
+        <div className="max-w-2xl">
           <p className="eyebrow">What we do</p>
-          <h2 className="mt-3">
-            <RevealWords text="Seven Capabilities. One Vibrant Partner." />
-          </h2>
+          <h2 className="mt-3">Seven Capabilities. One Vibrant Partner.</h2>
           <p className="mt-4 text-muted">
             From ERP and cloud to cybersecurity, data, automation, and AI — seven capability
             pillars covering the full enterprise technology stack, delivered by senior
             practitioners who&apos;ve been doing this since 2000.
           </p>
-        </motion.div>
+        </div>
 
         {/* Cards — cascade in */}
         <div className="mt-14 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {gridServices.map((service, i) => (
             <motion.div
               key={service.slug}
-              initial={{ opacity: 0, y: 28 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-6%" }}
               transition={{
-                duration: 0.5,
-                delay: (i % 4) * 0.08,
-                ease: "easeOut"
+                duration: 0.35,
+                delay: (i % 4) * 0.06,
+                ease: [0.22, 1, 0.36, 1]
               }}
               className={i === 0 ? "sm:col-span-2" : undefined}
             >

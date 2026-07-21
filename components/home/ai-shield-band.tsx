@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { RevealWords } from "@/components/reveal-on-scroll";
 
 const features = [
   {
@@ -43,15 +42,10 @@ export function AiShieldBand() {
       <div className="container relative py-20 md:py-28">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           {/* Left — copy */}
-          <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-8%" }}
-            transition={{ duration: 0.55, ease: "easeOut" }}
-          >
+          <div>
             <p className="eyebrow-on-dark">Featured platform</p>
             <h2 className="mt-3 text-white">
-              <RevealWords text="AI Shield™ — security that thinks faster than attackers." />
+              AI Shield™ — security that thinks faster than attackers.
             </h2>
             <p className="mt-5 text-white/70 leading-relaxed">
               Our proprietary detection-and-response capability uses machine learning and
@@ -75,17 +69,17 @@ export function AiShieldBand() {
                 See it in action
               </Link>
             </div>
-          </motion.div>
+          </div>
 
           {/* Right — feature tiles */}
           <div className="grid sm:grid-cols-2 gap-4">
             {features.map((f, i) => (
               <motion.div
                 key={f.title}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-6%" }}
-                transition={{ duration: 0.45, delay: i * 0.08, ease: "easeOut" }}
+                transition={{ duration: 0.35, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
                 className="group card-dark p-6 hover:bg-white/10 hover:border-brand-600/40 transition-all"
               >
                 <span className="grid h-10 w-10 place-items-center rounded-xl bg-brand-600/20 text-brand-400 group-hover:bg-brand-600 group-hover:text-white transition-colors">

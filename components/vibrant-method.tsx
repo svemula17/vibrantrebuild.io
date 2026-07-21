@@ -8,13 +8,7 @@ export function VibrantMethod() {
     <section className="section-gradient">
       <div className="container">
 
-        <motion.div
-          className="max-w-2xl"
-          initial={{ opacity: 0, x: -24 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-8%" }}
-          transition={{ duration: 0.55, ease: "easeOut" }}
-        >
+        <div className="max-w-2xl">
           <p className="eyebrow">Our delivery framework</p>
           <h2 className="mt-3">The VIBRANT Method™ — agile delivery, enterprise accountability.</h2>
           <p className="mt-4 text-muted leading-relaxed">
@@ -22,17 +16,17 @@ export function VibrantMethod() {
             ERP program — runs on the same agile framework: senior-led sprints, weekly demos, and
             outcomes you can measure. It&apos;s how we modernize without disrupting operations.
           </p>
-        </motion.div>
+        </div>
 
         {/* Letter grid */}
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
           {vibrantMethod.map((item, i) => (
             <motion.div
               key={item.letter}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-6%" }}
-              transition={{ duration: 0.45, delay: i * 0.07, ease: "easeOut" }}
+              transition={{ duration: 0.35, delay: Math.min(i, 6) * 0.05, ease: [0.22, 1, 0.36, 1] }}
               className="group relative flex flex-col rounded-2xl border border-line bg-white p-6 shadow-card hover:shadow-cardHover hover:border-sky/40 hover:-translate-y-1 transition-all overflow-hidden"
             >
               {/* Watermark letter */}

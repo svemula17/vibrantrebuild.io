@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
 import { navigationItems, siteSettings } from "@/content/site-content";
 import logoSrc from "@/vibrant-logo-full.png";
 
@@ -87,10 +86,7 @@ export function Header() {
               >
                 {item.label}
                 {active && (
-                  <motion.span
-                    layoutId="nav-active"
-                    className="absolute inset-x-2 -bottom-0.5 h-0.5 bg-sky rounded"
-                  />
+                  <span className="absolute inset-x-2 -bottom-0.5 h-0.5 bg-brand-600 rounded" />
                 )}
               </Link>
             );
@@ -139,30 +135,30 @@ export function Header() {
         </button>
       </div>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            id="mobile-menu"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="xl:hidden border-t border-line bg-white"
-          >
-            <nav className="container flex flex-col py-4" aria-label="Mobile">
-              {navigationItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="py-3 text-base font-medium text-navy-700 border-b border-line last:border-0"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Mobile menu — CSS grid-rows transition; kept mounted, inert when closed */}
+      <div
+        id="mobile-menu"
+        // @ts-expect-error — inert is a valid HTML attribute; React types lag
+        inert={open ? undefined : ""}
+        aria-hidden={!open}
+        className={`xl:hidden grid transition-[grid-template-rows,opacity] duration-200 ease-brand ${
+          open ? "grid-rows-[1fr] opacity-100 border-t border-line bg-white" : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <nav className="container flex flex-col py-4" aria-label="Mobile">
+            {navigationItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="py-3 text-base font-medium text-navy-700 border-b border-line last:border-0"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      </div>
     </header>
   );
 }
