@@ -72,9 +72,10 @@ export function Header() {
           />
         </Link>
 
-        {/* Desktop nav — xl breakpoint gives room for all 7 items */}
+        {/* Desktop nav — Resources is pulled out of the list and rendered as the
+            right-side utility button instead */}
         <nav className="hidden xl:flex items-center gap-0.5" aria-label="Primary">
-          {navigationItems.map((item) => {
+          {navigationItems.filter((item) => item.href !== "/resources").map((item) => {
             const active =
               item.href === "/" ? pathname === "/" : pathname === item.href || pathname.startsWith(item.href + "/");
             return (
@@ -97,12 +98,16 @@ export function Header() {
           })}
         </nav>
 
-        <div className="hidden xl:flex items-center gap-3 shrink-0">
-          <a href={`tel:${siteSettings.phonePrimary}`} className="hidden 2xl:inline text-sm font-medium text-navy-700 hover:text-sky">
-            {siteSettings.phonePrimary}
-          </a>
-          <Link href="/contact" className="btn-primary text-sm px-5 py-2.5">
-            Get a Callback
+        <div className="hidden xl:flex items-center shrink-0">
+          <Link
+            href="/resources"
+            className={`btn text-sm px-5 py-2.5 border transition-colors ${
+              pathname.startsWith("/resources")
+                ? "border-sky text-sky bg-sky/5"
+                : "border-line text-navy-700 hover:border-sky/50 hover:text-sky"
+            }`}
+          >
+            Resources
           </Link>
         </div>
 
@@ -155,14 +160,6 @@ export function Header() {
                   {item.label}
                 </Link>
               ))}
-              <div className="mt-4 flex flex-col gap-3">
-                <a href={`tel:${siteSettings.phonePrimary}`} className="btn-ghost w-full">
-                  Call {siteSettings.phonePrimary}
-                </a>
-                <Link href="/contact" className="btn-primary w-full">
-                  Get a Callback
-                </Link>
-              </div>
             </nav>
           </motion.div>
         )}
