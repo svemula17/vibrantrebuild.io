@@ -10,24 +10,27 @@ export const metadata: Metadata = {
     "Meet the Vibrant Inc leadership team — founder-led delivery backed by principal architects across ERP, cloud, SAP, cybersecurity, and AI."
 };
 
-/* Drop headshot files in the repo root and register them here, e.g.
-   import sureshPhoto from "@/suresh-reddy.jpg";
-   const leaderPhotos: Record<string, StaticImageData> = { "suresh-reddy": sureshPhoto }; */
-const leaderPhotos: Record<string, StaticImageData> = {};
+import sureshPhoto from "@/assets/team/suresh-reddy.jpg";
+
+const leaderPhotos: Record<string, StaticImageData> = {
+  "suresh-reddy": sureshPhoto
+};
 
 const AI_ICON =
   "M12 2a4 4 0 0 1 4 4v1a4 4 0 0 1 0 8v1a4 4 0 1 1-8 0v-1a4 4 0 0 1 0-8V6a4 4 0 0 1 4-4zM9 10h.01M15 10h.01M9 14h.01M15 14h.01";
 
 function Avatar({ leader, size = "lg" }: { leader: Leader; size?: "lg" | "xl" }) {
   const photo = leaderPhotos[leader.id];
-  const dims = size === "xl" ? "h-64 w-64 md:h-80 md:w-80" : "h-16 w-16";
+  // Photo variant renders smaller than the initials tile — the source headshot is
+  // 143px; anything past ~2x upscale goes soft.
+  const dims = size === "xl" ? "h-48 w-48 md:h-56 md:w-56" : "h-16 w-16";
 
   if (photo) {
     return (
       <Image
         src={photo}
         alt={leader.name ?? leader.role}
-        className={`${dims} rounded-2xl object-cover shadow-cardHover`}
+        className={`${dims} rounded-2xl object-cover object-top shadow-cardHover ring-1 ring-line`}
       />
     );
   }

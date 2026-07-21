@@ -1,8 +1,16 @@
 import type { Metadata } from "next";
+import Image, { type StaticImageData } from "next/image";
 import { CallbackForm } from "@/components/callback-form";
 import { PageHero } from "@/components/page-hero";
 import { SocialLinks } from "@/components/social-links";
 import { offices, siteSettings } from "@/content/site-content";
+import usOfficePhoto from "@/assets/offices/us-office.jpg";
+import indiaOfficePhoto from "@/assets/offices/india-office.jpg";
+
+const officePhotos: Record<string, StaticImageData> = {
+  us: usOfficePhoto,
+  india: indiaOfficePhoto
+};
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -113,19 +121,14 @@ export default function ContactPage() {
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {offices.map((office) => (
               <div key={office.id} className="card overflow-hidden">
-                {/* Office photo slot — drop /us-office.jpg + /india-office.jpg in the repo root,
-                    import them here and swap this gradient band for an <Image>. */}
-                <div
-                  className="relative h-40 w-full"
-                  role="img"
-                  aria-label={office.photoAlt}
-                  style={{
-                    background:
-                      office.id === "us"
-                        ? "linear-gradient(135deg, #0f1f33 0%, #1d3a5f 55%, #C8401A 160%)"
-                        : "linear-gradient(135deg, #7D250E -40%, #1d3a5f 45%, #0f1f33 100%)"
-                  }}
-                >
+                <div className="relative h-44 w-full bg-navy-50">
+                  <Image
+                    src={officePhotos[office.id]}
+                    alt={office.photoAlt}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover"
+                  />
                   <span className="absolute bottom-4 left-5 inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-navy-700 shadow-sm">
                     <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 text-sky" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />

@@ -88,8 +88,8 @@ export function Footer() {
           <Image
             src={logoSrc}
             alt="Vibrant Inc"
-            width={1175}
-            height={995}
+            width={1116}
+            height={944}
             className="h-14 w-auto object-contain brightness-0 invert"
           />
           <p className="mt-4 text-sm leading-relaxed text-white/60">

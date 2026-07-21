@@ -30,8 +30,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/vibrant-logo-full.png",
-        width: 1175,
-        height: 995,
+        width: 1116,
+        height: 944,
         alt: "Vibrant Inc — Enterprise Technology Consulting"
       }
     ]

@@ -65,8 +65,8 @@ export function Header() {
           <Image
             src={logoSrc}
             alt="Vibrant Inc"
-            width={1175}
-            height={995}
+            width={1116}
+            height={944}
             priority
             className="h-16 md:h-20 w-auto object-contain"
           />
