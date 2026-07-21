@@ -11,7 +11,6 @@ import {
   visionStatement,
   withBasePath
 } from "@/content/site-content";
-import { VibrantMethod } from "@/components/vibrant-method";
 import anniversary from "@/assets/anniversary.png";
 
 export const metadata: Metadata = pageMeta({
@@ -42,18 +41,15 @@ export default function AboutPage() {
               ))}
             </div>
 
-            {/* Vision card */}
-            <div className="mt-8 card p-7">
-              <p className="eyebrow">Our vision</p>
-              <p className="mt-3 text-lg font-medium text-navy-700 leading-relaxed">
-                &ldquo;{visionStatement}&rdquo;
-              </p>
-            </div>
+            {/* Vision — slim inline quote, no card chrome */}
+            <blockquote className="mt-6 border-l-2 border-brand-600 pl-4 text-[15px] font-medium text-neutral-700 leading-relaxed">
+              &ldquo;{visionStatement}&rdquo;
+            </blockquote>
           </div>
 
-          {/* Right: 25-year graphic (kept small) + key facts */}
-          <div className="flex flex-col gap-6">
-            <div className="w-full mx-auto overflow-hidden rounded-2xl shadow-card" style={{ maxWidth: 220 }}>
+          {/* Right: one compact card — small 25-year graphic + key facts */}
+          <div className="card p-7">
+            <div className="mx-auto overflow-hidden rounded-xl" style={{ maxWidth: 180 }}>
               <Image
                 src={anniversary}
                 alt="Vibrant Inc — Celebrating 25 Years in Business"
@@ -63,16 +59,15 @@ export default function AboutPage() {
                 priority
               />
             </div>
-            <div className="card p-7">
-              <p className="eyebrow">By the numbers</p>
-              <div className="mt-5 grid grid-cols-2 gap-6">
-                {aboutFacts.map((f) => (
-                  <div key={f.label}>
-                    <div className="text-3xl font-semibold tracking-tight text-navy-700">{f.value}</div>
-                    <p className="mt-1 text-xs text-muted">{f.label}</p>
-                  </div>
-                ))}
-              </div>
+            <hr className="my-6 border-line" />
+            <p className="eyebrow">By the numbers</p>
+            <div className="mt-4 grid grid-cols-2 gap-5">
+              {aboutFacts.map((f) => (
+                <div key={f.label}>
+                  <div className="text-3xl font-semibold tracking-tight text-navy-700">{f.value}</div>
+                  <p className="mt-1 text-xs text-muted">{f.label}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -87,28 +82,26 @@ export default function AboutPage() {
               Five principles that shape how we deliver, hire, and partner with our clients.
             </p>
           </div>
-          <ul className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-8 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
             {coreValues.map((v, i) => (
               <li
                 key={v.title}
-                className={`card p-6 hover:border-sky/40 hover:shadow-cardHover transition-all ${
+                className={`card p-5 hover:border-sky/40 hover:shadow-cardHover transition-all ${
                   i === 4 ? "md:col-span-2 lg:col-span-1" : ""
                 }`}
               >
                 <h3 className="text-base font-semibold text-navy-700">{v.title}</h3>
-                <p className="mt-2 text-sm text-muted leading-relaxed">{v.body}</p>
+                <p className="mt-1.5 text-sm text-muted leading-relaxed">{v.body}</p>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      <VibrantMethod />
-
       {/* ── Brochure download ── */}
       <section className="section">
         <div className="container">
-          <div className="relative overflow-hidden rounded-3xl bg-neutral-900 p-10 md:p-14">
+          <div className="relative overflow-hidden rounded-3xl bg-neutral-900 p-8 md:p-10">
             {/* Glow */}
             <div aria-hidden className="absolute inset-0 pointer-events-none"
               style={{ background: "radial-gradient(ellipse at 30% 50%, rgba(200,64,26,0.25) 0%, transparent 60%)" }} />
