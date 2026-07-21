@@ -17,8 +17,9 @@ export type ServiceCard = {
   featured?: boolean; // shows in homepage carousel
   hideFromGrid?: boolean; // carousel-only entries hidden from services grid
   carouselOrder?: number; // hero slide position (lower = earlier); unset featured cards sort last
-  heroTeaser?: string; // richer carousel copy; falls back to summary
-  heroHighlights?: string[]; // short proof chips rendered on the hero slide
+  heroTagline?: string; // ONE short line on the hero slide (minimal hero); falls back to summary
+  heroTeaser?: string; // longer copy — kept for reuse on detail surfaces, not rendered in the hero
+  heroHighlights?: string[]; // proof chips — kept in data, no longer rendered in the hero
 };
 
 export type ContactDetail = { label: string; value: string };
@@ -219,6 +220,7 @@ export const serviceCards: ServiceCard[] = [
       "Mid-market and enterprise leaders moving past AI experimentation into production value.",
     featured: true,
     carouselOrder: 4,
+    heroTagline: "AI that accelerates the business you already run — shipped, not demoed.",
     heroTeaser:
       "AI should accelerate the business you already run — not become a lab experiment. We assess data, talent, and infrastructure readiness, prioritize the use cases that matter, and ship pilots that show up in the P&L.",
     heroHighlights: ["Readiness assessment & roadmap", "Generative AI pilots", "MLOps & responsible AI"]
@@ -255,6 +257,7 @@ export const serviceCards: ServiceCard[] = [
       "Organizations with legacy data centers or fragmented cloud estates needing a defensible plan.",
     featured: true,
     carouselOrder: 2,
+    heroTagline: "Azure, AWS, or GCP — moved incrementally, never rip-and-replace.",
     heroTeaser:
       "Move to Azure, AWS, or GCP without the rip-and-replace risk. We modernize incrementally — landing zones, migrations, microservices, and platform engineering — so the business keeps shipping while the foundation gets stronger.",
     heroHighlights: ["Azure · AWS · GCP landing zones", "Migration & replatforming", "FinOps cost optimization"]
@@ -297,6 +300,7 @@ export const serviceCards: ServiceCard[] = [
       "Mid-market and enterprise companies modernizing security alongside cloud and AI programs — especially those seeking AI-augmented threat response.",
     featured: true,
     carouselOrder: 3,
+    heroTagline: "Zero-trust architecture, always-on SOC coverage, audit-ready compliance.",
     heroTeaser:
       "Security that enables the business instead of slowing it down. We design zero-trust architecture, harden identity, run round-the-clock SOC coverage, and keep you audit-ready across SOC 2, HIPAA, PCI, and CMMC — backed by our AI Shield detection platform.",
     heroHighlights: ["Zero-trust & identity", "24×7 SOC operations", "SOC 2 · HIPAA · PCI · CMMC"]
@@ -365,6 +369,7 @@ export const serviceCards: ServiceCard[] = [
       "Operations-heavy organizations with measurable manual workload to compress.",
     featured: true,
     carouselOrder: 5,
+    heroTagline: "Find the work humans shouldn't be doing. Then automate it.",
     heroTeaser:
       "Find the work humans shouldn't be doing — then automate it. Process discovery, RPA, and intelligent document processing that hand hours back to your highest-cost teams, every single week.",
     heroHighlights: ["Process discovery & mining", "RPA — UiPath · Power Automate", "Intelligent document processing"]
@@ -409,6 +414,7 @@ export const serviceCards: ServiceCard[] = [
       "Companies replacing legacy ERP, running JD Edwards or PeopleSoft environments needing CNC expertise, or rescuing a stalled SAP or Dynamics program.",
     featured: true,
     carouselOrder: 1,
+    heroTagline: "SAP, JD Edwards, and PeopleSoft — modernized without missing a beat.",
     heroTeaser:
       "Your ERP is the heart of the business — modernize it without missing a beat. Vibrant's 25-year practice spans SAP Implementation & Support, JD Edwards CNC Services, and PeopleSoft Implementation & Support, alongside Oracle EBS, Workday, and Dynamics 365.",
     heroHighlights: ["SAP ECC / S/4HANA · AMS", "JD Edwards CNC & EnterpriseOne", "PeopleSoft HCM / FSCM"]
@@ -445,6 +451,7 @@ export const serviceCards: ServiceCard[] = [
       "Organizations with data, but no consistent decision-grade reporting.",
     featured: true,
     carouselOrder: 6,
+    heroTagline: "Numbers leadership can trust. Dashboards analysts actually use.",
     heroTeaser:
       "Numbers leadership can trust, dashboards analysts actually use. We build modern data platforms on Snowflake and Databricks — and the governed, decision-grade reporting layer on top in Power BI, Tableau, and Oracle BI.",
     heroHighlights: ["Snowflake & Databricks platforms", "Power BI · Tableau · Oracle BI", "Governance & data quality"]
@@ -482,6 +489,7 @@ export const serviceCards: ServiceCard[] = [
     category: "Managed Services",
     featured: true,
     carouselOrder: 7,
+    heroTagline: "Round-the-clock depth for lean IT teams — without the headcount.",
     heroTeaser:
       "Round-the-clock depth for lean IT teams — applications, cloud operations, security, and service desk with senior escalation always on call. Predictable costs, no headcount growth, no 2 a.m. surprises.",
     heroHighlights: ["24×7 application support", "Cloud ops & FinOps", "Managed SOC & service desk"]

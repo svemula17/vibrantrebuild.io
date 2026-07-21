@@ -191,7 +191,7 @@ export function HeroSlider() {
         <div className="max-w-xl lg:max-w-3xl">
 
           {/* Persistent positioning statement — anchored by a brand rule */}
-          <h1 className="border-l-2 border-sky pl-4 text-[13px] md:text-[15px] font-medium text-white/80 leading-snug max-w-lg">
+          <h1 className="border-l-2 border-sky pl-4 text-[13px] md:text-[15px] font-medium text-white/75 leading-snug max-w-lg [text-wrap:balance]">
             Helping Mid-Market &amp; Enterprise Companies Modernize ERP, Cloud &amp; AI —
             Without Disrupting Operations
           </h1>
@@ -212,42 +212,28 @@ export function HeroSlider() {
             {service.kicker}
           </motion.div>
 
-          {/* Teaser + proof chips — flush with the spine, no hanging indents */}
-          <motion.div
+          {/* One line, no paragraph, no chips — minimal by design */}
+          <motion.p
             key={`body-${service.slug}`}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.08 }}
-            className="mt-5"
+            className="mt-6 text-lg md:text-xl text-white/85 leading-relaxed max-w-2xl [text-wrap:balance]"
           >
-            <p className="text-base md:text-lg text-white/85 leading-relaxed max-w-2xl line-clamp-4 sm:line-clamp-none">
-              {service.heroTeaser ?? service.summary}
-            </p>
-            {service.heroHighlights && service.heroHighlights.length > 0 && (
-              <div className="mt-6 hidden sm:flex flex-wrap gap-2.5">
-                {service.heroHighlights.map((h) => (
-                  <span
-                    key={h}
-                    className="chip-on-dark gap-2 px-3.5 py-1.5 text-[13px]"
-                  >
-                    <span className="h-1.5 w-1.5 rounded-full bg-sky" />
-                    {h}
-                  </span>
-                ))}
-              </div>
-            )}
-          </motion.div>
+            {service.heroTagline ?? service.summary}
+          </motion.p>
 
-          {/* CTAs */}
-          <div className="mt-8 flex flex-col sm:flex-row gap-3">
+          {/* One primary action + one quiet text link */}
+          <div className="mt-9 flex flex-col items-start sm:flex-row sm:items-center gap-5">
             <Link href="/contact" className="btn-primary">
               Get my callback
             </Link>
             <Link
               href={`/services/${service.slug}`}
-              className="btn-outline-light"
+              className="group inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-white/80 hover:text-white transition-colors"
             >
-              Explore {service.kicker}&nbsp;→
+              Explore {service.kicker}
+              <span aria-hidden className="transition-transform duration-200 group-hover:translate-x-1">→</span>
             </Link>
           </div>
 
