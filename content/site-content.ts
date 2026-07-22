@@ -46,6 +46,18 @@ export const siteSettings = {
     facebook: "https://www.facebook.com/VibrantIncNJ/",
     twitter: "https://x.com/VibrantInc",
     linkedin: "https://www.linkedin.com/company/11160088/"
+  },
+  /* Contact-form backend. Paste ONE key to activate that provider; leave both
+     empty to fall back to FormSubmit.co (which needs its one-time activation
+     email clicked at info@vibrantinc.com before submissions arrive).
+     - formspreeId: create a free form at formspree.io with info@vibrantinc.com,
+       copy the id from the endpoint URL (formspree.io/f/<id>). 50/mo free,
+       dashboard keeps every submission even if an email goes missing.
+     - web3formsKey: get a free access key at web3forms.com (no account).
+       250/mo free, email-only delivery. */
+  forms: {
+    formspreeId: "",
+    web3formsKey: ""
   }
 };
 

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { interestOptions } from "@/content/site-content";
+import { interestOptions, siteSettings } from "@/content/site-content";
 import { TrustCluster } from "@/components/trust-cluster";
 
 type Status = "idle" | "submitting" | "error";
@@ -92,16 +92,30 @@ export function CallbackForm({ heading }: Props) {
     setStatus("submitting");
 
     try {
-      // FormSubmit.co — free, no account needed.
-      // First submission triggers a one-time verification email to info@vibrantinc.com.
-      const res = await fetch("https://formsubmit.co/ajax/info@vibrantinc.com", {
+      // Provider-agnostic submit: Formspree > Web3Forms > FormSubmit fallback.
+      // Activate a provider by pasting its key into siteSettings.forms.
+      const subject = `New callback request from ${data.firstName} ${data.lastName}${data.company ? ` — ${data.company}` : ""}`;
+      const { formspreeId, web3formsKey } = siteSettings.forms;
+
+      let url: string;
+      let body: Record<string, unknown>;
+      if (formspreeId) {
+        url = `https://formspree.io/f/${formspreeId}`;
+        body = { ...data, _subject: subject };
+      } else if (web3formsKey) {
+        url = "https://api.web3forms.com/submit";
+        body = { access_key: web3formsKey, subject, ...data };
+      } else {
+        // FormSubmit.co — free, no account, but silently drops submissions
+        // until the one-time verification email is confirmed.
+        url = "https://formsubmit.co/ajax/info@vibrantinc.com";
+        body = { ...data, _subject: subject, _captcha: "false" };
+      }
+
+      const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          ...data,
-          _subject: `New callback request from ${data.firstName} ${data.lastName}${data.company ? ` — ${data.company}` : ""}`,
-          _captcha: "false"
-        })
+        body: JSON.stringify(body)
       });
 
       if (res.ok) {
