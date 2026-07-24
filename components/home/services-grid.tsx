@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Reveal } from "@/components/reveal";
 import { serviceCards } from "@/content/site-content";
 
 // Homepage grid: the seven capability pillars, ERP first. Full catalog on /services.
@@ -25,8 +26,8 @@ export function ServicesGrid() {
     <section className="section section-soft">
       <div className="container">
 
-        {/* Section header — static; primary content never animates */}
-        <div className="max-w-2xl">
+        {/* Section header — rises in once on scroll */}
+        <Reveal className="max-w-2xl">
           <p className="eyebrow">What we do</p>
           <h2 className="mt-3">Seven Capabilities. One Vibrant Partner.</h2>
           <p className="mt-4 text-muted">
@@ -34,7 +35,7 @@ export function ServicesGrid() {
             pillars covering the full enterprise technology stack, delivered by senior
             practitioners who&apos;ve been doing this since 2000.
           </p>
-        </div>
+        </Reveal>
 
         {/* Cards — cascade in */}
         <div className="mt-14 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

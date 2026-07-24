@@ -1,5 +1,6 @@
 
 import Image, { type StaticImageData } from "next/image";
+import { Reveal } from "@/components/reveal";
 
 /* Client & partner logos — fetched from each company's official website */
 import ilink     from "@/clients/ilink-digital.svg";
@@ -63,7 +64,7 @@ function LogoItem({ logo }: { logo: ClientLogo }) {
         className={`max-h-10 w-auto max-w-[9rem] object-contain transition-all duration-300 ${
           logo.invert
             ? "brightness-0 opacity-55 hover:opacity-80"
-            : "grayscale opacity-60 hover:grayscale-0 hover:opacity-100"
+            : "opacity-90 hover:opacity-100"
         }`}
       />
     </div>
@@ -75,13 +76,15 @@ export function ClientLogos() {
     <section className="bg-white border-y border-line overflow-hidden">
       {/* Sits directly under the hero — one quiet qualifier line, no heading block */}
       <div className="container pt-10 pb-8">
-        <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-muted">
-          Trusted by companies across North America since 2000
-        </p>
+        <Reveal>
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-muted">
+            Trusted by companies across North America since 2000
+          </p>
+        </Reveal>
       </div>
 
       {/* Marquee — duplicated track scrolls 50%, pauses on hover */}
-      <div className="relative pb-10">
+      <Reveal delay={0.1} className="relative pb-10">
         <div
           aria-hidden
           className="absolute inset-y-0 left-0 w-24 z-10 pointer-events-none"
@@ -97,7 +100,7 @@ export function ClientLogos() {
             <LogoItem key={`${logo.name}-${i}`} logo={logo} />
           ))}
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Reveal } from "@/components/reveal";
 import { AnimatedCounter } from "@/components/animated-counter";
 import { stats, siteSettings } from "@/content/site-content";
 
@@ -18,11 +19,11 @@ export function StatsBand() {
       />
 
       <div className="container relative py-20 md:py-28">
-        <div className="max-w-3xl">
+        <Reveal className="max-w-3xl">
           <p className="eyebrow-on-dark">By the numbers</p>
           {/* The client-mandated tagline lives here (single source: siteSettings.tagline) */}
           <h2 className="mt-3 text-white">{siteSettings.tagline}</h2>
-        </div>
+        </Reveal>
 
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((s, i) => (

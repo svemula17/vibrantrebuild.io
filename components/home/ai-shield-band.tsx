@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Reveal } from "@/components/reveal";
 
 const features = [
   {
@@ -43,15 +44,17 @@ export function AiShieldBand() {
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           {/* Left — copy */}
           <div>
-            <p className="eyebrow-on-dark">Featured platform</p>
-            <h2 className="mt-3 text-white">
-              AI Shield™ — security that thinks faster than attackers.
-            </h2>
-            <p className="mt-5 text-white/70 leading-relaxed">
-              Our proprietary detection-and-response capability uses machine learning and
-              behavioral analytics to spot what rule-based tools miss — and neutralize it in
-              minutes, not hours.
-            </p>
+            <Reveal>
+              <p className="eyebrow-on-dark">Featured platform</p>
+              <h2 className="mt-3 text-white">
+                AI Shield™ — security that thinks faster than attackers.
+              </h2>
+              <p className="mt-5 text-white/70 leading-relaxed">
+                Our proprietary detection-and-response capability uses machine learning and
+                behavioral analytics to spot what rule-based tools miss — and neutralize it in
+                minutes, not hours.
+              </p>
+            </Reveal>
 
             <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-white/60">
               <span>Threats contained in minutes</span>

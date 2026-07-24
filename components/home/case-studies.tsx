@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Reveal } from "@/components/reveal";
 import { caseStudies } from "@/content/site-content";
 import { CaseStudyCard } from "@/components/case-study-card";
 
@@ -10,7 +11,7 @@ export function CaseStudies() {
     <section className="section bg-navy-50/40">
       <div className="container">
 
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+        <Reveal className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
           <div className="max-w-xl">
             <p className="eyebrow">Client outcomes</p>
             <h2 className="mt-3">Results that show up in the business.</h2>
@@ -18,7 +19,7 @@ export function CaseStudies() {
           <Link href="/services" className="btn-ghost shrink-0 self-start sm:self-auto">
             All services →
           </Link>
-        </div>
+        </Reveal>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-3">
           {caseStudies.map((cs, i) => (
