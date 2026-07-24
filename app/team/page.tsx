@@ -163,6 +163,35 @@ export default function TeamPage() {
                   </p>
                 ))}
               </div>
+
+              {/* Actions — Calendly button appears once the URL is set in site-content */}
+              {(founder.calendly || founder.linkedin) && (
+                <div className="mt-7 flex flex-wrap items-center gap-3">
+                  {founder.calendly && (
+                    <a
+                      href={founder.calendly}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-primary"
+                    >
+                      Book a meeting →
+                    </a>
+                  )}
+                  {founder.linkedin && (
+                    <a
+                      href={founder.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-ghost inline-flex items-center gap-2"
+                    >
+                      <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden="true">
+                        <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8h4.56v14H.22V8zm7.4 0h4.36v1.92h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.48 3.04 5.48 7v7.44h-4.56v-6.6c0-1.58-.03-3.62-2.2-3.62-2.2 0-2.54 1.72-2.54 3.5V22H7.62V8z" />
+                      </svg>
+                      Connect on LinkedIn
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </section>

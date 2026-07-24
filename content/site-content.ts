@@ -105,6 +105,8 @@ export type Leader = {
   initials?: string;
   hasPhoto?: boolean;
   featured?: boolean; // founder gets the wide two-column treatment
+  linkedin?: string; // public profile URL — renders a "Connect on LinkedIn" button
+  calendly?: string; // booking URL — renders a "Book a meeting" button once set
 };
 
 export const leadership: Leader[] = [
@@ -116,13 +118,12 @@ export const leadership: Leader[] = [
     hasPhoto: true,
     initials: "SR",
     credentials: ["ITIL Foundation Certified"],
+    linkedin: "https://www.linkedin.com/in/sureshpreddy/",
+    calendly: "", // paste the calendly.com/... URL to show the "Book a meeting" button
     bio: [
-      "With more than 25 years of experience leading enterprise technology transformation initiatives, Suresh Reddy is the Founder and President of Vibrant Inc, where he helps organizations modernize their technology landscape through cloud transformation, enterprise applications, DevOps, and AI-driven innovation.",
-      "Throughout his career, Suresh has successfully led complex IT initiatives across the entire systems lifecycle — from strategy and architecture to implementation, operations, and continuous improvement. He has extensive experience partnering with Fortune 500 organizations to deliver scalable, secure, and resilient technology solutions that align with business objectives.",
-      "A recognized leader in cloud and DevOps transformation, Suresh has built and led high-performing engineering teams responsible for migrating enterprise workloads from traditional data centers to Amazon Web Services (AWS) and implementing modern cloud operating models. He has established enterprise DevOps governance frameworks, standardized delivery practices, and automated deployment pipelines using industry-leading technologies including GitLab, Jenkins, Ansible, Artifactory, Jira, Confluence, Jira Service Management, and ServiceNow.",
-      "His expertise extends to designing enterprise-wide governance, operational standards, security, compliance, and infrastructure automation for large-scale, mission-critical environments. He has successfully led multidisciplinary teams supporting complex hybrid infrastructures while driving operational excellence, reliability, and continuous delivery.",
-      "Suresh also brings deep expertise in enterprise business applications, including implementation, modernization, integration, and support of Oracle E-Business Suite, PeopleSoft, and JD Edwards EnterpriseOne. His broad understanding of enterprise platforms enables organizations to maximize the value of their technology investments while accelerating digital transformation.",
-      "As an ITIL Foundation Certified professional, Suresh is passionate about helping organizations simplify complexity, improve operational efficiency, and embrace emerging technologies to achieve sustainable business growth. Under his leadership, Vibrant Inc is committed to delivering practical, innovative, and results-driven technology solutions that enable clients to thrive in an increasingly digital world."
+      "With more than 25 years leading enterprise technology transformation, Suresh Reddy is the Founder and President of Vibrant Inc — helping organizations modernize through cloud, enterprise applications, DevOps, and AI-driven innovation, with complex initiatives delivered across the full systems lifecycle for Fortune 500 partners.",
+      "A recognized leader in cloud and DevOps transformation, Suresh has migrated enterprise workloads to AWS, built high-performing engineering teams, and established enterprise-wide governance, security, and automation for large-scale, mission-critical environments — alongside deep application expertise across Oracle E-Business Suite, PeopleSoft, and JD Edwards EnterpriseOne.",
+      "ITIL Foundation Certified, he is passionate about simplifying complexity and improving operational efficiency. Under his leadership, Vibrant delivers practical, results-driven solutions that help clients thrive in an increasingly digital world."
     ],
     expertise: [
       "Cloud Transformation (AWS)",
