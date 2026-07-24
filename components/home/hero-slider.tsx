@@ -39,7 +39,7 @@ const SLIDE_IMAGES: Record<string, StaticImageData> = {
   "peoplesoft-implementation": imgERP,
 };
 
-const INTERVAL = 5500;
+const INTERVAL = 6000;
 
 function ChevronLeft() {
   return (
@@ -123,6 +123,8 @@ export function HeroSlider() {
 
   const service = carouselServices[current];
   const slideImg = SLIDE_IMAGES[service.slug];
+  const nextService = carouselServices[(current + 1) % total];
+  const nextImg = SLIDE_IMAGES[nextService.slug];
 
   return (
     <section
@@ -133,31 +135,61 @@ export function HeroSlider() {
       onBlur={(e) => {
         if (!e.currentTarget.contains(e.relatedTarget as Node)) setFocusPaused(false);
       }}
+      onKeyDown={(e) => {
+        // Arrow keys navigate while focus is anywhere inside the slider
+        if (e.key === "ArrowLeft") { e.preventDefault(); prev(); }
+        if (e.key === "ArrowRight") { e.preventDefault(); next(); }
+      }}
       aria-label="Services slideshow"
       aria-roledescription="carousel"
     >
+
+      {/* Announces slide changes to screen readers; silent during auto-rotation
+          so it never spams, polite once the user pauses or navigates manually */}
+      <p className="sr-only" aria-live={isPaused ? "polite" : "off"} aria-atomic="true">
+        Slide {current + 1} of {total}: {service.kicker}
+      </p>
 
       {/* ── PHOTO — full brightness, cross-fades per slide ───────────────── */}
       <AnimatePresence mode="sync">
         <motion.div
           key={service.slug}
           className="absolute inset-0 -z-20"
-          initial={{ opacity: 0, scale: 1.04 }}
+          initial={{ opacity: 0, scale: reduceMotion ? 1 : 1.05 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1, ease: "easeInOut" }}
+          transition={{ duration: reduceMotion ? 0 : 0.8, ease: "easeInOut" }}
         >
-          <Image
-            src={slideImg}
-            alt=""
-            fill
-            priority={current === 0}
-            sizes="100vw"
-            className="object-cover"
-            placeholder="blur"
-          />
+          {slideImg ? (
+            <Image
+              src={slideImg}
+              alt=""
+              fill
+              priority={current === 0}
+              sizes="100vw"
+              className="object-cover"
+              placeholder="blur"
+            />
+          ) : (
+            /* Fallback for slides without a photo: warm near-black + brand glow */
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(ellipse at 30% 40%, rgba(200,64,26,0.35) 0%, transparent 55%), #1A1512"
+              }}
+            />
+          )}
         </motion.div>
       </AnimatePresence>
+
+      {/* Preload only the NEXT slide's photo so the crossfade never lands on
+          an unloaded image (n+1 strategy — not all slides up front) */}
+      {nextImg && (
+        <div className="hidden" aria-hidden="true">
+          <Image src={nextImg} alt="" width={32} height={18} />
+        </div>
+      )}
 
       {/* ── Overlay: full dark on mobile, left-vignette on desktop ─────── */}
       <div
@@ -185,7 +217,6 @@ export function HeroSlider() {
       <div
         className="container relative flex flex-col justify-center pt-20 pb-24 md:pt-24 md:pb-24"
         style={{ minHeight: "inherit" }}
-        aria-live={isPaused ? "polite" : "off"}
       >
         {/* One alignment spine: every element shares this flush-left edge */}
         <div className="max-w-xl lg:max-w-3xl">
