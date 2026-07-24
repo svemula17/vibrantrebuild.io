@@ -68,9 +68,7 @@ function ExpertiseChip({ label, className }: { label: string; className: string 
 
 function Avatar({ leader, size = "lg" }: { leader: Leader; size?: "lg" | "xl" }) {
   const photo = leaderPhotos[leader.id];
-  // Photo variant renders smaller than the initials tile — the source headshot is
-  // 143px; anything past ~2x upscale goes soft.
-  const dims = size === "xl" ? "h-48 w-48 md:h-56 md:w-56" : "h-16 w-16";
+  const dims = size === "xl" ? "h-64 w-64 md:h-80 md:w-80" : "h-16 w-16";
 
   if (photo) {
     return (
