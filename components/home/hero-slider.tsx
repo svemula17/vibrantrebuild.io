@@ -16,7 +16,7 @@ export function HeroSlider() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[25%_center]"
+          className="object-cover object-[72%_center] lg:object-[25%_center]"
           placeholder="blur"
         />
       </div>
@@ -33,7 +33,7 @@ export function HeroSlider() {
       {/* Extra full overlay on mobile so text is always readable */}
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 pointer-events-none md:hidden"
+        className="absolute inset-0 -z-10 pointer-events-none lg:hidden"
         style={{ background: "rgba(18,12,8,0.30)" }}
       />
 
