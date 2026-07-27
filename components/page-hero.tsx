@@ -13,12 +13,12 @@ type Props = {
 
 export function PageHero({ eyebrow, title, description, crumbs, children }: Props) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-navy-50/70 to-white">
+    <section className="relative overflow-hidden border-b border-brand-600/10 bg-gradient-to-b from-[#FDF0E8] via-[#FDF6F2] to-neutral-50">
       <div
         aria-hidden
-        className="absolute -top-40 -right-40 h-[24rem] w-[24rem] rounded-full bg-sky/10 blur-3xl"
+        className="absolute -top-24 -right-24 h-[26rem] w-[26rem] rounded-full bg-brand-500/15 blur-3xl"
       />
-      <div className="container relative pt-20 pb-16 md:pt-28 md:pb-20">
+      <div className="container relative pt-16 pb-12 md:pt-24 md:pb-14">
         {crumbs && crumbs.length > 0 && (
           <nav aria-label="Breadcrumb" className="crumbs mb-6">
             {crumbs.map((c, i) => (

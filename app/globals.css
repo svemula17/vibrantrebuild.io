@@ -65,6 +65,9 @@
   .section-soft     { @apply py-20 md:py-28 bg-neutral-100; }
   .section-gradient { @apply py-20 md:py-28 bg-gradient-to-b from-neutral-100 to-white; }
   .section-dark     { @apply py-20 md:py-28 bg-neutral-900 text-white; }
+  /* Warm brand-tinted band, the third background alongside white and soft.
+     Registers visually where .section-soft (3% off white) does not. */
+  .section-tint     { @apply py-16 md:py-24; background: linear-gradient(180deg, #FDF3EE 0%, #FEF9F6 100%); }
 
   /* ─── card (one recipe + opt-in hover) ───────────────────────────────── */
   .card       { @apply bg-white border border-neutral-200 rounded-2xl shadow-card; }
