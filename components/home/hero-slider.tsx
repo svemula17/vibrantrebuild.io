@@ -1,43 +1,13 @@
 "use client";
 
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useCallback, useRef } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { serviceCards } from "@/content/site-content";
 
-/* ─── Slide images — one per service ──────────────────────────────────── */
-import imgAI     from "@/assets/services/ai.jpg";           // keep
-import imgCloud  from "@/assets/services/cloud.jpg"; // updated
-import imgCyber  from "@/assets/services/cybersecurity.jpg";                                  // new
-import imgAuto   from "@/assets/services/automation.jpg";                             // new
-import imgERP    from "@/assets/services/erp.jpg"; // updated
-import imgData   from "@/assets/services/data-analytics.jpg";                                   // new
-import imgMIT    from "@/assets/services/managed-it.jpg";     // keep
-
-const SLIDE_IMAGES: Record<string, StaticImageData> = {
-  // Existing services
-  "ai-readiness":       imgAI,
-  "cloud-modernization": imgCloud,
-  "cybersecurity":       imgCyber,
-  "automation":          imgAuto,
-  "erp-optimization":   imgERP,
-  "data-analytics":      imgData,
-  "managed-it":          imgMIT,
-  // SAP Solutions umbrella slide
-  "sap-solutions":              imgERP,
-  // Individual SAP detail pages (not in carousel, but image mapping kept for safety)
-  "sap-s4hana-implementation": imgERP,
-  "sap-ams":            imgERP,
-  "sap-supply-chain":   imgERP,
-  "sap-btp":            imgCloud,
-  "sap-integration":    imgCloud,
-  "sap-fiori-ux":       imgCloud,
-  "sap-clean-core":     imgERP,
-  "sap-abap":           imgData,
-  "jd-edwards-cnc":     imgERP,
-  "peoplesoft-implementation": imgERP,
-};
+/* ─── Single brand hero image — the rotating text plays over it ─────────── */
+import heroBg from "@/assets/hero.jpg";
 
 const INTERVAL = 5500;
 
@@ -122,7 +92,6 @@ export function HeroSlider() {
   }, []);
 
   const service = carouselServices[current];
-  const slideImg = SLIDE_IMAGES[service.slug];
 
   return (
     <section
@@ -137,27 +106,18 @@ export function HeroSlider() {
       aria-roledescription="carousel"
     >
 
-      {/* ── PHOTO — full brightness, cross-fades per slide ───────────────── */}
-      <AnimatePresence mode="sync">
-        <motion.div
-          key={service.slug}
-          className="absolute inset-0 -z-20"
-          initial={{ opacity: 0, scale: 1.04 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1, ease: "easeInOut" }}
-        >
-          <Image
-            src={slideImg}
-            alt=""
-            fill
-            priority={current === 0}
-            sizes="100vw"
-            className="object-cover"
-            placeholder="blur"
-          />
-        </motion.div>
-      </AnimatePresence>
+      {/* ── Single brand photo — static; only the text rotates ──────────── */}
+      <div className="absolute inset-0 -z-20">
+        <Image
+          src={heroBg}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[70%_center]"
+          placeholder="blur"
+        />
+      </div>
 
       {/* ── Overlay: full dark on mobile, left-vignette on desktop ─────── */}
       <div
@@ -165,14 +125,14 @@ export function HeroSlider() {
         className="absolute inset-0 -z-10 pointer-events-none"
         style={{
           background:
-            "linear-gradient(to right, rgba(18,12,8,0.96) 0%, rgba(18,12,8,0.88) 45%, rgba(18,12,8,0.62) 70%, rgba(18,12,8,0.38) 100%)",
+            "linear-gradient(to right, rgba(18,12,8,0.74) 0%, rgba(18,12,8,0.48) 45%, rgba(18,12,8,0.18) 70%, rgba(18,12,8,0) 100%)",
         }}
       />
       {/* Extra full overlay on mobile so text is always readable */}
       <div
         aria-hidden
         className="absolute inset-0 -z-10 pointer-events-none md:hidden"
-        style={{ background: "rgba(18,12,8,0.45)" }}
+        style={{ background: "rgba(18,12,8,0.40)" }}
       />
       {/* Bottom fade so controls bar text stays readable */}
       <div
