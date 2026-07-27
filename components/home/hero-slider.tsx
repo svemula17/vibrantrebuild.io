@@ -16,7 +16,7 @@ export function HeroSlider() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[72%_center] lg:object-[25%_center]"
+          className="object-cover object-[62%_center] md:object-[36%_center] lg:object-right-top"
           placeholder="blur"
         />
       </div>
