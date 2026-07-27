@@ -5,7 +5,7 @@ import { vibrantMethod } from "@/content/site-content";
 
 export function VibrantMethod() {
   return (
-    <section className="section-gradient">
+    <section id="vibrant-method" className="section-gradient scroll-mt-28">
       <div className="container">
 
         <div className="max-w-2xl">

@@ -42,7 +42,7 @@ export default function AboutPage() {
             </div>
 
             {/* Vision — slim inline quote, no card chrome */}
-            <blockquote className="mt-6 border-l-2 border-brand-600 pl-4 text-[15px] font-medium text-neutral-700 leading-relaxed">
+            <blockquote id="vision" className="mt-6 scroll-mt-28 border-l-2 border-brand-600 pl-4 text-[15px] font-medium text-neutral-700 leading-relaxed">
               &ldquo;{visionStatement}&rdquo;
             </blockquote>
           </div>
@@ -73,7 +73,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section-soft">
+      <section id="values" className="section-soft scroll-mt-28">
         <div className="container">
           <div className="max-w-2xl">
             <p className="eyebrow">Core values</p>

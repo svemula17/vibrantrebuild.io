@@ -47,15 +47,25 @@ const SERVICES_MENU: { heading: string; links: [string, string][] }[] = [
   }
 ];
 
+/* About dropdown — compact section menu (reference-style, our content) */
+const ABOUT_MENU: [string, string][] = [
+  ["Who We Are", "/about"],
+  ["Vision", "/about#vision"],
+  ["Core Values", "/about#values"],
+  ["Service Delivery Model", "/services#vibrant-method"]
+];
+
 export function Header() {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const panelRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const headerRef = useRef<HTMLElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const aboutTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const openMega = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -64,6 +74,14 @@ export function Header() {
   const scheduleMegaClose = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     closeTimer.current = setTimeout(() => setServicesOpen(false), 150);
+  };
+  const openAbout = () => {
+    if (aboutTimer.current) clearTimeout(aboutTimer.current);
+    setAboutOpen(true);
+  };
+  const scheduleAboutClose = () => {
+    if (aboutTimer.current) clearTimeout(aboutTimer.current);
+    aboutTimer.current = setTimeout(() => setAboutOpen(false), 150);
   };
 
   useEffect(() => {
@@ -76,16 +94,21 @@ export function Header() {
   useEffect(() => {
     setOpen(false);
     setServicesOpen(false);
+    setAboutOpen(false);
   }, [pathname]);
 
-  /* Mega-menu: Escape and outside-click close it */
+  /* Dropdowns: Escape and outside-click close them */
   useEffect(() => {
-    if (!servicesOpen) return;
+    if (!servicesOpen && !aboutOpen) return;
+    const closeAll = () => {
+      setServicesOpen(false);
+      setAboutOpen(false);
+    };
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setServicesOpen(false);
+      if (e.key === "Escape") closeAll();
     };
     const onDown = (e: MouseEvent) => {
-      if (!headerRef.current?.contains(e.target as Node)) setServicesOpen(false);
+      if (!headerRef.current?.contains(e.target as Node)) closeAll();
     };
     document.addEventListener("keydown", onKey);
     document.addEventListener("mousedown", onDown);
@@ -93,7 +116,7 @@ export function Header() {
       document.removeEventListener("keydown", onKey);
       document.removeEventListener("mousedown", onDown);
     };
-  }, [servicesOpen]);
+  }, [servicesOpen, aboutOpen]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -178,26 +201,32 @@ export function Header() {
             const active =
               item.href === "/" ? pathname === "/" : pathname === item.href || pathname.startsWith(item.href + "/");
             const isServices = item.href === "/services";
+            const isAbout = item.href === "/about";
+            const hasMenu = isServices || isAbout;
+            const menuOpen = isServices ? servicesOpen : isAbout ? aboutOpen : false;
+            const openFn = isServices ? openMega : isAbout ? openAbout : undefined;
+            const closeFn = isServices ? scheduleMegaClose : isAbout ? scheduleAboutClose : undefined;
             return (
               <span
                 key={item.href}
-                onMouseEnter={isServices ? openMega : undefined}
-                onMouseLeave={isServices ? scheduleMegaClose : undefined}
+                className={isAbout ? "relative" : undefined}
+                onMouseEnter={openFn}
+                onMouseLeave={closeFn}
               >
                 <Link
                   href={item.href}
-                  onFocus={isServices ? openMega : undefined}
-                  aria-expanded={isServices ? servicesOpen : undefined}
-                  aria-haspopup={isServices ? "true" : undefined}
+                  onFocus={openFn}
+                  aria-expanded={hasMenu ? menuOpen : undefined}
+                  aria-haspopup={hasMenu ? "true" : undefined}
                   className={`relative inline-flex items-center gap-1 px-2 xl:px-2.5 py-2 text-[13px] font-medium rounded-full whitespace-nowrap transition-colors ${
                     active ? "text-navy-700" : "text-ink/70 hover:text-navy-700"
                   }`}
                 >
                   {item.label}
-                  {isServices && (
+                  {hasMenu && (
                     <svg
                       viewBox="0 0 24 24"
-                      className={`h-3 w-3 transition-transform duration-200 ${servicesOpen ? "rotate-180 text-brand-600" : ""}`}
+                      className={`h-3 w-3 transition-transform duration-200 ${menuOpen ? "rotate-180 text-brand-600" : ""}`}
                       fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
                       aria-hidden="true"
                     >
@@ -208,6 +237,30 @@ export function Header() {
                     <span className="absolute inset-x-2 -bottom-0.5 h-0.5 bg-brand-600 rounded" />
                   )}
                 </Link>
+
+                {/* Compact About dropdown — anchored to the nav item */}
+                {isAbout && (
+                  <div
+                    inert={!aboutOpen}
+                    aria-hidden={!aboutOpen}
+                    className={`absolute left-0 top-full z-50 w-60 pt-2 transition-all duration-200 ease-brand ${
+                      aboutOpen ? "visible opacity-100 translate-y-0" : "invisible opacity-0 -translate-y-1 pointer-events-none"
+                    }`}
+                  >
+                    <div className="card overflow-hidden rounded-xl shadow-cardHover divide-y divide-neutral-100">
+                      {ABOUT_MENU.map(([label, href]) => (
+                        <Link
+                          key={href}
+                          href={href}
+                          onClick={() => setAboutOpen(false)}
+                          className="block px-4 py-2.5 text-sm text-neutral-700 hover:bg-neutral-50 hover:text-brand-700 transition-colors"
+                        >
+                          {label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </span>
             );
           })}
