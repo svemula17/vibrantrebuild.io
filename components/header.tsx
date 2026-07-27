@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { navigationItems, siteSettings } from "@/content/site-content";
 import logoSrc from "@/vibrant-logo-header.png";
 
-/* Services mega-menu — grouped like the big-firm pattern, all Vibrant content.
+/* Services mega-menu, grouped like the big-firm pattern, all Vibrant content.
    Detail pages for the SAP children stay reachable from the SAP Solutions box. */
 const SERVICES_MENU: { heading: string; links: [string, string][] }[] = [
   {
@@ -47,7 +47,7 @@ const SERVICES_MENU: { heading: string; links: [string, string][] }[] = [
   }
 ];
 
-/* About dropdown — compact section menu (reference-style, our content) */
+/* About dropdown, compact section menu (reference-style, our content) */
 const ABOUT_MENU: [string, string][] = [
   ["Who We Are", "/about"],
   ["Vision", "/about#vision"],
@@ -162,7 +162,7 @@ export function Header() {
           : "bg-white"
       }`}
     >
-      {/* Top announcement strip — home page only, hides on scroll */}
+      {/* Top announcement strip, home page only, hides on scroll */}
       {pathname === "/" && (
         <div
           className={`w-full bg-brand-800 text-white text-xs transition-all duration-300 overflow-hidden ${
@@ -194,7 +194,7 @@ export function Header() {
           />
         </Link>
 
-        {/* Desktop nav — Resources is pulled out of the list and rendered as the
+        {/* Desktop nav. Resources is pulled out of the list and rendered as the
             right-side utility button instead */}
         <nav className="hidden lg:flex items-center gap-0.5" aria-label="Primary">
           {navigationItems.filter((item) => item.href !== "/resources").map((item) => {
@@ -219,7 +219,7 @@ export function Header() {
                   aria-expanded={hasMenu ? menuOpen : undefined}
                   aria-haspopup={hasMenu ? "true" : undefined}
                   className={`relative inline-flex items-center gap-1 px-2 xl:px-2.5 py-2 text-[13px] font-medium rounded-full whitespace-nowrap transition-colors ${
-                    active ? "text-navy-700" : "text-ink/70 hover:text-navy-700"
+                    active ? "text-navy-700" : "text-ink/70 hover:text-brand-700"
                   }`}
                 >
                   {item.label}
@@ -238,7 +238,7 @@ export function Header() {
                   )}
                 </Link>
 
-                {/* Compact About dropdown — anchored to the nav item */}
+                {/* Compact About dropdown, anchored to the nav item */}
                 {isAbout && (
                   <div
                     inert={!aboutOpen}
@@ -253,7 +253,7 @@ export function Header() {
                           key={href}
                           href={href}
                           onClick={() => setAboutOpen(false)}
-                          className="block px-4 py-2.5 text-sm text-neutral-700 hover:bg-neutral-50 hover:text-brand-700 transition-colors"
+                          className="block px-4 py-2.5 text-sm text-neutral-700 hover:bg-brand-600/10 hover:text-brand-700 transition-colors"
                         >
                           {label}
                         </Link>
@@ -309,7 +309,7 @@ export function Header() {
         </button>
       </div>
 
-      {/* Services mega-menu — full-width panel under the header, desktop only */}
+      {/* Services mega-menu, full-width panel under the header, desktop only */}
       <div
         onMouseEnter={openMega}
         onMouseLeave={scheduleMegaClose}
@@ -335,7 +335,7 @@ export function Header() {
                     <Link
                       href={href}
                       onClick={() => setServicesOpen(false)}
-                      className="text-sm text-neutral-700 hover:text-brand-700 transition-colors"
+                      className="block rounded-md px-2 py-1 -mx-2 text-sm text-neutral-700 hover:text-brand-700 hover:bg-brand-600/10 transition-colors"
                     >
                       {label}
                     </Link>
@@ -347,7 +347,7 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile menu — CSS grid-rows transition; kept mounted, inert when closed */}
+      {/* Mobile menu. CSS grid-rows transition; kept mounted, inert when closed */}
       <div
         id="mobile-menu"
         ref={panelRef}

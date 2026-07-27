@@ -16,7 +16,7 @@ import anniversary from "@/assets/anniversary.png";
 export const metadata: Metadata = pageMeta({
   title: "About",
   description:
-    "Founder-led since 2000, Vibrant Inc modernizes ERP, cloud, and data for companies across North America — senior practitioners who own the outcome.",
+    "Founder-led since 2000, Vibrant Inc modernizes ERP, cloud, and data for companies across North America, senior practitioners who own the outcome.",
   path: "/about"
 });
 
@@ -41,18 +41,18 @@ export default function AboutPage() {
               ))}
             </div>
 
-            {/* Vision — slim inline quote, no card chrome */}
+            {/* Vision, slim inline quote, no card chrome */}
             <blockquote id="vision" className="mt-6 scroll-mt-28 border-l-2 border-brand-600 pl-4 text-[15px] font-medium text-neutral-700 leading-relaxed">
               &ldquo;{visionStatement}&rdquo;
             </blockquote>
           </div>
 
-          {/* Right: one compact card — small 27-year graphic + key facts */}
+          {/* Right: one compact card, small 27-year graphic + key facts */}
           <div className="card p-7">
             <div className="mx-auto overflow-hidden rounded-xl" style={{ maxWidth: 180 }}>
               <Image
                 src={anniversary}
-                alt="Vibrant Inc — Celebrating 27 Years in Business"
+                alt="Vibrant Inc. Celebrating 27 Years in Business"
                 width={780}
                 height={960}
                 className="w-full h-auto object-contain"
@@ -113,7 +113,7 @@ export default function AboutPage() {
                   Learn more about Vibrant Inc.
                 </h2>
                 <p className="mt-4 text-white/65 leading-relaxed">
-                  Our company brochure covers our full range of services, delivery model, corporate values, and career opportunities — everything you need to know about partnering with Vibrant.
+                  Our company brochure covers our full range of services, delivery model, corporate values, and career opportunities, everything you need to know about partnering with Vibrant.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-4">
                   <a
@@ -138,7 +138,7 @@ export default function AboutPage() {
                   { title: "Strategic IT Consulting", body: "Spanning the full SDLC from planning through post-implementation." },
                   { title: "Global Delivery Model", body: "Staff augmentation, fixed price, T&M, and global delivery options." },
                   { title: "Custom Development", body: "Onshore + offshore blended teams for bespoke applications." },
-                  { title: "People-First Culture", body: "CMM-aligned talent model — 8+ years average practitioner experience." },
+                  { title: "People-First Culture", body: "CMM-aligned talent model. 8+ years average practitioner experience." },
                 ].map((item) => (
                   <div key={item.title} className="card-dark p-5">
                     <h3 className="text-sm font-semibold text-white">{item.title}</h3>

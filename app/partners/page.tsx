@@ -11,7 +11,7 @@ import microsoftLogo from "@/assets/partners/microsoft.svg";
 export const metadata: Metadata = pageMeta({
   title: "Partners",
   description:
-    "Vibrant Inc maintains certified partnerships with Oracle, Wrike, and Microsoft — giving clients right-sized licensing, vendor-validated architecture, and fast support escalation.",
+    "Vibrant Inc maintains certified partnerships with Oracle, Wrike, and Microsoft, giving clients right-sized licensing, vendor-validated architecture, and fast support escalation.",
   path: "/partners"
 });
 
@@ -21,7 +21,7 @@ const partnerAccent: Record<string, string> = {
   "Microsoft": "bg-blue-50   text-blue-700   border-blue-200"
 };
 
-/* Official partner logos (see assets/partners/) — text tile below is the fallback
+/* Official partner logos (see assets/partners/), text tile below is the fallback
    for any future partner added without a logo file */
 const partnerLogoImages: Record<string, StaticImageData> = {
   "Oracle":    oracleLogo,
@@ -41,7 +41,7 @@ export default function PartnersPage() {
       <PageHero
         eyebrow="Partners"
         title="Platforms we know inside and out."
-        description="Vibrant maintains deep, certified partnerships with the platforms we deliver every day — so our clients get the right licensing, the right architecture, and direct vendor support channels."
+        description="Vibrant maintains deep, certified partnerships with the platforms we deliver every day, so our clients get the right licensing, the right architecture, and direct vendor support channels."
         crumbs={[{ label: "Home", href: "/" }, { label: "Partners" }]}
       />
 
@@ -58,7 +58,7 @@ export default function PartnersPage() {
                   key={p.name}
                   className="flex flex-col rounded-2xl border border-line bg-white p-8 shadow-card hover:shadow-cardHover hover:border-sky/30 transition-all"
                 >
-                  {/* Logo — official mark, left-aligned on a fixed-height row */}
+                  {/* Logo, official mark, left-aligned on a fixed-height row */}
                   {logoImage ? (
                     <div className="flex h-16 items-center">
                       <Image
@@ -106,7 +106,7 @@ export default function PartnersPage() {
             <h2 className="mt-3">Direct vendor access, not vendor lock-in.</h2>
             <p className="mt-4 text-muted">
               Our certified partnerships mean your projects get vendor-validated architecture, right-sized
-              licensing, and fast escalation paths — not generic recommendations from the outside.
+              licensing, and fast escalation paths, not generic recommendations from the outside.
             </p>
           </div>
           <ul className="mt-12 grid gap-4 md:grid-cols-2">

@@ -10,10 +10,10 @@ export function VibrantMethod() {
 
         <div className="max-w-2xl">
           <p className="eyebrow">Our delivery framework</p>
-          <h2 className="mt-3">The VIBRANT Method™ — agile delivery, enterprise accountability.</h2>
+          <h2 className="mt-3">The VIBRANT Method™, agile delivery, enterprise accountability.</h2>
           <p className="mt-4 text-muted leading-relaxed">
-            Seven letters, seven phases. Every engagement — from a 4-week pilot to a multi-year
-            ERP program — runs on the same agile framework: senior-led sprints, weekly demos, and
+            Seven letters, seven phases. Every engagement, from a 4-week pilot to a multi-year
+            ERP program, runs on the same agile framework: senior-led sprints, weekly demos, and
             outcomes you can measure. It&apos;s how we modernize without disrupting operations.
           </p>
         </div>
@@ -53,7 +53,7 @@ export function VibrantMethod() {
           ))}
         </div>
 
-        {/* Connector line — desktop only */}
+        {/* Connector line, desktop only */}
         <div aria-hidden className="hidden xl:block mt-6 mx-auto h-px max-w-5xl bg-neutral-200" />
 
       </div>

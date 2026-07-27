@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
-/* Indicative cost model — directional planning figures only */
+/* Indicative cost model, directional planning figures only */
 const BASE_COST = 150_000;
 
 const MODULES = [
@@ -181,7 +181,7 @@ export function SapCostCalculator() {
           </p>
           <div className="mt-5 border-t border-white/10 pt-4 text-xs leading-relaxed text-white/50">
             Directional planning figure only. Actual cost depends on data quality,
-            customizations, integrations, and change-management scope — a 30-minute scoping
+            customizations, integrations, and change-management scope, a 30-minute scoping
             call gets you a real estimate.
           </div>
           <Link

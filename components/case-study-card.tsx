@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { CaseStudy } from "@/content/site-content";
 
-/* Shared outcome card — used in the homepage band and as the "Proof" block on
+/* Shared outcome card, used in the homepage band and as the "Proof" block on
    matching service detail pages. Motion-free; wrap in motion.div if needed. */
 export function CaseStudyCard({ cs }: { cs: CaseStudy }) {
   return (

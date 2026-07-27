@@ -8,7 +8,7 @@ import { stats, siteSettings } from "@/content/site-content";
 export function StatsBand() {
   return (
     <section className="relative overflow-hidden bg-navy-800 text-white">
-      {/* Brand-coloured radial glow — logo orange-red */}
+      {/* Brand-coloured radial glow, logo orange-red */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -37,7 +37,7 @@ export function StatsBand() {
             >
               {s.highlight ? (
                 <>
-                  {/* Anniversary medallion — celebratory treatment for the 25+ stat */}
+                  {/* Anniversary medallion, celebratory treatment for the 25+ stat */}
                   <div
                     className="text-6xl md:text-7xl font-bold tracking-tight"
                     style={{

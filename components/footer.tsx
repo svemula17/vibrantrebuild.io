@@ -102,7 +102,7 @@ export function Footer() {
             </span>
           </p>
 
-          {/* Social icons — hidden if no real URLs configured */}
+          {/* Social icons, hidden if no real URLs configured */}
           {validSocialLinks.length > 0 && (
             <div className="mt-6 flex gap-3">
               {validSocialLinks.map((s) => (
@@ -204,7 +204,7 @@ export function Footer() {
         </div>
       </div>
 
-      {/* ── Client logos — solid white strip so logos are always visible ── */}
+      {/* ── Client logos, solid white strip so logos are always visible ── */}
       <div className="relative bg-white">
         <div className="container py-8">
           <p className="text-center text-[11px] font-bold uppercase tracking-[0.22em] mb-7 text-muted">

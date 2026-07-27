@@ -8,7 +8,7 @@ import { VibrantMethod } from "@/components/vibrant-method";
 export const metadata: Metadata = pageMeta({
   title: "Services",
   description:
-    "ERP and SAP delivery, cloud modernization, cybersecurity, data, automation, AI readiness, and managed IT — the full stack under one senior-led partner.",
+    "ERP and SAP delivery, cloud modernization, cybersecurity, data, automation, AI readiness, and managed IT, the full stack under one senior-led partner.",
   path: "/services"
 });
 
@@ -18,8 +18,8 @@ export default function ServicesPage() {
     <>
       <PageHero
         eyebrow="Services"
-        title="The full enterprise technology stack — under one partner."
-        description="Seven capability pillars — with full SAP depth under one roof. From ERP and cloud modernization to cybersecurity, data, automation, and AI, delivered by certified practitioners with 27+ years of trusted delivery."
+        title="The full enterprise technology stack, under one partner."
+        description="Seven capability pillars, with full SAP depth under one roof. From ERP and cloud modernization to cybersecurity, data, automation, and AI, delivered by certified practitioners with 27+ years of trusted delivery."
         crumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
       />
 

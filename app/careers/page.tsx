@@ -12,7 +12,7 @@ import {
 export const metadata: Metadata = pageMeta({
   title: "Careers",
   description:
-    "Careers at Vibrant Inc: senior consulting roles across ERP, cloud, data, and AI — real ownership, ongoing training, and clients who stay for years.",
+    "Careers at Vibrant Inc: senior consulting roles across ERP, cloud, data, and AI, real ownership, ongoing training, and clients who stay for years.",
   path: "/careers"
 });
 
@@ -22,7 +22,7 @@ export default function CareersPage() {
       <PageHero
         eyebrow="Careers"
         title="Build a career, not just a role."
-        description="We hire experienced practitioners and get out of their way — interesting work, senior teams, and the training, benefits, and balance that make people stay."
+        description="We hire experienced practitioners and get out of their way, interesting work, senior teams, and the training, benefits, and balance that make people stay."
         crumbs={[{ label: "Home", href: "/" }, { label: "Careers" }]}
       >
         <div className="flex flex-wrap gap-3">
@@ -40,7 +40,7 @@ export default function CareersPage() {
               Consultants are distributed across the country and travel to client sites as required, while the company is headquartered in Princeton, New Jersey. We hire experienced practitioners and trust them to lead.
             </p>
             <p className="mt-4 text-muted">
-              Our people stay because the work is interesting, the teams are senior, and the relationships — with clients and with each other — are long-term.
+              Our people stay because the work is interesting, the teams are senior, and the relationships, with clients and with each other, are long-term.
             </p>
           </div>
           <div className="card p-8">
@@ -87,7 +87,7 @@ export default function CareersPage() {
             <p className="eyebrow">Open roles</p>
             <h2 className="mt-3">Where we&apos;re hiring right now.</h2>
             <p className="mt-4 text-muted">
-              If you don&apos;t see a perfect match, send us your résumé anyway — we hire ahead of demand for senior practitioners.
+              If you don&apos;t see a perfect match, send us your résumé anyway, we hire ahead of demand for senior practitioners.
             </p>
           </div>
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">

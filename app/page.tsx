@@ -16,15 +16,15 @@ export const metadata: Metadata = { alternates: { canonical: "/" } };
 export default function HomePage() {
   return (
     <>
-      <HeroSlider />    {/* dark photo — service carousel + positioning H1 */}
-      <ClientLogos />   {/* white — 19-client marquee, immediate social proof */}
-      <AboutIntro />    {/* white — who Vibrant is, in one tight section */}
-      <ServicesGrid />  {/* cream — seven pillars, ERP first */}
-      <AiShieldBand />  {/* dark navy — featured platform */}
-      <CaseStudies />   {/* cream — outcome stories */}
-      <StatsBand />     {/* dark navy — tagline + 25+ medallion + 200+ stat */}
-      <ImpactStrip />   {/* slim cream strip — tech for good one-liner */}
-      <CtaCallback />   {/* cream — final CTA + callback form */}
+      <HeroSlider />    {/* dark photo, service carousel + positioning H1 */}
+      <ClientLogos />   {/* white. 19-client marquee, immediate social proof */}
+      <AboutIntro />    {/* white, who Vibrant is, in one tight section */}
+      <ServicesGrid />  {/* cream, seven pillars, ERP first */}
+      <AiShieldBand />  {/* dark navy, featured platform */}
+      <CaseStudies />   {/* cream, outcome stories */}
+      <StatsBand />     {/* dark navy, tagline + 25+ medallion + 200+ stat */}
+      <ImpactStrip />   {/* slim cream strip, tech for good one-liner */}
+      <CtaCallback />   {/* cream, final CTA + callback form */}
     </>
   );
 }

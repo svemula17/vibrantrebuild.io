@@ -12,10 +12,10 @@ type Props = {
 export function AnimatedCounter({ value, suffix = "", duration = 1600 }: Props) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "0px" });
-  // Start at the real value — animate only after first hydrated client render.
+  // Start at the real value, animate only after first hydrated client render.
   // hasAnimated must be a ref, not state: putting it in state (and in the deps)
   // re-runs this effect the moment it flips, and the cleanup cancels the rAF
-  // loop before its first tick — leaving every counter frozen at 0.
+  // loop before its first tick, leaving every counter frozen at 0.
   const [display, setDisplay] = useState(value);
   const hasAnimated = useRef(false);
 

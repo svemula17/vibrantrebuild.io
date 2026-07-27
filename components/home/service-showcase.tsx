@@ -58,7 +58,7 @@ export function ServiceShowcase() {
       aria-roledescription="carousel"
       aria-label="Service highlights"
     >
-      {/* Photos — cross-fade via CSS opacity */}
+      {/* Photos, cross-fade via CSS opacity */}
       {services.map((s, i) => (
         <div
           key={s.slug}
@@ -79,13 +79,13 @@ export function ServiceShowcase() {
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to top, rgba(18,12,8,0.88) 0%, rgba(18,12,8,0.45) 55%, rgba(18,12,8,0.20) 100%)"
+                "linear-gradient(to top, rgba(125,37,14,0.86) 0%, rgba(200,64,26,0.38) 55%, rgba(232,112,58,0.12) 100%)"
             }}
           />
         </div>
       ))}
 
-      {/* Copy — bottom-left, aria-live announces the slide when paused */}
+      {/* Copy, bottom-left, aria-live announces the slide when paused */}
       <div
         className="relative flex h-full flex-col justify-end p-7 text-white"
         aria-live={paused ? "polite" : "off"}
@@ -106,7 +106,7 @@ export function ServiceShowcase() {
         </Link>
       </div>
 
-      {/* Dots — bottom-right */}
+      {/* Dots, bottom-right */}
       <div className="absolute bottom-7 right-7 flex items-center" role="group" aria-label="Choose service slide">
         {services.map((s, i) => (
           <button

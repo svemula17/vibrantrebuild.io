@@ -16,7 +16,7 @@ type Props = {
   variant?: "full" | "compact";
 };
 
-/* Trust signals belong at the point of decision — rendered directly beside
+/* Trust signals belong at the point of decision, rendered directly beside
    every form/calculator submit, not buried in the footer. */
 export function TrustCluster({ variant = "full" }: Props) {
   return (

@@ -27,13 +27,13 @@ export function ServicesGrid() {
     <section className="section section-soft">
       <div className="container">
 
-        {/* Section header — rises in once on scroll */}
+        {/* Section header, rises in once on scroll */}
         <Reveal>
           <p className="eyebrow">What we do</p>
           <h2 className="mt-3 lg:whitespace-nowrap">Seven Capabilities. One Vibrant Partner.</h2>
         </Reveal>
 
-        {/* Cards — cascade in */}
+        {/* Cards, cascade in */}
         <div className="mt-10 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {gridServices.map((service, i) => (
             <motion.div
@@ -55,7 +55,7 @@ export function ServicesGrid() {
                 href={`/services/${service.slug}`}
                 className="group relative flex h-full flex-col rounded-2xl border border-line bg-white p-7 shadow-card transition-all hover:-translate-y-1.5 hover:shadow-cardHover hover:border-sky/40 overflow-hidden"
               >
-                {/* Left accent bar — slides in on hover */}
+                {/* Left accent bar, slides in on hover */}
                 <span className="absolute left-0 top-6 bottom-6 w-1 rounded-r-full bg-brand-600 opacity-0 group-hover:opacity-100 transition-all duration-300" />
 
                 {/* Icon with brand gradient background on hover */}

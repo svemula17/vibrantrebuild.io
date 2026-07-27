@@ -24,7 +24,7 @@ export default function ResourcesPage() {
       <PageHero
         eyebrow="Resources"
         title="Guides, tools, and insights from 27+ years of delivery."
-        description="The same frameworks and checklists we use on real engagements — free to read, built to be used. No gate, no email wall."
+        description="The same frameworks and checklists we use on real engagements, free to read, built to be used. No gate, no email wall."
         crumbs={[{ label: "Home", href: "/" }, { label: "Resources" }]}
       />
 
@@ -84,7 +84,7 @@ export default function ResourcesPage() {
             <p className="eyebrow-on-dark">Interactive tool</p>
             <h2 className="mt-3 text-white">SAP S/4HANA Cost Calculator</h2>
             <p className="mt-4 text-white/70">
-              Users, modules, landscape, approach — get an indicative budget range for planning
+              Users, modules, landscape, approach, get an indicative budget range for planning
               conversations in about 60 seconds.
             </p>
           </div>
@@ -134,7 +134,7 @@ export default function ResourcesPage() {
         <div className="container text-center">
           <h2>Prefer answers to reading?</h2>
           <p className="mt-4 text-muted max-w-xl mx-auto">
-            Thirty minutes with a principal architect beats three hours of research — bring your
+            Thirty minutes with a principal architect beats three hours of research, bring your
             hardest question.
           </p>
           <div className="mt-8 flex justify-center">

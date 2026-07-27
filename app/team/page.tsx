@@ -8,7 +8,7 @@ import { leadership, type Leader } from "@/content/site-content";
 export const metadata: Metadata = pageMeta({
   title: "Leadership",
   description:
-    "Meet the Vibrant Inc leadership team — founder-led delivery backed by principal architects across ERP, cloud, SAP, cybersecurity, and AI.",
+    "Meet the Vibrant Inc leadership team, founder-led delivery backed by principal architects across ERP, cloud, SAP, cybersecurity, and AI.",
   path: "/team"
 });
 
@@ -118,7 +118,7 @@ export default function TeamPage() {
       <PageHero
         eyebrow="Leadership"
         title="Senior architects. Founder-led delivery."
-        description="Every Vibrant engagement is led by people who've done the work themselves — a founder with 27+ years in enterprise transformation and a bench of principal architects across ERP, cloud, SAP, cybersecurity, and AI."
+        description="Every Vibrant engagement is led by people who've done the work themselves, a founder with 27+ years in enterprise transformation and a bench of principal architects across ERP, cloud, SAP, cybersecurity, and AI."
         crumbs={[{ label: "Home", href: "/" }, { label: "Leadership" }]}
       />
 
@@ -162,7 +162,7 @@ export default function TeamPage() {
                 ))}
               </div>
 
-              {/* Actions — Calendly button appears once the URL is set in site-content */}
+              {/* Actions. Calendly button appears once the URL is set in site-content */}
               {(founder.calendly || founder.linkedin) && (
                 <div className="mt-7 flex flex-wrap items-center gap-3">
                   {founder.calendly && (
@@ -202,7 +202,7 @@ export default function TeamPage() {
             <p className="eyebrow">Principal architects</p>
             <h2 className="mt-3">The bench behind every engagement.</h2>
             <p className="mt-4 text-muted">
-              Principal-level depth in each of our capability pillars — the people who design,
+              Principal-level depth in each of our capability pillars, the people who design,
               review, and stand behind the work.
             </p>
           </div>
@@ -262,7 +262,7 @@ export default function TeamPage() {
         <div className="container text-center">
           <h2>Deploy a Principal Architect to architect your solution.</h2>
           <p className="mt-4 text-muted max-w-xl mx-auto">
-            No account managers, no hand-offs — talk directly to the people who&apos;ll design
+            No account managers, no hand-offs, talk directly to the people who&apos;ll design
             and deliver the work.
           </p>
           <div className="mt-8 flex justify-center">

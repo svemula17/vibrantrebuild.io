@@ -108,7 +108,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
               <>
                 <h3 className="mt-12 text-xl">Steal our playbooks</h3>
                 <p className="mt-2 text-sm text-muted">
-                  The guides and checklists our architects use on real engagements — free,
+                  The guides and checklists our architects use on real engagements, free,
                   ungated, and specific to this kind of work.
                 </p>
                 <div className="mt-5 grid gap-4 sm:grid-cols-2">

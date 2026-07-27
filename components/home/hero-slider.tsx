@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-/* Static hero — one brand photo, one message. The rotating services showcase
+/* Static hero, one brand photo, one message. The rotating services showcase
    lives in the What-we-do grid (components/home/service-showcase.tsx). */
 import heroBg from "@/assets/hero.jpg";
 
@@ -21,13 +21,13 @@ export function HeroSlider() {
         />
       </div>
 
-      {/* Text-side vignette — the artwork already darkens toward the left */}
+      {/* Text-side vignette, the artwork already darkens toward the left */}
       <div
         aria-hidden
         className="absolute inset-0 -z-10 pointer-events-none"
         style={{
           background:
-            "linear-gradient(to right, rgba(18,12,8,0.74) 0%, rgba(18,12,8,0.48) 45%, rgba(18,12,8,0.18) 70%, rgba(18,12,8,0) 100%)"
+            "linear-gradient(to right, rgba(18,12,8,0.86) 0%, rgba(18,12,8,0.72) 42%, rgba(18,12,8,0.40) 65%, rgba(18,12,8,0.06) 100%)"
         }}
       />
       {/* Extra full overlay on mobile so text is always readable */}
@@ -42,18 +42,17 @@ export function HeroSlider() {
         className="container relative flex flex-col justify-center pt-24 pb-24 md:pt-28 md:pb-28"
         style={{ minHeight: "inherit" }}
       >
-        {/* Narrow column — stays over the clean gradient, clear of the faces */}
-        <div className="max-w-xl lg:max-w-2xl">
+        {/* Narrow column, stays over the clean gradient, clear of the faces */}
+        <div className="max-w-xl">
           <p className="border-l-2 border-sky pl-4 text-[13px] md:text-[15px] font-medium text-white/75 leading-snug">
-            Founder-led technology consulting — since 2000
+            Founder-led technology consulting since 2000
           </p>
 
           <h1
             className="mt-6 text-white [text-wrap:balance]"
-            style={{ fontSize: "clamp(1.9rem, 3.4vw, 3rem)", lineHeight: 1.1, letterSpacing: "-0.02em", fontWeight: 700 }}
+            style={{ fontSize: "clamp(1.85rem, 3vw, 2.7rem)", lineHeight: 1.12, letterSpacing: "-0.02em", fontWeight: 700 }}
           >
-            Helping Mid-Market &amp; Enterprise Companies Modernize ERP, Cloud &amp; AI —
-            Without Disrupting Operations
+            Helping Mid-Market &amp; Enterprise Companies Modernize ERP, Cloud &amp; AI Without Disrupting Operations
           </h1>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-3">

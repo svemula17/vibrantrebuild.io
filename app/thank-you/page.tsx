@@ -4,12 +4,12 @@ import { siteSettings } from "@/content/site-content";
 
 export const metadata: Metadata = {
   title: "Thank you",
-  description: "Your request is in — a Vibrant specialist will call you within one business day.",
+  description: "Your request is in, a Vibrant specialist will call you within one business day.",
   robots: { index: false, follow: false }
 };
 
 const steps = [
-  "We read your note and match you with the right specialist — ERP, cloud, security, data, or AI.",
+  "We read your note and match you with the right specialist. ERP, cloud, security, data, or AI.",
   "That specialist reviews your situation so the first call is useful, not a triage exercise.",
   "You get a call within one business day. No handoffs, no account managers."
 ];
@@ -19,7 +19,7 @@ export default function ThankYouPage() {
     <section className="section">
       <div className="container max-w-2xl">
         <p className="eyebrow">Request received</p>
-        <h1 className="mt-3">Thanks — your call is booked.</h1>
+        <h1 className="mt-3">Thanks, your call is booked.</h1>
         <p className="mt-5 text-body-lg text-neutral-600">
           A Vibrant specialist will call you within one business day. Here&apos;s what
           happens next:

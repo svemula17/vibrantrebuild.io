@@ -17,7 +17,7 @@ const features = [
   },
   {
     title: "Automated response",
-    body: "Pre-approved playbooks contain threats the moment they're confirmed — day or night, no waiting on a human.",
+    body: "Pre-approved playbooks contain threats the moment they're confirmed, day or night, no waiting on a human.",
     icon: "M13 2L3 14h9l-1 8 10-12h-9l1-8z"
   },
   {
@@ -42,16 +42,16 @@ export function AiShieldBand() {
 
       <div className="container relative py-20 md:py-28">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-          {/* Left — copy */}
+          {/* Left, copy */}
           <div>
             <Reveal>
               <p className="eyebrow-on-dark">Featured platform</p>
               <h2 className="mt-3 text-white">
-                AI Shield™ — security that thinks faster than attackers.
+                AI Shield™, security that thinks faster than attackers.
               </h2>
               <p className="mt-5 text-white/70 leading-relaxed">
                 Our proprietary detection-and-response capability uses machine learning and
-                behavioral analytics to spot what rule-based tools miss — and neutralize it in
+                behavioral analytics to spot what rule-based tools miss, and neutralize it in
                 minutes, not hours.
               </p>
             </Reveal>
@@ -77,7 +77,7 @@ export function AiShieldBand() {
             </div>
           </div>
 
-          {/* Right — feature tiles */}
+          {/* Right, feature tiles */}
           <div className="grid sm:grid-cols-2 gap-4">
             {features.map((f, i) => (
               <motion.div

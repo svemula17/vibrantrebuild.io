@@ -97,7 +97,7 @@ export default async function ResourceDetailPage({
               <div className="card p-7">
                 <h3 className="text-lg text-navy-700">Want this executed, not just read?</h3>
                 <p className="mt-2 text-sm text-muted leading-relaxed">
-                  This is the framework we run on real engagements — a principal architect can
+                  This is the framework we run on real engagements, a principal architect can
                   apply it to your environment.
                 </p>
                 <Link href="/contact" className="btn-primary mt-5 w-full">
@@ -175,7 +175,7 @@ export default async function ResourceDetailPage({
               <p className="eyebrow">Where this gets done</p>
               <h2 className="mt-2 text-xl">Put this into practice.</h2>
               <p className="mt-2 text-sm text-muted">
-                These are the services where we do this exact work for clients — senior-led,
+                These are the services where we do this exact work for clients, senior-led,
                 and scoped in a 30-minute call.
               </p>
               <ul className="mt-4 space-y-3">

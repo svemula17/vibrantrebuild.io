@@ -19,7 +19,7 @@ export default function SocialResponsibilityPage() {
       <PageHero
         eyebrow="Social Responsibility"
         title="Impact isn't a checkbox. It's who we are."
-        description="We show up for our communities, protect our planet, champion diversity, and invest in future generations — because building better technology means building a better world alongside it."
+        description="We show up for our communities, protect our planet, champion diversity, and invest in future generations, because building better technology means building a better world alongside it."
         crumbs={[{ label: "Home", href: "/" }, { label: "Social Responsibility" }]}
       />
 
@@ -47,7 +47,7 @@ export default function SocialResponsibilityPage() {
             <p className="eyebrow">Diversity certification</p>
             <h2 className="mt-3">NMSDC certified MBE.</h2>
             <p className="mt-5 text-muted">
-              Vibrant Inc is certified by the National Minority Supplier Development Council (NMSDC) as a Minority Business Enterprise — supporting our clients&apos; supplier-diversity programs and reflecting how we&apos;ve always built our team.
+              Vibrant Inc is certified by the National Minority Supplier Development Council (NMSDC) as a Minority Business Enterprise, supporting our clients&apos; supplier-diversity programs and reflecting how we&apos;ve always built our team.
             </p>
             <p className="mt-4 text-muted">
               Our 2024 MBE certification confirms continued compliance with NMSDC standards and enables supplier-diversity procurement across enterprise and government clients.
@@ -78,7 +78,7 @@ export default function SocialResponsibilityPage() {
             </div>
             <div className="mt-6 border-t border-line pt-5 text-center">
               <h3 className="text-base font-semibold text-navy-700">National Minority Supplier Development Council</h3>
-              <p className="mt-1 text-sm text-muted">Vibrant Inc — Certified Minority Business Enterprise</p>
+              <p className="mt-1 text-sm text-muted">Vibrant Inc. Certified Minority Business Enterprise</p>
             </div>
           </div>
         </div>
@@ -90,7 +90,7 @@ export default function SocialResponsibilityPage() {
             <p className="eyebrow">Get involved</p>
             <h2 className="mt-3">Partner with us on something that matters.</h2>
             <p className="mt-5 text-muted">
-              If your organization is doing meaningful community work — or if you&apos;d like Vibrant to support a cause we haven&apos;t yet — we&apos;d love to hear from you.
+              If your organization is doing meaningful community work, or if you&apos;d like Vibrant to support a cause we haven&apos;t yet, we&apos;d love to hear from you.
             </p>
           </div>
           <div className="card p-8 text-center">

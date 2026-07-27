@@ -8,7 +8,7 @@ import { TrustCluster } from "@/components/trust-cluster";
 type Status = "idle" | "submitting" | "error";
 type FieldErrors = Partial<Record<string, string>>;
 
-/* Only name, email, and phone block submission — on a callback form the phone
+/* Only name, email, and phone block submission, on a callback form the phone
    number is the deliverable. Everything else is optional to cut friction. */
 const RULES: Record<string, (v: string) => string | undefined> = {
   firstName: (v) => (!v.trim() ? "Please enter your first name." : undefined),
@@ -35,7 +35,7 @@ export function CallbackForm({ heading }: Props) {
   const [interest, setInterest] = useState("");
 
   /* Preselect the interest from ?interest= (service pages + calculator link
-     here with it). window.location instead of useSearchParams — the latter
+     here with it). window.location instead of useSearchParams, the latter
      forces a Suspense boundary under static export. */
   useEffect(() => {
     const q = new URLSearchParams(window.location.search).get("interest");
@@ -57,7 +57,7 @@ export function CallbackForm({ heading }: Props) {
     const form = e.currentTarget;
     const fd = new FormData(form);
 
-    // Honeypot — if the hidden website field is filled, silently drop
+    // Honeypot, if the hidden website field is filled, silently drop
     if (fd.get("website")) return;
 
     const data: Record<string, string> = {
@@ -94,7 +94,7 @@ export function CallbackForm({ heading }: Props) {
     try {
       // Provider-agnostic submit: Formspree > Web3Forms > FormSubmit fallback.
       // Activate a provider by pasting its key into siteSettings.forms.
-      const subject = `New callback request from ${data.firstName} ${data.lastName}${data.company ? ` — ${data.company}` : ""}`;
+      const subject = `New callback request from ${data.firstName} ${data.lastName}${data.company ? `, ${data.company}` : ""}`;
       const { formspreeId, web3formsKey } = siteSettings.forms;
 
       let url: string;
@@ -106,7 +106,7 @@ export function CallbackForm({ heading }: Props) {
         url = "https://api.web3forms.com/submit";
         body = { access_key: web3formsKey, subject, ...data };
       } else {
-        // FormSubmit.co — free, no account, but silently drops submissions
+        // FormSubmit.co, free, no account, but silently drops submissions
         // until the one-time verification email is confirmed.
         url = "https://formsubmit.co/ajax/info@vibrantinc.com";
         body = { ...data, _subject: subject, _captcha: "false" };
@@ -177,12 +177,12 @@ export function CallbackForm({ heading }: Props) {
           id="message"
           name="message"
           rows={4}
-          placeholder="A few sentences are perfect — we'll follow up with the right specialist."
+          placeholder="A few sentences are perfect, we'll follow up with the right specialist."
           className="w-full rounded-lg border-line bg-white text-ink focus:border-sky focus:ring-sky"
         />
       </div>
 
-      {/* Honeypot — bots fill this, humans don't */}
+      {/* Honeypot, bots fill this, humans don't */}
       <input type="text" name="website" tabIndex={-1} autoComplete="off" defaultValue="" className="hidden" aria-hidden="true" />
 
       <div className="mt-6 flex justify-end">

@@ -16,7 +16,7 @@ const officePhotos: Record<string, StaticImageData> = {
 export const metadata: Metadata = pageMeta({
   title: "Contact",
   description:
-    "Reach Vibrant Inc in Princeton, NJ or Hyderabad, India — get a call back from a senior advisor within one business day.",
+    "Reach Vibrant Inc in Princeton, NJ or Hyderabad, India, get a call back from a senior advisor within one business day.",
   path: "/contact"
 });
 
@@ -36,7 +36,7 @@ export default function ContactPage() {
             <p className="eyebrow">Talk to Vibrant</p>
             <h2 className="mt-3">Three ways to reach us.</h2>
             <p className="mt-5 text-muted">
-              Whether you have a fully scoped project or just an idea — we&apos;ll match you with the right specialist.
+              Whether you have a fully scoped project or just an idea, we&apos;ll match you with the right specialist.
             </p>
 
             <dl className="mt-8 space-y-5">
@@ -93,9 +93,9 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Live map — keyless Google Maps embed */}
+            {/* Live map, keyless Google Maps embed */}
             <iframe
-              title={`Map — ${siteSettings.address}`}
+              title={`Map, ${siteSettings.address}`}
               src={`https://www.google.com/maps?q=${encodeURIComponent(offices[0].mapsQuery)}&output=embed`}
               className="mt-10 h-64 w-full rounded-2xl border border-line"
               loading="lazy"
@@ -115,7 +115,7 @@ export default function ContactPage() {
             <p className="eyebrow">Where we are</p>
             <h2 className="mt-3">Two offices, one delivery model.</h2>
             <p className="mt-4 text-muted">
-              Senior leadership in Princeton, engineering depth in Hyderabad — the follow-the-sun
+              Senior leadership in Princeton, engineering depth in Hyderabad, the follow-the-sun
               model that keeps costs sensible and quality high.
             </p>
           </div>

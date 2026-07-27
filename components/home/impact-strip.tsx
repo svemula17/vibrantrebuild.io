@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Reveal } from "@/components/reveal";
 
-/* Slim one-row divider band — the full impact story lives on /social-responsibility */
+/* Slim one-row divider band, the full impact story lives on /social-responsibility */
 export function ImpactStrip() {
   return (
     <section className="border-y border-neutral-200 bg-neutral-50">
