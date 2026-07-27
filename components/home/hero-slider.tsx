@@ -16,7 +16,7 @@ export function HeroSlider() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[70%_center]"
+          className="object-cover object-[25%_center]"
           placeholder="blur"
         />
       </div>
@@ -42,25 +42,21 @@ export function HeroSlider() {
         className="container relative flex flex-col justify-center pt-24 pb-24 md:pt-28 md:pb-28"
         style={{ minHeight: "inherit" }}
       >
-        <div className="max-w-xl lg:max-w-3xl">
+        {/* Narrow column — stays over the clean gradient, clear of the faces */}
+        <div className="max-w-xl lg:max-w-2xl">
           <p className="border-l-2 border-sky pl-4 text-[13px] md:text-[15px] font-medium text-white/75 leading-snug">
-            Founder-led enterprise technology consulting — since 2000
+            Founder-led technology consulting — since 2000
           </p>
 
           <h1
             className="mt-6 text-white [text-wrap:balance]"
-            style={{ fontSize: "clamp(2.1rem, 4.2vw, 3.6rem)", lineHeight: 1.08, letterSpacing: "-0.02em", fontWeight: 700 }}
+            style={{ fontSize: "clamp(1.9rem, 3.4vw, 3rem)", lineHeight: 1.1, letterSpacing: "-0.02em", fontWeight: 700 }}
           >
             Helping Mid-Market &amp; Enterprise Companies Modernize ERP, Cloud &amp; AI —
             Without Disrupting Operations
           </h1>
 
-          <p className="mt-6 text-lg md:text-xl text-white/85 leading-relaxed max-w-2xl">
-            Senior practitioners across ERP, cloud, data, cybersecurity, and AI —
-            owning every engagement end to end.
-          </p>
-
-          <div className="mt-9 flex flex-col sm:flex-row gap-3">
+          <div className="mt-8 flex flex-col sm:flex-row gap-3">
             <Link href="/contact" className="btn-primary">
               Schedule a Call
             </Link>
