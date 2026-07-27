@@ -29,14 +29,14 @@ const features = [
 
 export function AiShieldBand() {
   return (
-    <section className="relative overflow-hidden bg-navy-900 text-white">
+    <section className="relative overflow-hidden text-white bg-brand-gradient">
       {/* Brand radial glow, mirrors stats-band treatment */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle at 85% 20%, rgba(200,64,26,0.30) 0%, transparent 50%), radial-gradient(circle at 10% 90%, rgba(163,51,21,0.22) 0%, transparent 55%)"
+            "radial-gradient(circle at 85% 15%, rgba(255,255,255,0.10) 0%, transparent 45%), radial-gradient(circle at 5% 95%, rgba(60,10,0,0.28) 0%, transparent 55%)"
         }}
       />
 
@@ -45,22 +45,22 @@ export function AiShieldBand() {
           {/* Left, copy */}
           <div>
             <Reveal>
-              <p className="eyebrow-on-dark">Featured platform</p>
+              <p className="text-eyebrow uppercase text-white/85">Featured platform</p>
               <h2 className="mt-3 text-white">
                 AI Shield™, security that thinks faster than attackers.
               </h2>
-              <p className="mt-5 text-white/70 leading-relaxed">
+              <p className="mt-5 text-white/85 leading-relaxed">
                 Our proprietary detection-and-response capability uses machine learning and
                 behavioral analytics to spot what rule-based tools miss, and neutralize it in
                 minutes, not hours.
               </p>
             </Reveal>
 
-            <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-white/60">
+            <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-white/80">
               <span>Threats contained in minutes</span>
-              <span className="text-brand-400" aria-hidden="true">·</span>
+              <span className="text-white/60" aria-hidden="true">·</span>
               <span>Fewer false positives</span>
-              <span className="text-brand-400" aria-hidden="true">·</span>
+              <span className="text-white/60" aria-hidden="true">·</span>
               <span>Audit-ready reporting</span>
             </div>
 
@@ -70,7 +70,7 @@ export function AiShieldBand() {
               </Link>
               <Link
                 href="/contact"
-                className="text-sm font-semibold text-brand-400 hover:text-brand-300 transition-colors"
+                className="text-sm font-semibold text-white underline underline-offset-4 decoration-white/40 hover:decoration-white transition-colors"
               >
                 See it in action →
               </Link>
@@ -86,15 +86,15 @@ export function AiShieldBand() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-6%" }}
                 transition={{ duration: 0.35, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
-                className="group card-dark p-6 hover:bg-white/10 hover:border-brand-600/40 transition-all"
+                className="group card-dark p-6 hover:bg-white/15 hover:border-white/40 transition-all"
               >
-                <span className="grid h-10 w-10 place-items-center rounded-xl bg-brand-600/20 text-brand-400 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/15 text-white group-hover:bg-white group-hover:text-brand-700 transition-colors">
                   <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <path d={f.icon} />
                   </svg>
                 </span>
                 <h3 className="mt-4 text-sm font-semibold text-white leading-snug">{f.title}</h3>
-                <p className="mt-2 text-sm text-white/60 leading-relaxed">{f.body}</p>
+                <p className="mt-2 text-sm text-white/80 leading-relaxed">{f.body}</p>
               </motion.div>
             ))}
           </div>

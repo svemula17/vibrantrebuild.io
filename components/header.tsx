@@ -182,7 +182,7 @@ export function Header() {
           </div>
         </div>
       )}
-      <div className="container flex h-16 md:h-20 lg:h-24 items-center justify-between gap-6">
+      <div className="container flex h-14 md:h-16 lg:h-[72px] items-center justify-between gap-6">
         <Link href="/" aria-label={`${siteSettings.brandName} home`}>
           <Image
             src={logoSrc}
@@ -190,7 +190,7 @@ export function Header() {
             width={240}
             height={203}
             priority
-            className="h-10 md:h-14 lg:h-16 w-auto object-contain"
+            className="h-9 md:h-10 lg:h-12 w-auto object-contain"
           />
         </Link>
 
@@ -247,7 +247,7 @@ export function Header() {
                       aboutOpen ? "visible opacity-100 translate-y-0" : "invisible opacity-0 -translate-y-1 pointer-events-none"
                     }`}
                   >
-                    <div className="card overflow-hidden rounded-xl shadow-cardHover divide-y divide-neutral-100">
+                    <div className="overflow-hidden rounded-xl border border-brand-600/15 shadow-cardHover divide-y divide-brand-600/10" style={{ background: "linear-gradient(180deg, #FDF3EE 0%, #FFFFFF 100%)" }}>
                       {ABOUT_MENU.map(([label, href]) => (
                         <Link
                           key={href}
@@ -319,7 +319,8 @@ export function Header() {
         inert={!servicesOpen}
         aria-hidden={!servicesOpen}
         aria-label="Services menu"
-        className={`hidden lg:block absolute inset-x-0 top-full bg-white border-t border-neutral-100 border-b border-neutral-200 shadow-cardHover transition-all duration-200 ease-brand ${
+        style={{ background: "linear-gradient(180deg, #FDF3EE 0%, #FFF9F5 60%, #FFFFFF 100%)" }}
+        className={`hidden lg:block absolute inset-x-0 top-full border-t border-brand-600/15 border-b border-neutral-200 shadow-cardHover transition-all duration-200 ease-brand ${
           servicesOpen ? "visible opacity-100 translate-y-0" : "invisible opacity-0 -translate-y-1 pointer-events-none"
         }`}
       >

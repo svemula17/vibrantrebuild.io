@@ -50,7 +50,7 @@ export function HeroSlider() {
 
           <h1
             className="mt-6 text-white [text-wrap:balance]"
-            style={{ fontSize: "clamp(1.85rem, 3vw, 2.7rem)", lineHeight: 1.12, letterSpacing: "-0.02em", fontWeight: 700 }}
+            style={{ fontSize: "clamp(1.85rem, 3vw, 2.7rem)", lineHeight: 1.18, letterSpacing: "-0.01em", fontWeight: 500 }}
           >
             Helping Mid-Market &amp; Enterprise Companies Modernize ERP, Cloud &amp; AI Without Disrupting Operations
           </h1>
