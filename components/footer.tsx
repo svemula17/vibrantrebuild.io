@@ -2,11 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { contactDetails, navigationItems, serviceCards, siteSettings, withBasePath } from "@/content/site-content";
 import logoSrc  from "@/vibrant-logo-header.png";
-import deloitte from "@/assets/clients/deloitte.jpg";
-import cosyn    from "@/assets/clients/cosyn.jpg";
-import rcn      from "@/assets/clients/rcn.jpg";
-import acta     from "@/assets/clients/acta.jpg";
-import infojini from "@/assets/clients/infojini.jpg";
+import amphenol   from "@/clients/amphenol.svg";
+import teksystems from "@/clients/teksystems.svg";
+import vaco       from "@/clients/vaco.svg";
+import radiant    from "@/clients/radiant-systems.png";
+import mouri      from "@/clients/mouri-tech.png";
 
 const socialLinks = [
   {
@@ -29,11 +29,11 @@ const socialLinks = [
 const validSocialLinks = socialLinks.filter(s => s.href && s.href.trim() !== "");
 
 const clientLogos = [
-  { src: deloitte, alt: "Deloitte" },
-  { src: cosyn,    alt: "COSYN"    },
-  { src: rcn,      alt: "RCN"      },
-  { src: acta,     alt: "acta"     },
-  { src: infojini, alt: "Infojini" },
+  { src: amphenol,   alt: "Amphenol"        },
+  { src: teksystems, alt: "TEKsystems"      },
+  { src: vaco,       alt: "Vaco"            },
+  { src: radiant,    alt: "Radiant Systems" },
+  { src: mouri,      alt: "MOURI Tech"      },
 ];
 
 const footerNav = navigationItems.filter((n) => n.href !== "/");
@@ -199,7 +199,7 @@ export function Footer() {
           </ul>
 
           <Link href="/contact" className="mt-6 btn-primary px-5 py-2.5">
-            Get my callback →
+            Schedule a Call →
           </Link>
         </div>
       </div>

@@ -19,7 +19,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Services"
         title="The full enterprise technology stack — under one partner."
-        description="Seven capability pillars, eighteen specialized services. From ERP and cloud modernization to cybersecurity, data, automation, and AI — delivered by certified practitioners with 25+ years of trusted delivery."
+        description="Seven capability pillars — with full SAP depth under one roof. From ERP and cloud modernization to cybersecurity, data, automation, and AI, delivered by certified practitioners with 25+ years of trusted delivery."
         crumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
       />
 

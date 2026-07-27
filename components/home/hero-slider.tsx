@@ -226,7 +226,7 @@ export function HeroSlider() {
           {/* One primary action + one quiet text link */}
           <div className="mt-9 flex flex-col items-start sm:flex-row sm:items-center gap-5">
             <Link href="/contact" className="btn-primary">
-              Get my callback
+              Schedule a Call
             </Link>
             <Link
               href={`/services/${service.slug}`}

@@ -166,7 +166,7 @@ export default async function ResourceDetailPage({
               you what to do about it.
             </p>
             <Link href="/contact" className="btn-primary mt-5">
-              Get my callback
+              Set Up a Call
             </Link>
           </div>
 

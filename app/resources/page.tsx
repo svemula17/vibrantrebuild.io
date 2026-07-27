@@ -139,7 +139,7 @@ export default function ResourcesPage() {
           </p>
           <div className="mt-8 flex justify-center">
             <Link href="/contact" className="btn-primary">
-              Get my callback
+              Set Up a Call
             </Link>
           </div>
         </div>

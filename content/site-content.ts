@@ -549,10 +549,9 @@ export const serviceCards: ServiceCard[] = [
     bestFit:
       "Enterprises running or implementing SAP, JD Edwards, or PeopleSoft who need a single trusted partner across the full ERP lifecycle.",
     category: "SAP Solutions",
-    // SAP lives under the ERP & Enterprise Applications pillar; keep the card for
-    // /services and deep links, but out of the hero carousel and homepage grid.
-    featured: false,
-    hideFromGrid: true
+    // The single SAP box on /services — the 8 detail pages stay live and are
+    // reachable from this card's detail page, but no longer clutter the grid.
+    featured: false
   },
 
   /* ───── Individual SAP services (detail pages + grid) ───── */
@@ -588,7 +587,8 @@ export const serviceCards: ServiceCard[] = [
     ],
     bestFit:
       "Enterprise organizations replacing legacy ERP systems or modernizing to cloud SAP.",
-    category: "SAP Solutions"
+    category: "SAP Solutions",
+    hideFromGrid: true
   },
   {
     slug: "sap-ams",
@@ -622,7 +622,8 @@ export const serviceCards: ServiceCard[] = [
     ],
     bestFit:
       "Mid-market and enterprise companies running SAP who need reliable, hands-on post-go-live support.",
-    category: "SAP Solutions"
+    category: "SAP Solutions",
+    hideFromGrid: true
   },
   {
     slug: "sap-supply-chain",
@@ -656,7 +657,8 @@ export const serviceCards: ServiceCard[] = [
     ],
     bestFit:
       "Manufacturing, retail, and logistics organizations seeking modern, data-driven supply chain execution.",
-    category: "SAP Solutions"
+    category: "SAP Solutions",
+    hideFromGrid: true
   },
   {
     slug: "sap-btp",
@@ -690,7 +692,8 @@ export const serviceCards: ServiceCard[] = [
     ],
     bestFit:
       "Enterprises needing rapid, cloud-native integrations and extensions while maintaining SAP clean core.",
-    category: "SAP Solutions"
+    category: "SAP Solutions",
+    hideFromGrid: true
   },
   {
     slug: "sap-integration",
@@ -724,7 +727,8 @@ export const serviceCards: ServiceCard[] = [
     ],
     bestFit:
       "Organizations with complex integration landscapes needing reliable, maintainable SAP connectivity.",
-    category: "SAP Solutions"
+    category: "SAP Solutions",
+    hideFromGrid: true
   },
   {
     slug: "sap-fiori-ux",
@@ -758,7 +762,8 @@ export const serviceCards: ServiceCard[] = [
     ],
     bestFit:
       "Enterprises prioritizing user experience in SAP deployments or modernizing legacy interfaces.",
-    category: "SAP Solutions"
+    category: "SAP Solutions",
+    hideFromGrid: true
   },
   {
     slug: "sap-clean-core",
@@ -792,7 +797,8 @@ export const serviceCards: ServiceCard[] = [
     ],
     bestFit:
       "SAP ECC customers with significant technical debt seeking a clear path to S/4HANA.",
-    category: "SAP Solutions"
+    category: "SAP Solutions",
+    hideFromGrid: true
   },
   {
     slug: "sap-abap",
@@ -826,7 +832,8 @@ export const serviceCards: ServiceCard[] = [
     ],
     bestFit:
       "Enterprises needing specific custom functionality that standard SAP cannot provide.",
-    category: "SAP Solutions"
+    category: "SAP Solutions",
+    hideFromGrid: true
   },
   {
     slug: "jd-edwards-cnc",

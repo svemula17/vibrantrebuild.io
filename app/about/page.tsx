@@ -25,7 +25,7 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About Vibrant"
-        title="Twenty-five years of doing what we said we'd do."
+        title="Built on integrity: 25 years of delivering on our promises."
         description="Vibrant Inc modernizes ERP, cloud, and data for companies that can't afford downtime. Founder-led since 2000, senior practitioners on every engagement, and a client list that keeps coming back."
         crumbs={[{ label: "Home", href: "/" }, { label: "About" }]}
       />
@@ -160,7 +160,7 @@ export default function AboutPage() {
               Tell us where you want to be in 12 months. We&apos;ll help you get there with senior practitioners and a 25-year delivery track record.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/contact" className="btn-primary">Get my callback</Link>
+              <Link href="/contact" className="btn-primary">Schedule a Call</Link>
               <Link href="/services" className="btn-ghost">See our services</Link>
             </div>
           </div>

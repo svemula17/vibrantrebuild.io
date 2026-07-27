@@ -260,14 +260,14 @@ export default function TeamPage() {
       {/* CTA */}
       <section className="section">
         <div className="container text-center">
-          <h2>Put a principal architect on your problem.</h2>
+          <h2>Deploy a Principal Architect to architect your solution.</h2>
           <p className="mt-4 text-muted max-w-xl mx-auto">
             No account managers, no hand-offs — talk directly to the people who&apos;ll design
             and deliver the work.
           </p>
           <div className="mt-8 flex justify-center">
             <Link href="/contact" className="btn-primary">
-              Get my callback
+              Set Up a Call
             </Link>
           </div>
         </div>

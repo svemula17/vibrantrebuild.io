@@ -4,7 +4,7 @@ import { siteSettings } from "@/content/site-content";
 
 export const metadata: Metadata = {
   title: "Thank you",
-  description: "Your callback request is in — a Vibrant specialist will call you within one business day.",
+  description: "Your request is in — a Vibrant specialist will call you within one business day.",
   robots: { index: false, follow: false }
 };
 
@@ -19,7 +19,7 @@ export default function ThankYouPage() {
     <section className="section">
       <div className="container max-w-2xl">
         <p className="eyebrow">Request received</p>
-        <h1 className="mt-3">Thanks — your callback is booked.</h1>
+        <h1 className="mt-3">Thanks — your call is booked.</h1>
         <p className="mt-5 text-body-lg text-neutral-600">
           A Vibrant specialist will call you within one business day. Here&apos;s what
           happens next:

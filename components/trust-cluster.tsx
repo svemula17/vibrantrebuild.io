@@ -1,14 +1,14 @@
 import Image from "next/image";
-import deloitte from "@/assets/clients/deloitte.jpg";
-import cosyn from "@/assets/clients/cosyn.jpg";
-import rcn from "@/assets/clients/rcn.jpg";
-import infojini from "@/assets/clients/infojini.jpg";
+import amphenol from "@/clients/amphenol.svg";
+import teksystems from "@/clients/teksystems.svg";
+import vaco from "@/clients/vaco.svg";
+import radiant from "@/clients/radiant-systems.png";
 
 const logos = [
-  { src: deloitte, alt: "Deloitte" },
-  { src: cosyn, alt: "COSYN" },
-  { src: rcn, alt: "RCN" },
-  { src: infojini, alt: "Infojini" }
+  { src: amphenol, alt: "Amphenol" },
+  { src: teksystems, alt: "TEKsystems" },
+  { src: vaco, alt: "Vaco" },
+  { src: radiant, alt: "Radiant Systems" }
 ];
 
 type Props = {

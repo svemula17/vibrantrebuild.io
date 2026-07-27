@@ -142,7 +142,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
                   href={`/contact/?interest=${encodeURIComponent(serviceInterestMap[service.slug] ?? "")}`}
                   className="btn-primary"
                 >
-                  Get my callback
+                  Book a Call
                 </Link>
                 <a href={`tel:${siteSettings.phonePrimary}`} className="btn-ghost">{siteSettings.phonePrimary}</a>
               </div>
