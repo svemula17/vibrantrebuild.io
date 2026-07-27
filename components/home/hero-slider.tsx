@@ -39,18 +39,26 @@ export function HeroSlider() {
 
       {/* Content */}
       <div
-        className="relative flex w-full flex-col justify-end px-5 pt-36 pb-20 md:px-8 md:pt-40 md:pb-24 lg:px-12"
+        className="container relative flex flex-col justify-end pt-36 pb-20 md:pt-40 md:pb-56"
         style={{ minHeight: "inherit" }}
       >
         {/* Narrow column, stays over the clean gradient, clear of the faces */}
-        <div className="max-w-lg">
+        <div className="max-w-xl">
+          <p className="text-eyebrow uppercase text-white/80">
+            ERP · Cloud · Cybersecurity · Data · AI
+          </p>
 
           <h1
-            className="text-white [text-wrap:balance]"
+            className="mt-4 text-white [text-wrap:balance]"
             style={{ fontSize: "clamp(1.7rem, 2.5vw, 2.3rem)", lineHeight: 1.2, letterSpacing: "-0.01em", fontWeight: 500 }}
           >
             Helping Mid-Market &amp; Enterprise Companies Modernize ERP, Cloud &amp; AI Without Disrupting Operations
           </h1>
+
+          <p className="mt-5 max-w-lg text-white/85 leading-relaxed [text-wrap:pretty]">
+            Founder-led since 2000. Senior practitioners who plan, migrate, and run
+            the systems you can&apos;t afford to lose.
+          </p>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
             <Link href="/contact" className="btn-primary">
