@@ -27,19 +27,19 @@ export function HeroSlider() {
         className="absolute inset-0 -z-10 pointer-events-none"
         style={{
           background:
-            "linear-gradient(to right, rgba(18,12,8,0.86) 0%, rgba(18,12,8,0.72) 42%, rgba(18,12,8,0.40) 65%, rgba(18,12,8,0.06) 100%)"
+            "linear-gradient(to top, rgba(18,12,8,0.66) 0%, rgba(18,12,8,0.30) 36%, rgba(18,12,8,0.06) 58%, rgba(18,12,8,0) 100%), linear-gradient(to right, rgba(18,12,8,0.22) 0%, rgba(18,12,8,0) 55%)"
         }}
       />
       {/* Extra full overlay on mobile so text is always readable */}
       <div
         aria-hidden
         className="absolute inset-0 -z-10 pointer-events-none md:hidden"
-        style={{ background: "rgba(18,12,8,0.40)" }}
+        style={{ background: "rgba(18,12,8,0.30)" }}
       />
 
       {/* Content */}
       <div
-        className="relative flex w-full flex-col justify-center px-5 pt-24 pb-24 md:px-8 md:pt-28 md:pb-28 lg:px-12"
+        className="relative flex w-full flex-col justify-end px-5 pt-36 pb-20 md:px-8 md:pt-40 md:pb-24 lg:px-12"
         style={{ minHeight: "inherit" }}
       >
         {/* Narrow column, stays over the clean gradient, clear of the faces */}
