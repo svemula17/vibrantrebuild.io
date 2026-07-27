@@ -63,7 +63,7 @@ export default function CareersPage() {
               A complete package designed to support you and your family through every stage of your career.
             </p>
           </div>
-          <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {careersBenefits.map((b) => (
               <li
                 key={b}
@@ -90,7 +90,7 @@ export default function CareersPage() {
               If you don&apos;t see a perfect match, send us your résumé anyway, we hire ahead of demand for senior practitioners.
             </p>
           </div>
-          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {careerOpenings.map((o) => (
               <Link
                 key={o.title}
@@ -109,8 +109,8 @@ export default function CareersPage() {
         </div>
       </section>
 
-      <section className="section-soft">
-        <div className="container grid gap-12 lg:grid-cols-2 lg:items-center">
+      <section className="section-tint">
+        <div className="container grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
             <p className="eyebrow">Don&apos;t see your role?</p>
             <h2 className="mt-3">Send us your résumé anyway.</h2>

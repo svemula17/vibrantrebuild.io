@@ -159,7 +159,7 @@ export default async function ResourceDetailPage({
             ))}
           </article>
 
-          <div className="mt-14 max-w-3xl rounded-2xl border border-line bg-navy-50/40 p-7">
+          <div className="mt-12 max-w-3xl rounded-2xl border border-brand-600/15 p-7" style={{ background: "linear-gradient(180deg, #FDF3EE 0%, #FEF9F6 100%)" }}>
             <h2 className="text-xl">Talk it through with a practitioner</h2>
             <p className="mt-2 text-sm text-muted">
               If this hits close to home, a 30-minute call with a principal architect will tell
@@ -171,7 +171,7 @@ export default async function ResourceDetailPage({
           </div>
 
           {article.relatedServices.length > 0 && (
-            <div className="mt-14 max-w-3xl">
+            <div className="mt-12 max-w-3xl">
               <p className="eyebrow">Where this gets done</p>
               <h2 className="mt-2 text-xl">Put this into practice.</h2>
               <p className="mt-2 text-sm text-muted">
@@ -197,7 +197,7 @@ export default async function ResourceDetailPage({
           )}
 
           {more.length > 0 && (
-            <div className="mt-16 max-w-3xl">
+            <div className="mt-12 max-w-3xl">
               <p className="eyebrow">More insights</p>
               <ul className="mt-4 space-y-3">
                 {more.map((i) => (

@@ -14,8 +14,8 @@ export const metadata: Metadata = pageMeta({
 const CATEGORY_STYLES: Record<string, string> = {
   "White Paper": "bg-navy-700 text-white",
   Guide: "bg-sky/10 text-brand-700",
-  Checklist: "bg-emerald-50 text-emerald-700",
-  Roadmap: "bg-amber-50 text-amber-700"
+  Checklist: "bg-neutral-100 text-neutral-700",
+  Roadmap: "bg-brand-600/10 text-brand-700"
 };
 
 export default function ResourcesPage() {
@@ -36,7 +36,7 @@ export default function ResourcesPage() {
             <h2 className="mt-3">Read before you buy anything.</h2>
           </div>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {resourceGuides.map((guide) => (
               <Link
                 key={guide.slug}
@@ -102,7 +102,7 @@ export default function ResourcesPage() {
             <h2 className="mt-3">Short reads, strong opinions.</h2>
           </div>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
             {insights.map((post) => (
               <Link
                 key={post.slug}
@@ -130,7 +130,7 @@ export default function ResourcesPage() {
       </section>
 
       {/* CTA */}
-      <section className="section">
+      <section className="section-tint">
         <div className="container text-center">
           <h2>Prefer answers to reading?</h2>
           <p className="mt-4 text-muted max-w-xl mx-auto">

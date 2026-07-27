@@ -16,7 +16,7 @@ const steps = [
 
 export default function ThankYouPage() {
   return (
-    <section className="section">
+    <section className="section-tint">
       <div className="container max-w-2xl">
         <p className="eyebrow">Request received</p>
         <h1 className="mt-3">Thanks, your call is booked.</h1>

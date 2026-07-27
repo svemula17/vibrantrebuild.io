@@ -125,7 +125,7 @@ export default function TeamPage() {
       {/* Founder */}
       {founder && (
         <section className="section">
-          <div className="container grid gap-12 lg:grid-cols-[auto,1fr] lg:items-start">
+          <div className="container grid gap-10 lg:grid-cols-[auto,1fr] lg:items-center">
             <div className="flex justify-center lg:justify-start">
               <Avatar leader={founder} size="xl" />
             </div>
@@ -207,7 +207,7 @@ export default function TeamPage() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
             {principals.map((leader) => (
               <div key={leader.id} className="card p-7">
                 <div className="flex items-center gap-4">
@@ -258,7 +258,7 @@ export default function TeamPage() {
       </section>
 
       {/* CTA */}
-      <section className="section">
+      <section className="section-tint">
         <div className="container text-center">
           <h2>Deploy a Principal Architect to architect your solution.</h2>
           <p className="mt-4 text-muted max-w-xl mx-auto">

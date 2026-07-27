@@ -16,9 +16,9 @@ export const metadata: Metadata = pageMeta({
 });
 
 const partnerAccent: Record<string, string> = {
-  "Oracle":    "bg-orange-50 text-orange-700 border-orange-200",
-  "Wrike":     "bg-green-50  text-green-700  border-green-200",
-  "Microsoft": "bg-blue-50   text-blue-700   border-blue-200"
+  "Oracle":    "bg-brand-600/10 text-brand-700 border-brand-600/20",
+  "Wrike":     "bg-neutral-100 text-neutral-700 border-neutral-300",
+  "Microsoft": "bg-neutral-900/5 text-navy-700 border-neutral-300"
 };
 
 /* Official partner logos (see assets/partners/), text tile below is the fallback
@@ -49,7 +49,7 @@ export default function PartnersPage() {
       <section className="section">
         <div className="container">
           <h2 className="sr-only">Our technology partners</h2>
-          <div className="grid gap-8 lg:grid-cols-3">
+          <div className="grid gap-6 lg:grid-cols-3">
             {partners.map((p) => {
               const logoImage = partnerLogoImages[p.name];
               const logoLines = partnerLogos[p.name]?.lines ?? [p.logo];
@@ -109,7 +109,7 @@ export default function PartnersPage() {
               licensing, and fast escalation paths, not generic recommendations from the outside.
             </p>
           </div>
-          <ul className="mt-12 grid gap-4 md:grid-cols-2">
+          <ul className="mt-8 grid gap-4 md:grid-cols-2">
             {partnerBenefits.map((b) => (
               <li key={b.title} className="card p-6 hover:border-sky/40 hover:shadow-cardHover transition-all">
                 <h3 className="text-base font-semibold text-navy-700">{b.title}</h3>
@@ -121,8 +121,8 @@ export default function PartnersPage() {
       </section>
 
       {/* ── Partnership inquiry ── */}
-      <section className="section">
-        <div className="container grid gap-12 lg:grid-cols-2 lg:items-center">
+      <section className="section-tint">
+        <div className="container grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
             <p className="eyebrow">Want to partner with Vibrant?</p>
             <h2 className="mt-3">Let&apos;s compare notes.</h2>

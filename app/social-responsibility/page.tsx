@@ -29,7 +29,7 @@ export default function SocialResponsibilityPage() {
             <p className="eyebrow">Our commitments</p>
             <h2 className="mt-3">Four ways we show up.</h2>
           </div>
-          <ul className="mt-12 grid gap-5 md:grid-cols-2">
+          <ul className="mt-8 grid gap-5 md:grid-cols-2">
             {socialResponsibilityCommitments.map((c, i) => (
               <li key={c.title} className="card p-7 hover:border-sky/40 hover:shadow-cardHover transition-all">
                 <div className="text-xs font-semibold text-brand-700">{`0${i + 1}`}</div>
@@ -84,8 +84,8 @@ export default function SocialResponsibilityPage() {
         </div>
       </section>
 
-      <section className="section">
-        <div className="container grid gap-12 lg:grid-cols-2 lg:items-center">
+      <section className="section-tint">
+        <div className="container grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
             <p className="eyebrow">Get involved</p>
             <h2 className="mt-3">Partner with us on something that matters.</h2>
