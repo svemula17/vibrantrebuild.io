@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Reveal } from "@/components/reveal";
+import { ServiceShowcase } from "@/components/home/service-showcase";
 import { serviceCards } from "@/content/site-content";
 
 // Homepage grid: the seven capability pillars, ERP first. Full catalog on /services.
@@ -52,6 +53,9 @@ export function ServicesGrid() {
               }}
               className={i === 0 ? "sm:col-span-2" : undefined}
             >
+              {i === 0 ? (
+                <ServiceShowcase />
+              ) : (
               <Link
                 href={`/services/${service.slug}`}
                 className="group relative flex h-full flex-col rounded-2xl border border-line bg-white p-7 shadow-card transition-all hover:-translate-y-1.5 hover:shadow-cardHover hover:border-sky/40 overflow-hidden"
@@ -77,6 +81,7 @@ export function ServicesGrid() {
                   </svg>
                 </span>
               </Link>
+              )}
             </motion.div>
           ))}
         </div>
