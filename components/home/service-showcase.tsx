@@ -24,7 +24,7 @@ const IMAGES: Record<string, StaticImageData> = {
   "managed-it":          imgMIT
 };
 
-const INTERVAL = 5000;
+const INTERVAL = 3000;
 
 /* The flagship slot of the What-we-do grid: an auto-sliding showcase that
    rotates through the seven pillars (ERP first). Pauses on hover/focus and

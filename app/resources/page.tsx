@@ -7,7 +7,7 @@ import { insights, resourceGuides } from "@/content/site-content";
 export const metadata: Metadata = pageMeta({
   title: "Resources",
   description:
-    "White papers, migration guides, readiness checklists, an SAP S/4HANA cost calculator, and insights from 25+ years of ERP, cloud, and AI delivery.",
+    "White papers, migration guides, readiness checklists, an SAP S/4HANA cost calculator, and insights from 27+ years of ERP, cloud, and AI delivery.",
   path: "/resources"
 });
 
@@ -23,7 +23,7 @@ export default function ResourcesPage() {
     <>
       <PageHero
         eyebrow="Resources"
-        title="Guides, tools, and insights from 25+ years of delivery."
+        title="Guides, tools, and insights from 27+ years of delivery."
         description="The same frameworks and checklists we use on real engagements — free to read, built to be used. No gate, no email wall."
         crumbs={[{ label: "Home", href: "/" }, { label: "Resources" }]}
       />

@@ -118,7 +118,7 @@ export default function TeamPage() {
       <PageHero
         eyebrow="Leadership"
         title="Senior architects. Founder-led delivery."
-        description="Every Vibrant engagement is led by people who've done the work themselves — a founder with 25+ years in enterprise transformation and a bench of principal architects across ERP, cloud, SAP, cybersecurity, and AI."
+        description="Every Vibrant engagement is led by people who've done the work themselves — a founder with 27+ years in enterprise transformation and a bench of principal architects across ERP, cloud, SAP, cybersecurity, and AI."
         crumbs={[{ label: "Home", href: "/" }, { label: "Leadership" }]}
       />
 

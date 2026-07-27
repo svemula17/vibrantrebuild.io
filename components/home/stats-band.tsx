@@ -52,7 +52,7 @@ export function StatsBand() {
                   </div>
                   <p className="mt-2 text-sm text-white/65">{s.label}</p>
                   <span className="mt-3 inline-flex items-center gap-2 rounded-full border border-brand-400/45 bg-brand-600/15 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-brand-400">
-                    Est. 2000 · Celebrating 25+ Years
+                    Est. 2000 · Celebrating 27+ Years
                   </span>
                 </>
               ) : (

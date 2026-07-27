@@ -25,7 +25,7 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About Vibrant"
-        title="Built on integrity: 25 years of delivering on our promises."
+        title="Built on integrity: 27 years of delivering on our promises."
         description="Vibrant Inc modernizes ERP, cloud, and data for companies that can't afford downtime. Founder-led since 2000, senior practitioners on every engagement, and a client list that keeps coming back."
         crumbs={[{ label: "Home", href: "/" }, { label: "About" }]}
       />
@@ -34,7 +34,7 @@ export default function AboutPage() {
         <div className="container grid gap-12 lg:grid-cols-2 lg:items-start">
           <div>
             <p className="eyebrow">Who we are</p>
-            <h2 className="mt-3">A quarter century of practical execution.</h2>
+            <h2 className="mt-3">Twenty-seven years of practical execution.</h2>
             <div className="mt-6 space-y-4">
               {companyOverview.map((p, i) => (
                 <p key={i} className="text-muted">{p}</p>
@@ -47,12 +47,12 @@ export default function AboutPage() {
             </blockquote>
           </div>
 
-          {/* Right: one compact card — small 25-year graphic + key facts */}
+          {/* Right: one compact card — small 27-year graphic + key facts */}
           <div className="card p-7">
             <div className="mx-auto overflow-hidden rounded-xl" style={{ maxWidth: 180 }}>
               <Image
                 src={anniversary}
-                alt="Vibrant Inc — Celebrating 25 Years in Business"
+                alt="Vibrant Inc — Celebrating 27 Years in Business"
                 width={780}
                 height={960}
                 className="w-full h-auto object-contain"
@@ -157,7 +157,7 @@ export default function AboutPage() {
             <p className="eyebrow">Ready to talk</p>
             <h2 className="mt-3">A conversation, not a pitch.</h2>
             <p className="mt-5 text-muted">
-              Tell us where you want to be in 12 months. We&apos;ll help you get there with senior practitioners and a 25-year delivery track record.
+              Tell us where you want to be in 12 months. We&apos;ll help you get there with senior practitioners and a 27-year delivery track record.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/contact" className="btn-primary">Schedule a Call</Link>

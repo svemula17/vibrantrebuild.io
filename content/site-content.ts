@@ -121,7 +121,7 @@ export const leadership: Leader[] = [
     linkedin: "https://www.linkedin.com/in/sureshpreddy/",
     calendly: "", // paste the calendly.com/... URL to show the "Book a meeting" button
     bio: [
-      "With more than 25 years leading enterprise technology transformation, Suresh Reddy is the Founder and President of Vibrant Inc — helping organizations modernize through cloud, enterprise applications, DevOps, and AI-driven innovation, with complex initiatives delivered across the full systems lifecycle for Fortune 500 partners.",
+      "With more than 27 years leading enterprise technology transformation, Suresh Reddy is the Founder and President of Vibrant Inc — helping organizations modernize through cloud, enterprise applications, DevOps, and AI-driven innovation, with complex initiatives delivered across the full systems lifecycle for Fortune 500 partners.",
       "A recognized leader in cloud and DevOps transformation, Suresh has migrated enterprise workloads to AWS, built high-performing engineering teams, and established enterprise-wide governance, security, and automation for large-scale, mission-critical environments — alongside deep application expertise across Oracle E-Business Suite, PeopleSoft, and JD Edwards EnterpriseOne.",
       "ITIL Foundation Certified, he is passionate about simplifying complexity and improving operational efficiency. Under his leadership, Vibrant delivers practical, results-driven solutions that help clients thrive in an increasingly digital world."
     ],
@@ -396,7 +396,7 @@ export const serviceCards: ServiceCard[] = [
     summary:
       "One ERP practice, every major platform — SAP Implementation & Support, JD Edwards CNC Services, PeopleSoft Implementation & Support, plus Oracle E-Business Suite, Workday, and Dynamics 365. From first blueprint to the first quiet month after go-live — owned end to end.",
     longDescription:
-      "Whether you're running a complex JD Edwards environment, launching a PeopleSoft or SAP program, or stabilizing a Dynamics 365 rollout that under-delivered — Vibrant's 25-year ERP practice covers the full Oracle stack (JD Edwards EnterpriseOne, PeopleSoft, Oracle E-Business Suite), SAP (ECC / S/4HANA), Workday HCM/Financials, and Microsoft Dynamics 365. Our certified practitioners take ownership from blueprint through go-live and the stabilization weeks that follow.",
+      "Whether you're running a complex JD Edwards environment, launching a PeopleSoft or SAP program, or stabilizing a Dynamics 365 rollout that under-delivered — Vibrant's 27-year ERP practice covers the full Oracle stack (JD Edwards EnterpriseOne, PeopleSoft, Oracle E-Business Suite), SAP (ECC / S/4HANA), Workday HCM/Financials, and Microsoft Dynamics 365. Our certified practitioners take ownership from blueprint through go-live and the stabilization weeks that follow.",
     iconPath: ICONS.layers,
     metaTags: [
       "SAP Implementation & Support (ECC / S/4HANA)",
@@ -429,7 +429,7 @@ export const serviceCards: ServiceCard[] = [
     carouselOrder: 1,
     heroTagline: "SAP, JD Edwards, and PeopleSoft — modernized without missing a beat.",
     heroTeaser:
-      "Your ERP is the heart of the business — modernize it without missing a beat. Vibrant's 25-year practice spans SAP Implementation & Support, JD Edwards CNC Services, and PeopleSoft Implementation & Support, alongside Oracle EBS, Workday, and Dynamics 365.",
+      "Your ERP is the heart of the business — modernize it without missing a beat. Vibrant's 27-year practice spans SAP Implementation & Support, JD Edwards CNC Services, and PeopleSoft Implementation & Support, alongside Oracle EBS, Workday, and Dynamics 365.",
     heroHighlights: ["SAP ECC / S/4HANA · AMS", "JD Edwards CNC & EnterpriseOne", "PeopleSoft HCM / FSCM"]
   },
   {
@@ -906,7 +906,7 @@ export const serviceCards: ServiceCard[] = [
 ];
 
 export const trustBadges = [
-  { label: "25+ Years", sub: "of trusted delivery" },
+  { label: "27+ Years", sub: "of trusted delivery" },
   { label: "ERP", sub: "SAP · Oracle certified practice" },
   { label: "Oracle", sub: "Partner" },
   { label: "Microsoft", sub: "Partner Network" },
@@ -917,7 +917,7 @@ export const trustBadges = [
 export type Stat = { value: number; suffix: string; label: string; highlight?: boolean };
 
 export const stats: Stat[] = [
-  { value: 25, suffix: "+", label: "Years of innovation", highlight: true },
+  { value: 27, suffix: "+", label: "Years of innovation", highlight: true },
   { value: 200, suffix: "+", label: "Successful ERP, cloud & digital transformation engagements since 2000" },
   { value: 50, suffix: "+", label: "Enterprise clients" },
   { value: 24, suffix: "×7", label: "Managed IT support" }
@@ -978,7 +978,7 @@ export const partnerBenefits = [
 ];
 
 export const companyOverview = [
-  "Vibrant Inc opened its doors in 2000 with a simple model: put senior practitioners on every engagement and finish what we start. Twenty-five years on, clients across North America still call us when ERP, cloud, or data work has to land on time and keep running.",
+  "Vibrant Inc opened its doors in 2000 with a simple model: put senior practitioners on every engagement and finish what we start. Twenty-seven years on, clients across North America still call us when ERP, cloud, or data work has to land on time and keep running.",
   "From ERP and cloud to data, cybersecurity, and AI, our architects and engagement managers own every engagement from discovery through steady state. We're NMSDC Certified, an E-Verify Partner, and Oracle and Microsoft partners — credentials that show in how we build teams and deliver."
 ];
 
@@ -1174,7 +1174,7 @@ export const socialResponsibilityCommitments = [
   {
     title: "Building for future generations",
     body:
-      "25 years of giving back — mentoring emerging technologists, supporting STEM pathways, and making decisions today that the next generation won't have to undo."
+      "27 years of giving back — mentoring emerging technologists, supporting STEM pathways, and making decisions today that the next generation won't have to undo."
   }
 ];
 
@@ -1856,9 +1856,9 @@ export const companyFacts = aboutFacts;
 export const officialHighlights = serviceCards.map((s) => s.summary);
 export const newsItems = [
   {
-    title: "Celebrating 25 Years of Innovation and Trust",
+    title: "Celebrating 27 Years of Innovation and Trust",
     summary:
-      "Vibrant marks a quarter century of serving businesses across North America with technology and transformation solutions."
+      "Vibrant marks twenty-seven years of serving businesses across North America with technology and transformation solutions."
   }
 ];
 export const careersHighlights = [

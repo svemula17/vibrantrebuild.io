@@ -28,18 +28,13 @@ export function ServicesGrid() {
       <div className="container">
 
         {/* Section header — rises in once on scroll */}
-        <Reveal className="max-w-2xl">
+        <Reveal>
           <p className="eyebrow">What we do</p>
-          <h2 className="mt-3">Seven Capabilities. One Vibrant Partner.</h2>
-          <p className="mt-4 text-muted">
-            From ERP and cloud to cybersecurity, data, automation, and AI — seven capability
-            pillars covering the full enterprise technology stack, delivered by senior
-            practitioners who&apos;ve been doing this since 2000.
-          </p>
+          <h2 className="mt-3 lg:whitespace-nowrap">Seven Capabilities. One Vibrant Partner.</h2>
         </Reveal>
 
         {/* Cards — cascade in */}
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {gridServices.map((service, i) => (
             <motion.div
               key={service.slug}
