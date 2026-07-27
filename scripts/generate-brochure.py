@@ -460,7 +460,7 @@ para(M + 136, H - 202, "27 years leading enterprise transformation across cloud,
 leaders = [("Chaitanya Kumar Komatireddy", "Principal Enterprise Architect"),
            ("Sathish Donthula", "Principal SAP Solution Architect"),
            ("Dishanth", "Principal Cybersecurity Architect"),
-           ("AI Practice", "Principal AI Solutions Architect")]
+           ("Sai Varma", "Principal AI Solutions Architect")]
 ly = H - 330
 for name, role in leaders:
     c.setFillColor(B600)

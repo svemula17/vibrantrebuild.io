@@ -164,9 +164,11 @@ export const leadership: Leader[] = [
   },
   {
     id: "ai-solutions-architect",
+    name: "Sai Varma",
     role: "Principal AI Solutions Architect",
+    initials: "SV",
     bio: [
-      "Our AI practice is led at the principal-architect level, specializing in Generative AI, Agentic AI, machine learning, intelligent automation, and enterprise AI integration. We partner with organizations to design and implement secure, scalable AI solutions that improve business performance, accelerate innovation, and enable successful digital transformation."
+      "An experienced AI technology leader specializing in Generative AI, Agentic AI, machine learning, intelligent automation, and enterprise AI integration. He partners with organizations to design and implement secure, scalable AI solutions that improve business performance, accelerate innovation, and enable successful digital transformation."
     ],
     expertise: ["Generative AI", "Agentic AI", "Machine Learning", "Intelligent Automation"]
   }

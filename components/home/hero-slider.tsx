@@ -43,14 +43,11 @@ export function HeroSlider() {
         style={{ minHeight: "inherit" }}
       >
         {/* Narrow column, stays over the clean gradient, clear of the faces */}
-        <div className="max-w-xl">
-          <p className="border-l-2 border-sky pl-4 text-[13px] md:text-[15px] font-medium text-white/75 leading-snug">
-            Founder-led technology consulting since 2000
-          </p>
+        <div className="max-w-lg">
 
           <h1
-            className="mt-6 text-white [text-wrap:balance]"
-            style={{ fontSize: "clamp(1.85rem, 3vw, 2.7rem)", lineHeight: 1.18, letterSpacing: "-0.01em", fontWeight: 500 }}
+            className="text-white [text-wrap:balance]"
+            style={{ fontSize: "clamp(1.7rem, 2.5vw, 2.3rem)", lineHeight: 1.2, letterSpacing: "-0.01em", fontWeight: 500 }}
           >
             Helping Mid-Market &amp; Enterprise Companies Modernize ERP, Cloud &amp; AI Without Disrupting Operations
           </h1>
