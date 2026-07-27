@@ -62,6 +62,9 @@
 
   /* ─── section rhythm ─────────────────────────────────────────────────── */
   .section          { @apply py-20 md:py-28; }
+  /* The band right under a PageHero needs less top pad, the hero already
+     supplies breathing room. Applied via :first-child so every page gets it. */
+  main > section:first-of-type + section { @apply pt-12 md:pt-16; }
   .section-soft     { @apply py-20 md:py-28 bg-neutral-100; }
   .section-gradient { @apply py-20 md:py-28 bg-gradient-to-b from-neutral-100 to-white; }
   .section-dark     { @apply py-20 md:py-28 bg-neutral-900 text-white; }

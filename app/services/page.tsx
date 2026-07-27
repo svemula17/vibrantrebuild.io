@@ -48,14 +48,14 @@ export default function ServicesPage() {
               <li key={service.slug}>
                 <Link
                   href={`/services/${service.slug}`}
-                  className="group card card-hover flex flex-col gap-5 p-7 md:flex-row md:items-start md:gap-8 md:p-8"
+                  className="group card card-hover flex flex-col gap-5 p-6 md:flex-row md:items-start md:gap-6 md:p-7"
                 >
                   {/* Index + icon */}
-                  <div className="flex shrink-0 items-center gap-4 md:w-40 md:flex-col md:items-start md:gap-3">
-                    <span className="text-sm font-semibold tabular-nums text-brand-700">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="grid h-12 w-12 place-items-center rounded-xl bg-brand-600/10 text-brand-700 transition-colors group-hover:bg-brand-600 group-hover:text-white">
+                  <div className="flex shrink-0 items-center gap-4">
+                    <span className="relative grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-brand-600/10 text-brand-700 transition-colors group-hover:bg-brand-600 group-hover:text-white">
+                      <span className="absolute -left-1 -top-2 text-[11px] font-bold tabular-nums text-brand-700/60">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
                       <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                         <path d={service.iconPath} />
                       </svg>
@@ -93,7 +93,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <ClientLogos />
+      <ClientLogos tinted />
 
       <VibrantMethod />
     </>

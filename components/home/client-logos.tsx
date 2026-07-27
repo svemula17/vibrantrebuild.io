@@ -71,9 +71,10 @@ function LogoItem({ logo }: { logo: ClientLogo }) {
   );
 }
 
-export function ClientLogos() {
+export function ClientLogos({ tinted = false }: { tinted?: boolean } = {}) {
+  const bg = tinted ? "#FDF6F2" : "#ffffff";
   return (
-    <section className="bg-white border-y border-line overflow-hidden">
+    <section className="border-y border-line overflow-hidden" style={{ backgroundColor: bg }}>
       {/* Sits directly under the hero, one quiet qualifier line, no heading block */}
       <div className="container pt-8 pb-5">
         <Reveal>
@@ -88,12 +89,12 @@ export function ClientLogos() {
         <div
           aria-hidden
           className="absolute inset-y-0 left-0 w-24 z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to right, #ffffff, transparent)" }}
+          style={{ background: `linear-gradient(to right, ${bg}, transparent)` }}
         />
         <div
           aria-hidden
           className="absolute inset-y-0 right-0 w-24 z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to left, #ffffff, transparent)" }}
+          style={{ background: `linear-gradient(to left, ${bg}, transparent)` }}
         />
         <div className="flex w-max animate-marquee gap-6 px-6">
           {[...logos, ...logos].map((logo, i) => (
