@@ -92,6 +92,22 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
               ))}
             </ul>
 
+            {/* Absorbed sub-practices (SAP disciplines, ERP platforms, AI Shield) */}
+            {service.capabilityGroups && service.capabilityGroups.length > 0 && (
+              <div className="mt-10 grid gap-5 sm:grid-cols-2">
+                {service.capabilityGroups.map((g) => (
+                  <div key={g.label} className="rounded-2xl border border-line bg-neutral-50 p-5">
+                    <h4 className="text-sm font-semibold text-navy-700">{g.label}</h4>
+                    <ul className="svc-list mt-3">
+                      {g.items.map((i) => (
+                        <li key={i} className="text-[13px]">{i}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            )}
+
             <h3 className="mt-12 text-xl">Best fit</h3>
             <p className="mt-3 text-muted">{service.bestFit}</p>
 

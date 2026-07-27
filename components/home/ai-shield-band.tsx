@@ -65,7 +65,7 @@ export function AiShieldBand() {
             </div>
 
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <Link href="/services/ai-shield" className="btn-outline-light">
+              <Link href="/services/cybersecurity" className="btn-outline-light">
                 Explore AI Shield →
               </Link>
               <Link

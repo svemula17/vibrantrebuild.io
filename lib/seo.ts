@@ -6,7 +6,7 @@ type PageMetaInput = {
   title: string;
   /** Meta description, target ≤160 chars. */
   description: string;
-  /** Route path starting with "/", e.g. "/about" or "/services/sap-ams". */
+  /** Route path starting with "/", e.g. "/about" or "/services/sap-solutions". */
   path: string;
 };
 

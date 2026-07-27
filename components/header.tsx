@@ -8,15 +8,13 @@ import { navigationItems, siteSettings } from "@/content/site-content";
 import logoSrc from "@/vibrant-logo-header.png";
 
 /* Services mega-menu, grouped like the big-firm pattern, all Vibrant content.
-   Detail pages for the SAP children stay reachable from the SAP Solutions box. */
+   Seven services; SAP depth lives inside the SAP Solutions page. */
 const SERVICES_MENU: { heading: string; links: [string, string][] }[] = [
   {
     heading: "ERP & SAP",
     links: [
       ["ERP & Enterprise Applications", "/services/erp-optimization"],
-      ["SAP Solutions", "/services/sap-solutions"],
-      ["JD Edwards CNC Services", "/services/jd-edwards-cnc"],
-      ["PeopleSoft Implementation & Support", "/services/peoplesoft-implementation"]
+      ["SAP Solutions", "/services/sap-solutions"]
     ]
   },
   {
@@ -24,7 +22,6 @@ const SERVICES_MENU: { heading: string; links: [string, string][] }[] = [
     links: [
       ["Cloud Modernization", "/services/cloud-modernization"],
       ["Cybersecurity & Compliance", "/services/cybersecurity"],
-      ["AI Shield", "/services/ai-shield"],
       ["Managed IT", "/services/managed-it"]
     ]
   },
@@ -32,8 +29,7 @@ const SERVICES_MENU: { heading: string; links: [string, string][] }[] = [
     heading: "Data & AI",
     links: [
       ["Data & Analytics", "/services/data-analytics"],
-      ["AI Readiness", "/services/ai-readiness"],
-      ["Automation", "/services/automation"]
+      ["AI Readiness", "/services/ai-readiness"]
     ]
   },
   {

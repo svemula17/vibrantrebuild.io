@@ -1,57 +1,99 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { pageMeta } from "@/lib/seo";
 import { PageHero } from "@/components/page-hero";
-import { serviceCards, servicesProcess } from "@/content/site-content";
+import { serviceCards } from "@/content/site-content";
 import { VibrantMethod } from "@/components/vibrant-method";
+import { ClientLogos } from "@/components/home/client-logos";
+import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
   title: "Services",
   description:
-    "ERP and SAP delivery, cloud modernization, cybersecurity, data, automation, AI readiness, and managed IT, the full stack under one senior-led partner.",
+    "Seven services, one partner: ERP, SAP, cloud modernization, cybersecurity, AI readiness, data and analytics, and managed IT.",
   path: "/services"
 });
 
+/* Explicit order: ERP first, SAP second, then the rest. */
+const ORDER = [
+  "erp-optimization",
+  "sap-solutions",
+  "cloud-modernization",
+  "cybersecurity",
+  "ai-readiness",
+  "data-analytics",
+  "managed-it"
+];
+
 export default function ServicesPage() {
-  const gridServices = serviceCards.filter(s => !s.hideFromGrid);
+  const services = ORDER.map((slug) => serviceCards.find((s) => s.slug === slug)).filter(
+    (s): s is NonNullable<typeof s> => Boolean(s)
+  );
+
   return (
     <>
       <PageHero
         eyebrow="Services"
-        title="The full enterprise technology stack, under one partner."
-        description="Seven capability pillars, with full SAP depth under one roof. From ERP and cloud modernization to cybersecurity, data, automation, and AI, delivered by certified practitioners with 27+ years of trusted delivery."
+        title="Seven services. One accountable partner."
+        description="Everything we do, on one page. Each service is delivered by senior practitioners who own the outcome from first blueprint to steady state."
         crumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
       />
 
+      {/* All services, listed in full */}
       <section className="section">
         <div className="container">
           <h2 className="sr-only">All services</h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {gridServices.map((service) => (
-              <Link
-                key={service.slug}
-                href={`/services/${service.slug}`}
-                className="group flex h-full flex-col rounded-2xl border border-line bg-white p-7 shadow-card transition-all hover:-translate-y-1 hover:shadow-cardHover hover:border-sky/40"
-              >
-                <span className="grid h-12 w-12 place-items-center rounded-xl bg-sky/10 text-brand-700">
-                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    <path d={service.iconPath} />
-                  </svg>
-                </span>
-                <p className="mt-6 eyebrow text-[0.7rem]">{service.kicker}</p>
-                <h3 className="mt-2 text-xl text-navy-700">{service.title}</h3>
-                <p className="mt-3 text-sm text-muted leading-relaxed flex-1">{service.summary}</p>
-                <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 group-hover:gap-2.5 transition-all">
-                  Learn more
-                  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M5 12h14M13 5l7 7-7 7" />
-                  </svg>
-                </span>
-              </Link>
+
+          <ol className="space-y-5">
+            {services.map((service, i) => (
+              <li key={service.slug}>
+                <Link
+                  href={`/services/${service.slug}`}
+                  className="group card card-hover flex flex-col gap-5 p-7 md:flex-row md:items-start md:gap-8 md:p-8"
+                >
+                  {/* Index + icon */}
+                  <div className="flex shrink-0 items-center gap-4 md:w-40 md:flex-col md:items-start md:gap-3">
+                    <span className="text-sm font-semibold tabular-nums text-brand-700">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="grid h-12 w-12 place-items-center rounded-xl bg-brand-600/10 text-brand-700 transition-colors group-hover:bg-brand-600 group-hover:text-white">
+                      <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                        <path d={service.iconPath} />
+                      </svg>
+                    </span>
+                  </div>
+
+                  {/* Copy */}
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-xl text-navy-700">{service.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted">{service.summary}</p>
+
+                    {/* What's inside, at a glance */}
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {(service.capabilityGroups
+                        ? service.capabilityGroups.map((g) => g.label)
+                        : service.capabilities.slice(0, 5)
+                      ).map((label) => (
+                        <span key={label} className="chip-neutral">
+                          {label}
+                        </span>
+                      ))}
+                    </div>
+
+                    <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 transition-all group-hover:gap-3">
+                      Explore {service.kicker}
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14M13 5l7 7-7 7" />
+                      </svg>
+                    </span>
+                  </div>
+                </Link>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
+
+      <ClientLogos />
 
       <VibrantMethod />
     </>

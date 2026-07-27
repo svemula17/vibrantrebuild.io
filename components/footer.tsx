@@ -45,9 +45,7 @@ const footerSlugs = [
   "sap-solutions",
   "cloud-modernization",
   "cybersecurity",
-  "ai-shield",
   "data-analytics",
-  "automation",
   "ai-readiness",
   "managed-it"
 ];
