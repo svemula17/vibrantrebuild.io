@@ -7,12 +7,64 @@ import { usePathname } from "next/navigation";
 import { navigationItems, siteSettings } from "@/content/site-content";
 import logoSrc from "@/vibrant-logo-header.png";
 
+/* Services mega-menu — grouped like the big-firm pattern, all Vibrant content.
+   Detail pages for the SAP children stay reachable from the SAP Solutions box. */
+const SERVICES_MENU: { heading: string; links: [string, string][] }[] = [
+  {
+    heading: "ERP & SAP",
+    links: [
+      ["ERP & Enterprise Applications", "/services/erp-optimization"],
+      ["SAP Solutions", "/services/sap-solutions"],
+      ["JD Edwards CNC Services", "/services/jd-edwards-cnc"],
+      ["PeopleSoft Implementation & Support", "/services/peoplesoft-implementation"]
+    ]
+  },
+  {
+    heading: "Cloud & Security",
+    links: [
+      ["Cloud Modernization", "/services/cloud-modernization"],
+      ["Cybersecurity & Compliance", "/services/cybersecurity"],
+      ["AI Shield", "/services/ai-shield"],
+      ["Managed IT", "/services/managed-it"]
+    ]
+  },
+  {
+    heading: "Data & AI",
+    links: [
+      ["Data & Analytics", "/services/data-analytics"],
+      ["AI Readiness", "/services/ai-readiness"],
+      ["Automation", "/services/automation"]
+    ]
+  },
+  {
+    heading: "Explore",
+    links: [
+      ["All services", "/services"],
+      ["S/4HANA Cost Calculator", "/resources/sap-cost-calculator"],
+      ["Guides & insights", "/resources"],
+      ["Book a Call", "/contact"]
+    ]
+  }
+];
+
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const panelRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openMega = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setServicesOpen(true);
+  };
+  const scheduleMegaClose = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setServicesOpen(false), 150);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -23,7 +75,25 @@ export function Header() {
 
   useEffect(() => {
     setOpen(false);
+    setServicesOpen(false);
   }, [pathname]);
+
+  /* Mega-menu: Escape and outside-click close it */
+  useEffect(() => {
+    if (!servicesOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setServicesOpen(false);
+    };
+    const onDown = (e: MouseEvent) => {
+      if (!headerRef.current?.contains(e.target as Node)) setServicesOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("mousedown", onDown);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("mousedown", onDown);
+    };
+  }, [servicesOpen]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -62,7 +132,8 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-40 w-full transition-all duration-300 ${
+      ref={headerRef}
+      className={`sticky top-0 z-40 w-full relative transition-all duration-300 ${
         scrolled
           ? "bg-white/90 backdrop-blur-md shadow-[0_1px_0_0_rgba(15,31,51,0.06)]"
           : "bg-white"
@@ -106,19 +177,38 @@ export function Header() {
           {navigationItems.filter((item) => item.href !== "/resources").map((item) => {
             const active =
               item.href === "/" ? pathname === "/" : pathname === item.href || pathname.startsWith(item.href + "/");
+            const isServices = item.href === "/services";
             return (
-              <Link
+              <span
                 key={item.href}
-                href={item.href}
-                className={`relative px-2 xl:px-2.5 py-2 text-[13px] font-medium rounded-full whitespace-nowrap transition-colors ${
-                  active ? "text-navy-700" : "text-ink/70 hover:text-navy-700"
-                }`}
+                onMouseEnter={isServices ? openMega : undefined}
+                onMouseLeave={isServices ? scheduleMegaClose : undefined}
               >
-                {item.label}
-                {active && (
-                  <span className="absolute inset-x-2 -bottom-0.5 h-0.5 bg-brand-600 rounded" />
-                )}
-              </Link>
+                <Link
+                  href={item.href}
+                  onFocus={isServices ? openMega : undefined}
+                  aria-expanded={isServices ? servicesOpen : undefined}
+                  aria-haspopup={isServices ? "true" : undefined}
+                  className={`relative inline-flex items-center gap-1 px-2 xl:px-2.5 py-2 text-[13px] font-medium rounded-full whitespace-nowrap transition-colors ${
+                    active ? "text-navy-700" : "text-ink/70 hover:text-navy-700"
+                  }`}
+                >
+                  {item.label}
+                  {isServices && (
+                    <svg
+                      viewBox="0 0 24 24"
+                      className={`h-3 w-3 transition-transform duration-200 ${servicesOpen ? "rotate-180 text-brand-600" : ""}`}
+                      fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  )}
+                  {active && (
+                    <span className="absolute inset-x-2 -bottom-0.5 h-0.5 bg-brand-600 rounded" />
+                  )}
+                </Link>
+              </span>
             );
           })}
         </nav>
@@ -164,6 +254,44 @@ export function Header() {
             />
           </div>
         </button>
+      </div>
+
+      {/* Services mega-menu — full-width panel under the header, desktop only */}
+      <div
+        onMouseEnter={openMega}
+        onMouseLeave={scheduleMegaClose}
+        onBlur={(e) => {
+          if (!headerRef.current?.contains(e.relatedTarget as Node)) setServicesOpen(false);
+        }}
+        inert={!servicesOpen}
+        aria-hidden={!servicesOpen}
+        aria-label="Services menu"
+        className={`hidden lg:block absolute inset-x-0 top-full bg-white border-t border-neutral-100 border-b border-neutral-200 shadow-cardHover transition-all duration-200 ease-brand ${
+          servicesOpen ? "visible opacity-100 translate-y-0" : "invisible opacity-0 -translate-y-1 pointer-events-none"
+        }`}
+      >
+        <div className="container grid grid-cols-4 gap-8 py-10">
+          {SERVICES_MENU.map((group, gi) => (
+            <div key={group.heading} className={gi > 0 ? "border-l border-neutral-200 pl-8" : ""}>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
+                {group.heading}
+              </p>
+              <ul className="mt-4 space-y-2.5">
+                {group.links.map(([label, href]) => (
+                  <li key={href}>
+                    <Link
+                      href={href}
+                      onClick={() => setServicesOpen(false)}
+                      className="text-sm text-neutral-700 hover:text-brand-700 transition-colors"
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Mobile menu — CSS grid-rows transition; kept mounted, inert when closed */}
