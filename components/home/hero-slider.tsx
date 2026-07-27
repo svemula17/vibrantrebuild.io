@@ -39,7 +39,7 @@ export function HeroSlider() {
 
       {/* Content */}
       <div
-        className="container relative flex flex-col justify-center pt-24 pb-24 md:pt-28 md:pb-28"
+        className="relative flex w-full flex-col justify-center px-5 pt-24 pb-24 md:px-8 md:pt-28 md:pb-28 lg:px-12"
         style={{ minHeight: "inherit" }}
       >
         {/* Narrow column, stays over the clean gradient, clear of the faces */}
