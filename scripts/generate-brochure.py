@@ -128,43 +128,143 @@ def footer(page_no, label):
     c.line(M, 44, W - M, 44)
 
 
+
+
+import re as _re
+BAND_DIR = "/tmp/claude-501/-Users-saikumarvemula-Documents-New-project-vibrant-inc-rebuild/f7064bca-a35c-4726-926b-941b604506e2/scratchpad/brochure"
+_SITE = open("content/site-content.ts").read()
+
+def _clean(t):
+    return t.replace('\\"', '"').replace(" \u2014 ", ", ").replace("\u2014", ", ").strip()
+
+def load_service(slug):
+    m = _re.search(r'slug: "' + slug + r'",(.*?)\n  \}', _SITE, _re.S)
+    block = m.group(1)
+    def field(name):
+        fm = _re.search(name + r':\s*\n?\s*"((?:[^"\\]|\\.)*)"', block)
+        return _clean(fm.group(1)) if fm else ""
+    def list_field(name):
+        fm = _re.search(name + r': \[(.*?)\]', block, _re.S)
+        return [_clean(x) for x in _re.findall(r'"((?:[^"\\]|\\.)*)"', fm.group(1))] if fm else []
+    return dict(title=field("title"), long=field("longDescription"),
+                outcomes=list_field("outcomes"), caps=list_field("capabilities")[:8],
+                best=field("bestFit"))
+
+SERVICE_ORDER = ["erp-optimization", "cloud-modernization", "cybersecurity", "ai-readiness",
+                 "automation", "data-analytics", "managed-it"]
+
+def service_page(idx, slug, page_no):
+    s = load_service(slug)
+    c.setFillColor(WHITE)
+    c.rect(0, 0, W, H, stroke=0, fill=1)
+
+    # photo band with warm overlay + title
+    c.drawImage(f"{BAND_DIR}/band-{slug}.jpg", 0, H - 190, width=W, height=190)
+    c.setFillColor(Color(B800.red, B800.green, B800.blue, 0.55))
+    c.rect(0, H - 190, W, 190, stroke=0, fill=1)
+    gradient(0, H - 194, W, 4)
+    tracked(M, H - 60, f"OUR SERVICES  ·  {idx:02d} / 07", FB, 8.5, Color(1, 1, 1, 0.92), 2.2)
+    c.setFillColor(WHITE)
+    c.setFont(FB, 25)
+    title_lines = wrap(s["title"], FB, 25, W - 2 * M)
+    ty = H - 100
+    for ln in title_lines:
+        c.drawString(M, ty, ln)
+        ty -= 30
+
+    # intro
+    y = H - 232
+    y = para(M, y, s["long"], W - 2 * M, size=10, leading=15)
+
+    # outcomes
+    y -= 18
+    eyebrow(M, y, "What you get")
+    y -= 22
+    for o in s["outcomes"]:
+        c.setFillColor(B600)
+        c.circle(M + 4, y + 3, 2.4, stroke=0, fill=1)
+        c.setFillColor(INK)
+        c.setFont(F, 10)
+        c.drawString(M + 16, y, o)
+        y -= 19
+
+    # capabilities, 2 columns
+    y -= 16
+    eyebrow(M, y, "Capabilities")
+    y -= 22
+    col_w = (W - 2 * M) / 2
+    top_y = y
+    for i, cap in enumerate(s["caps"]):
+        col, row = i % 2, i // 2
+        x = M + col * col_w
+        yy = top_y - row * 20
+        c.setFillColor(B400)
+        c.circle(x + 4, yy + 3, 2.1, stroke=0, fill=1)
+        c.setFillColor(MUTED)
+        c.setFont(F, 9.3)
+        cap_txt = cap if c.stringWidth(cap, F, 9.3) <= col_w - 30 else wrap(cap, F, 9.3, col_w - 30)[0] + "…"
+        c.drawString(x + 15, yy, cap_txt)
+    y = top_y - ((len(s["caps"]) + 1) // 2) * 20
+
+    # best fit
+    y -= 24
+    c.setFillColor(CREAM2)
+    bf_lines = wrap("Best fit: " + s["best"], FO, 9.8, W - 2 * M - 44)
+    bh = len(bf_lines) * 14 + 24
+    c.roundRect(M, y - bh, W - 2 * M, bh, 10, stroke=0, fill=1)
+    c.setFillColor(B600)
+    c.rect(M, y - bh + 10, 3, bh - 20, stroke=0, fill=1)
+    c.setFont(FO, 9.8)
+    c.setFillColor(INK)
+    for i, ln in enumerate(bf_lines):
+        c.drawString(M + 20, y - 26 - i * 14, ln)
+
+    footer(page_no, s["title"])
+    c.showPage()
+
+
 # ═══ PAGE 1 · COVER ════════════════════════════════════════════════════
+# Top: full-bleed branded team artwork (logo baked in)
 c.setFillColor(CREAM)
 c.rect(0, 0, W, H, stroke=0, fill=1)
-halftone(W - 60, H - 90, rings=9, base_r=30, alpha=0.30)
+c.drawImage(f"{BAND_DIR}/cover-art.jpg", 0, H - 306, width=W, height=306)
+gradient(0, H - 310, W, 4)
 
-c.drawImage(LOGO, M, H - 130, width=132, height=112, mask="auto", preserveAspectRatio=True)
-
-eyebrow(M, H - 306, "Enterprise Technology Consulting  ·  Est. 2000", size=9, track=2.6)
+# Bottom: composition on cream
+halftone(W - 70, 396, rings=7, base_r=24, alpha=0.28)
+eyebrow(M, H - 356, "Company Brochure  ·  Est. 2000", size=9, track=2.6)
 
 c.setFillColor(INK)
-c.setFont(FB, 26)
-c.drawString(M, H - 348, "Optimizing your efficiency.")
-c.drawString(M, H - 382, "Strengthening your bottom line.")
+c.setFont(FB, 30)
+c.drawString(M, H - 398, "Optimizing your efficiency.")
+c.drawString(M, H - 436, "Strengthening your bottom line.")
 
-c.setFont(F, 13)
+c.setFont(F, 12.5)
 c.setFillColor(MUTED)
-c.drawString(M, H - 428, "ERP   ·   Cloud   ·   Cybersecurity   ·   Data   ·   AI")
+c.drawString(M, H - 470, "ERP   ·   Cloud   ·   Cybersecurity   ·   Data   ·   AI")
 
-# 27-years pill
 pill_w = 238
 c.setStrokeColor(B600)
 c.setLineWidth(1)
 c.setFillColor(Color(B600.red, B600.green, B600.blue, 0.08))
-c.roundRect(M, H - 486, pill_w, 30, 15, stroke=1, fill=1)
-tracked(0, H - 476, "CELEBRATING 27 YEARS IN BUSINESS", FB, 9.5, B700, 1.6, center_at=M + pill_w / 2)
+c.roundRect(M, H - 528, pill_w, 30, 15, stroke=1, fill=1)
+tracked(0, H - 518, "CELEBRATING 27 YEARS IN BUSINESS", FB, 9.5, B700, 1.6, center_at=M + pill_w / 2)
 
-# bottom gradient band with halftone + wordmark
-gradient(0, 0, W, 218)
-halftone(90, 40, rings=8, base_r=22, color=WHITE, alpha=0.16, max_dot=4.4)
+# capability index, quiet
+iy = 178
+eyebrow(M, iy + 44, "Inside")
+c.setFont(F, 9.5)
+c.setFillColor(MUTED)
+c.drawString(M, iy + 22, "Seven capabilities, one page each  ·  Deep SAP bench  ·  The VIBRANT Method")
+c.drawString(M, iy + 6, "AI Shield platform  ·  Client outcomes  ·  Leadership and offices")
+
+# bottom gradient strip
+gradient(0, 0, W, 110)
+halftone(70, 18, rings=6, base_r=18, color=WHITE, alpha=0.15, max_dot=4)
 c.setFillColor(WHITE)
-c.setFont(FB, 21)
-c.drawString(M, 150, "Helping Mid-Market and Enterprise")
-c.drawString(M, 122, "Companies Modernize Without Disruption")
-c.setFont(F, 11)
-c.setFillColor(Color(1, 1, 1, 0.85))
-c.drawString(M, 88, "Founder-led senior teams. Princeton, NJ and Hyderabad, India.")
-tracked(M, 56, "WWW.VIBRANTINC.COM", FB, 12, WHITE, 1.8)
+c.setFont(FB, 15)
+c.drawString(M, 66, "Founder-led enterprise technology consulting.")
+tracked(M, 38, "WWW.VIBRANTINC.COM", FB, 11.5, WHITE, 1.8)
 c.showPage()
 
 # ═══ PAGE 2 · WHO WE ARE ═══════════════════════════════════════════════
@@ -238,64 +338,9 @@ for ch in chips:
 footer(2, "Who we are")
 c.showPage()
 
-# ═══ PAGE 3 · SEVEN CAPABILITIES ═══════════════════════════════════════
-c.setFillColor(CREAM)
-c.rect(0, 0, W, H, stroke=0, fill=1)
-halftone(W - 40, H - 40, rings=6, base_r=20, alpha=0.22)
-
-eyebrow(M, H - 66, "What we do")
-c.setFillColor(INK)
-c.setFont(FB, 23)
-c.drawString(M, H - 96, "Seven Capabilities. One Vibrant Partner.")
-
-caps = [
-    ("01", "ERP & Enterprise Applications",
-     "One ERP practice, every major platform: SAP, JD Edwards CNC, PeopleSoft, Oracle EBS, Workday, and Dynamics 365."),
-    ("02", "Cloud Modernization",
-     "Azure, AWS, and GCP landing zones, migrations, and platform engineering without the rip-and-replace risk."),
-    ("03", "Cybersecurity & Compliance",
-     "Zero-trust architecture, hardened identity, always-on SOC coverage, and audit-ready SOC 2, HIPAA, PCI, and CMMC."),
-    ("04", "Data & Analytics",
-     "Modern data platforms on Snowflake and Databricks with decision-grade reporting in Power BI and Tableau."),
-    ("05", "Automation",
-     "Process discovery, RPA, and intelligent document processing that hand hours back to your teams."),
-    ("06", "AI Readiness",
-     "AI as an accelerator, not a science project: readiness assessments and pilots that show up in the P&L."),
-    ("07", "Managed IT",
-     "Round-the-clock depth for lean IT teams: applications, cloud operations, security, and service desk."),
-]
-col_w = (W - 2 * M - 20) / 2
-card_h = 118
-positions = []
-for i in range(7):
-    col = i % 2
-    row = i // 2
-    x = M + col * (col_w + 20)
-    y0 = H - 140 - row * (card_h + 14) - card_h
-    positions.append((x, y0))
-for (num, title, body), (x, y0) in zip(caps, positions):
-    c.setFillColor(WHITE)
-    c.setStrokeColor(BORDER)
-    c.roundRect(x, y0, col_w, card_h, 10, stroke=1, fill=1)
-    c.setFillColor(B600)
-    c.rect(x, y0 + 14, 3, card_h - 28, stroke=0, fill=1)
-    c.setFillColor(B400)
-    c.setFont(FB, 9)
-    c.drawString(x + 16, y0 + card_h - 24, num)
-    c.setFillColor(INK)
-    c.setFont(FB, 11.5)
-    c.drawString(x + 34, y0 + card_h - 25, title)
-    yy = y0 + card_h - 46
-    c.setFont(F, 9)
-    c.setFillColor(MUTED)
-    for ln in wrap(body, F, 9, col_w - 48):
-        c.drawString(x + 16, yy, ln)
-        yy -= 13
-c.setFont(F, 9.5)
-c.setFillColor(FAINT)
-c.drawString(M, 66, "Full service catalog, guides, and the S/4HANA cost calculator: www.vibrantinc.com/services")
-footer(3, "Seven capabilities")
-c.showPage()
+# ═══ PAGES 3-9 · ONE PAGE PER SERVICE ═════════════════════════════════
+for _i, _slug in enumerate(SERVICE_ORDER):
+    service_page(_i + 1, _slug, _i + 3)
 
 # ═══ PAGE 4 · SAP DEPTH + VIBRANT METHOD ═══════════════════════════════
 c.setFillColor(WHITE)
@@ -360,7 +405,7 @@ for i, (letter_, name) in enumerate(steps):
 c.setFont(F, 9)
 c.setFillColor(MUTED)
 c.drawCentredString(W / 2, 116, "Seven letters, seven phases. Senior-led sprints, weekly demos, and outcomes you can measure.")
-footer(4, "SAP depth and method")
+footer(10, "SAP depth and method")
 c.showPage()
 
 # ═══ PAGE 5 · AI SHIELD + PROOF ════════════════════════════════════════
@@ -432,7 +477,7 @@ c.setFont(F, 8.6)
 c.setFillColor(FAINT)
 c.drawString(M, 132, "Trusted by companies across North America including Amphenol, TEKsystems, Vaco, Radiant Systems,")
 c.drawString(M, 120, "V-Soft Consulting, MOURI Tech, Enavate, Infojini, iLink Digital, and more.")
-footer(5, "AI Shield and outcomes")
+footer(11, "AI Shield and outcomes")
 c.showPage()
 
 # ═══ PAGE 6 · LEADERSHIP + CONTACT (BACK) ══════════════════════════════
