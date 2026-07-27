@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { HeroSlider }   from "@/components/home/hero-slider";
 import { ClientLogos }  from "@/components/home/client-logos";
+import { AboutIntro }   from "@/components/home/about-intro";
 import { ServicesGrid } from "@/components/home/services-grid";
 import { AiShieldBand } from "@/components/home/ai-shield-band";
 import { CaseStudies }  from "@/components/home/case-studies";
@@ -17,6 +18,7 @@ export default function HomePage() {
     <>
       <HeroSlider />    {/* dark photo — service carousel + positioning H1 */}
       <ClientLogos />   {/* white — 19-client marquee, immediate social proof */}
+      <AboutIntro />    {/* white — who Vibrant is, in one tight section */}
       <ServicesGrid />  {/* cream — seven pillars, ERP first */}
       <AiShieldBand />  {/* dark navy — featured platform */}
       <CaseStudies />   {/* cream — outcome stories */}
