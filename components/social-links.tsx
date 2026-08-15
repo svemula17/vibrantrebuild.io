@@ -21,16 +21,17 @@ const links = [
 const validLinks = links.filter((s) => s.href && s.href.trim() !== "");
 
 type Props = {
-  /** "dark" = for dark footers (white icons), "light" = for light pages (navy icons) */
-  variant?: "dark" | "light";
+  /** "on-brand" = for the brand-gradient footer (white icons, 44px targets),
+      "light" = for light pages (navy icons) */
+  variant?: "on-brand" | "light";
 };
 
 export function SocialLinks({ variant = "light" }: Props) {
   if (validLinks.length === 0) return null;
 
   const buttonClass =
-    variant === "dark"
-      ? "grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 text-white hover:bg-brand-600 hover:border-brand-600 transition-all"
+    variant === "on-brand"
+      ? "grid h-11 w-11 place-items-center rounded-full border border-white/25 bg-white/10 text-white hover:bg-white hover:border-white hover:text-brand-700 transition-all"
       : "grid h-10 w-10 place-items-center rounded-full border border-neutral-200 bg-white text-neutral-900 shadow-card hover:bg-brand-600 hover:border-brand-600 hover:text-white hover:-translate-y-0.5 transition-all";
 
   return (

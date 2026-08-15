@@ -52,10 +52,10 @@ export function HeroSlider() {
             ERP · Cloud · Cybersecurity · Data · AI
           </p>
 
-          <h1
-            className="mt-4 text-neutral-900 [text-wrap:balance]"
-            style={{ fontSize: "clamp(1.7rem, 2.5vw, 2.3rem)", lineHeight: 1.2, letterSpacing: "-0.01em", fontWeight: 600 }}
-          >
+          {/* text-h1 token, same scale as every inner-page hero. The old inline
+              clamp topped out at 2.3rem, which left the homepage headline 20px
+              smaller than /about's. */}
+          <h1 className="mt-4 text-h1 text-neutral-900 [text-wrap:balance]">
             Helping Mid-Market &amp; Enterprise Companies Modernize ERP, Cloud &amp; AI Without Disrupting Operations
           </h1>
 

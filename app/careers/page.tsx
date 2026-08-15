@@ -90,12 +90,14 @@ export default function CareersPage() {
               If you don&apos;t see a perfect match, send us your résumé anyway, we hire ahead of demand for senior practitioners.
             </p>
           </div>
-          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {/* Flex-wrap so the trailing row centers as roles are added or filled,
+              rather than leaving dead cells (7 roles in 3 cols = 3 + 3 + 1). */}
+          <div className="mt-8 flex flex-wrap justify-center gap-5">
             {careerOpenings.map((o) => (
               <Link
                 key={o.title}
                 href="/contact"
-                className="group flex flex-col rounded-2xl border border-line bg-white p-6 shadow-card hover:-translate-y-1 hover:shadow-cardHover hover:border-sky/40 transition-all"
+                className="group flex flex-col rounded-2xl border border-line bg-white p-6 shadow-card hover:-translate-y-1 hover:shadow-cardHover hover:border-sky/40 transition-all basis-full md:basis-[calc(50%-0.625rem)] xl:basis-[calc(33.333%-0.834rem)]"
               >
                 <p className="eyebrow text-[0.7rem]">{o.category}</p>
                 <h3 className="mt-2 text-lg font-semibold text-navy-700">{o.title}</h3>

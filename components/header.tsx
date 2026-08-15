@@ -243,13 +243,13 @@ export function Header() {
                       aboutOpen ? "visible opacity-100 translate-y-0" : "invisible opacity-0 -translate-y-1 pointer-events-none"
                     }`}
                   >
-                    <div className="overflow-hidden rounded-xl border border-brand-600/15 shadow-cardHover divide-y divide-brand-600/10" style={{ background: "linear-gradient(180deg, #FDF3EE 0%, #FFFFFF 100%)" }}>
+                    <div className="overflow-hidden rounded-xl border border-black/10 shadow-cardHover divide-y divide-white/15 bg-brand-gradient">
                       {ABOUT_MENU.map(([label, href]) => (
                         <Link
                           key={href}
                           href={href}
                           onClick={() => setAboutOpen(false)}
-                          className="block px-4 py-2.5 text-sm text-neutral-700 hover:bg-brand-600/10 hover:text-brand-700 transition-colors"
+                          className="block px-4 py-2.5 text-sm text-white/90 hover:bg-white/15 hover:text-white transition-colors"
                         >
                           {label}
                         </Link>
@@ -315,15 +315,22 @@ export function Header() {
         inert={!servicesOpen}
         aria-hidden={!servicesOpen}
         aria-label="Services menu"
-        style={{ background: "linear-gradient(180deg, #FDF3EE 0%, #FFF9F5 60%, #FFFFFF 100%)" }}
-        className={`hidden lg:block absolute inset-x-0 top-full border-t border-brand-600/15 border-b border-neutral-200 shadow-cardHover transition-all duration-200 ease-brand ${
+        className={`hidden lg:block absolute inset-x-0 top-full overflow-hidden bg-brand-gradient text-white border-b border-black/10 shadow-cardHover transition-all duration-200 ease-brand ${
           servicesOpen ? "visible opacity-100 translate-y-0" : "invisible opacity-0 -translate-y-1 pointer-events-none"
         }`}
       >
-        <div className="container grid grid-cols-4 gap-8 py-10">
+        {/* On a wide, short panel the 135deg gradient runs nearly horizontal, so
+            the right-hand column lands on the light stop where white drops to
+            3.7:1. This wash pulls that edge back over 4.5:1, same hue. */}
+        <div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: "linear-gradient(to right, transparent 45%, rgba(90,25,4,0.38) 100%)" }}
+        />
+        <div className="container relative grid grid-cols-4 gap-8 py-10">
           {SERVICES_MENU.map((group, gi) => (
-            <div key={group.heading} className={gi > 0 ? "border-l border-neutral-200 pl-8" : ""}>
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
+            <div key={group.heading} className={gi > 0 ? "border-l border-white/20 pl-8" : ""}>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/75">
                 {group.heading}
               </p>
               <ul className="mt-4 space-y-2.5">
@@ -332,7 +339,7 @@ export function Header() {
                     <Link
                       href={href}
                       onClick={() => setServicesOpen(false)}
-                      className="block rounded-md px-2 py-1 -mx-2 text-sm text-neutral-700 hover:text-brand-700 hover:bg-brand-600/10 transition-colors"
+                      className="block rounded-md px-2 py-1 -mx-2 text-sm text-white/90 hover:text-white hover:bg-white/15 transition-colors"
                     >
                       {label}
                     </Link>

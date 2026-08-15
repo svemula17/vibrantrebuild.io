@@ -82,13 +82,15 @@ export default function AboutPage() {
               Five principles that shape how we deliver, hire, and partner with our clients.
             </p>
           </div>
-          <ul className="mt-8 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-            {coreValues.map((v, i) => (
+          {/* Flex-wrap, not grid: coreValues is data-driven, so any fixed column
+              count leaves a ragged trailing row (5 items in 3 cols = 3 + 2 and a
+              dead cell). justify-center centers whatever the last row holds, at
+              any count. */}
+          <ul className="mt-8 flex flex-wrap justify-center gap-3">
+            {coreValues.map((v) => (
               <li
                 key={v.title}
-                className={`card p-5 hover:border-sky/40 hover:shadow-cardHover transition-all ${
-                  i === 4 ? "md:col-span-2 lg:col-span-1" : ""
-                }`}
+                className="card p-5 hover:border-sky/40 hover:shadow-cardHover transition-all basis-full md:basis-[calc(50%-0.375rem)] lg:basis-[calc(33.333%-0.5rem)]"
               >
                 <h3 className="text-base font-semibold text-navy-700">{v.title}</h3>
                 <p className="mt-1.5 text-sm text-muted leading-relaxed">{v.body}</p>

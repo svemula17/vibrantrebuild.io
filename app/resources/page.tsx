@@ -36,12 +36,14 @@ export default function ResourcesPage() {
             <h2 className="mt-3">Read before you buy anything.</h2>
           </div>
 
-          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {/* Flex-wrap so the trailing row centers at any guide count, rather
+              than leaving a dead cell (5 guides in 3 cols = 3 + 2). */}
+          <div className="mt-8 flex flex-wrap justify-center gap-6">
             {resourceGuides.map((guide) => (
               <Link
                 key={guide.slug}
                 href={`/resources/${guide.slug}`}
-                className="group flex h-full flex-col rounded-2xl border border-line bg-white p-7 shadow-card transition-all hover:-translate-y-1 hover:shadow-cardHover hover:border-sky/40"
+                className="group flex h-full flex-col rounded-2xl border border-line bg-white p-7 shadow-card transition-all hover:-translate-y-1 hover:shadow-cardHover hover:border-sky/40 basis-full md:basis-[calc(50%-0.75rem)] lg:basis-[calc(33.333%-1rem)]"
               >
                 <div className="flex items-center justify-between">
                   <span

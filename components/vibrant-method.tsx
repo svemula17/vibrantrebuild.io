@@ -19,7 +19,9 @@ export function VibrantMethod() {
         </div>
 
         {/* Letter grid */}
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
+        {/* Capped at 4 columns. At xl:grid-cols-7 each phase got ~145px, which
+            wrapped the body copy to one or two words per line. */}
+        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {vibrantMethod.map((item, i) => (
             <motion.div
               key={item.letter}
