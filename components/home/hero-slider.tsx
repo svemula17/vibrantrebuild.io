@@ -2,13 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 
 /* Static hero, one brand photo, one message. The rotating services showcase
-   lives in the What-we-do grid (components/home/service-showcase.tsx). */
-import heroBg from "@/assets/hero.jpg";
+   lives in the What-we-do grid (components/home/service-showcase.tsx).
+   The artwork is light — brand gradient with copy space on the left, team on
+   the right — so the type runs dark and the scrim lifts, it does not darken. */
+import heroBg from "@/assets/hero-team.jpg";
 
 export function HeroSlider() {
   return (
-    <section className="relative isolate overflow-hidden text-white bg-neutral-900 hero-min-h">
-      {/* Brand photo */}
+    <section className="relative isolate overflow-hidden bg-neutral-100 hero-min-h">
+      {/* Brand photo. Below lg the crop pulls left so the copy space survives
+          the narrower frame, at lg the full 3:2 artwork fits the band. */}
       <div className="absolute inset-0 -z-20">
         <Image
           src={heroBg}
@@ -16,46 +19,47 @@ export function HeroSlider() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[62%_center] md:object-[36%_center] lg:object-right-top"
+          className="object-cover object-[34%_bottom] md:object-[42%_bottom] lg:object-bottom"
           placeholder="blur"
         />
       </div>
 
-      {/* Text-side vignette, the artwork already darkens toward the left */}
+      {/* Text-side scrim. The artwork lightens toward the left already, this
+          only guarantees the headline clears AA where the crop shifts. */}
       <div
         aria-hidden
         className="absolute inset-0 -z-10 pointer-events-none"
         style={{
           background:
-            "linear-gradient(to top, rgba(18,12,8,0.66) 0%, rgba(18,12,8,0.30) 36%, rgba(18,12,8,0.06) 58%, rgba(18,12,8,0) 100%), linear-gradient(to right, rgba(18,12,8,0.22) 0%, rgba(18,12,8,0) 55%)"
+            "linear-gradient(to right, rgba(255,251,246,0.34) 0%, rgba(255,251,246,0.20) 34%, rgba(255,251,246,0) 62%)"
         }}
       />
-      {/* Extra full overlay on mobile so text is always readable */}
+      {/* Below lg the photo can sit under the text, so lift the whole frame */}
       <div
         aria-hidden
         className="absolute inset-0 -z-10 pointer-events-none lg:hidden"
-        style={{ background: "rgba(18,12,8,0.30)" }}
+        style={{ background: "rgba(255,251,246,0.20)" }}
       />
 
       {/* Content */}
       <div
-        className="container relative flex flex-col justify-end pt-36 pb-20 md:pt-40 md:pb-56"
+        className="container relative flex flex-col justify-center pt-24 pb-28 md:pt-28 md:pb-32"
         style={{ minHeight: "inherit" }}
       >
         {/* Narrow column, stays over the clean gradient, clear of the faces */}
         <div className="max-w-xl">
-          <p className="text-eyebrow uppercase text-white/80">
+          <p className="text-eyebrow uppercase text-brand-800">
             ERP · Cloud · Cybersecurity · Data · AI
           </p>
 
           <h1
-            className="mt-4 text-white [text-wrap:balance]"
-            style={{ fontSize: "clamp(1.7rem, 2.5vw, 2.3rem)", lineHeight: 1.2, letterSpacing: "-0.01em", fontWeight: 500 }}
+            className="mt-4 text-neutral-900 [text-wrap:balance]"
+            style={{ fontSize: "clamp(1.7rem, 2.5vw, 2.3rem)", lineHeight: 1.2, letterSpacing: "-0.01em", fontWeight: 600 }}
           >
             Helping Mid-Market &amp; Enterprise Companies Modernize ERP, Cloud &amp; AI Without Disrupting Operations
           </h1>
 
-          <p className="mt-5 max-w-lg text-white/85 leading-relaxed [text-wrap:pretty]">
+          <p className="mt-5 max-w-lg text-neutral-800 leading-relaxed [text-wrap:pretty]">
             Founder-led since 2000. Senior practitioners who plan, migrate, and run
             the systems you can&apos;t afford to lose.
           </p>
@@ -66,7 +70,7 @@ export function HeroSlider() {
             </Link>
             <Link
               href="/services"
-              className="btn inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold border border-white/35 text-white hover:bg-white/12 transition-colors"
+              className="btn border border-neutral-900/20 bg-white/70 text-neutral-900 backdrop-blur-sm hover:bg-white hover:border-neutral-900/30"
             >
               Explore our services&nbsp;→
             </Link>
