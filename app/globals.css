@@ -148,3 +148,20 @@
   .chip { @apply py-2; }
   .svc-list li { @apply py-0.5; }
 }
+
+/* ─── Entrance motion ─────────────────────────────────────────────────────
+   Load-triggered, CSS-only, so the hero stays a server component and ships no
+   JS for it. Scroll-triggered reveals still go through <Reveal>. Stagger with
+   `style={{ animationDelay: "..." }}` on each child. */
+@keyframes rise-in {
+  from { opacity: 0; transform: translate3d(0, 14px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+.rise-in {
+  opacity: 0;
+  animation: rise-in 0.62s var(--ease-brand) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise-in { animation: none; opacity: 1; }
+}

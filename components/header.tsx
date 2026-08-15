@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 import { navigationItems, siteSettings } from "@/content/site-content";
 import logoSrc from "@/vibrant-logo-header.png";
 
@@ -230,7 +231,14 @@ export function Header() {
                     </svg>
                   )}
                   {active && (
-                    <span className="absolute inset-x-2 -bottom-0.5 h-0.5 bg-brand-600 rounded" />
+                    // Shared layoutId, so the bar slides between items instead
+                    // of hard-cutting. MotionConfig reducedMotion="user" in
+                    // providers.tsx neutralizes it for reduced-motion users.
+                    <motion.span
+                      layoutId="nav-underline"
+                      className="absolute inset-x-2 -bottom-0.5 h-0.5 bg-brand-600 rounded"
+                      transition={{ type: "spring", stiffness: 480, damping: 38 }}
+                    />
                   )}
                 </Link>
 

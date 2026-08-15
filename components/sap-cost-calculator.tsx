@@ -166,7 +166,7 @@ export function SapCostCalculator() {
 
       {/* Result */}
       <div className="lg:sticky lg:top-28 space-y-4">
-        <div className="rounded-2xl bg-navy-900 p-7 text-white shadow-cardHover">
+        <div className="relative isolate overflow-hidden rounded-2xl bg-brand-gradient p-7 text-white shadow-cardHover">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/50">
             Indicative range
           </p>

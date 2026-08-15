@@ -26,6 +26,13 @@ export type ServiceCard = {
 
 export type ContactDetail = { label: string; value: string };
 
+/* Company age, derived rather than written down. It was previously hardcoded in
+   ~15 places and baked into assets/anniversary.png, which is how the site came
+   to claim 27 and 25 at the same time. Evaluated at build time (static export),
+   same as the footer copyright year. */
+export const foundedYear = 2000;
+export const yearsInBusiness = new Date().getFullYear() - foundedYear;
+
 export const siteSettings = {
   brandName: "Vibrant Inc",
   tagline: "Optimizing your efficiency. Strengthening your bottom line.",
@@ -357,7 +364,7 @@ export const serviceCards: ServiceCard[] = [
     summary:
       "One ERP practice, every major platform. SAP Implementation & Support, JD Edwards CNC Services, PeopleSoft Implementation & Support, plus Oracle E-Business Suite, Workday, and Dynamics 365. From first blueprint to the first quiet month after go-live, owned end to end.",
     longDescription:
-      "Whether you're running a complex JD Edwards environment, launching a PeopleSoft or SAP program, or stabilizing a Dynamics 365 rollout that under-delivered. Vibrant's 27-year ERP practice covers the full Oracle stack (JD Edwards EnterpriseOne, PeopleSoft, Oracle E-Business Suite), SAP (ECC / S/4HANA), Workday HCM/Financials, and Microsoft Dynamics 365. Our certified practitioners take ownership from blueprint through go-live and the stabilization weeks that follow.",
+      "Whether you're running a complex JD Edwards environment, launching a PeopleSoft or SAP program, or stabilizing a Dynamics 365 rollout that under-delivered. Vibrant's 26-year ERP practice covers the full Oracle stack (JD Edwards EnterpriseOne, PeopleSoft, Oracle E-Business Suite), SAP (ECC / S/4HANA), Workday HCM/Financials, and Microsoft Dynamics 365. Our certified practitioners take ownership from blueprint through go-live and the stabilization weeks that follow.",
     iconPath: ICONS.layers,
     metaTags: [
       "SAP Implementation & Support (ECC / S/4HANA)",
@@ -418,7 +425,7 @@ export const serviceCards: ServiceCard[] = [
     carouselOrder: 1,
     heroTagline: "SAP, JD Edwards, and PeopleSoft, modernized without missing a beat.",
     heroTeaser:
-      "Your ERP is the heart of the business, modernize it without missing a beat. Vibrant's 27-year practice spans SAP Implementation & Support, JD Edwards CNC Services, and PeopleSoft Implementation & Support, alongside Oracle EBS, Workday, and Dynamics 365.",
+      "Your ERP is the heart of the business, modernize it without missing a beat. Vibrant's 26-year practice spans SAP Implementation & Support, JD Edwards CNC Services, and PeopleSoft Implementation & Support, alongside Oracle EBS, Workday, and Dynamics 365.",
     heroHighlights: ["SAP ECC / S/4HANA · AMS", "JD Edwards CNC & EnterpriseOne", "PeopleSoft HCM / FSCM"]
   },
   {
@@ -640,7 +647,7 @@ export const serviceCards: ServiceCard[] = [
 ];
 
 export const trustBadges = [
-  { label: "27+ Years", sub: "of trusted delivery" },
+  { label: "26+ Years", sub: "of trusted delivery" },
   { label: "ERP", sub: "SAP · Oracle certified practice" },
   { label: "Oracle", sub: "Partner" },
   { label: "Microsoft", sub: "Partner Network" },
@@ -652,7 +659,7 @@ export const trustBadges = [
 export type Stat = { value: number; suffix: string; label: string; highlight?: boolean };
 
 export const stats: Stat[] = [
-  { value: 27, suffix: "+", label: "Years of innovation", highlight: true },
+  { value: 26, suffix: "+", label: "Years of innovation", highlight: true },
   { value: 200, suffix: "+", label: "Successful ERP, cloud & digital transformation engagements since 2000" },
   { value: 50, suffix: "+", label: "Enterprise clients" },
   { value: 24, suffix: "×7", label: "Managed IT support" }
@@ -714,7 +721,7 @@ export const partnerBenefits = [
 ];
 
 export const companyOverview = [
-  "Vibrant Inc opened its doors in 2000 with a simple model: put senior practitioners on every engagement and finish what we start. Twenty-seven years on, clients across North America still call us when ERP, cloud, or data work has to land on time and keep running.",
+  "Vibrant Inc opened its doors in 2000 with a simple model: put senior practitioners on every engagement and finish what we start. Twenty-six years on, clients across North America still call us when ERP, cloud, or data work has to land on time and keep running.",
   "From ERP and cloud to data, cybersecurity, and AI, our architects and engagement managers own every engagement from discovery through steady state. We're NMSDC Certified, an E-Verify Partner, and Oracle and Microsoft partners, credentials that show in how we build teams and deliver."
 ];
 
@@ -723,7 +730,7 @@ export const visionStatement =
 
 export const aboutFacts = [
   { value: "2000", label: "Founded in Princeton, New Jersey" },
-  { value: "25+", label: "Years of trusted enterprise delivery" },
+  { value: "26+", label: "Years of trusted enterprise delivery" },
   { value: "5", label: "Practice areas across cloud, data, ERP & managed IT" },
   { value: "Global", label: "Onshore and offshore delivery" }
 ];
@@ -910,7 +917,7 @@ export const socialResponsibilityCommitments = [
   {
     title: "Building for future generations",
     body:
-      "27 years of giving back, mentoring emerging technologists, supporting STEM pathways, and making decisions today that the next generation won't have to undo."
+      "26 years of giving back, mentoring emerging technologists, supporting STEM pathways, and making decisions today that the next generation won't have to undo."
   }
 ];
 
@@ -1524,9 +1531,9 @@ export const companyFacts = aboutFacts;
 export const officialHighlights = serviceCards.map((s) => s.summary);
 export const newsItems = [
   {
-    title: "Celebrating 27 Years of Innovation and Trust",
+    title: "Celebrating 26 Years of Innovation and Trust",
     summary:
-      "Vibrant marks twenty-seven years of serving businesses across North America with technology and transformation solutions."
+      "Vibrant marks twenty-six years of serving businesses across North America with technology and transformation solutions."
   }
 ];
 export const careersHighlights = [

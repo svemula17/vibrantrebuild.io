@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/reveal";
-import { withBasePath } from "@/content/site-content";
+import { withBasePath, yearsInBusiness } from "@/content/site-content";
 import anniversary from "@/assets/anniversary.png";
 
 /* Compact homepage About section, the full story lives on /about */
@@ -14,7 +14,7 @@ export function AboutIntro() {
             <p className="eyebrow">About Vibrant</p>
             <h2 className="mt-3">Built on integrity since 2000.</h2>
             <p className="mt-5 text-muted leading-relaxed">
-              Founder-led for 27 years, senior practitioners modernizing ERP, cloud,
+              Founder-led for 26 years, senior practitioners modernizing ERP, cloud,
               data, and security for companies that can&apos;t afford downtime.
             </p>
             <p className="mt-4 text-muted leading-relaxed">
@@ -49,7 +49,7 @@ export function AboutIntro() {
         <Reveal delay={0.1} className="mx-auto lg:mx-0">
           <Image
             src={anniversary}
-            alt="Vibrant Inc. Celebrating 27 Years in Business"
+            alt={`Vibrant Inc. Celebrating ${yearsInBusiness} Years in Business`}
             className="w-52 md:w-60 h-auto rounded-2xl shadow-card"
           />
         </Reveal>

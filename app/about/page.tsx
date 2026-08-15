@@ -9,6 +9,7 @@ import {
   coreValues,
   siteSettings,
   visionStatement,
+  yearsInBusiness,
   withBasePath
 } from "@/content/site-content";
 import anniversary from "@/assets/anniversary.png";
@@ -25,7 +26,7 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About Vibrant"
-        title="Built on integrity: 27 years of delivering on our promises."
+        title="Built on integrity: 26 years of delivering on our promises."
         description="Vibrant Inc modernizes ERP, cloud, and data for companies that can't afford downtime. Founder-led since 2000, senior practitioners on every engagement, and a client list that keeps coming back."
         crumbs={[{ label: "Home", href: "/" }, { label: "About" }]}
       />
@@ -34,7 +35,7 @@ export default function AboutPage() {
         <div className="container grid gap-12 lg:grid-cols-2 lg:items-start">
           <div>
             <p className="eyebrow">Who we are</p>
-            <h2 className="mt-3">Twenty-seven years of practical execution.</h2>
+            <h2 className="mt-3">Twenty-six years of practical execution.</h2>
             <div className="mt-6 space-y-4">
               {companyOverview.map((p, i) => (
                 <p key={i} className="text-muted">{p}</p>
@@ -47,14 +48,12 @@ export default function AboutPage() {
             </blockquote>
           </div>
 
-          {/* Right: one compact card, small 27-year graphic + key facts */}
+          {/* Right: one compact card, small 26-year graphic + key facts */}
           <div className="card p-7">
             <div className="mx-auto overflow-hidden rounded-xl" style={{ maxWidth: 180 }}>
               <Image
                 src={anniversary}
-                alt="Vibrant Inc. Celebrating 27 Years in Business"
-                width={780}
-                height={960}
+                alt={`Vibrant Inc. Celebrating ${yearsInBusiness} Years in Business`}
                 className="w-full h-auto object-contain"
                 priority
               />
@@ -103,18 +102,20 @@ export default function AboutPage() {
       {/* ── Brochure download ── */}
       <section className="section">
         <div className="container">
-          <div className="relative overflow-hidden rounded-3xl bg-neutral-900 p-8 md:p-10">
-            {/* Glow */}
+          <div className="relative overflow-hidden rounded-3xl bg-brand-gradient p-8 md:p-10">
+            {/* The old orange glow is pointless on an orange ground. This is the
+                same corner wash used in the footer: the 135deg gradient ends
+                lightest bottom-right, where white drops to 3.7:1. */}
             <div aria-hidden className="absolute inset-0 pointer-events-none"
-              style={{ background: "radial-gradient(ellipse at 30% 50%, rgba(200,64,26,0.25) 0%, transparent 60%)" }} />
+              style={{ background: "radial-gradient(circle at 85% 15%, rgba(255,255,255,0.08) 0%, transparent 45%), radial-gradient(ellipse at 100% 100%, rgba(90,25,4,0.40) 0%, transparent 62%)" }} />
 
             <div className="relative grid gap-10 lg:grid-cols-2 lg:items-center">
               <div>
-                <p className="eyebrow-on-dark">Company Brochure</p>
+                <p className="text-eyebrow uppercase text-white/90">Company Brochure</p>
                 <h2 className="mt-3 text-white" style={{ fontSize: "clamp(1.6rem, 3vw, 2.1rem)" }}>
                   Learn more about Vibrant Inc.
                 </h2>
-                <p className="mt-4 text-white/65 leading-relaxed">
+                <p className="mt-4 text-white/90 leading-relaxed">
                   Our company brochure covers our full range of services, delivery model, corporate values, and career opportunities, everything you need to know about partnering with Vibrant.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-4">
@@ -142,9 +143,9 @@ export default function AboutPage() {
                   { title: "Custom Development", body: "Onshore + offshore blended teams for bespoke applications." },
                   { title: "People-First Culture", body: "CMM-aligned talent model. 8+ years average practitioner experience." },
                 ].map((item) => (
-                  <div key={item.title} className="card-dark p-5">
+                  <div key={item.title} className="rounded-2xl border border-white/25 bg-white/15 p-5">
                     <h3 className="text-sm font-semibold text-white">{item.title}</h3>
-                    <p className="mt-1.5 text-xs text-white/55 leading-relaxed">{item.body}</p>
+                    <p className="mt-1.5 text-xs text-white/90 leading-relaxed">{item.body}</p>
                   </div>
                 ))}
               </div>
@@ -159,7 +160,7 @@ export default function AboutPage() {
             <p className="eyebrow">Ready to talk</p>
             <h2 className="mt-3">A conversation, not a pitch.</h2>
             <p className="mt-5 text-muted">
-              Tell us where you want to be in 12 months. We&apos;ll help you get there with senior practitioners and a 27-year delivery track record.
+              Tell us where you want to be in 12 months. We&apos;ll help you get there with senior practitioners and a 26-year delivery track record.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/contact" className="btn-primary">Schedule a Call</Link>

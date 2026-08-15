@@ -48,23 +48,23 @@ export function HeroSlider() {
       >
         {/* Narrow column, stays over the clean gradient, clear of the faces */}
         <div className="max-w-xl">
-          <p className="text-eyebrow uppercase text-brand-800">
+          <p className="rise-in text-eyebrow uppercase text-brand-800" style={{ animationDelay: "0.05s" }}>
             ERP · Cloud · Cybersecurity · Data · AI
           </p>
 
           {/* text-h1 token, same scale as every inner-page hero. The old inline
               clamp topped out at 2.3rem, which left the homepage headline 20px
               smaller than /about's. */}
-          <h1 className="mt-4 text-h1 text-neutral-900 [text-wrap:balance]">
+          <h1 className="rise-in mt-4 text-h1 text-neutral-900 [text-wrap:balance]" style={{ animationDelay: "0.14s" }}>
             Helping Mid-Market &amp; Enterprise Companies Modernize ERP, Cloud &amp; AI Without Disrupting Operations
           </h1>
 
-          <p className="mt-5 max-w-lg text-neutral-800 leading-relaxed [text-wrap:pretty]">
+          <p className="rise-in mt-5 max-w-lg text-neutral-800 leading-relaxed [text-wrap:pretty]" style={{ animationDelay: "0.26s" }}>
             Founder-led since 2000. Senior practitioners who plan, migrate, and run
             the systems you can&apos;t afford to lose.
           </p>
 
-          <div className="mt-8 flex flex-col sm:flex-row gap-3">
+          <div className="rise-in mt-8 flex flex-col sm:flex-row gap-3" style={{ animationDelay: "0.36s" }}>
             <Link href="/contact" className="btn-primary">
               Schedule a Call
             </Link>

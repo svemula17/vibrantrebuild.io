@@ -7,7 +7,7 @@ import { insights, resourceGuides } from "@/content/site-content";
 export const metadata: Metadata = pageMeta({
   title: "Resources",
   description:
-    "White papers, migration guides, readiness checklists, an SAP S/4HANA cost calculator, and insights from 27+ years of ERP, cloud, and AI delivery.",
+    "White papers, migration guides, readiness checklists, an SAP S/4HANA cost calculator, and insights from 26+ years of ERP, cloud, and AI delivery.",
   path: "/resources"
 });
 
@@ -23,7 +23,7 @@ export default function ResourcesPage() {
     <>
       <PageHero
         eyebrow="Resources"
-        title="Guides, tools, and insights from 27+ years of delivery."
+        title="Guides, tools, and insights from 26+ years of delivery."
         description="The same frameworks and checklists we use on real engagements, free to read, built to be used. No gate, no email wall."
         crumbs={[{ label: "Home", href: "/" }, { label: "Resources" }]}
       />
@@ -72,20 +72,20 @@ export default function ResourcesPage() {
       </section>
 
       {/* Calculator callout */}
-      <section className="relative overflow-hidden bg-navy-900 text-white">
+      <section className="relative overflow-hidden bg-brand-gradient text-white">
         <div
           aria-hidden
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle at 80% 30%, rgba(200,64,26,0.30) 0%, transparent 55%)"
+              "radial-gradient(circle at 85% 15%, rgba(255,255,255,0.08) 0%, transparent 45%), radial-gradient(ellipse at 100% 100%, rgba(90,25,4,0.40) 0%, transparent 62%)"
           }}
         />
         <div className="container relative py-16 md:py-20 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
           <div className="max-w-xl">
-            <p className="eyebrow-on-dark">Interactive tool</p>
+            <p className="text-eyebrow uppercase text-white/90">Interactive tool</p>
             <h2 className="mt-3 text-white">SAP S/4HANA Cost Calculator</h2>
-            <p className="mt-4 text-white/70">
+            <p className="mt-4 text-white/90">
               Users, modules, landscape, approach, get an indicative budget range for planning
               conversations in about 60 seconds.
             </p>

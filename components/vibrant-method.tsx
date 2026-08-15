@@ -40,9 +40,16 @@ export function VibrantMethod() {
               </span>
 
               {/* Brand letter badge */}
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-600 text-lg font-black text-white shadow-sm">
+              <motion.span
+                initial={{ scale: 0.6, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true, margin: "-6%" }}
+                transition={{ type: "spring", stiffness: 520, damping: 24,
+                              delay: Math.min(i, 6) * 0.05 + 0.12 }}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-600 text-lg font-black text-white shadow-sm"
+              >
                 {item.letter}
-              </span>
+              </motion.span>
 
               <h3 className="mt-4 text-base font-semibold text-navy-700">{item.step}</h3>
               <p className="mt-2 text-sm text-muted leading-relaxed flex-1">{item.body}</p>

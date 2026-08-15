@@ -39,13 +39,13 @@ export function StatsBand() {
             >
               {s.highlight ? (
                 <>
-                  {/* Anniversary medallion, celebratory treatment for the 25+ stat */}
+                  {/* Anniversary medallion, celebratory treatment for the 26+ stat */}
                   <div className="text-6xl md:text-7xl font-bold tracking-tight text-white">
                     <AnimatedCounter value={s.value} suffix={s.suffix} />
                   </div>
                   <p className="mt-2 text-sm text-white/90">{s.label}</p>
                   <span className="mt-3 inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/15 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-white">
-                    Est. 2000 · Celebrating 27+ Years
+                    Est. 2000 · Celebrating 26+ Years
                   </span>
                 </>
               ) : (

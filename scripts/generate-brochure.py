@@ -1,9 +1,20 @@
 #!/usr/bin/env python3
-"""Generate the Vibrant Inc company brochure PDF (brand system, 6 pages).
+"""Generate the Vibrant Inc company brochure PDF (brand system, 12 pages).
 Output: public/Vibrant-Company-Brochure.pdf
 Run from repo root: python3 scripts/generate-brochure.py
+
+Reproducibility note: every image this script reads lives in the repo under
+assets/. An earlier revision pulled cover and band artwork from a session
+scratchpad under /tmp, which was deleted, so the brochure could not be
+regenerated. Do not reintroduce paths outside the repo.
 """
 import math
+import re as _re
+import os
+import atexit
+import shutil
+import tempfile
+from PIL import Image
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.colors import Color, HexColor
 from reportlab.pdfgen import canvas as pdfcanvas
@@ -30,17 +41,54 @@ F    = "Helvetica"
 FB   = "Helvetica-Bold"
 FO   = "Helvetica-Oblique"
 
-LOGO   = "vibrant-logo-full.png"
-VICON  = "vibrant-v-icon.png"
-HERO   = "assets/hero.jpg"
+HERO   = "assets/hero-team.jpg"
 SURESH = "assets/team/suresh-reddy.jpg"
 US_OFF = "assets/offices/us-office.jpg"
-IN_OFF = "assets/offices/india-office.jpg"
 ANNIV  = "assets/anniversary.png"
+IN_OFF = "assets/offices/india-office.jpg"
+
+# Company age is derived, not hardcoded: founded 2000. assets/anniversary.png
+# is the client-supplied poster and has the number baked in, so it must be
+# re-exported whenever YEARS changes.
+FOUNDED = 2000
+YEARS = 2026 - FOUNDED  # 26
 
 c = pdfcanvas.Canvas("public/Vibrant-Company-Brochure.pdf", pagesize=letter)
 c.setTitle("Vibrant Inc Company Brochure")
 c.setAuthor("Vibrant Inc")
+
+
+# ── image prep ─────────────────────────────────────────────────────────
+# ReportLab embeds source pixels as-is, and assets/services/*.jpg are up to
+# 3600px wide, which pushed the PDF past 5 MB. Each image is center-cropped to
+# the box it will occupy and resampled to 2x the print size first.
+_TMP = tempfile.mkdtemp(prefix="vibrant-brochure-")
+atexit.register(shutil.rmtree, _TMP, ignore_errors=True)
+_cache = {}
+
+
+def fit(path, box_w_pt, box_h_pt, dpi_scale=2, quality=82, grayscale=False):
+    """Center-crop to the box aspect, resample to 2x print size, return a path."""
+    key = (path, round(box_w_pt), round(box_h_pt), grayscale)
+    if key in _cache:
+        return _cache[key]
+    tw, th = int(box_w_pt * dpi_scale), int(box_h_pt * dpi_scale)
+    im = Image.open(path).convert("RGB")
+    sw, sh = im.size
+    target = tw / th
+    if sw / sh > target:                      # source wider, crop sides
+        nw = int(sh * target)
+        im = im.crop(((sw - nw) // 2, 0, (sw - nw) // 2 + nw, sh))
+    else:                                     # source taller, crop top/bottom
+        nh = int(sw / target)
+        im = im.crop((0, (sh - nh) // 2, sw, (sh - nh) // 2 + nh))
+    im = im.resize((tw, th), Image.LANCZOS)
+    if grayscale:
+        im = im.convert("L").convert("RGB")
+    out = os.path.join(_TMP, f"{len(_cache)}-{os.path.basename(path)}")
+    im.save(out, "JPEG", quality=quality, optimize=True)
+    _cache[key] = out
+    return out
 
 
 # ── helpers ────────────────────────────────────────────────────────────
@@ -60,6 +108,35 @@ def gradient(x, y, w, h_, colors=(B700, B600, B500)):
         b = c0.blue + (c1.blue - c0.blue) * k
         c.setFillColor(Color(r, g, b))
         c.rect(x + w * i / steps, y, w / steps + 1, h_, stroke=0, fill=1)
+
+
+def gradient_tint(x, y, w, h_, alpha=0.80, colors=(B700, B600, B500)):
+    """Brand gradient laid over artwork. Replaces the near-black wash that was
+    used to win title legibility, which read as off-brand dark brown."""
+    steps = 96
+    for i in range(steps):
+        t = i / (steps - 1)
+        if t < 0.55:
+            k, c0, c1 = t / 0.55, colors[0], colors[1]
+        else:
+            k, c0, c1 = (t - 0.55) / 0.45, colors[1], colors[2]
+        r = c0.red + (c1.red - c0.red) * k
+        g = c0.green + (c1.green - c0.green) * k
+        b = c0.blue + (c1.blue - c0.blue) * k
+        c.setFillColor(Color(r, g, b, alpha))
+        c.rect(x + w * i / steps, y, w / steps + 1, h_, stroke=0, fill=1)
+
+
+def scrim(x, y, w, h_, top_alpha=0.92, bottom_alpha=0.16, color=B800):
+    """Vertical dark-to-clear wash. Photo bands carry white display type, and
+    busy artwork (circuitry, monitors) was colliding with it, so the type sits
+    on this rather than on the raw photo."""
+    steps = 60
+    for i in range(steps):
+        t = i / (steps - 1)
+        a = top_alpha + (bottom_alpha - top_alpha) * t
+        c.setFillColor(Color(color.red, color.green, color.blue, a))
+        c.rect(x, y + h_ - h_ * (i + 1) / steps, w, h_ / steps + 1, stroke=0, fill=1)
 
 
 def halftone(cx, cy, rings=7, base_r=26, color=B300, alpha=0.35, max_dot=5.2):
@@ -109,6 +186,14 @@ def wrap(text, font, size, width):
     return lines
 
 
+def fit_font(text, font, size, width, min_size=9):
+    """Shrink until the string fits. Guards headings that would otherwise run
+    past their container (the VIBRANT Method title used to overflow its card)."""
+    while size > min_size and c.stringWidth(text, font, size) > width:
+        size -= 0.5
+    return size
+
+
 def para(x, y, text, width, font=F, size=10.2, leading=15.5, color=MUTED):
     c.setFont(font, size)
     c.setFillColor(color)
@@ -128,58 +213,79 @@ def footer(page_no, label):
     c.line(M, 44, W - M, 44)
 
 
-
-
-import re as _re
-BAND_DIR = "/tmp/claude-501/-Users-saikumarvemula-Documents-New-project-vibrant-inc-rebuild/f7064bca-a35c-4726-926b-941b604506e2/scratchpad/brochure"
+# ── content loaded from the site, single source of truth ───────────────
 _SITE = open("content/site-content.ts").read()
 
+
 def _clean(t):
-    return t.replace('\\"', '"').replace(" \u2014 ", ", ").replace("\u2014", ", ").strip()
+    return t.replace('\\"', '"').replace(" — ", ", ").replace("—", ", ").strip()
+
 
 def load_service(slug):
     m = _re.search(r'slug: "' + slug + r'",(.*?)\n  \}', _SITE, _re.S)
+    if not m:
+        raise SystemExit(f"generate-brochure: no service block for slug '{slug}'. "
+                         f"Service slugs in the brochure must match content/site-content.ts.")
     block = m.group(1)
+
     def field(name):
         fm = _re.search(name + r':\s*\n?\s*"((?:[^"\\]|\\.)*)"', block)
         return _clean(fm.group(1)) if fm else ""
+
     def list_field(name):
         fm = _re.search(name + r': \[(.*?)\]', block, _re.S)
         return [_clean(x) for x in _re.findall(r'"((?:[^"\\]|\\.)*)"', fm.group(1))] if fm else []
+
     return dict(title=field("title"), long=field("longDescription"),
                 outcomes=list_field("outcomes"), caps=list_field("capabilities")[:8],
                 best=field("bestFit"))
 
-SERVICE_ORDER = ["erp-optimization", "cloud-modernization", "cybersecurity", "ai-readiness",
-                 "automation", "data-analytics", "managed-it"]
 
-def service_page(idx, slug, page_no):
+# The seven the site actually sells (footerSlugs in site-content.ts). The old
+# brochure shipped an "Automation" page for a slug that no longer exists, and
+# omitted SAP Solutions entirely.
+SERVICES = [
+    ("erp-optimization",    "assets/services/erp.jpg"),
+    ("sap-solutions",       None),  # no SAP photo in assets/, gradient band instead
+    ("cloud-modernization", "assets/services/cloud.jpg"),
+    ("cybersecurity",       "assets/services/cybersecurity.jpg"),
+    ("data-analytics",      "assets/services/data-analytics.jpg"),
+    ("ai-readiness",        "assets/services/ai.jpg"),
+    ("managed-it",          "assets/services/managed-it.jpg"),
+]
+
+
+def service_page(idx, slug, band_img, page_no):
     s = load_service(slug)
     c.setFillColor(WHITE)
     c.rect(0, 0, W, H, stroke=0, fill=1)
 
-    # photo band with warm overlay + title
-    c.drawImage(f"{BAND_DIR}/band-{slug}.jpg", 0, H - 190, width=W, height=190)
-    c.setFillColor(Color(B800.red, B800.green, B800.blue, 0.55))
-    c.rect(0, H - 190, W, 190, stroke=0, fill=1)
-    gradient(0, H - 194, W, 4)
-    tracked(M, H - 60, f"OUR SERVICES  ·  {idx:02d} / 07", FB, 8.5, Color(1, 1, 1, 0.92), 2.2)
+    BAND = 176
+    if band_img and os.path.exists(band_img):
+        c.drawImage(fit(band_img, W, BAND, grayscale=True), 0, H - BAND, width=W, height=BAND)
+        gradient_tint(0, H - BAND, W, BAND, alpha=0.82)
+        # Left-weighted deepening only where the display type sits.
+        scrim(0, H - BAND, W * 0.62, BAND, top_alpha=0.34, bottom_alpha=0.06, color=B800)
+    else:
+        gradient(0, H - BAND, W, BAND)
+        halftone(W - 90, H - 52, rings=5, base_r=16, color=WHITE, alpha=0.15, max_dot=3.6)
+    gradient(0, H - BAND - 4, W, 4)
+
+    tracked(M, H - 58, f"OUR SERVICES  ·  {idx:02d} / {len(SERVICES):02d}", FB, 8.5,
+            Color(1, 1, 1, 0.92), 2.2)
     c.setFillColor(WHITE)
-    c.setFont(FB, 25)
-    title_lines = wrap(s["title"], FB, 25, W - 2 * M)
-    ty = H - 100
-    for ln in title_lines:
-        c.drawString(M, ty, ln)
-        ty -= 30
+    tsize = fit_font(s["title"], FB, 25, W - 2 * M, min_size=17)
+    c.setFont(FB, tsize)
+    c.drawString(M, H - 92, s["title"])
 
     # intro
-    y = H - 232
+    y = H - BAND - 44
     y = para(M, y, s["long"], W - 2 * M, size=10, leading=15)
 
     # outcomes
-    y -= 18
+    y -= 20
     eyebrow(M, y, "What you get")
-    y -= 22
+    y -= 24
     for o in s["outcomes"]:
         c.setFillColor(B600)
         c.circle(M + 4, y + 3, 2.4, stroke=0, fill=1)
@@ -188,29 +294,34 @@ def service_page(idx, slug, page_no):
         c.drawString(M + 16, y, o)
         y -= 19
 
-    # capabilities, 2 columns
-    y -= 16
+    # capabilities, 2 columns, wrapped rather than truncated
+    y -= 18
     eyebrow(M, y, "Capabilities")
-    y -= 22
+    y -= 24
     col_w = (W - 2 * M) / 2
     top_y = y
+    row_h = 22
+    rows = 0
     for i, cap in enumerate(s["caps"]):
         col, row = i % 2, i // 2
+        rows = max(rows, row + 1)
         x = M + col * col_w
-        yy = top_y - row * 20
+        yy = top_y - row * row_h
         c.setFillColor(B400)
         c.circle(x + 4, yy + 3, 2.1, stroke=0, fill=1)
         c.setFillColor(MUTED)
         c.setFont(F, 9.3)
-        cap_txt = cap if c.stringWidth(cap, F, 9.3) <= col_w - 30 else wrap(cap, F, 9.3, col_w - 30)[0] + "…"
-        c.drawString(x + 15, yy, cap_txt)
-    y = top_y - ((len(s["caps"]) + 1) // 2) * 20
+        # Previously truncated with an ellipsis ("RPA (UiPath, Automation Anywhere, Power…").
+        lines = wrap(cap, F, 9.3, col_w - 34)[:2]
+        for j, ln in enumerate(lines):
+            c.drawString(x + 15, yy - j * 10.5, ln)
+    y = top_y - rows * row_h
 
     # best fit
-    y -= 24
-    c.setFillColor(CREAM2)
+    y -= 26
     bf_lines = wrap("Best fit: " + s["best"], FO, 9.8, W - 2 * M - 44)
     bh = len(bf_lines) * 14 + 24
+    c.setFillColor(CREAM2)
     c.roundRect(M, y - bh, W - 2 * M, bh, 10, stroke=0, fill=1)
     c.setFillColor(B600)
     c.rect(M, y - bh + 10, 3, bh - 20, stroke=0, fill=1)
@@ -219,20 +330,33 @@ def service_page(idx, slug, page_no):
     for i, ln in enumerate(bf_lines):
         c.drawString(M + 20, y - 26 - i * 14, ln)
 
+    # Anchored CTA strip. Service pages used to trail off into half a page of
+    # white; this closes the page and repeats the ask.
+    cta_h = 54
+    cta_y = 74
+    gradient(M, cta_y, W - 2 * M, cta_h)
+    c.setFillColor(WHITE)
+    c.setFont(FB, 11)
+    # "a ERP" / "a AI" read wrong; every service title here starts with a
+    # letter whose article follows the plain vowel rule.
+    art = "an" if s["title"][:1].upper() in "AEIOU" else "a"
+    c.drawString(M + 18, cta_y + 31, f"Talk to {art} {s['title']} specialist.")
+    c.setFont(F, 9)
+    c.setFillColor(Color(1, 1, 1, 0.92))
+    c.drawString(M + 18, cta_y + 15, "609-945-2244   ·   info@vibrantinc.com   ·   www.vibrantinc.com")
+
     footer(page_no, s["title"])
     c.showPage()
 
 
 # ═══ PAGE 1 · COVER ════════════════════════════════════════════════════
-# Top: full-bleed branded team artwork (logo baked in)
 c.setFillColor(CREAM)
 c.rect(0, 0, W, H, stroke=0, fill=1)
-c.drawImage(f"{BAND_DIR}/cover-art.jpg", 0, H - 306, width=W, height=306)
+c.drawImage(fit(HERO, W, 306), 0, H - 306, width=W, height=306)
 gradient(0, H - 310, W, 4)
 
-# Bottom: composition on cream
 halftone(W - 70, 396, rings=7, base_r=24, alpha=0.28)
-eyebrow(M, H - 356, "Company Brochure  ·  Est. 2000", size=9, track=2.6)
+eyebrow(M, H - 356, f"Company Brochure  ·  Est. {FOUNDED}", size=9, track=2.6)
 
 c.setFillColor(INK)
 c.setFont(FB, 30)
@@ -243,14 +367,14 @@ c.setFont(F, 12.5)
 c.setFillColor(MUTED)
 c.drawString(M, H - 470, "ERP   ·   Cloud   ·   Cybersecurity   ·   Data   ·   AI")
 
-pill_w = 238
+pill_txt = f"CELEBRATING {YEARS} YEARS IN BUSINESS"
+pill_w = c.stringWidth(pill_txt, FB, 9.5) + 1.6 * len(pill_txt) + 34
 c.setStrokeColor(B600)
 c.setLineWidth(1)
 c.setFillColor(Color(B600.red, B600.green, B600.blue, 0.08))
 c.roundRect(M, H - 528, pill_w, 30, 15, stroke=1, fill=1)
-tracked(0, H - 518, "CELEBRATING 27 YEARS IN BUSINESS", FB, 9.5, B700, 1.6, center_at=M + pill_w / 2)
+tracked(0, H - 518, pill_txt, FB, 9.5, B700, 1.6, center_at=M + pill_w / 2)
 
-# capability index, quiet
 iy = 178
 eyebrow(M, iy + 44, "Inside")
 c.setFont(F, 9.5)
@@ -258,7 +382,6 @@ c.setFillColor(MUTED)
 c.drawString(M, iy + 22, "Seven capabilities, one page each  ·  Deep SAP bench  ·  The VIBRANT Method")
 c.drawString(M, iy + 6, "AI Shield platform  ·  Client outcomes  ·  Leadership and offices")
 
-# bottom gradient strip
 gradient(0, 0, W, 110)
 halftone(70, 18, rings=6, base_r=18, color=WHITE, alpha=0.15, max_dot=4)
 c.setFillColor(WHITE)
@@ -277,13 +400,13 @@ gradient(0, H - 122, W, 4)
 eyebrow(M, H - 66, "Who we are")
 c.setFillColor(INK)
 c.setFont(FB, 24)
-c.drawString(M, H - 96, "Built on integrity since 2000.")
+c.drawString(M, H - 96, f"Built on integrity since {FOUNDED}.")
 
 y = H - 170
-y = para(M, y, "Vibrant Inc opened its doors in 2000 with a simple model: put senior "
-               "practitioners on every engagement and finish what we start. Twenty-seven "
-               "years on, clients across North America still call us when ERP, cloud, or "
-               "data work has to land on time and keep running.", W - 2 * M - 190)
+y = para(M, y, f"Vibrant Inc opened its doors in {FOUNDED} with a simple model: put senior "
+               f"practitioners on every engagement and finish what we start. Twenty-six "
+               f"years on, clients across North America still call us when ERP, cloud, or "
+               f"data work has to land on time and keep running.", W - 2 * M - 190)
 y -= 6
 y = para(M, y, "From ERP and cloud to data, cybersecurity, and AI, our architects and "
                "engagement managers own every engagement from discovery through steady "
@@ -291,10 +414,9 @@ y = para(M, y, "From ERP and cloud to data, cybersecurity, and AI, our architect
                "Microsoft partners. Those credentials show in how we build teams and "
                "how we deliver.", W - 2 * M - 190)
 
-# 27-years poster, right side
-c.drawImage(ANNIV, W - M - 158, H - 372, width=158, height=193, mask="auto", preserveAspectRatio=True)
+c.drawImage(ANNIV, W - M - 158, H - 372, width=158, height=193,
+            preserveAspectRatio=True, anchor="c", mask="auto")
 
-# vision quote
 qy = y - 26
 c.setFillColor(B600)
 c.rect(M, qy - 66, 3, 70, stroke=0, fill=1)
@@ -305,10 +427,9 @@ for i, ln in enumerate(wrap('"Be the partner of choice, empowering businesses to
                             'performance, and long-term growth."', FO, 11.5, W - 2 * M - 200)):
     c.drawString(M + 16, qy - 16 - i * 16, ln)
 
-# stats band
 sb_y = 168
 gradient(M, sb_y, W - 2 * M, 108)
-stats = [("27+", "Years of innovation"), ("200+", "Engagements since 2000"),
+stats = [(f"{YEARS}+", "Years of innovation"), ("200+", f"Engagements since {FOUNDED}"),
          ("50+", "Enterprise clients"), ("24x7", "Managed IT support")]
 seg = (W - 2 * M) / 4
 for i, (v, lbl) in enumerate(stats):
@@ -321,8 +442,8 @@ for i, (v, lbl) in enumerate(stats):
     for j, ln in enumerate(wrap(lbl, F, 8.2, seg - 18)):
         c.drawCentredString(cx, sb_y + 40 - j * 11, ln)
 
-# certification chips
-chips = ["NMSDC Certified MBE", "E-Verify Partner", "Oracle Partner", "Microsoft Partner Network", "Wrike Solution Partner"]
+chips = ["NMSDC Certified MBE", "E-Verify Partner", "Oracle Partner",
+         "Microsoft Partner Network", "Wrike Solution Partner"]
 cx, cy_ = M, 120
 for ch in chips:
     wch = c.stringWidth(ch, FB, 7.5) + 20
@@ -339,10 +460,10 @@ footer(2, "Who we are")
 c.showPage()
 
 # ═══ PAGES 3-9 · ONE PAGE PER SERVICE ═════════════════════════════════
-for _i, _slug in enumerate(SERVICE_ORDER):
-    service_page(_i + 1, _slug, _i + 3)
+for _i, (_slug, _img) in enumerate(SERVICES):
+    service_page(_i + 1, _slug, _img, _i + 3)
 
-# ═══ PAGE 4 · SAP DEPTH + VIBRANT METHOD ═══════════════════════════════
+# ═══ PAGE 10 · SAP DEPTH + VIBRANT METHOD ══════════════════════════════
 c.setFillColor(WHITE)
 c.rect(0, 0, W, H, stroke=0, fill=1)
 c.setFillColor(CREAM)
@@ -378,14 +499,15 @@ for i, item in enumerate(sap_items):
     c.setFont(F, 10)
     c.drawString(x + 16, yy, item)
 
-# VIBRANT Method
 my = 268
+card_x, card_w = M - 10, W - 2 * M + 20
 c.setFillColor(CREAM2)
-c.roundRect(M - 10, 96, W - 2 * M + 20, my - 34, 14, stroke=0, fill=1)
+c.roundRect(card_x, 96, card_w, my - 34, 14, stroke=0, fill=1)
 eyebrow(M + 6, my + 20, "Our delivery framework")
 c.setFillColor(INK)
-c.setFont(FB, 17)
-c.drawString(M + 6, my - 4, "The VIBRANT Method: agile delivery, enterprise accountability.")
+_mt = "The VIBRANT Method: agile delivery, enterprise accountability."
+c.setFont(FB, fit_font(_mt, FB, 17, card_w - 32, min_size=12))
+c.drawString(M + 6, my - 4, _mt)
 
 steps = [("V", "Value Discovery"), ("I", "Iterative Design"), ("B", "Build in Sprints"),
          ("R", "Refine & Validate"), ("A", "Activate & Adopt"), ("N", "Nurture & Optimize"),
@@ -408,11 +530,10 @@ c.drawCentredString(W / 2, 116, "Seven letters, seven phases. Senior-led sprints
 footer(10, "SAP depth and method")
 c.showPage()
 
-# ═══ PAGE 5 · AI SHIELD + PROOF ════════════════════════════════════════
+# ═══ PAGE 11 · AI SHIELD + PROOF ═══════════════════════════════════════
 c.setFillColor(CREAM)
 c.rect(0, 0, W, H, stroke=0, fill=1)
 
-# AI Shield gradient panel
 py = H - 402
 gradient(M - 10, py, W - 2 * M + 20, 330)
 halftone(W - 110, H - 120, rings=6, base_r=18, color=WHITE, alpha=0.14, max_dot=4)
@@ -447,7 +568,6 @@ for i, (t, b) in enumerate(features):
     for j, ln in enumerate(wrap(b, F, 8.6, fw - 24)):
         c.drawString(fx + 12, fy + 24 - j * 11, ln)
 
-# proof metrics
 eyebrow(M, 330, "Client outcomes")
 c.setFillColor(INK)
 c.setFont(FB, 17)
@@ -480,7 +600,7 @@ c.drawString(M, 120, "V-Soft Consulting, MOURI Tech, Enavate, Infojini, iLink Di
 footer(11, "AI Shield and outcomes")
 c.showPage()
 
-# ═══ PAGE 6 · LEADERSHIP + CONTACT (BACK) ══════════════════════════════
+# ═══ PAGE 12 · LEADERSHIP + CONTACT (BACK) ═════════════════════════════
 c.setFillColor(WHITE)
 c.rect(0, 0, W, H, stroke=0, fill=1)
 c.setFillColor(CREAM)
@@ -492,13 +612,15 @@ c.setFillColor(INK)
 c.setFont(FB, 24)
 c.drawString(M, H - 96, "Senior architects. Founder-led delivery.")
 
-c.drawImage(SURESH, M, H - 300, width=118, height=122, mask="auto", preserveAspectRatio=True)
+c.drawImage(fit(SURESH, 118, 122), M, H - 300, width=118, height=122)
 c.setFillColor(INK)
 c.setFont(FB, 13)
 c.drawString(M + 136, H - 168, "Suresh Reddy")
 c.setFillColor(B700)
 c.setFont(FB, 9.5)
 c.drawString(M + 136, H - 184, "Founder & President  ·  ITIL Foundation Certified")
+# 27 here is Suresh's personal career length, not the company age, so it is
+# deliberately not derived from YEARS.
 para(M + 136, H - 202, "27 years leading enterprise transformation across cloud, enterprise "
      "applications, DevOps, and AI for Fortune 500 partners.", W - M - 200 - 136, size=9.2, leading=13)
 
@@ -518,7 +640,6 @@ for name, role in leaders:
     c.drawString(M + 16 + c.stringWidth(name, FB, 10) + 10, ly, role)
     ly -= 20
 
-# Offices
 oy = ly - 26
 eyebrow(M, oy, "Two offices, one delivery model")
 box_w = (W - 2 * M - 16) / 2
@@ -531,8 +652,7 @@ for i, (img, title, comp, lines) in enumerate([
     c.setFillColor(WHITE)
     c.setStrokeColor(BORDER)
     c.roundRect(x, oy - 158, box_w, 146, 10, stroke=1, fill=1)
-    c.drawImage(img, x + 12, oy - 90, width=box_w - 24, height=66, mask="auto",
-                preserveAspectRatio=True, anchor="c")
+    c.drawImage(fit(img, box_w - 24, 66), x + 12, oy - 90, width=box_w - 24, height=66)
     c.setFillColor(INK)
     c.setFont(FB, 9.5)
     c.drawString(x + 12, oy - 106, title)
@@ -544,7 +664,6 @@ for i, (img, title, comp, lines) in enumerate([
     for j, ln in enumerate(lines):
         c.drawString(x + 12, oy - 130 - j * 10, ln)
 
-# bottom gradient contact band
 gradient(0, 0, W, 96)
 c.setFillColor(WHITE)
 c.setFont(FB, 14)
@@ -557,4 +676,4 @@ c.drawString(M, 22, "LinkedIn: /company/vibrant-inc   ·   Facebook: /VibrantInc
 c.showPage()
 
 c.save()
-print("brochure written: public/Vibrant-Company-Brochure.pdf")
+print(f"brochure written: public/Vibrant-Company-Brochure.pdf ({YEARS} years, {len(SERVICES)} services)")
