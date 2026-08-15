@@ -36,7 +36,10 @@ export function AiShieldBand() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle at 85% 15%, rgba(255,255,255,0.10) 0%, transparent 45%), radial-gradient(circle at 5% 95%, rgba(60,10,0,0.28) 0%, transparent 55%)"
+            /* The 135deg gradient's light stop (#E05A1F) is bottom-right, where
+               white/85 falls to ~3.1:1. The existing dark wash sat bottom-left,
+               so the failing corner was unmitigated — this adds one there. */
+            "radial-gradient(circle at 85% 15%, rgba(255,255,255,0.08) 0%, transparent 45%), radial-gradient(circle at 5% 95%, rgba(60,10,0,0.28) 0%, transparent 55%), radial-gradient(ellipse at 100% 100%, rgba(90,25,4,0.40) 0%, transparent 62%)"
         }}
       />
 
@@ -45,18 +48,18 @@ export function AiShieldBand() {
           {/* Left, copy */}
           <div>
             <Reveal>
-              <p className="text-eyebrow uppercase text-white/85">Featured platform</p>
+              <p className="text-eyebrow uppercase text-white/90">Featured platform</p>
               <h2 className="mt-3 text-white">
                 AI Shield™, security that thinks faster than attackers.
               </h2>
-              <p className="mt-5 text-white/85 leading-relaxed">
+              <p className="mt-5 text-white/90 leading-relaxed">
                 Our proprietary detection-and-response capability uses machine learning and
                 behavioral analytics to spot what rule-based tools miss, and neutralize it in
                 minutes, not hours.
               </p>
             </Reveal>
 
-            <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-white/80">
+            <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-white/90">
               <span>Threats contained in minutes</span>
               <span className="text-white/60" aria-hidden="true">·</span>
               <span>Fewer false positives</span>
@@ -94,7 +97,7 @@ export function AiShieldBand() {
                   </svg>
                 </span>
                 <h3 className="mt-4 text-sm font-semibold text-white leading-snug">{f.title}</h3>
-                <p className="mt-2 text-sm text-white/80 leading-relaxed">{f.body}</p>
+                <p className="mt-2 text-sm text-white/90 leading-relaxed">{f.body}</p>
               </motion.div>
             ))}
           </div>

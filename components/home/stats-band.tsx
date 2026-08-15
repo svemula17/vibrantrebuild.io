@@ -14,13 +14,15 @@ export function StatsBand() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle at 15% 40%, rgba(255,255,255,0.10) 0%, transparent 45%), radial-gradient(circle at 90% 85%, rgba(60,10,0,0.25) 0%, transparent 55%)"
+            /* Bottom-right wash strengthened: at 0.25 the light stop still left
+               white/85 at ~4.3:1, just under the 4.5 AA floor. */
+            "radial-gradient(circle at 15% 40%, rgba(255,255,255,0.08) 0%, transparent 45%), radial-gradient(ellipse at 95% 90%, rgba(90,25,4,0.42) 0%, transparent 60%)"
         }}
       />
 
       <div className="container relative py-20 md:py-28">
         <Reveal className="max-w-3xl">
-          <p className="text-eyebrow uppercase text-white/85">By the numbers</p>
+          <p className="text-eyebrow uppercase text-white/90">By the numbers</p>
           {/* The client-mandated tagline lives here (single source: siteSettings.tagline) */}
           <h2 className="mt-3 text-white">{siteSettings.tagline}</h2>
         </Reveal>
@@ -33,7 +35,7 @@ export function StatsBand() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-8%" }}
               transition={{ duration: 0.35, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
-              className="border-l-2 border-brand-600 pl-5"
+              className="border-l-2 border-white/45 pl-5"
             >
               {s.highlight ? (
                 <>
@@ -41,8 +43,8 @@ export function StatsBand() {
                   <div className="text-6xl md:text-7xl font-bold tracking-tight text-white">
                     <AnimatedCounter value={s.value} suffix={s.suffix} />
                   </div>
-                  <p className="mt-2 text-sm text-white/85">{s.label}</p>
-                  <span className="mt-3 inline-flex items-center gap-2 rounded-full border border-brand-400/45 bg-brand-600/15 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-brand-400">
+                  <p className="mt-2 text-sm text-white/90">{s.label}</p>
+                  <span className="mt-3 inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/15 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-white">
                     Est. 2000 · Celebrating 27+ Years
                   </span>
                 </>
@@ -51,7 +53,7 @@ export function StatsBand() {
                   <div className="text-5xl font-semibold tracking-tight text-white">
                     <AnimatedCounter value={s.value} suffix={s.suffix} />
                   </div>
-                  <p className="mt-2 text-sm text-white/85">{s.label}</p>
+                  <p className="mt-2 text-sm text-white/90">{s.label}</p>
                 </>
               )}
             </motion.div>
