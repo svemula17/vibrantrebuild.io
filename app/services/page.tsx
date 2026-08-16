@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { PageHero } from "@/components/page-hero";
 import { serviceCards } from "@/content/site-content";
+import { CapabilityFlow, type FlowStage } from "@/components/capability-flow";
+import { Reveal } from "@/components/reveal";
 import { VibrantMethod } from "@/components/vibrant-method";
 import { ClientLogos } from "@/components/home/client-logos";
 import { pageMeta } from "@/lib/seo";
@@ -24,10 +26,36 @@ const ORDER = [
   "managed-it"
 ];
 
+/* The same seven, read as a sequence rather than a list: what you run, what
+   you modernize, what you get out of it. Managed IT sits under all three. */
+const FLOW = [
+  { label: "Run the core", slugs: ["erp-optimization", "sap-solutions"] },
+  { label: "Modernize the platform", slugs: ["cloud-modernization", "cybersecurity"] },
+  { label: "Get the value out", slugs: ["data-analytics", "ai-readiness"] }
+];
+const RAIL_SLUG = "managed-it";
+
 export default function ServicesPage() {
   const services = ORDER.map((slug) => serviceCards.find((s) => s.slug === slug)).filter(
     (s): s is NonNullable<typeof s> => Boolean(s)
   );
+  const bySlug = new Map(services.map((s) => [s.slug, s]));
+
+  const stages: FlowStage[] = FLOW.map((stage) => ({
+    label: stage.label,
+    nodes: stage.slugs.flatMap((slug) => {
+      const service = bySlug.get(slug);
+      return service ? [{ slug, title: service.title, iconPath: service.iconPath }] : [];
+    })
+  }));
+
+  const railService = bySlug.get(RAIL_SLUG);
+  const rail = railService && {
+    slug: RAIL_SLUG,
+    index: String(ORDER.indexOf(RAIL_SLUG) + 1).padStart(2, "0"),
+    title: railService.title,
+    description: "And we run all of it, 24×7."
+  };
 
   return (
     <>
@@ -37,6 +65,21 @@ export default function ServicesPage() {
         description="Everything we do, on one page. Each service is delivered by senior practitioners who own the outcome from first blueprint to steady state."
         crumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
       />
+
+      {/* The catalogue as a pipeline, before the catalogue itself. !py-14 is
+          tighter than .section and has to out-rank the "first band after a
+          hero" rule in globals.css, which otherwise wins on specificity. */}
+      {rail && (
+        <section className="section !py-14">
+          <div className="container">
+            <Reveal>
+              <p className="eyebrow">The map</p>
+              <h2 className="mt-3 text-2xl md:text-3xl">Start anywhere. We stay accountable across.</h2>
+            </Reveal>
+            <CapabilityFlow stages={stages} rail={rail} className="mt-9" />
+          </div>
+        </section>
+      )}
 
       {/* All services, listed in full */}
       <section className="section">

@@ -143,6 +143,141 @@
   }
 }
 
+/* ─── Capability flow ─────────────────────────────────────────────────────
+   The service catalogue drawn as a three-stage pipeline, with a rail beneath
+   for the service that spans all three. Animation-heavy, so the brand and
+   neutral tokens are spelled out rather than @apply'd. <CapabilityFlow> adds
+   .is-armed on mount (motion permitting) and .is-in on scroll-in, so with no
+   JS the flow renders in its resting state. .fw-map is the compact variant,
+   used where a full catalogue follows below it. */
+.fw-flow { display: grid; grid-template-columns: 1fr 56px 1fr 56px 1fr; align-items: stretch; }
+.fw-stage { display: flex; flex-direction: column; gap: 14px; }
+.fw-head {
+  display: flex; align-items: baseline; gap: 10px;
+  padding-bottom: 12px; margin-bottom: 6px; border-bottom: 2px solid rgba(200, 64, 26, 0.25);
+}
+.fw-num { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: #C8401A; }
+.fw-stage-label {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #57534E;
+}
+
+.fw-node {
+  position: relative; display: flex; flex: 1; flex-direction: column; padding: 22px;
+  background: #FFFFFF; border: 1px solid #E7E3DE; border-radius: 1rem; text-decoration: none;
+  box-shadow: 0 1px 2px rgba(26, 21, 18, 0.05), 0 8px 24px rgba(26, 21, 18, 0.06);
+  transition: transform 0.3s var(--ease-brand), box-shadow 0.3s, border-color 0.3s;
+}
+.fw-node:hover {
+  transform: translateY(-5px); border-color: rgba(200, 64, 26, 0.4);
+  box-shadow: 0 4px 12px rgba(26, 21, 18, 0.07), 0 20px 44px rgba(26, 21, 18, 0.1);
+}
+.fw-ico {
+  display: grid; place-items: center; width: 42px; height: 42px; border-radius: 0.75rem;
+  background: rgba(200, 64, 26, 0.1); color: #A33315; transition: background 0.3s, color 0.3s;
+}
+.fw-node:hover .fw-ico { background: #C8401A; color: #FFFFFF; }
+.fw-t {
+  margin: 16px 0 0; font-size: 1.0625rem; line-height: 1.3;
+  font-weight: 600; letter-spacing: -0.01em; color: #1A1512;
+}
+
+/* Dashed connector between stages */
+.fw-link { position: relative; align-self: center; display: flex; height: 56px; align-items: center; justify-content: center; }
+.fw-dash {
+  position: absolute; left: -2px; right: 12px; height: 2px; opacity: 0.28;
+  background-image: linear-gradient(90deg, #C8401A 0 7px, transparent 7px 14px);
+  background-size: 14px 2px;
+  transform-origin: left center; transition: transform 0.7s var(--ease-brand) 0.5s;
+}
+.fw-tip {
+  position: absolute; right: 6px; width: 8px; height: 8px;
+  border-top: 2px solid #C8401A; border-right: 2px solid #C8401A;
+  transform: rotate(45deg); opacity: 0.5; transition: transform 0.4s var(--ease-brand) 1s;
+}
+
+/* The one service that runs underneath every stage */
+.fw-rail { margin-top: 18px; }
+.fw-railcard {
+  position: relative; overflow: hidden; display: flex; align-items: center; gap: 22px; padding: 22px 26px;
+  border: 1px solid rgba(200, 64, 26, 0.25); border-radius: 1rem; text-decoration: none;
+  background: linear-gradient(135deg, rgba(200, 64, 26, 0.07), rgba(224, 90, 31, 0.03));
+  transition: border-color 0.3s, background 0.3s;
+}
+.fw-railcard:hover {
+  border-color: rgba(200, 64, 26, 0.5);
+  background: linear-gradient(135deg, rgba(200, 64, 26, 0.12), rgba(224, 90, 31, 0.05));
+}
+.fw-railcard::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(100deg, transparent 42%, rgba(255, 255, 255, 0.5) 50%, transparent 58%);
+  transform: translateX(-100%); animation: fw-shimmer 7s ease-in-out 1.6s infinite;
+}
+@keyframes fw-shimmer { 0%, 55% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+.fw-railnum { flex: none; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: #C8401A; }
+.fw-railbody { display: flex; min-width: 0; flex: 1; flex-direction: column; gap: 4px; }
+.fw-railtitle {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-size: 1.0625rem; font-weight: 600; letter-spacing: -0.01em; color: #1A1512;
+}
+.fw-pulse {
+  width: 7px; height: 7px; border-radius: 999px; background: #C8401A;
+  box-shadow: 0 0 0 0 rgba(200, 64, 26, 0.6); animation: fw-pulse 2.4s ease-out infinite;
+}
+@keyframes fw-pulse {
+  70%  { box-shadow: 0 0 0 8px rgba(200, 64, 26, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(200, 64, 26, 0); }
+}
+.fw-raildesc { font-size: 0.8125rem; line-height: 1.55; color: #57534E; }
+
+/* Draw-on, staggered stage by stage */
+.fw.is-armed .fw-node,
+.fw.is-armed .fw-rail { opacity: 0; transform: translateY(14px); }
+.fw.is-armed.is-in .fw-node {
+  animation: fw-pop 0.6s var(--ease-brand) forwards;
+  animation-delay: calc(var(--d) * 0.09s + 0.15s);
+}
+.fw.is-armed.is-in .fw-rail { animation: fw-pop 0.6s var(--ease-brand) 0.78s forwards; }
+@keyframes fw-pop { to { opacity: 1; transform: none; } }
+.fw.is-armed .fw-dash { transform: scaleX(0); }
+.fw.is-armed.is-in .fw-dash { transform: scaleX(1); animation: fw-move 1.05s linear 0.9s infinite; }
+@keyframes fw-move { to { background-position: 14px 0; } }
+.fw.is-armed .fw-tip { transform: rotate(45deg) scale(0); }
+.fw.is-armed.is-in .fw-tip { transform: rotate(45deg) scale(1); }
+
+/* Compact variant: icon and title on one row, catalogue carries the detail */
+.fw-map .fw-node { flex-direction: row; align-items: center; gap: 14px; padding: 15px 18px; }
+.fw-map .fw-ico { flex: none; width: 34px; height: 34px; border-radius: 0.6rem; }
+.fw-map .fw-t { margin: 0; font-size: 0.9375rem; }
+.fw-map .fw-link { height: 40px; }
+.fw-map .fw-railcard { padding: 16px 20px; }
+
+/* Below lg the pipeline stacks and the connectors turn vertical */
+@media (max-width: 1023px) {
+  .fw-flow { grid-template-columns: 1fr; gap: 0; }
+  .fw-link { height: 44px; width: 100%; }
+  .fw-map .fw-link { height: 32px; }
+  .fw-dash {
+    left: 50%; right: auto; top: 0; bottom: 10px; width: 2px; height: auto;
+    background-image: linear-gradient(180deg, #C8401A 0 7px, transparent 7px 14px);
+    background-size: 2px 14px; transform-origin: top center;
+  }
+  .fw.is-armed .fw-dash { transform: scaleY(0); }
+  .fw.is-armed.is-in .fw-dash { transform: scaleY(1); animation: fw-move-v 1.05s linear 0.9s infinite; }
+  @keyframes fw-move-v { to { background-position: 0 14px; } }
+  .fw-tip { right: auto; left: calc(50% - 5px); top: auto; bottom: 2px; transform: rotate(135deg); }
+  .fw.is-armed .fw-tip { transform: rotate(135deg) scale(0); }
+  .fw.is-armed.is-in .fw-tip { transform: rotate(135deg) scale(1); }
+  .fw-railcard { flex-wrap: wrap; gap: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fw.is-armed .fw-node,
+  .fw.is-armed .fw-rail { opacity: 1; transform: none; animation: none; }
+  .fw.is-armed .fw-dash { transform: none; }
+  .fw.is-armed .fw-tip { transform: rotate(45deg); }
+  .fw-railcard::after, .fw-pulse { animation: none; }
+}
+
 /* ─── Touch devices: guarantee comfortable hit areas ─────────────────────── */
 @media (pointer: coarse) {
   .chip { @apply py-2; }
