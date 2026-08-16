@@ -26,14 +26,17 @@ export function CaseStudyCard({ cs }: { cs: CaseStudy }) {
         <span className="text-sm text-muted">{cs.metricLabel}</span>
       </div>
 
-      <p className="mt-3 text-sm text-muted leading-relaxed italic">
+      {/* Labelled, so the quote reads as the client's problem rather than ours */}
+      <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.16em] text-muted">Situation</p>
+      <p className="mt-1.5 text-sm text-muted leading-relaxed italic">
         &ldquo;{cs.challenge}&rdquo;
       </p>
-      <p className="mt-4 text-sm font-medium text-navy-700 leading-relaxed flex-1">
+      <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.16em] text-muted">What we did</p>
+      <p className="mt-1.5 text-sm font-medium text-navy-700 leading-relaxed flex-1">
         {cs.result}
       </p>
 
-      <div className="mt-6 pt-5 border-t border-line flex items-center justify-between">
+      <div className="mt-5 pt-5 border-t border-line flex items-center justify-between">
         <span className="text-xs font-semibold uppercase tracking-wide text-brand-700">
           {cs.service}
         </span>

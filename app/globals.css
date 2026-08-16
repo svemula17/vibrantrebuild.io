@@ -119,9 +119,9 @@
   .icon-tile svg { @apply h-4 w-4; }
 
   /* ─── hero height — svh avoids the mobile URL-bar jump ───────────────── */
-  .hero-min-h { min-height: min(100vh, 720px); }
+  .hero-min-h { min-height: min(100vh, 700px); }
   @supports (height: 100svh) {
-    .hero-min-h { min-height: min(100svh, 720px); }
+    .hero-min-h { min-height: min(100svh, 700px); }
   }
 }
 
@@ -141,6 +141,135 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+}
+
+/* ─── Home hero: copy panel left, photograph right ────────────────────────
+   The photo is absolutely positioned across the whole section; the opaque
+   left panel sits on top of it, with a soft gradient at the seam. The panel's
+   gutter tracks the .container gutter at every breakpoint, so the headline
+   lines up with the sections below it. */
+.vh-left {
+  --gL: 20px;
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column; justify-content: center;
+  min-height: inherit; padding: 80px var(--gL);
+  background: #FAF9F7;
+}
+@media (min-width: 640px)  { .vh-left { --gL: calc((100vw - 640px) / 2 + 20px); } }
+@media (min-width: 768px)  { .vh-left { --gL: calc((100vw - 768px) / 2 + 32px); } }
+@media (min-width: 1024px) { .vh-left { --gL: calc((100vw - 1024px) / 2 + 48px); } }
+@media (min-width: 1200px) { .vh-left { --gL: calc((100vw - 1200px) / 2 + 48px); } }
+@media (min-width: 1280px) { .vh-left { --gL: calc((100vw - 1280px) / 2 + 48px); } }
+
+@media (min-width: 900px) {
+  .vh-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 46%); align-items: stretch; }
+  .vh-left { padding-right: 48px; }
+  .vh-left::after {
+    content: ""; position: absolute; top: 0; bottom: 0; left: 100%; width: 110px; pointer-events: none;
+    background: linear-gradient(to right, #FAF9F7 0%, rgba(250, 249, 247, 0.55) 45%, rgba(250, 249, 247, 0) 100%);
+  }
+  .vh-hero .vh-photo { position: absolute; inset: 0; z-index: 1; overflow: hidden; }
+  .vh-hero .vh-photo img { max-height: none; }
+}
+
+.vh-copy { position: relative; z-index: 1; max-width: 36rem; }
+.vh-copy h1 { max-width: 16ch; }
+.vh-copy > p { max-width: 46ch; }
+
+/* Ruled backdrop, drifting glow and signal traces behind the copy */
+.vh-bg {
+  position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
+  opacity: 0; animation: vh-in 0.9s var(--ease-brand) 0.35s forwards;
+}
+.vh-bg::before {
+  content: ""; position: absolute; inset: -2px;
+  background-image:
+    linear-gradient(rgba(26, 21, 18, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 21, 18, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(130% 105% at 6% 46%, #000 30%, rgba(0, 0, 0, 0.35) 62%, transparent 88%);
+  mask-image: radial-gradient(130% 105% at 6% 46%, #000 30%, rgba(0, 0, 0, 0.35) 62%, transparent 88%);
+}
+.vh-glow {
+  position: absolute; top: -16%; left: -14%; width: 56%; aspect-ratio: 1; border-radius: 999px;
+  background: radial-gradient(circle, rgba(224, 90, 31, 0.16) 0%, rgba(224, 90, 31, 0.06) 45%, transparent 70%);
+  filter: blur(28px); animation: vh-drift 26s ease-in-out infinite alternate;
+}
+@keyframes vh-drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(16%, 12%, 0) scale(1.16); }
+}
+/* Traces are masked out of the band the copy occupies. The copy is centred in
+   the panel, so fixed stops do the same job the design's JS measurement did. */
+.vh-traces {
+  position: absolute; inset: 0; overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 18%, transparent 22%, transparent 78%, #000 82%, #000 100%);
+  mask-image: linear-gradient(to bottom, #000 0, #000 18%, transparent 22%, transparent 78%, #000 82%, #000 100%);
+}
+.vh-trace {
+  position: absolute; left: 0; height: 1px; width: 38%;
+  background: linear-gradient(90deg, transparent, rgba(200, 64, 26, 0.3), transparent);
+  transform: translateX(-110%); animation: vh-run 12s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+}
+.vh-t1 { top: 38px;    animation-duration: 11s; animation-delay: 1.2s; }
+.vh-t2 { top: 74px;    animation-duration: 15s; animation-delay: 3.4s; width: 26%; }
+.vh-t3 { bottom: 56px; animation-duration: 13s; animation-delay: 6.1s; width: 44%; }
+.vh-t4 { bottom: 22px; animation-duration: 17s; animation-delay: 8.8s; width: 30%; }
+@keyframes vh-run {
+  0%   { transform: translateX(-110%); opacity: 0; }
+  12%  { opacity: 1; }
+  68%  { opacity: 1; }
+  100% { transform: translateX(300%); opacity: 0; }
+}
+
+/* The photograph develops: grayscale and oversized, settling into colour */
+.vh-photo { position: relative; overflow: hidden; }
+.vh-photo img {
+  width: 100%; height: 100%; object-fit: cover; object-position: 44% center;
+  animation: vh-develop 3s var(--ease-brand) 0.15s forwards;
+}
+@keyframes vh-develop {
+  0%   { opacity: 0; filter: grayscale(1) contrast(1.06); transform: scale(1.1); }
+  40%  { opacity: 1; filter: grayscale(1) contrast(1.06); }
+  100% { opacity: 1; filter: grayscale(0) contrast(1); transform: scale(1); }
+}
+
+/* Entrance: rule draws, headline rises word by word, ticks check themselves */
+.vh-rule { height: 2px; width: 0; background: #C8401A; margin-top: 0.75rem; animation: vh-draw 0.8s var(--ease-brand) 0.24s forwards; }
+@keyframes vh-draw { to { width: 84px; } }
+.vh-1, .vh-3, .vh-4 { opacity: 0; transform: translateY(16px); animation: vh-in 0.7s var(--ease-brand) forwards; }
+.vh-1 { animation-delay: 0.05s; }
+.vh-3 { animation-delay: 0.72s; }
+.vh-4 { animation-delay: 0.86s; }
+@keyframes vh-in { to { opacity: 1; transform: none; } }
+.vh-word { display: inline-block; overflow: hidden; vertical-align: bottom; }
+.vh-word > span { display: inline-block; transform: translateY(110%); animation: vh-rise 0.82s var(--ease-brand) forwards; }
+@keyframes vh-rise { to { transform: none; } }
+.vh-ticks > li { opacity: 0; animation: vh-in 0.5s var(--ease-brand) forwards; }
+.vh-ticks > li:nth-child(1) { animation-delay: 1.02s; }
+.vh-ticks > li:nth-child(2) { animation-delay: 1.14s; }
+.vh-ticks > li:nth-child(3) { animation-delay: 1.26s; }
+.vh-ticks polyline { stroke-dasharray: 30; stroke-dashoffset: 30; animation: vh-draw2 0.42s var(--ease-brand) forwards; }
+.vh-ticks > li:nth-child(1) polyline { animation-delay: 1.14s; }
+.vh-ticks > li:nth-child(2) polyline { animation-delay: 1.26s; }
+.vh-ticks > li:nth-child(3) polyline { animation-delay: 1.38s; }
+@keyframes vh-draw2 { to { stroke-dashoffset: 0; } }
+
+@media (max-width: 899px) {
+  .vh-hero { min-height: 0; }
+  .vh-copy { max-width: 100%; }
+  .vh-photo { height: 280px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vh-1, .vh-3, .vh-4, .vh-ticks > li { opacity: 1; transform: none; animation: none; }
+  .vh-rule { width: 84px; animation: none; }
+  .vh-word > span { transform: none; animation: none; }
+  .vh-photo img { filter: none; transform: none; opacity: 1; animation: none; }
+  .vh-bg { opacity: 1; animation: none; }
+  .vh-glow { animation: none; }
+  .vh-trace { animation: none; opacity: 0; }
+  .vh-ticks polyline { stroke-dashoffset: 0; animation: none; }
 }
 
 /* ─── Capability flow ─────────────────────────────────────────────────────
@@ -180,6 +309,12 @@
   margin: 16px 0 0; font-size: 1.0625rem; line-height: 1.3;
   font-weight: 600; letter-spacing: -0.01em; color: #1A1512;
 }
+.fw-d { margin: 8px 0 0; flex: 1; font-size: 0.8125rem; line-height: 1.55; color: #57534E; }
+.fw-more {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 16px;
+  font-size: 0.8125rem; font-weight: 600; color: #A33315; transition: gap 0.3s;
+}
+.fw-node:hover .fw-more { gap: 11px; }
 
 /* Dashed connector between stages */
 .fw-link { position: relative; align-self: center; display: flex; height: 56px; align-items: center; justify-content: center; }
@@ -228,6 +363,7 @@
   100% { box-shadow: 0 0 0 0 rgba(200, 64, 26, 0); }
 }
 .fw-raildesc { font-size: 0.8125rem; line-height: 1.55; color: #57534E; }
+.fw-railmore { flex: none; margin-top: 0; }
 
 /* Draw-on, staggered stage by stage */
 .fw.is-armed .fw-node,
@@ -254,6 +390,7 @@
 /* Below lg the pipeline stacks and the connectors turn vertical */
 @media (max-width: 1023px) {
   .fw-flow { grid-template-columns: 1fr; gap: 0; }
+  .fw-stage { gap: 12px; }
   .fw-link { height: 44px; width: 100%; }
   .fw-map .fw-link { height: 32px; }
   .fw-dash {
@@ -276,6 +413,97 @@
   .fw.is-armed .fw-dash { transform: none; }
   .fw.is-armed .fw-tip { transform: rotate(45deg); }
   .fw-railcard::after, .fw-pulse { animation: none; }
+}
+
+/* ─── Years rail ──────────────────────────────────────────────────────────
+   The company's age as a drawn timeline. <YearsRail> arms it and counts the
+   readout up as it scrolls in. */
+.ab-rail { margin-top: 30px; margin-bottom: 22px; max-width: 34rem; }
+.ab-readout { display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px; }
+.ab-count {
+  font-size: 2rem; line-height: 1; font-weight: 700; letter-spacing: -0.03em;
+  color: #1A1512; font-variant-numeric: tabular-nums;
+}
+.ab-unit { font-size: 0.8125rem; color: #57534E; }
+.ab-track { position: relative; height: 2px; border-radius: 2px; background: #E7E3DE; }
+.ab-fill {
+  position: absolute; left: 0; top: 0; bottom: 0; width: 100%; border-radius: 2px;
+  background: linear-gradient(90deg, #A33315, #C8401A 55%, #E05A1F); transform-origin: left center;
+}
+.ab-knob {
+  position: absolute; top: 50%; left: 100%; width: 11px; height: 11px; margin: -5.5px 0 0 -5.5px;
+  border-radius: 999px; background: #C8401A; box-shadow: 0 0 0 3px #FFFFFF, 0 0 0 4px rgba(200, 64, 26, 0.28);
+}
+.ab-tick { position: absolute; top: -4px; width: 1px; height: 10px; background: #D6D0C9; }
+.ab-tick.is-major { background: #A8A198; }
+.ab-tick i {
+  position: absolute; top: 14px; left: 0; transform: translateX(-50%);
+  font-style: normal; font-size: 11px; color: #78716C; white-space: nowrap;
+}
+/* End labels tuck inside the track instead of centring past its edge */
+.ab-tick.is-first i { transform: none; }
+.ab-tick.is-last i { transform: translateX(-100%); }
+.ab-rail.is-armed .ab-fill { transform: scaleX(0); }
+.ab-rail.is-armed .ab-knob,
+.ab-rail.is-armed .ab-tick { opacity: 0; }
+.ab-rail.is-armed.is-in .ab-fill { transform: scaleX(1); transition: transform 1.9s var(--ease-brand); }
+.ab-rail.is-armed.is-in .ab-knob { opacity: 1; animation: ab-knob 1.9s var(--ease-brand) forwards; }
+@keyframes ab-knob { 0% { left: 0; } 100% { left: 100%; } }
+.ab-rail.is-armed.is-in .ab-tick { animation: ab-tick 0.4s ease-out forwards; animation-delay: calc(0.2s + var(--t) * 0.35s); }
+@keyframes ab-tick { to { opacity: 1; } }
+.ab-medal img { animation: ab-float 7s ease-in-out infinite; will-change: transform; }
+@keyframes ab-float {
+  0%, 100% { transform: translateY(0) rotate(-0.4deg); }
+  50%      { transform: translateY(-9px) rotate(0.4deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ab-rail.is-armed .ab-fill { transform: scaleX(1); }
+  .ab-rail.is-armed .ab-knob,
+  .ab-rail.is-armed .ab-tick { opacity: 1; }
+  .ab-medal img { animation: none; }
+}
+
+/* ─── AI Shield band ──────────────────────────────────────────────────────
+   The four capability tiles run as a detect → respond pipeline, one lit at a
+   time, with a sweep across the band behind them. */
+.ais-scan { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.ais-scan::before {
+  content: ""; position: absolute; top: -30%; bottom: -30%; width: 36%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: translateX(-140%) skewX(-12deg); animation: ais-sweep 9s ease-in-out infinite;
+}
+@keyframes ais-sweep {
+  0%, 55% { transform: translateX(-140%) skewX(-12deg); }
+  100%    { transform: translateX(340%) skewX(-12deg); }
+}
+.ais-live {
+  flex: none; width: 7px; height: 7px; border-radius: 999px; background: #7CE0A0;
+  box-shadow: 0 0 0 0 rgba(124, 224, 160, 0.75); animation: ais-pulse 2.2s ease-out infinite;
+}
+@keyframes ais-pulse {
+  70%  { box-shadow: 0 0 0 8px rgba(124, 224, 160, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(124, 224, 160, 0); }
+}
+.ais-cards .card-dark { position: relative; overflow: hidden; }
+.ais-cards .card-dark::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+  background: linear-gradient(90deg, #F5A623, #FFFFFF);
+  transform: scaleX(0); transform-origin: left center; opacity: 0;
+}
+.ais-cards .card-dark.is-live { background: rgba(255, 255, 255, 0.16); border-color: rgba(255, 255, 255, 0.45); }
+.ais-cards .card-dark.is-live::after { opacity: 1; animation: ais-bar 2.2s linear forwards; }
+@keyframes ais-bar { 0% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
+.ais-cards .card-dark > span:first-child { transition: background 0.35s, color 0.35s; }
+.ais-cards .card-dark.is-live > span:first-child { background: #FFFFFF; color: #A33315; }
+.ais-stage {
+  position: absolute; top: 14px; right: 16px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55); opacity: 0; transition: opacity 0.3s;
+}
+.ais-cards .card-dark.is-live .ais-stage { opacity: 1; color: #F5A623; }
+@media (prefers-reduced-motion: reduce) {
+  .ais-scan::before, .ais-live { animation: none; }
+  .ais-cards .card-dark.is-live::after { animation: none; transform: scaleX(1); }
 }
 
 /* ─── Touch devices: guarantee comfortable hit areas ─────────────────────── */

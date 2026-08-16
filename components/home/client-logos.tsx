@@ -22,6 +22,7 @@ import tenthRev  from "@/clients/tenth-revolution.png";
 import teksys    from "@/clients/teksystems.svg";
 import cec       from "@/clients/cec-experts.jpg";
 import vaco      from "@/clients/vaco.svg";
+import nmsdc     from "@/assets/badges/nmsdc-badge.png";
 
 type ClientLogo = {
   name: string;
@@ -71,15 +72,64 @@ function LogoItem({ logo }: { logo: ClientLogo }) {
   );
 }
 
-export function ClientLogos({ tinted = false }: { tinted?: boolean } = {}) {
+/* Homepage-only row above the marquee: the four things a buyer checks before
+   they read anything else. */
+const credentials = [
+  { title: "Oracle & Microsoft Partner", note: "SAP and Oracle certified practice" },
+  { title: "E-Verify Partner", note: "Princeton, NJ · Hyderabad, IN" },
+  { title: "26+ years, one owner", note: "Founder-led since 2000" }
+];
+
+export function ClientLogos({
+  tinted = false,
+  credentials: showCredentials = false
+}: { tinted?: boolean; credentials?: boolean } = {}) {
   const bg = tinted ? "#FDF6F2" : "#ffffff";
   return (
     <section className="border-y border-line overflow-hidden" style={{ backgroundColor: bg }}>
       {/* Sits directly under the hero, one quiet qualifier line, no heading block */}
-      <div className="container pt-8 pb-5">
+      <div className={showCredentials ? "container pt-10 pb-5" : "container pt-8 pb-5"}>
         <Reveal>
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-muted">
-            Trusted by companies across North America since 2000
+          {showCredentials && (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 items-start">
+              <div className="flex items-start gap-3">
+                <Image
+                  src={nmsdc}
+                  alt="NMSDC Certified Minority Business Enterprise"
+                  width={120}
+                  height={60}
+                  className="h-10 w-auto object-contain shrink-0"
+                />
+                <span className="flex flex-col">
+                  <span className="text-sm font-semibold text-navy-700">NMSDC Certified MBE</span>
+                  <span className="text-xs text-muted leading-snug">
+                    Counts toward supplier-diversity spend
+                  </span>
+                </span>
+              </div>
+              {credentials.map((c, i) => (
+                <div
+                  key={c.title}
+                  className={
+                    i === 1
+                      ? "flex flex-col lg:border-l lg:border-line lg:pl-6"
+                      : "flex flex-col sm:border-l sm:border-line sm:pl-6"
+                  }
+                >
+                  <span className="text-sm font-semibold text-navy-700">{c.title}</span>
+                  <span className="text-xs text-muted leading-snug">{c.note}</span>
+                </div>
+              ))}
+            </div>
+          )}
+          <p
+            className={`text-center text-xs font-semibold uppercase tracking-[0.18em] text-muted${
+              showCredentials ? " mt-9" : ""
+            }`}
+          >
+            {showCredentials
+              ? "A selection of the clients and delivery partners we've served since 2000"
+              : "Trusted by companies across North America since 2000"}
           </p>
         </Reveal>
       </div>

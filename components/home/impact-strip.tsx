@@ -4,16 +4,16 @@ import { Reveal } from "@/components/reveal";
 /* Slim one-row divider band, the full impact story lives on /social-responsibility */
 export function ImpactStrip() {
   return (
-    <section className="border-y border-neutral-200 bg-neutral-50">
+    <section className="border-y border-neutral-200 bg-white">
       <div className="container">
         <Reveal className="flex flex-col gap-3 py-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-col md:flex-row md:items-baseline gap-x-3 gap-y-1">
             <h2 className="text-lg md:text-xl font-semibold text-navy-700 whitespace-nowrap">
               Good business. Better world.
             </h2>
+            {/* The MBE certification now leads the credential row up top */}
             <p className="text-sm text-muted">
-              NMSDC Certified MBE · community volunteering · mentoring the next
-              generation of technologists.
+              Community volunteering and mentoring the next generation of technologists.
             </p>
           </div>
           <Link

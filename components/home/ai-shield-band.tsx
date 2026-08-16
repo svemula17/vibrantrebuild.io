@@ -1,8 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Reveal } from "@/components/reveal";
+
+/* The four tiles read as one pipeline rather than four equal features, so they
+   light in sequence while the band is on screen. */
+const STAGES = ["Detect", "Analyze", "Respond", "Predict"];
+const DWELL = 2200;
 
 const features = [
   {
@@ -28,8 +34,38 @@ const features = [
 ];
 
 export function AiShieldBand() {
+  const ref = useRef<HTMLElement>(null);
+  const [live, setLive] = useState(-1);
+
+  /* Only runs while the band is visible — an off-screen interval is just heat. */
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let timer: ReturnType<typeof setInterval> | null = null;
+    const io = new IntersectionObserver((entries) => {
+      const visible = entries[0]?.isIntersecting;
+      if (visible && timer === null) {
+        setLive((i) => (i + 1) % features.length);
+        timer = setInterval(() => setLive((i) => (i + 1) % features.length), DWELL);
+      } else if (!visible && timer !== null) {
+        clearInterval(timer);
+        timer = null;
+      }
+    });
+    io.observe(el);
+    return () => {
+      if (timer !== null) clearInterval(timer);
+      io.disconnect();
+    };
+  }, []);
+
   return (
-    <section className="relative overflow-hidden text-white bg-brand-gradient">
+    <section ref={ref} className="relative overflow-hidden text-white bg-brand-gradient">
+      {/* Slow sweep across the band, behind everything else */}
+      <div className="ais-scan" aria-hidden />
+
       {/* Brand radial glow, mirrors stats-band treatment */}
       <div
         aria-hidden
@@ -48,7 +84,10 @@ export function AiShieldBand() {
           {/* Left, copy */}
           <div>
             <Reveal>
-              <p className="text-eyebrow uppercase text-white/90">Featured platform</p>
+              <p className="text-eyebrow uppercase text-white/90 inline-flex items-center gap-2.5">
+                Featured platform
+                <span className="ais-live" aria-hidden />
+              </p>
               <h2 className="mt-3 text-white">
                 AI Shield™, security that thinks faster than attackers.
               </h2>
@@ -81,7 +120,7 @@ export function AiShieldBand() {
           </div>
 
           {/* Right, feature tiles */}
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid sm:grid-cols-2 gap-4 ais-cards">
             {features.map((f, i) => (
               <motion.div
                 key={f.title}
@@ -89,7 +128,9 @@ export function AiShieldBand() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-6%" }}
                 transition={{ duration: 0.35, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
-                className="group card-dark p-6 hover:bg-white/15 hover:border-white/40 transition-all"
+                className={`group card-dark p-6 hover:bg-white/15 hover:border-white/40 transition-all${
+                  live === i ? " is-live" : ""
+                }`}
               >
                 <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/15 text-white group-hover:bg-white group-hover:text-brand-700 transition-colors">
                   <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -98,6 +139,7 @@ export function AiShieldBand() {
                 </span>
                 <h3 className="mt-4 text-sm font-semibold text-white leading-snug">{f.title}</h3>
                 <p className="mt-2 text-sm text-white/90 leading-relaxed">{f.body}</p>
+                <span className="ais-stage" aria-hidden>{STAGES[i]}</span>
               </motion.div>
             ))}
           </div>

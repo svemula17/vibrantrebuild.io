@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { HeroSlider }   from "@/components/home/hero-slider";
+import { Hero }         from "@/components/home/hero";
 import { ClientLogos }  from "@/components/home/client-logos";
 import { AboutIntro }   from "@/components/home/about-intro";
-import { ServicesGrid } from "@/components/home/services-grid";
+import { Capabilities } from "@/components/home/capabilities";
 import { AiShieldBand } from "@/components/home/ai-shield-band";
 import { CaseStudies }  from "@/components/home/case-studies";
 import { StatsBand }    from "@/components/home/stats-band";
@@ -16,13 +16,13 @@ export const metadata: Metadata = { alternates: { canonical: "/" } };
 export default function HomePage() {
   return (
     <>
-      <HeroSlider />    {/* dark photo, service carousel + positioning H1 */}
-      <ClientLogos />   {/* white. 19-client marquee, immediate social proof */}
+      <Hero />          {/* split: ruled copy panel + team photograph */}
+      <ClientLogos credentials />  {/* white, credential row + 19-client marquee */}
       <AboutIntro />    {/* white, who Vibrant is, in one tight section */}
-      <ServicesGrid />  {/* cream, seven pillars, ERP first */}
+      <Capabilities />  {/* cream, the seven drawn as a pipeline, ERP first */}
       <AiShieldBand />  {/* dark navy, featured platform */}
-      <CaseStudies />   {/* cream, outcome stories */}
-      <StatsBand />     {/* dark navy, tagline + 26+ medallion + 200+ stat */}
+      <CaseStudies />   {/* white, outcome stories */}
+      <StatsBand />     {/* dark navy, 26 years + 200+ programs */}
       <ImpactStrip />   {/* slim cream strip, tech for good one-liner */}
       <CtaCallback />   {/* cream, final CTA + callback form */}
     </>

@@ -7,24 +7,43 @@ import { Fragment, useEffect, useRef, type CSSProperties } from "react";
    for the service that runs across all of them. Styles live in globals.css
    under "Capability flow".
 
+   Two variants. "full" carries a description and a Learn-more on each node,
+   for the homepage. "map" is the compact row used where the full catalogue
+   follows directly below it.
+
    The draw-on is armed here rather than in CSS so the flow renders in its
    resting state without JS, and so reduced-motion users never see the
    pre-animation state at all. */
 
-export type FlowNode = { slug: string; title: string; iconPath: string };
+export type FlowNode = { slug: string; title: string; iconPath: string; description: string };
 export type FlowStage = { label: string; nodes: FlowNode[] };
-export type FlowRail = { slug: string; index: string; title: string; description: string };
+export type FlowRail = {
+  slug: string;
+  index: string;
+  title: string;
+  description: string;
+  shortDescription: string;
+};
+
+const Arrow = () => (
+  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M5 12h14M13 5l7 7-7 7" />
+  </svg>
+);
 
 export function CapabilityFlow({
   stages,
   rail,
+  variant = "full",
   className
 }: {
   stages: FlowStage[];
   rail: FlowRail;
+  variant?: "full" | "map";
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const isMap = variant === "map";
 
   useEffect(() => {
     const el = ref.current;
@@ -48,9 +67,10 @@ export function CapabilityFlow({
 
   /* Stagger index runs across stages, not within one. */
   let order = 0;
+  const iconSize = isMap ? 18 : 20;
 
   return (
-    <div ref={ref} className={["fw fw-map", className].filter(Boolean).join(" ")}>
+    <div ref={ref} className={["fw", isMap ? "fw-map" : "", className].filter(Boolean).join(" ")}>
       <div className="fw-flow">
         {stages.map((stage, i) => (
           <Fragment key={stage.label}>
@@ -75,8 +95,8 @@ export function CapabilityFlow({
                   <span className="fw-ico">
                     <svg
                       viewBox="0 0 24 24"
-                      width="18"
-                      height="18"
+                      width={iconSize}
+                      height={iconSize}
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="1.6"
@@ -87,6 +107,15 @@ export function CapabilityFlow({
                     </svg>
                   </span>
                   <h3 className="fw-t">{node.title}</h3>
+                  {!isMap && (
+                    <>
+                      <p className="fw-d">{node.description}</p>
+                      <span className="fw-more">
+                        Learn more
+                        <Arrow />
+                      </span>
+                    </>
+                  )}
                 </Link>
               ))}
             </div>
@@ -102,8 +131,14 @@ export function CapabilityFlow({
               {rail.title}
               <span className="fw-pulse" aria-hidden="true" />
             </span>
-            <span className="fw-raildesc">{rail.description}</span>
+            <span className="fw-raildesc">{isMap ? rail.shortDescription : rail.description}</span>
           </span>
+          {!isMap && (
+            <span className="fw-more fw-railmore">
+              Learn more
+              <Arrow />
+            </span>
+          )}
         </Link>
       </div>
     </div>

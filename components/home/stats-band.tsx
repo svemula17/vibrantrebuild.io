@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Reveal } from "@/components/reveal";
 import { AnimatedCounter } from "@/components/animated-counter";
-import { stats, siteSettings } from "@/content/site-content";
+import { stats } from "@/content/site-content";
 
 export function StatsBand() {
   return (
@@ -23,8 +23,11 @@ export function StatsBand() {
       <div className="container relative py-20 md:py-28">
         <Reveal className="max-w-3xl">
           <p className="text-eyebrow uppercase text-white/90">By the numbers</p>
-          {/* The client-mandated tagline lives here (single source: siteSettings.tagline) */}
-          <h2 className="mt-3 text-white">{siteSettings.tagline}</h2>
+          {/* Says what the numbers below add up to. The company tagline still
+              carries the brand line in the footer and page metadata. */}
+          <h2 className="mt-3 text-white">
+            Twenty-six years, 200+ programs, and a client list that keeps coming back.
+          </h2>
         </Reveal>
 
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">

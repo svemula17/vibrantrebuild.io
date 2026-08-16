@@ -191,7 +191,7 @@ export function CallbackForm({ heading }: Props) {
           disabled={status === "submitting"}
           className="btn-primary disabled:opacity-60 w-full sm:w-auto"
         >
-          {status === "submitting" ? "Sending…" : "Book a Call"}
+          {status === "submitting" ? "Sending…" : "Book the 30-minute call"}
         </button>
       </div>
 

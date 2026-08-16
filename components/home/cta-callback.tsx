@@ -27,11 +27,20 @@ export function CtaCallback() {
         <div className="lg:sticky lg:top-28">
           <Reveal>
             <p className="eyebrow">Talk to Vibrant</p>
-            <h2 className="mt-3">Schedule a call with a senior advisor.</h2>
+            <h2 className="mt-3">Book a 30-minute call with a senior advisor.</h2>
             <p className="mt-5 text-muted leading-relaxed">
-              Tell us a little about your goals. ERP modernization, cloud transformation, analytics, or
-              managed support, and we&apos;ll set up a no-pressure call within one business day.
+              Thirty minutes with a senior advisor, not a sales rep. Tell us what you&apos;re
+              carrying, ERP modernization, cloud, analytics, or managed support, and we&apos;ll
+              come with a point of view.
             </p>
+            <p className="mt-6 text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+              What we cover
+            </p>
+            <ul className="svc-list mt-3">
+              <li>What&apos;s actually forcing the timeline, and what isn&apos;t</li>
+              <li>The sequence we&apos;d run, and what we&apos;d leave alone for now</li>
+              <li>Rough shape of cost, duration, and who would be on it</li>
+            </ul>
           </Reveal>
 
           <dl className="mt-8 space-y-4 text-sm">

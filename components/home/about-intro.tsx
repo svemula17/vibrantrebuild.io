@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/reveal";
-import { withBasePath, yearsInBusiness } from "@/content/site-content";
+import { YearsRail } from "@/components/home/years-rail";
+import { foundedYear, withBasePath, yearsInBusiness } from "@/content/site-content";
 import anniversary from "@/assets/anniversary.png";
 
 /* Compact homepage About section, the full story lives on /about */
@@ -22,6 +23,9 @@ export function AboutIntro() {
               blueprint to the first quiet month after go-live. Most of our work
               comes from clients who came back.
             </p>
+
+            <YearsRail foundedYear={foundedYear} currentYear={foundedYear + yearsInBusiness} />
+
             <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
               <Link
                 href="/about"
@@ -46,7 +50,7 @@ export function AboutIntro() {
           </Reveal>
         </div>
 
-        <Reveal delay={0.1} className="mx-auto lg:mx-0">
+        <Reveal delay={0.1} className="mx-auto lg:mx-0 ab-medal">
           <Image
             src={anniversary}
             alt={`Vibrant Inc. Celebrating ${yearsInBusiness} Years in Business`}

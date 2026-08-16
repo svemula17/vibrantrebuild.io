@@ -1004,6 +1004,75 @@ export function getServiceBySlug(slug: string) {
   return serviceCards.find((service) => service.slug === slug);
 }
 
+/* ─── Capability flow ──────────────────────────────────────────────────────
+   The same seven services read as a sequence rather than a list: what you run,
+   what you modernize, what you get out of it. Managed IT sits on a rail
+   underneath, because it spans all three. Shared by the homepage (full cards)
+   and the services index (compact map), so the two can't drift apart. */
+
+const capabilityStages: { label: string; nodes: { slug: string; description: string }[] }[] = [
+  {
+    label: "Run the core",
+    nodes: [
+      { slug: "erp-optimization", description: "SAP, JD Edwards and PeopleSoft, modernized without missing a beat." },
+      { slug: "sap-solutions", description: "S/4HANA, AMS, supply chain, BTP, Fiori and clean core under one roof." }
+    ]
+  },
+  {
+    label: "Modernize the platform",
+    nodes: [
+      { slug: "cloud-modernization", description: "Azure, AWS or GCP, moved incrementally, never rip-and-replace." },
+      { slug: "cybersecurity", description: "Zero-trust identity, 24×7 SOC, audit-ready SOC 2, HIPAA, PCI and CMMC." }
+    ]
+  },
+  {
+    label: "Get the value out",
+    nodes: [
+      { slug: "data-analytics", description: "Decision-grade reporting on Snowflake, Databricks, Power BI and Oracle BI." },
+      { slug: "ai-readiness", description: "We assess data, talent and infrastructure, then ship the use cases that move KPIs." }
+    ]
+  }
+];
+
+const capabilityRail = {
+  slug: "managed-it",
+  /* The compact map has the catalogue right below it, so it takes the short line */
+  shortDescription: "And we run all of it, 24×7.",
+  description:
+    "And we run all of it, 24×7. Always-on support across cloud, security, ERP and end-user computing."
+};
+
+export type CapabilityFlowNode = { slug: string; title: string; iconPath: string; description: string };
+export type CapabilityFlowStage = { label: string; nodes: CapabilityFlowNode[] };
+
+export function getCapabilityFlow() {
+  const resolve = (slug: string, description: string): CapabilityFlowNode[] => {
+    const service = getServiceBySlug(slug);
+    return service ? [{ slug, title: service.title, iconPath: service.iconPath, description }] : [];
+  };
+
+  const stages: CapabilityFlowStage[] = capabilityStages.map((stage) => ({
+    label: stage.label,
+    nodes: stage.nodes.flatMap((node) => resolve(node.slug, node.description))
+  }));
+
+  const railService = getServiceBySlug(capabilityRail.slug);
+  if (!railService) return { stages, rail: null };
+
+  const nodeCount = stages.reduce((total, stage) => total + stage.nodes.length, 0);
+  return {
+    stages,
+    rail: {
+      slug: capabilityRail.slug,
+      /* Numbered as the last of the seven, continuing the stage numbering */
+      index: String(nodeCount + 1).padStart(2, "0"),
+      title: railService.title,
+      description: capabilityRail.description,
+      shortDescription: capabilityRail.shortDescription
+    }
+  };
+}
+
 /* Maps service slugs to the matching interestOptions entry so service-page CTAs
    and the calculator can preselect the contact form via ?interest=. Values must
    match interestOptions exactly. */
