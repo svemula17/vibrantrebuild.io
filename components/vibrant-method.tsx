@@ -34,7 +34,7 @@ export function VibrantMethod() {
               {/* Watermark letter */}
               <span
                 aria-hidden
-                className="absolute -top-2 -right-1 text-7xl font-black leading-none select-none pointer-events-none text-brand-600/[0.06]"
+                className="absolute -top-2 -right-1 text-5xl sm:text-7xl font-black leading-none select-none pointer-events-none text-brand-600/[0.06]"
               >
                 {item.letter}
               </span>

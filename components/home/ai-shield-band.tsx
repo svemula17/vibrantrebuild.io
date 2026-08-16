@@ -61,9 +61,9 @@ export function AiShieldBand() {
 
             <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-white/90">
               <span>Threats contained in minutes</span>
-              <span className="text-white/60" aria-hidden="true">·</span>
+              <span className="hidden sm:inline text-white/60" aria-hidden="true">·</span>
               <span>Fewer false positives</span>
-              <span className="text-white/60" aria-hidden="true">·</span>
+              <span className="hidden sm:inline text-white/60" aria-hidden="true">·</span>
               <span>Audit-ready reporting</span>
             </div>
 

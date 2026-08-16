@@ -9,7 +9,7 @@ export function CaseStudyCard({ cs }: { cs: CaseStudy }) {
       {/* Watermark metric */}
       <span
         aria-hidden
-        className="absolute -top-3 -right-2 text-8xl font-black leading-none select-none pointer-events-none text-brand-600/[0.06]"
+        className="absolute -top-3 -right-2 text-6xl sm:text-8xl font-black leading-none select-none pointer-events-none text-brand-600/[0.06]"
       >
         {cs.metric}
       </span>

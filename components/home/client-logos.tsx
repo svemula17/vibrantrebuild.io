@@ -88,12 +88,12 @@ export function ClientLogos({ tinted = false }: { tinted?: boolean } = {}) {
       <Reveal delay={0.1} className="relative pb-8">
         <div
           aria-hidden
-          className="absolute inset-y-0 left-0 w-24 z-10 pointer-events-none"
+          className="absolute inset-y-0 left-0 w-10 sm:w-24 z-10 pointer-events-none"
           style={{ background: `linear-gradient(to right, ${bg}, transparent)` }}
         />
         <div
           aria-hidden
-          className="absolute inset-y-0 right-0 w-24 z-10 pointer-events-none"
+          className="absolute inset-y-0 right-0 w-10 sm:w-24 z-10 pointer-events-none"
           style={{ background: `linear-gradient(to left, ${bg}, transparent)` }}
         />
         <div className="flex w-max animate-marquee gap-6 px-6">
