@@ -92,26 +92,18 @@ export function ClientLogos({
         <Reveal>
           {showCredentials && (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 items-start">
-              {/* All four NMSDC credentials, not just base MBE. Stacked rather
-                  than inline so four badges fit the cell without shrinking. */}
-              <div className="flex flex-col gap-2">
-                <div className="flex items-center gap-2">
-                  {nmsdcBadges.map((b) => (
-                    <Image
-                      key={b.short}
-                      src={b.src}
-                      alt={b.alt}
-                      title={b.label}
-                      width={120}
-                      height={120}
-                      className="h-14 w-auto object-contain shrink-0"
-                    />
-                  ))}
-                </div>
+              <div className="flex items-start gap-3">
+                <Image
+                  src={nmsdcBadges[0].src}
+                  alt={nmsdcBadges[0].alt}
+                  width={120}
+                  height={120}
+                  className="h-11 w-auto object-contain shrink-0"
+                />
                 <span className="flex flex-col">
                   <span className="text-sm font-semibold text-navy-700">NMSDC Certified MBE</span>
                   <span className="text-xs text-muted leading-snug">
-                    Corporate Plus&#174; · MCC Growth · IFC Fund · counts toward supplier-diversity spend
+                    Counts toward supplier-diversity spend
                   </span>
                 </span>
               </div>
