@@ -104,7 +104,7 @@ export function ClientLogos({
                       title={b.label}
                       width={120}
                       height={120}
-                      className="h-11 w-auto object-contain shrink-0"
+                      className="h-14 w-auto object-contain shrink-0"
                     />
                   ))}
                 </div>
