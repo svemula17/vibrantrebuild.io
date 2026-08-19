@@ -179,7 +179,7 @@ export function Header() {
           </div>
         </div>
       )}
-      <div className="container flex h-14 md:h-16 lg:h-[72px] items-center justify-between gap-6">
+      <div className="container flex h-16 md:h-[76px] lg:h-[84px] items-center justify-between gap-6">
         <Link href="/" aria-label={`${siteSettings.brandName} home`}>
           <Image
             src={logoSrc}
@@ -187,7 +187,7 @@ export function Header() {
             width={240}
             height={203}
             priority
-            className="h-9 md:h-10 lg:h-12 w-auto object-contain"
+            className="h-11 md:h-12 lg:h-14 w-auto object-contain"
           />
         </Link>
 
