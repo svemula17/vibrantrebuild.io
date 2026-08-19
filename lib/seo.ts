@@ -14,7 +14,7 @@ const OG_IMAGE = {
   url: "/og-image.png",
   width: 1200,
   height: 630,
-  alt: `${siteSettings.brandName} — ${siteSettings.tagline}`
+  alt: `${siteSettings.brandName}. ${siteSettings.tagline}`
 };
 
 /* Next merges metadata SHALLOWLY per key: a child's openGraph replaces the
