@@ -22,7 +22,7 @@ import tenthRev  from "@/clients/tenth-revolution.png";
 import teksys    from "@/clients/teksystems.svg";
 import cec       from "@/clients/cec-experts.jpg";
 import vaco      from "@/clients/vaco.svg";
-import nmsdc     from "@/assets/badges/nmsdc-badge.png";
+import nmsdc     from "@/assets/badges/nmsdc-mbe.png";
 
 type ClientLogo = {
   name: string;

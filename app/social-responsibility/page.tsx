@@ -3,8 +3,19 @@ import { pageMeta } from "@/lib/seo";
 import Image from "next/image";
 import { PageHero } from "@/components/page-hero";
 import { siteSettings, socialResponsibilityCommitments } from "@/content/site-content";
-import nmsdcCert from "@/assets/badges/nmsdc-cert.jpg";
-import nmsdcBadge from "@/assets/badges/nmsdc-badge.png";
+import nmsdcMbe from "@/assets/badges/nmsdc-mbe.png";
+import nmsdcCorporatePlus from "@/assets/badges/nmsdc-corporate-plus.png";
+import nmsdcMccGrowth from "@/assets/badges/nmsdc-mcc-growth.png";
+import nmsdcIfcFund from "@/assets/badges/nmsdc-ifc-fund.png";
+
+/* NMSDC digital badges. These carry no year, unlike the retired scanned
+   certificate, so the section no longer goes stale on renewal. */
+const nmsdcBadges = [
+  { src: nmsdcMbe,            label: "Minority Business Enterprise", alt: "NMSDC Certified Minority Business Enterprise (MBE)" },
+  { src: nmsdcCorporatePlus,  label: "Corporate Plus\u00AE MBE",     alt: "NMSDC Certified Corporate Plus MBE" },
+  { src: nmsdcMccGrowth,      label: "MCC Growth Initiative",        alt: "NMSDC Certified MCC Growth Initiative" },
+  { src: nmsdcIfcFund,        label: "IFC Investment Fund",          alt: "NMSDC Certified IFC Investment Fund" }
+];
 
 export const metadata: Metadata = pageMeta({
   title: "Social Responsibility",
@@ -50,31 +61,26 @@ export default function SocialResponsibilityPage() {
               Vibrant Inc is certified by the National Minority Supplier Development Council (NMSDC) as a Minority Business Enterprise, supporting our clients&apos; supplier-diversity programs and reflecting how we&apos;ve always built our team.
             </p>
             <p className="mt-4 text-muted">
-              Our 2024 MBE certification confirms continued compliance with NMSDC standards and enables supplier-diversity procurement across enterprise and government clients.
+              Beyond the base MBE certification, Vibrant holds NMSDC&apos;s Corporate Plus&#174; designation, awarded to
+              MBEs with proven capacity to deliver national contracts, alongside the MCC Growth Initiative and IFC
+              Investment Fund credentials. Together they enable supplier-diversity procurement across enterprise and
+              government clients.
             </p>
           </div>
           <div className="card p-8">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
-              <div className="text-center">
-                <Image
-                  src={nmsdcBadge}
-                  alt="NMSDC Certified Minority Business Enterprise"
-                  width={160}
-                  height={160}
-                  className="mx-auto object-contain"
-                />
-                <p className="mt-3 text-xs font-medium text-muted">MBE Certified</p>
-              </div>
-              <div className="text-center">
-                <Image
-                  src={nmsdcCert}
-                  alt="NMSDC Certified MBE 2024"
-                  width={160}
-                  height={160}
-                  className="mx-auto object-contain"
-                />
-                <p className="mt-3 text-xs font-medium text-muted">2024 Certification</p>
-              </div>
+            <div className="grid grid-cols-2 gap-6 sm:gap-8">
+              {nmsdcBadges.map((b) => (
+                <div key={b.label} className="text-center">
+                  <Image
+                    src={b.src}
+                    alt={b.alt}
+                    width={160}
+                    height={160}
+                    className="mx-auto h-auto w-full max-w-[132px] object-contain"
+                  />
+                  <p className="mt-3 text-xs font-medium text-muted">{b.label}</p>
+                </div>
+              ))}
             </div>
             <div className="mt-6 border-t border-line pt-5 text-center">
               <h3 className="text-base font-semibold text-navy-700">National Minority Supplier Development Council</h3>
