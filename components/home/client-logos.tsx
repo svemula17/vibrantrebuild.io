@@ -22,7 +22,7 @@ import tenthRev  from "@/clients/tenth-revolution.png";
 import teksys    from "@/clients/teksystems.svg";
 import cec       from "@/clients/cec-experts.jpg";
 import vaco      from "@/clients/vaco.svg";
-import nmsdc     from "@/assets/badges/nmsdc-mbe.png";
+import { nmsdcBadges } from "@/content/nmsdc";
 
 type ClientLogo = {
   name: string;
@@ -92,18 +92,26 @@ export function ClientLogos({
         <Reveal>
           {showCredentials && (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 items-start">
-              <div className="flex items-start gap-3">
-                <Image
-                  src={nmsdc}
-                  alt="NMSDC Certified Minority Business Enterprise"
-                  width={120}
-                  height={60}
-                  className="h-10 w-auto object-contain shrink-0"
-                />
+              {/* All four NMSDC credentials, not just base MBE. Stacked rather
+                  than inline so four badges fit the cell without shrinking. */}
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2">
+                  {nmsdcBadges.map((b) => (
+                    <Image
+                      key={b.short}
+                      src={b.src}
+                      alt={b.alt}
+                      title={b.label}
+                      width={120}
+                      height={120}
+                      className="h-11 w-auto object-contain shrink-0"
+                    />
+                  ))}
+                </div>
                 <span className="flex flex-col">
                   <span className="text-sm font-semibold text-navy-700">NMSDC Certified MBE</span>
                   <span className="text-xs text-muted leading-snug">
-                    Counts toward supplier-diversity spend
+                    Corporate Plus&#174; · MCC Growth · IFC Fund · counts toward supplier-diversity spend
                   </span>
                 </span>
               </div>

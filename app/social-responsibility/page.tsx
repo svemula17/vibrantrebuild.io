@@ -3,18 +3,20 @@ import { pageMeta } from "@/lib/seo";
 import Image from "next/image";
 import { PageHero } from "@/components/page-hero";
 import { siteSettings, socialResponsibilityCommitments } from "@/content/site-content";
-import nmsdcMbe from "@/assets/badges/nmsdc-mbe.png";
-import nmsdcCorporatePlus from "@/assets/badges/nmsdc-corporate-plus.png";
-import nmsdcMccGrowth from "@/assets/badges/nmsdc-mcc-growth.png";
-import nmsdcIfcFund from "@/assets/badges/nmsdc-ifc-fund.png";
+import { nmsdcBadges } from "@/content/nmsdc";
+import boyScouts from "@/assets/community/boy-scouts.png";
+import girlScouts from "@/assets/community/girl-scouts.png";
+import rotary from "@/assets/community/rotary.png";
+import habitat from "@/assets/community/habitat-humanity.png";
 
-/* NMSDC digital badges. These carry no year, unlike the retired scanned
-   certificate, so the section no longer goes stale on renewal. */
-const nmsdcBadges = [
-  { src: nmsdcMbe,            label: "Minority Business Enterprise", alt: "NMSDC Certified Minority Business Enterprise (MBE)" },
-  { src: nmsdcCorporatePlus,  label: "Corporate Plus\u00AE MBE",     alt: "NMSDC Certified Corporate Plus MBE" },
-  { src: nmsdcMccGrowth,      label: "MCC Growth Initiative",        alt: "NMSDC Certified MCC Growth Initiative" },
-  { src: nmsdcIfcFund,        label: "IFC Investment Fund",          alt: "NMSDC Certified IFC Investment Fund" }
+/* Carried over from the WordPress site, where these sat in an untitled gallery
+   under Community Engagement. The Rotary involvement is already named in the
+   commitments above, so the row gives that copy something to point at. */
+const communityPartners = [
+  { src: boyScouts,  alt: "Boy Scouts of America" },
+  { src: girlScouts, alt: "Girl Scouts" },
+  { src: rotary,     alt: "Rotary" },
+  { src: habitat,    alt: "Habitat for Humanity" }
 ];
 
 export const metadata: Metadata = pageMeta({
@@ -86,6 +88,29 @@ export default function SocialResponsibilityPage() {
               <h3 className="text-base font-semibold text-navy-700">National Minority Supplier Development Council</h3>
               <p className="mt-1 text-sm text-muted">Vibrant Inc. Certified Minority Business Enterprise</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="max-w-2xl">
+            <p className="eyebrow">Where we show up</p>
+            <h2 className="mt-3">Organizations we support.</h2>
+            <p className="mt-4 text-muted">
+              Founder-led involvement and employee volunteering, sustained over years rather than
+              assembled for a report.
+            </p>
+          </div>
+          <div className="mt-8 flex flex-wrap justify-center gap-4 md:gap-6">
+            {communityPartners.map((o) => (
+              <div
+                key={o.alt}
+                className="flex items-center justify-center rounded-xl border border-line bg-white px-4 py-5 shadow-card transition-all hover:shadow-cardHover hover:border-sky/30 basis-[calc(50%-0.5rem)] md:basis-[calc(25%-1.125rem)]"
+              >
+                <Image src={o.src} alt={o.alt} height={56} className="h-14 w-auto object-contain" />
+              </div>
+            ))}
           </div>
         </div>
       </section>
