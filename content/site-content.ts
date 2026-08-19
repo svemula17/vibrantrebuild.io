@@ -54,7 +54,7 @@ export const siteSettings = {
   social: {
     facebook: "https://www.facebook.com/VibrantIncNJ/",
     twitter: "https://x.com/VibrantInc",
-    linkedin: "https://www.linkedin.com/company/11160088/"
+    linkedin: "https://www.linkedin.com/company/vibrantinc/"
   },
   /* Contact-form backend. Paste ONE key to activate that provider; leave both
      empty to fall back to FormSubmit.co (which needs its one-time activation
