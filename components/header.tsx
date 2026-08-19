@@ -12,7 +12,7 @@ import logoSrc from "@/vibrant-logo-header.png";
    Seven services; SAP depth lives inside the SAP Solutions page. */
 const SERVICES_MENU: { heading: string; links: [string, string][] }[] = [
   {
-    heading: "ERP & SAP",
+    heading: "ERP",
     links: [
       ["ERP & Enterprise Applications", "/services/erp-optimization"],
       ["SAP Solutions", "/services/sap-solutions"]
