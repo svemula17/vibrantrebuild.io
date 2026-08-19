@@ -68,7 +68,7 @@ export function Footer() {
             alt="Vibrant Inc"
             width={240}
             height={203}
-            className="h-16 w-auto object-contain brightness-0 invert"
+            className="h-20 w-auto object-contain brightness-0 invert"
           />
           <p className="mt-4 text-sm leading-relaxed text-white/85">
             {siteSettings.tagline} Established in 2000,
