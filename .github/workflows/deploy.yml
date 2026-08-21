@@ -33,10 +33,13 @@ jobs:
       - name: Build static export
         run: npm run build
         env:
-          NEXT_PUBLIC_BASE_PATH: /vibrantrebuild.io
+          NEXT_PUBLIC_BASE_PATH: ""
 
       - name: Add .nojekyll (prevents GitHub stripping _next folder)
         run: touch out/.nojekyll
+
+      - name: Add CNAME (Pages drops the custom domain without it on each deploy)
+        run: echo 'vibrantinc.com' > out/CNAME
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
