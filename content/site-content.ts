@@ -187,9 +187,9 @@ export const leadership: Leader[] = [
     role: "Product Security Engineer",
     initials: "SV",
     bio: [
-      "Sai works on product security, embedding security into how software is designed and shipped rather than auditing it after the fact. His focus spans application security, threat modeling, and secure development practices across cloud-native systems."
+      "Sai works on product security for AI systems, embedding security into how software is designed and shipped rather than auditing it after the fact. His focus spans AI and LLM security, application security, threat modeling, and secure development practices across cloud-native systems."
     ],
-    expertise: ["Application Security", "Threat Modeling", "Secure SDLC", "Cloud Security"]
+    expertise: ["AI & LLM Security", "Application Security", "Threat Modeling", "Secure SDLC"]
   },
   {
     id: "rohith",
