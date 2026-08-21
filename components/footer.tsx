@@ -17,7 +17,10 @@ const clientLogos = [
   { src: mouri,      alt: "MOURI Tech"      },
 ];
 
-const footerNav = navigationItems.filter((n) => n.href !== "/");
+const footerNav = [
+  ...navigationItems.filter((n) => n.href !== "/"),
+  { label: "Industries", href: "/industries" }
+];
 
 // Footer shows only top-level services, not the full 18-item catalog.
 // Exclude carousel-only umbrella entries and individual SAP detail pages.

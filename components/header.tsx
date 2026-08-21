@@ -34,6 +34,14 @@ const SERVICES_MENU: { heading: string; links: [string, string][] }[] = [
     ]
   },
   {
+    heading: "Industries",
+    links: [
+      ["Healthcare", "/industries/healthcare"],
+      ["Insurance", "/industries/insurance"],
+      ["All industries", "/industries"]
+    ]
+  },
+  {
     heading: "Explore",
     links: [
       ["All services", "/services"],
@@ -335,7 +343,7 @@ export function Header() {
           className="absolute inset-0 pointer-events-none"
           style={{ background: "linear-gradient(to right, transparent 45%, rgba(90,25,4,0.38) 100%)" }}
         />
-        <div className="container relative grid grid-cols-4 gap-8 py-10">
+        <div className="container relative grid grid-cols-5 gap-8 py-10">
           {SERVICES_MENU.map((group, gi) => (
             <div key={group.heading} className={gi > 0 ? "border-l border-white/20 pl-8" : ""}>
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/75">

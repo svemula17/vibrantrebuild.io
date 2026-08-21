@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { insights, resourceGuides, serviceCards, siteSettings } from "@/content/site-content";
+import { industries } from "@/content/industries";
 
 export const dynamic = "force-static";
 
@@ -26,6 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/careers",
     "/contact",
     "/social-responsibility",
+    "/industries",
     "/privacy",
     "/disclaimer"
   ];
@@ -34,6 +36,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticRoutes.map((route) => ({
       url: `${siteSettings.siteUrl}${route}/`,
+      lastModified: LAST_UPDATED
+    })),
+    ...industries.map((ind) => ({
+      url: `${siteSettings.siteUrl}/industries/${ind.slug}/`,
       lastModified: LAST_UPDATED
     })),
     ...serviceCards.map((service) => ({
