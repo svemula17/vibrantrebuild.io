@@ -19,3 +19,7 @@ pnpm-debug.log*
 
 # os
 .DS_Store
+
+# Local deploy staging, not source
+vibrantinc-site/
+vibrantinc-site.zip
