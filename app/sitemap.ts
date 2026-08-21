@@ -25,7 +25,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/partners",
     "/careers",
     "/contact",
-    "/social-responsibility"
+    "/social-responsibility",
+    "/privacy",
+    "/disclaimer"
   ];
 
   // trailingSlash: true — sitemap URLs must match the served form.

@@ -162,7 +162,7 @@ export const leadership: Leader[] = [
     expertise: ["S/4HANA", "SAP ECC", "SAP BTP", "SAP Integration"]
   },
   {
-    id: "dushanth",
+    id: "dishanth",
     name: "Dishanth",
     role: "Principal Cybersecurity Architect",
     initials: "D",
@@ -180,6 +180,26 @@ export const leadership: Leader[] = [
       "An experienced AI technology leader specializing in Generative AI, Agentic AI, machine learning, intelligent automation, and enterprise AI integration. He partners with organizations to design and implement secure, scalable AI solutions that improve business performance, accelerate innovation, and enable successful digital transformation."
     ],
     expertise: ["Generative AI", "Agentic AI", "Machine Learning", "Intelligent Automation"]
+  },
+  {
+    id: "sai-vemula",
+    name: "Sai Vemula",
+    role: "Product Security Engineer",
+    initials: "SV",
+    bio: [
+      "Sai works on product security, embedding security into how software is designed and shipped rather than auditing it after the fact. His focus spans application security, threat modeling, and secure development practices across cloud-native systems."
+    ],
+    expertise: ["Application Security", "Threat Modeling", "Secure SDLC", "Cloud Security"]
+  },
+  {
+    id: "rohith",
+    name: "Rohith",
+    role: "Red Team Security Engineer",
+    initials: "R",
+    bio: [
+      "Rohith leads offensive security work, testing defenses the way an attacker would. He runs adversary simulation and penetration testing engagements that surface exploitable gaps before someone else finds them."
+    ],
+    expertise: ["Red Teaming", "Penetration Testing", "Adversary Simulation", "Offensive Security"]
   }
 ];
 

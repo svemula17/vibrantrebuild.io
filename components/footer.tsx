@@ -207,6 +207,15 @@ export function Footer() {
         <div className="container py-6 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 text-xs">
           <div className="flex flex-col sm:flex-row sm:items-center gap-3">
             <p className="text-white/85">© {new Date().getFullYear()} {siteSettings.brandName}. All rights reserved.</p>
+            <span className="flex items-center gap-3">
+              <Link href="/privacy" className="text-white/85 underline underline-offset-4 decoration-white/35 hover:text-white hover:decoration-white transition-colors">
+                Privacy Policy
+              </Link>
+              <span className="text-white/40" aria-hidden="true">·</span>
+              <Link href="/disclaimer" className="text-white/85 underline underline-offset-4 decoration-white/35 hover:text-white hover:decoration-white transition-colors">
+                Disclaimer
+              </Link>
+            </span>
             <a
               href={withBasePath("/Vibrant-Company-Brochure.pdf")}
               download
