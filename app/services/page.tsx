@@ -9,7 +9,7 @@ import { ClientLogos } from "@/components/home/client-logos";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
-  title: "Services",
+  title: "ERP, Cloud & Cybersecurity Services",
   description:
     "Seven services, one partner: ERP, SAP, cloud modernization, cybersecurity, AI readiness, data and analytics, and managed IT.",
   path: "/services"

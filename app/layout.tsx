@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { OrganizationSchema } from "@/components/structured-data";
 import { Providers } from "@/components/providers";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { siteSettings } from "@/content/site-content";
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={inter.variable}>
       <body className="min-h-screen flex flex-col">
+        <OrganizationSchema />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-neutral-900 focus:text-white focus:px-4 focus:py-2 focus:rounded"

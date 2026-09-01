@@ -5,7 +5,7 @@ import { industries } from "@/content/industries";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
-  title: "Industries",
+  title: "Healthcare & Insurance IT Consulting",
   description:
     "Where Vibrant Inc has deep vertical experience: healthcare providers and healthcare insurance carriers.",
   path: "/industries"

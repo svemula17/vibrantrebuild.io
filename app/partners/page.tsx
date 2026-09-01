@@ -9,7 +9,7 @@ import wrikeLogo     from "@/assets/partners/wrike.svg";
 import microsoftLogo from "@/assets/partners/microsoft.svg";
 
 export const metadata: Metadata = pageMeta({
-  title: "Partners",
+  title: "Oracle, Microsoft & Wrike Certified Partner",
   description:
     "Vibrant Inc maintains certified partnerships with Oracle, Wrike, and Microsoft, giving clients right-sized licensing, vendor-validated architecture, and fast support escalation.",
   path: "/partners"

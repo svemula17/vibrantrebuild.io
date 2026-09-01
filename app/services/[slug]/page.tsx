@@ -13,6 +13,7 @@ import {
 } from "@/content/site-content";
 import { CaseStudyCard } from "@/components/case-study-card";
 import { pageMeta } from "@/lib/seo";
+import { ServiceSchema, BreadcrumbSchema } from "@/components/structured-data";
 
 type Params = { slug: string };
 
@@ -43,6 +44,18 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
 
   return (
     <>
+      <ServiceSchema
+        name={service.title}
+        description={service.metaDescription ?? service.summary}
+        slug={service.slug}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Services", path: "/services/" },
+          { name: service.title, path: `/services/${service.slug}/` }
+        ]}
+      />
       <PageHero
         eyebrow={service.kicker}
         title={service.title}

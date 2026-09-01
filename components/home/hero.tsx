@@ -12,9 +12,9 @@ import heroTeam from "@/assets/hero-team.jpg";
 const HEADLINE = "Modernize the ERP you can't afford to shut down.";
 
 const PROMISES = [
-  "30 minutes with a senior advisor, not a sales rep",
-  "You leave with a sequencing view of your estate",
-  "We reply within one business day"
+  "30 minutes with a senior advisor who understands your estate",
+  "A practical sequencing view for your SAP, JD Edwards, and PeopleSoft landscape",
+  "A senior response within one business day"
 ];
 
 /* The headline rises a word at a time, so each word needs its own delay. The
@@ -61,8 +61,9 @@ export function Hero() {
           </h1>
 
           <p className="vh-3 mt-5 text-neutral-800 leading-relaxed [text-wrap:pretty]">
-            SAP, JD Edwards and PeopleSoft estates moved to S/4HANA and the cloud in a
-            sequence your plants and your close calendar can absorb. Founder-led since 2000.
+            Move SAP, JD Edwards, and PeopleSoft to the cloud, on your timeline, in a
+            sequence your business can absorb, and without disrupting your close
+            calendar. Founder-led since 2000.
           </p>
 
           <div className="vh-4 mt-8 flex flex-wrap items-center gap-3">

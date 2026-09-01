@@ -15,7 +15,7 @@ const officePhotos: Record<string, StaticImageData> = {
 };
 
 export const metadata: Metadata = pageMeta({
-  title: "Contact",
+  title: "Contact an ERP & Cybersecurity Consultant",
   description:
     "Reach Vibrant Inc in Princeton, NJ or Hyderabad, India, get a call back from a senior advisor within one business day.",
   path: "/contact"

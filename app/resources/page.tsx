@@ -5,7 +5,7 @@ import { PageHero } from "@/components/page-hero";
 import { insights, resourceGuides } from "@/content/site-content";
 
 export const metadata: Metadata = pageMeta({
-  title: "Resources",
+  title: "ERP & Cybersecurity Guides, Tools & Insights",
   description:
     "White papers, migration guides, readiness checklists, an SAP S/4HANA cost calculator, and insights from 26+ years of ERP, cloud, and AI delivery.",
   path: "/resources"
