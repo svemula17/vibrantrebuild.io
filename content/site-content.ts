@@ -67,7 +67,16 @@ export const siteSettings = {
   forms: {
     formspreeId: "",
     web3formsKey: ""
-  }
+  },
+  /* Google Appointment Schedule booking page. Paste the public booking link
+     here and the contact page shows an inline scheduler above the callback
+     form; leave it empty and only the callback form renders.
+     To get the link: Google Calendar (on the Workspace account) > Create >
+     Appointment schedule > set availability/duration > Share > "Book now"
+     > copy the booking page link. Looks like:
+     https://calendar.google.com/calendar/appointments/schedules/AcZssZ... */
+  bookingUrl:
+    "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1e9wWRRs5t4Kyn4EqPY6uiysLLfrhBw-fJnm55NkB_rsPgu4Jud4fOaOCBA4CB0-zphyEGwibN"
 };
 
 export type Office = {
@@ -128,7 +137,7 @@ export const leadership: Leader[] = [
     initials: "SR",
     credentials: ["ITIL Foundation Certified"],
     linkedin: "https://www.linkedin.com/in/sureshpreddy/",
-    calendly: "", // paste the calendly.com/.. URL to show the "Book a meeting" button
+    calendly: siteSettings.bookingUrl, // reuses the general "Book a call" schedule; set a per-person URL here to override
     bio: [
       "With more than 27 years leading enterprise technology transformation, Suresh Reddy is the Founder and President of Vibrant Inc, helping organizations modernize through cloud, enterprise applications, DevOps, and AI-driven innovation, with complex initiatives delivered across the full systems lifecycle for Fortune 500 partners.",
       "A recognized leader in cloud and DevOps transformation, Suresh has migrated enterprise workloads to AWS, built high-performing engineering teams, and established enterprise-wide governance, security, and automation for large-scale, mission-critical environments, alongside deep application expertise across Oracle E-Business Suite, PeopleSoft, and JD Edwards EnterpriseOne.",
@@ -194,12 +203,12 @@ export const leadership: Leader[] = [
   {
     id: "rohith",
     name: "Rohith",
-    role: "Red Team Security Engineer",
+    role: "Purple Team Security Engineer",
     initials: "R",
     bio: [
-      "Rohith leads offensive security work, testing defenses the way an attacker would. He runs adversary simulation and penetration testing engagements that surface exploitable gaps before someone else finds them."
+      "Rohith runs purple team security, attacking defenses the way an adversary would and then working alongside defenders to close what he finds. He pairs adversary simulation and penetration testing with detection engineering and hardening, so every exploitable gap turns into a stronger detection and a fixed control."
     ],
-    expertise: ["Red Teaming", "Penetration Testing", "Adversary Simulation", "Offensive Security"]
+    expertise: ["Purple Teaming", "Adversary Simulation", "Penetration Testing", "Detection Engineering"]
   }
 ];
 

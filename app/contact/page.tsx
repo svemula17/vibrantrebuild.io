@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import type { StaticImageData } from "next/image";
 import { CallbackForm } from "@/components/callback-form";
+import { BookingEmbed } from "@/components/booking-embed";
 import { PageHero } from "@/components/page-hero";
 import { SocialLinks } from "@/components/social-links";
 import { OfficeLocator } from "@/components/office-locator";
@@ -22,6 +23,8 @@ export const metadata: Metadata = pageMeta({
 });
 
 export default function ContactPage() {
+  const hasBooking = Boolean(siteSettings.bookingUrl?.trim());
+
   return (
     <>
       <PageHero
@@ -30,6 +33,21 @@ export default function ContactPage() {
         description="We'll set up a no-pressure call with a senior advisor within one business day."
         crumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
       />
+
+      {hasBooking && (
+        <section className="section-soft">
+          <div className="container">
+            <div className="max-w-2xl">
+              <p className="eyebrow">Book a call</p>
+              <h2 className="mt-3">Grab a time with a senior advisor.</h2>
+              <p className="mt-4 text-muted">
+                Pick a slot that works for you and you&apos;ll get a calendar invite with a video link, no back-and-forth.
+              </p>
+            </div>
+            <BookingEmbed className="mt-8" />
+          </div>
+        </section>
+      )}
 
       <section className="section-tint">
         <div className="container grid gap-12 lg:grid-cols-2 lg:items-start">
@@ -96,7 +114,7 @@ export default function ContactPage() {
 
           </div>
 
-          <CallbackForm heading="Book a Call" showRequiredNote />
+          <CallbackForm heading={hasBooking ? "Prefer a callback?" : "Book a Call"} showRequiredNote />
         </div>
       </section>
 
