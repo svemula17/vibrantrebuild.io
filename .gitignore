@@ -23,3 +23,4 @@ pnpm-debug.log*
 # Local deploy staging, not source
 vibrantinc-site/
 vibrantinc-site.zip
+deploy-ftp.sh

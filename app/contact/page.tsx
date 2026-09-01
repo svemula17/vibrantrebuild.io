@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import type { StaticImageData } from "next/image";
 import { CallbackForm } from "@/components/callback-form";
-import { BookingEmbed } from "@/components/booking-embed";
 import { PageHero } from "@/components/page-hero";
 import { SocialLinks } from "@/components/social-links";
 import { OfficeLocator } from "@/components/office-locator";
@@ -37,14 +36,26 @@ export default function ContactPage() {
       {hasBooking && (
         <section className="section-soft">
           <div className="container">
-            <div className="max-w-2xl">
-              <p className="eyebrow">Book a call</p>
-              <h2 className="mt-3">Grab a time with a senior advisor.</h2>
-              <p className="mt-4 text-muted">
-                Pick a slot that works for you and you&apos;ll get a calendar invite with a video link, no back-and-forth.
-              </p>
+            {/* Was a 700px inline Google scheduler iframe. It dominated the page
+                and pushed the contact details and form below the fold, so the
+                scheduler now opens in a new tab instead. */}
+            <div className="card flex flex-col gap-5 p-7 sm:flex-row sm:items-center sm:justify-between">
+              <div className="max-w-xl">
+                <p className="eyebrow">Book a call</p>
+                <h2 className="mt-2 text-h4">Grab a time with a senior advisor.</h2>
+                <p className="mt-2 text-sm text-muted">
+                  Pick a slot that suits you and you&apos;ll get a calendar invite with a video link, no back-and-forth.
+                </p>
+              </div>
+              <a
+                href={siteSettings.bookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary shrink-0"
+              >
+                See available times&nbsp;→
+              </a>
             </div>
-            <BookingEmbed className="mt-8" />
           </div>
         </section>
       )}
