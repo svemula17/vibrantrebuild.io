@@ -66,7 +66,7 @@ export default function ContactPage() {
             <p className="eyebrow">Talk to Vibrant</p>
             <h2 className="mt-3">Three ways to reach us.</h2>
             <p className="mt-5 text-muted">
-              Whether you have a fully scoped project or just an idea, we&apos;ll match you with the right specialist.
+              Whether you have a fully scoped project or an early idea you want pressure-tested, we&apos;ll match you with the right specialist.
             </p>
 
             <dl className="mt-8 space-y-5">

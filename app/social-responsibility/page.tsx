@@ -98,8 +98,8 @@ export default function SocialResponsibilityPage() {
             <p className="eyebrow">Where we show up</p>
             <h2 className="mt-3">Organizations we support.</h2>
             <p className="mt-4 text-muted">
-              Founder-led involvement and employee volunteering, sustained over years rather than
-              assembled for a report.
+              Founder-led involvement and employee volunteering with the same organizations,
+              sustained across years.
             </p>
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-4 md:gap-6">

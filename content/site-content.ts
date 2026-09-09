@@ -456,7 +456,7 @@ export const serviceCards: ServiceCard[] = [
       "Predictive threat intelligence feeds"
     ],
     bestFit:
-      "Mid-market and regulated companies that own a SIEM, run a small security team, and cannot cover nights, weekends, and holidays on their own.",
+      "Mid-market and regulated companies that own a SIEM, run a small security team, and want nights, weekends, and holidays covered without adding a shift.",
     heroTagline: "A 24\u00d77 SOC on your existing stack, with AI Shield behind the detection.",
     heroTeaser:
       "Our analysts watch your environment around the clock, with AI Shield behavioral analytics handling the first pass and playbooks your team agreed to in advance. We report on what the evidence showed.",
@@ -504,7 +504,7 @@ export const serviceCards: ServiceCard[] = [
     summary:
       "One ERP practice, every major platform. SAP Implementation & Support, JD Edwards CNC Services, PeopleSoft Implementation & Support, plus Oracle E-Business Suite, Workday, and Dynamics 365. From first blueprint to the first quiet month after go-live, owned end to end.",
     longDescription:
-      "Whether you're running a complex JD Edwards environment, launching a PeopleSoft or SAP program, or stabilizing a Dynamics 365 rollout that under-delivered. Vibrant's 26-year ERP practice covers the full Oracle stack (JD Edwards EnterpriseOne, PeopleSoft, Oracle E-Business Suite), SAP (ECC / S/4HANA), Workday HCM/Financials, and Microsoft Dynamics 365. Our certified practitioners take ownership from blueprint through go-live and the stabilization weeks that follow.",
+      "Whether you're running a complex JD Edwards environment, launching a PeopleSoft or SAP program, or stabilizing a Dynamics 365 rollout that is still short of its go-live targets. Vibrant's 26-year ERP practice covers the full Oracle stack (JD Edwards EnterpriseOne, PeopleSoft, Oracle E-Business Suite), SAP (ECC / S/4HANA), Workday HCM/Financials, and Microsoft Dynamics 365. Our certified practitioners take ownership from blueprint through go-live and the stabilization weeks that follow.",
     iconPath: ICONS.layers,
     metaTags: [
       "SAP Implementation & Support (ECC / S/4HANA)",
@@ -844,7 +844,7 @@ export const partners: Partner[] = [
 export const partnerBenefits = [
   {
     title: "Right-sized licensing",
-    body: "We help you size what you actually need, not the SKU your sales rep wants to hit quota with."
+    body: "We size Oracle and Microsoft licensing against your actual usage and renewal dates, so you buy the tier that fits and not the one above it."
   },
   {
     title: "Architecture credibility",
@@ -1523,7 +1523,7 @@ export const insights: Insight[] = [
     body: [
       "ERP cost problems rarely announce themselves. They accumulate quietly: another year of maintenance uplift, another customization nobody remembers the reason for, another spreadsheet built because the system report 'doesn't quite work.' By the time the run-rate gets executive attention, the estate has usually been overpaying for years.",
       "The five signs we see most: maintenance and support costs rising faster than usage; a customization portfolio nobody can fully inventory; month-end close that takes longer every year; critical knowledge held by one or two people near retirement; and a growing shadow layer of spreadsheets and Access databases doing what the ERP was bought to do.",
-      "None of these requires a rip-and-replace to fix. A customization rationalization pass, targeted managed services, and honest version-strategy decisions routinely cut ERP run costs 20–30%, and they fund the modernization the board actually wants to talk about.",
+      "None of these requires a rip-and-replace to fix. A customization rationalization pass, targeted managed services, and a version strategy decided on the numbers routinely cut ERP run costs 20–30%, and that saving funds the modernization already on the board’s agenda.",
       "Start with a two-week assessment: inventory, cost baseline, and a keep/fix/replace map. It's the cheapest money an ERP owner can spend."
     ]
   },

@@ -13,7 +13,7 @@ const DWELL = 2200;
 const features = [
   {
     title: "ML-powered detection",
-    body: "Models tuned to your environment cut false positives and catch the anomalies humans miss.",
+    body: "Models tuned to your environment cut false positives and surface the slow, low-signal anomalies no one has time to hunt for by hand.",
     icon: "M12 2a4 4 0 0 1 4 4v1a4 4 0 0 1 0 8v1a4 4 0 1 1-8 0v-1a4 4 0 0 1 0-8V6a4 4 0 0 1 4-4zM9 10h.01M15 10h.01M9 14h.01M15 14h.01"
   },
   {
