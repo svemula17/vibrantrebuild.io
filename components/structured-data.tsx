@@ -82,6 +82,9 @@ export function OrganizationSchema() {
           "SOC 2 compliance",
           "HIPAA compliance",
           "Managed security services",
+          "Cloud security posture management",
+          "Middleware security",
+          "MCP gateway security",
           "Data analytics",
           "AI readiness"
         ],
