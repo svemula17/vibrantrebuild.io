@@ -385,6 +385,117 @@ export const serviceCards: ServiceCard[] = [
     heroHighlights: ["Zero-trust & identity", "24×7 SOC operations", "SOC 2 · HIPAA · PCI · CMMC"]
   },
   {
+    slug: "zero-trust-architecture",
+    hideFromGrid: true,
+    metaDescription:
+      "Zero-trust architecture consulting: identity-first access design, segmentation, and a phased roadmap you can fund one quarter at a time.",
+    kicker: "Zero Trust Architecture",
+    title: "Zero Trust Architecture",
+    summary:
+      "Zero trust is a roadmap, not a purchase order. We design it identity first, then sequence it into phases you can fund and staff one at a time.",
+    longDescription:
+      "We start by mapping how identity, devices, and network access actually work today, across cloud and on-prem, then design the target state: one directory, MFA everywhere, conditional access, device posture, network segmentation, and application-level policy last. The output is a roadmap broken into quarterly phases, each with an owner and a defined scope. Our architects stay on to deliver those phases under the VIBRANT Method, starting with the identity work.",
+    iconPath: ICONS.shield,
+    metaTags: [
+      "Identity-first design",
+      "Access & segmentation",
+      "Conditional access",
+      "Phased roadmap"
+    ],
+    outcomes: [
+      "A funded, sequenced plan instead of another tool evaluation",
+      "Identity consolidated behind one directory and one set of access rules",
+      "Progress reported as gaps closed, traced to the assessment that found them"
+    ],
+    capabilities: [
+      "Zero-trust architecture design, sequenced into phases you can fund one at a time",
+      "Identity & access management: single directory, MFA everywhere, conditional access",
+      "Security assessments & gap analysis of your current identity and network estate",
+      "Cloud security posture management, so cloud accounts follow the same access rules",
+      "Behavioral analytics (UEBA) from AI Shield, for access that policy allows but behavior does not",
+      "Integration with existing SIEM/SOC tooling, so segmentation changes stay visible",
+      "Control mapping for SOC 2, HIPAA, PCI, and CMMC access requirements"
+    ],
+    bestFit:
+      "Mid-market and enterprise teams running a flat internal network and more than one identity store, who need a sequenced plan rather than another tool.",
+    heroTagline: "Identity first, segmentation next: a zero-trust plan you can fund in phases.",
+    heroTeaser:
+      "We design zero trust as a sequence: identity, device posture, network segmentation, then application-level access policy. You get a roadmap with quarterly milestones and named owners, plus architects who stay to deliver each phase.",
+    heroHighlights: ["Identity-first sequence", "Quarterly milestones", "Architects who deliver"]
+  },
+  {
+    slug: "managed-detection-response",
+    hideFromGrid: true,
+    metaDescription:
+      "Managed detection and response with a 24\u00d77 SOC, AI Shield behavioral analytics, and response playbooks agreed with your team. Runs on the SIEM you already own.",
+    kicker: "Managed Detection & Response",
+    title: "Managed Detection & Response",
+    summary:
+      "A managed 24\u00d77 SOC run by our analysts, with AI Shield behavioral analytics handling detection and containment playbooks agreed with your engineers in advance.",
+    longDescription:
+      "We connect AI Shield to the SIEM, endpoint, identity, and cloud logs you already pay for, tune behavioral baselines against your own traffic, then run detection and triage around the clock across our Princeton and Hyderabad teams. Analysts investigate and escalate, and the containment playbook is written with your engineers before it is needed rather than during an incident.",
+    iconPath: ICONS.monitor,
+    metaTags: [
+      "24\u00d77 SOC operations",
+      "AI Shield detection",
+      "Behavioral analytics (UEBA)",
+      "Automated response playbooks"
+    ],
+    outcomes: [
+      "Overnight and weekend coverage without hiring a night shift",
+      "Your own engineers back on project work instead of alert triage",
+      "Monitoring evidence gathered in the form auditors ask for"
+    ],
+    capabilities: [
+      "24\u00d77 SOC operations, managed by Vibrant analysts",
+      "AI Shield. ML-powered threat detection and response",
+      "Behavioral analytics (UEBA) tuned to your own users and systems",
+      "Automated incident response playbooks, agreed with your team in advance",
+      "Anomaly detection across cloud and on-prem estates",
+      "Integration with the SIEM and SOC tooling you already own",
+      "Predictive threat intelligence feeds"
+    ],
+    bestFit:
+      "Mid-market and regulated companies that own a SIEM, run a small security team, and cannot cover nights, weekends, and holidays on their own.",
+    heroTagline: "A 24\u00d77 SOC on your existing stack, with AI Shield behind the detection.",
+    heroTeaser:
+      "Our analysts watch your environment around the clock, with AI Shield behavioral analytics handling the first pass and playbooks your team agreed to in advance. We report on what the evidence showed.",
+    heroHighlights: ["24\u00d77 analyst coverage", "AI Shield detection engine", "Runs on your existing SIEM"]
+  },
+  {
+    slug: "compliance-readiness",
+    hideFromGrid: true,
+    metaDescription:
+      "SOC 2, HIPAA, PCI, and CMMC readiness. We map controls to what your business already does and gather the evidence auditors ask for.",
+    kicker: "Compliance Readiness",
+    title: "Compliance Readiness",
+    summary:
+      "SOC 2, HIPAA, PCI, and CMMC readiness built on evidence. We map controls onto the processes you already run instead of bolting a parallel one alongside them.",
+    longDescription:
+      "Compliance work fails on evidence more often than intent: the control exists, but nothing records that it ran. We map each framework requirement to a process your business already performs, identify where the evidence is missing, and put collection in place so artefacts accumulate as a by-product of normal operations. One control set is mapped across the frameworks you carry, so overlapping requirements are answered once.",
+    iconPath: ICONS.layers,
+    metaTags: ["SOC 2", "HIPAA & PCI", "CMMC", "Evidence collection"],
+    outcomes: [
+      "Auditors handed artefacts rather than dashboard screenshots",
+      "Overlapping requirements across frameworks answered once, not per audit",
+      "Security questionnaires answered from a maintained control set"
+    ],
+    capabilities: [
+      "Compliance readiness for SOC 2, HIPAA, PCI, and CMMC",
+      "Security assessments & gap analysis against the target framework",
+      "Control mapping onto processes the business already runs",
+      "Evidence collection built into normal operations",
+      "Cloud security posture management, evidenced against framework controls",
+      "Integration with existing SIEM/SOC tooling for monitoring evidence"
+    ],
+    bestFit:
+      "Companies facing a first SOC 2 or CMMC assessment, or carrying several frameworks at once and answering the same control separately for each.",
+    heroTagline: "Readiness measured in evidence, not intent.",
+    heroTeaser:
+      "We map each framework requirement to something your business already does, then put evidence collection in place so the artefacts exist before the auditor asks. One control set, mapped across the frameworks you carry.",
+    heroHighlights: ["SOC 2 \u00b7 HIPAA \u00b7 PCI \u00b7 CMMC", "Evidence-led", "One mapped control set"]
+  },
+  {
     slug: "erp-optimization",
     metaDescription:
       "One partner for SAP, JD Edwards, PeopleSoft, Oracle EBS, Workday, and Dynamics 365, implementation, upgrades, and managed support, owned end to end.",

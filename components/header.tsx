@@ -15,6 +15,9 @@ const SERVICES_MENU: { heading: string; links: [string, string][] }[] = [
     heading: "Security",
     links: [
       ["Cybersecurity & Compliance", "/services/cybersecurity"],
+      ["Zero Trust Architecture", "/services/zero-trust-architecture"],
+      ["Managed Detection & Response", "/services/managed-detection-response"],
+      ["Compliance Readiness", "/services/compliance-readiness"],
       ["Managed IT", "/services/managed-it"]
     ]
   },
