@@ -1041,6 +1041,12 @@ export function getServiceBySlug(slug: string) {
 
 const capabilityStages: { label: string; nodes: { slug: string; description: string }[] }[] = [
   {
+    label: "Secure the estate",
+    nodes: [
+      { slug: "cybersecurity", description: "Zero-trust identity, 24\u00d77 SOC, audit-ready SOC 2, HIPAA, PCI and CMMC." }
+    ]
+  },
+  {
     label: "Run the core",
     nodes: [
       { slug: "erp-optimization", description: "SAP, JD Edwards and PeopleSoft, modernized without missing a beat." },
@@ -1048,15 +1054,9 @@ const capabilityStages: { label: string; nodes: { slug: string; description: str
     ]
   },
   {
-    label: "Modernize the platform",
+    label: "Modernize and get the value out",
     nodes: [
       { slug: "cloud-modernization", description: "Azure, AWS or GCP, moved incrementally, never rip-and-replace." },
-      { slug: "cybersecurity", description: "Zero-trust identity, 24×7 SOC, audit-ready SOC 2, HIPAA, PCI and CMMC." }
-    ]
-  },
-  {
-    label: "Get the value out",
-    nodes: [
       { slug: "data-analytics", description: "Decision-grade reporting on Snowflake, Databricks, Power BI and Oracle BI." },
       { slug: "ai-readiness", description: "We assess data, talent and infrastructure, then ship the use cases that move KPIs." }
     ]

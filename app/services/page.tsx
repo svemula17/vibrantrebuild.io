@@ -15,15 +15,17 @@ export const metadata: Metadata = pageMeta({
   path: "/services"
 });
 
-/* Explicit order: ERP first, SAP second, then the rest. */
+/* Explicit order: security leads, then the ERP estate it protects, then the
+   platform and data work. Cybersecurity is the growth practice; ERP is where
+   the 26 years of proof sit, so it stays second rather than buried. */
 const ORDER = [
+  "cybersecurity",
   "erp-optimization",
   "sap-solutions",
   "cloud-modernization",
-  "cybersecurity",
-  "ai-readiness",
+  "managed-it",
   "data-analytics",
-  "managed-it"
+  "ai-readiness"
 ];
 
 export default function ServicesPage() {

@@ -12,6 +12,13 @@ import logoSrc from "@/vibrant-logo-header.png";
    Seven services; SAP depth lives inside the SAP Solutions page. */
 const SERVICES_MENU: { heading: string; links: [string, string][] }[] = [
   {
+    heading: "Security",
+    links: [
+      ["Cybersecurity & Compliance", "/services/cybersecurity"],
+      ["Managed IT", "/services/managed-it"]
+    ]
+  },
+  {
     heading: "ERP",
     links: [
       ["ERP & Enterprise Applications", "/services/erp-optimization"],
@@ -19,26 +26,11 @@ const SERVICES_MENU: { heading: string; links: [string, string][] }[] = [
     ]
   },
   {
-    heading: "Cloud & Security",
+    heading: "Cloud, Data & AI",
     links: [
       ["Cloud Modernization", "/services/cloud-modernization"],
-      ["Cybersecurity & Compliance", "/services/cybersecurity"],
-      ["Managed IT", "/services/managed-it"]
-    ]
-  },
-  {
-    heading: "Data & AI",
-    links: [
       ["Data & Analytics", "/services/data-analytics"],
       ["AI Readiness", "/services/ai-readiness"]
-    ]
-  },
-  {
-    heading: "Industries",
-    links: [
-      ["Healthcare", "/industries/healthcare"],
-      ["Insurance", "/industries/insurance"],
-      ["All industries", "/industries"]
     ]
   },
   {
