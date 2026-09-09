@@ -1650,11 +1650,25 @@ export function getRelatedResourcesForService(slug: string): ResolvedResource[] 
 export const serviceRelatedServices: Record<string, string[]> = {
   "erp-optimization": ["sap-solutions", "managed-it", "cloud-modernization", "data-analytics"],
   "sap-solutions": ["erp-optimization", "cloud-modernization", "managed-it", "data-analytics"],
-  "cloud-modernization": ["managed-it", "data-analytics", "cybersecurity", "sap-solutions"],
-  "cybersecurity": ["managed-it", "cloud-modernization", "ai-readiness", "data-analytics"],
+  "cloud-modernization": ["managed-it", "cybersecurity", "data-analytics", "sap-solutions"],
+  /* Cybersecurity is the parent of the three depth pages, so it lists them
+     first. They carry hideFromGrid, which keeps them out of the seven-card
+     grid, and until this was here the ONLY link to them was the desktop
+     mega-menu. That panel is hidden below lg, so all three were unreachable
+     on mobile despite being in the sitemap. */
+  "cybersecurity": [
+    "zero-trust-architecture",
+    "managed-detection-response",
+    "compliance-readiness",
+    "managed-it",
+    "cloud-modernization"
+  ],
+  "zero-trust-architecture": ["cybersecurity", "managed-detection-response", "compliance-readiness", "managed-it"],
+  "managed-detection-response": ["cybersecurity", "zero-trust-architecture", "compliance-readiness", "managed-it"],
+  "compliance-readiness": ["cybersecurity", "zero-trust-architecture", "managed-detection-response", "data-analytics"],
   "ai-readiness": ["data-analytics", "cloud-modernization", "erp-optimization"],
   "data-analytics": ["ai-readiness", "cloud-modernization", "sap-solutions"],
-  "managed-it": ["cloud-modernization", "cybersecurity", "erp-optimization", "sap-solutions"]
+  "managed-it": ["cybersecurity", "cloud-modernization", "erp-optimization", "sap-solutions"]
 };
 
 export function getRelatedServices(slug: string, count = 5) {

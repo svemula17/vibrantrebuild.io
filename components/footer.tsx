@@ -26,6 +26,9 @@ const footerNav = [
 // Exclude carousel-only umbrella entries and individual SAP detail pages.
 const footerSlugs = [
   "cybersecurity",
+  "zero-trust-architecture",
+  "managed-detection-response",
+  "compliance-readiness",
   "erp-optimization",
   "sap-solutions",
   "cloud-modernization",

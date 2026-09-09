@@ -37,6 +37,14 @@ const SERVICES_MENU: { heading: string; links: [string, string][] }[] = [
     ]
   },
   {
+    heading: "Industries",
+    links: [
+      ["Healthcare", "/industries/healthcare"],
+      ["Insurance", "/industries/insurance"],
+      ["All industries", "/industries"]
+    ]
+  },
+  {
     heading: "Explore",
     links: [
       ["All services", "/services"],
@@ -45,6 +53,14 @@ const SERVICES_MENU: { heading: string; links: [string, string][] }[] = [
       ["Book a Call", "/contact"]
     ]
   }
+];
+
+/* The mobile drawer reads this rather than navigationItems directly: Industries
+   lives inside the Services mega-menu on desktop, which never renders below lg. */
+const MOBILE_NAV: { href: string; label: string }[] = [
+  ...navigationItems.slice(0, 4),
+  { href: "/industries", label: "Industries" },
+  ...navigationItems.slice(4)
 ];
 
 /* About dropdown, compact section menu (reference-style, our content) */
@@ -374,7 +390,7 @@ export function Header() {
       >
         <div className="overflow-hidden">
           <nav className="container flex flex-col py-4 max-h-[calc(100dvh-4rem)] overflow-y-auto" aria-label="Mobile">
-            {navigationItems.map((item) => (
+            {MOBILE_NAV.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
