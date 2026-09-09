@@ -19,8 +19,10 @@ export default function HomePage() {
       <Hero />          {/* split: ruled copy panel + team photograph */}
       <ClientLogos credentials />  {/* white, credential row + 19-client marquee */}
       <AboutIntro />    {/* white, who Vibrant is, in one tight section */}
-      <Capabilities />  {/* cream, the seven drawn as a pipeline, ERP first */}
-      <AiShieldBand />  {/* dark navy, featured platform */}
+      <AiShieldBand />  {/* brand gradient, AI Shield: the security proof, moved
+                            up from fifth so the security claim in the hero has
+                            evidence under it before the reader scrolls past */}
+      <Capabilities />  {/* cream, the seven drawn as a pipeline, security first */}
       <CaseStudies />   {/* white, outcome stories */}
       <StatsBand />     {/* dark navy, 26 years + 200+ programs */}
       <ImpactStrip />   {/* slim cream strip, tech for good one-liner */}
