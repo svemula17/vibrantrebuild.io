@@ -37,7 +37,7 @@ export function TrustCluster({ variant = "full" }: Props) {
       </div>
       {variant === "full" && (
         <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
-          <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted">
             Trusted by
           </span>
           {logos.map((l) => (

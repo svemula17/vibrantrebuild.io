@@ -1614,10 +1614,18 @@ export function getCapabilityFlow() {
    match interestOptions exactly. */
 export const serviceInterestMap: Record<string, string> = {
   "erp-optimization": "ERP & Enterprise Applications",
-  "sap-solutions": "SAP Solutions",
+  /* Was "SAP Solutions", which is not an interestOptions entry, so the form's
+     includes() guard dropped it and the SAP page's CTA preselected nothing. */
+  "sap-solutions": "SAP S/4HANA Implementation",
   "cloud-modernization": "Cloud Modernization (Azure / AWS / GCP)",
   "cybersecurity": "Cybersecurity & Compliance",
+  /* The three security sub-practices had no entry at all, so their CTAs
+     landed on the form with nothing selected. */
+  "zero-trust-architecture": "Cybersecurity & Compliance",
+  "managed-detection-response": "Cybersecurity & Compliance",
+  "compliance-readiness": "Cybersecurity & Compliance",
   "ai-readiness": "AI Readiness",
+  "ai-digital-experience": "AI Readiness",
   "data-analytics": "Data & Analytics",
   "managed-it": "Managed IT"
 };

@@ -919,6 +919,11 @@
       border-radius: 999px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
       text-transform: uppercase; color: #57534E; transition: all 0.2s;}
 .cy-prod b {font-size: 15px; font-weight: 700; letter-spacing: -0.01em; text-transform: none; color: #A33315;}
+/* Standalone wordmark (lifecycle aside): no <b> to reset the pill's
+   uppercase, and these are product names — kaveo is lowercase by design. */
+.cy-prodname {margin: 4px 0 0; font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em;
+      text-transform: none; color: #A33315;}
+.is-dark .cy-prodname {color: #F0A17E;}
 .cy-prod:hover {border-color: #C8401A; box-shadow: 0 6px 18px rgba(200, 64, 26, 0.12); transform: translateY(-1px);}
 /* ─── Security product split sections ─────────────────────────────────────
    The cybersecurity page gives each product a full section, art on one side
@@ -979,8 +984,13 @@
      and the clamp could never catch up. Clear it. */
   max-width: none;
   white-space: nowrap;
-  font-size: clamp(5.8px, 1.2vw, 12px);
+  font-size: clamp(9px, 1.2vw, 12px);
   letter-spacing: clamp(0.05px, 0.14vw, 1.7px);
+}
+/* Below this the one-line rule would need type under 9px, which is not a
+   caption any more. Two readable lines beat one unreadable one. */
+@media (max-width: 700px) {
+  .cl-cap { white-space: normal; font-size: 11px; letter-spacing: 0.12em; }
 }
 
 /* ── Products band on a dark ground ──────────────────────────────────────
@@ -1262,4 +1272,36 @@ main > section:first-of-type + section.cl-band { padding-top: 0; }
 @media (min-width: 768px) {
   .cl-band + .section,
   .cl-band + .section-soft { padding-top: 4.5rem; }
+}
+
+/* ── Monitored surface on a dark ground ──────────────────────────────────
+   Handoff item 9, the bullet the first pass missed. The backdrop was tuned
+   against a near-white section: a 55%-white sweep is invisible there, but on
+   #1A1512 it composites to about rgb(150,144,142) and drags the copy it
+   crosses down to 2.75:1 body and 1.69:1 for the product name — a wash that
+   travels for ~5.5s of every 13s cycle, forever. The brand accents have the
+   opposite problem: at .22 and .14 on navy they disappear.
+   Values are the handoff's own. */
+.is-dark .sp-dots {
+  background-image: radial-gradient(rgba(224, 90, 31, 0.42) 1px, transparent 1.4px);
+}
+.is-dark .sp-w1 {
+  background: radial-gradient(circle, rgba(224, 90, 31, 0.26) 0%, rgba(224, 90, 31, 0.09) 46%, transparent 72%);
+}
+.is-dark .sp-packet {
+  background: linear-gradient(90deg, transparent, rgba(240, 161, 126, 0.55), transparent);
+}
+.is-dark .sp-sweep {
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.1) 48%, transparent);
+}
+.is-dark .sp-threat::before { background: #F0A17E; }
+.is-dark .sp-threat::after { border-color: rgba(240, 161, 126, 0.7); }
+
+/* Collapsed accordion panels must leave the accessibility tree and
+   find-in-page, not just shrink to zero height. Delayed so the collapse
+   still animates before the content is taken away. */
+.svc-accbody > div { visibility: visible; transition: visibility 0s linear 0s; }
+.svc-acc[data-open="false"] .svc-accbody > div {
+  visibility: hidden;
+  transition: visibility 0s linear 0.35s;
 }

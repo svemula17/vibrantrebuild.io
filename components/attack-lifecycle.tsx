@@ -145,7 +145,7 @@ export function AttackLifecycle({ dark = false }: { dark?: boolean } = {}) {
 
           <aside className="cy-detailside">
             <p className="eyebrow">Tooling at this stage</p>
-            <p className="cy-prod">{stage.tool}</p>
+            <p className="cy-prodname">{stage.tool}</p>
             <p className="mt-2 text-sm text-muted leading-relaxed">{stage.toolBlurb}</p>
             <Link
               href="#product-kaveo"

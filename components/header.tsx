@@ -389,7 +389,7 @@ export function Header() {
                           key={href}
                           href={href}
                           onClick={() => setAboutOpen(false)}
-                          className="block px-4 py-2.5 text-sm text-white/90 hover:bg-white/15 hover:text-white transition-colors"
+                          className="block px-4 py-2.5 text-sm text-white/90 hover:bg-black/15 hover:text-white transition-colors"
                         >
                           {label}
                         </Link>
@@ -465,7 +465,10 @@ export function Header() {
         <div
           aria-hidden
           className="absolute inset-0 pointer-events-none"
-          style={{ background: "linear-gradient(to right, transparent 45%, rgba(90,25,4,0.38) 100%)" }}
+          style={{
+            background:
+              "linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), linear-gradient(to right, transparent 45%, rgba(90,25,4,0.38) 100%)"
+          }}
         />
         {/* 1.15fr 1fr .9fr 1fr 1.15fr: Security and Explore carry the most
             rows, ERP the fewest, so equal columns left ERP mostly empty. */}
@@ -490,7 +493,7 @@ export function Header() {
                       <Link
                         href={l.href}
                         onClick={() => setServicesOpen(false)}
-                        className="flex items-start gap-3 rounded-lg px-2 py-2 -mx-2 hover:bg-white/15 transition-colors group/row"
+                        className="flex items-start gap-3 rounded-lg px-2 py-2 -mx-2 hover:bg-black/15 transition-colors group/row"
                       >
                         {l.icon && (
                           <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-white/12 border border-white/20 text-white group-hover/row:bg-white/20 transition-colors">
@@ -502,7 +505,7 @@ export function Header() {
                         <span className="min-w-0">
                           <span className="block text-sm font-medium text-white/95 leading-snug">{l.label}</span>
                           {l.blurb && (
-                            <span className="mt-0.5 block text-[11px] leading-snug text-white/70">{l.blurb}</span>
+                            <span className="mt-0.5 block text-[11px] leading-snug text-white/90">{l.blurb}</span>
                           )}
                         </span>
                       </Link>
@@ -515,7 +518,7 @@ export function Header() {
                     products, each landing on its own section. */}
                 {isExplore && (
                   onSecurity ? (
-                    <div className="mt-5 rounded-xl border border-white/25 bg-white/10 p-4">
+                    <div className="mt-5 rounded-xl border border-white/25 bg-black/15 p-4">
                       <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-white/75">
                         Built by Vibrant
                       </p>
@@ -529,10 +532,10 @@ export function Header() {
                             <Link
                               href={href}
                               onClick={() => setServicesOpen(false)}
-                              className="flex items-baseline gap-2 rounded-md px-1.5 py-1 -mx-1.5 hover:bg-white/15 transition-colors"
+                              className="flex items-baseline gap-2 rounded-md px-1.5 py-1 -mx-1.5 hover:bg-black/20 transition-colors"
                             >
                               <span className="text-sm font-semibold text-white">{name}</span>
-                              <span className="text-[11px] leading-snug text-white/70">{kind}</span>
+                              <span className="text-[11px] leading-snug text-white/90">{kind}</span>
                             </Link>
                           </li>
                         ))}
@@ -542,7 +545,7 @@ export function Header() {
                     <Link
                       href="/contact"
                       onClick={() => setServicesOpen(false)}
-                      className="mt-5 block rounded-xl border border-white/25 bg-white/10 p-4 hover:bg-white/20 transition-colors"
+                      className="mt-5 block rounded-xl border border-white/25 bg-black/15 p-4 hover:bg-black/25 transition-colors"
                     >
                       <span className="block text-[10px] font-bold uppercase tracking-[0.16em] text-white/75">
                         Not sure where to start
@@ -580,6 +583,9 @@ export function Header() {
             {onSecurity && (
               <Link
                 href={PRODUCTS_LINK.href}
+                /* Same page plus a hash, so the pathname effect that closes the
+                   drawer for every other link never fires here. */
+                onClick={() => setOpen(false)}
                 className="py-3 text-base font-medium text-navy-700 border-b border-line"
               >
                 Products: kaveo · Vectasec · Aegis
