@@ -795,9 +795,9 @@ export const serviceCards: ServiceCard[] = [
     kicker: "AI Digital Experience",
     title: "AI Digital Experience",
     summary:
-      "Digital experiences that understand users, personalize interactions, automate business processes, and keep improving from the data they generate.",
+      "Intelligent digital experiences that learn, adapt, and grow.",
     longDescription:
-      "The future of business is not just digital, it is intelligent. We build enterprise-grade web platforms that combine modern web technologies, Generative AI, automation and enterprise integration, so the experience adapts to the person using it. Content writes and tags itself, search answers in natural language, and portals give customers a self-service path that used to need a phone call.",
+      "The future of business isn’t just digital—it’s intelligent. At Vibrant, Inc., we create AI-powered digital experiences that combine modern web technologies, Generative AI, automation, cloud computing, and enterprise integrations to transform how organizations engage customers, employees, and partners. Our solutions don’t simply display information—they understand users, personalize interactions, automate business processes, and continuously improve through data-driven insights.",
     iconPath: "M3 5h18v14H3zM3 9h18M8 13h8",
     metaTags: ["AI-first websites", "Intelligent CMS", "Enterprise AI search", "Customer portals"],
     outcomes: [
@@ -865,9 +865,9 @@ export const serviceCards: ServiceCard[] = [
       "Organizations whose website is a brochure rather than a working part of the business, and who want customers, employees and partners served by the same intelligent platform.",
     featured: true,
     carouselOrder: 4,
-    heroTagline: "Digital experiences that learn, adapt and grow.",
+    heroTagline: "Intelligent digital experiences that learn, adapt, and grow.",
     heroTeaser:
-      "We build AI-powered web platforms that understand users, personalize interactions and automate the work behind them, combining modern web technologies with Generative AI and enterprise integration.",
+      "The future of business isn’t just digital—it’s intelligent. We combine modern web technologies, Generative AI, automation, cloud computing and enterprise integration to transform how organizations engage customers, employees and partners.",
     heroHighlights: ["AI-first websites", "Enterprise AI search", "Customer portals"]
   },
   {
