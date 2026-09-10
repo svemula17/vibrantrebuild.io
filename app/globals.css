@@ -528,3 +528,146 @@
 @media (prefers-reduced-motion: reduce) {
   .rise-in { animation: none; opacity: 1; }
 }
+
+/* ─── Security products band ───────────────────────────────────────────────
+   Ported from the Claude Design canvas. The band reads as a monitored
+   surface and each diagram animates the idea it draws. .is-in is set by
+   an IntersectionObserver so nothing animates off-screen. */
+/* Security products: the band itself reads as a monitored surface — a
+   drifting dot lattice, two counter-moving brand washes, a slow sweep and
+   a radar ping out of the corner. All under 8% so the ink stays legible. */
+.sp-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.sp-dots {
+  position: absolute; inset: -40px;
+  background-image: radial-gradient(rgba(200, 64, 26, 0.22) 1px, transparent 1.4px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(120% 100% at 50% 0%, #000 0%, rgba(0, 0, 0, 0.45) 55%, transparent 88%);
+  mask-image: radial-gradient(120% 100% at 50% 0%, #000 0%, rgba(0, 0, 0, 0.45) 55%, transparent 88%);
+  animation: sp-lattice 24s linear infinite;
+}
+@keyframes sp-lattice { to { background-position: 22px 22px; } }
+.sp-wash {
+  position: absolute; border-radius: 999px; filter: blur(40px);
+}
+.sp-w1 {
+  top: -22%; left: -12%; width: 52%; aspect-ratio: 1;
+  background: radial-gradient(circle, rgba(224, 90, 31, 0.14) 0%, rgba(224, 90, 31, 0.05) 46%, transparent 72%);
+  animation: sp-wash-a 28s ease-in-out infinite alternate;
+}
+@keyframes sp-wash-a { to { transform: translate3d(18%, 14%, 0) scale(1.18); } }
+
+/* Traffic: packets crossing the monitored surface, same primitive as the
+   hero's .vh-trace and the capability flow's marching dashes. */
+.sp-packet {
+  position: absolute; left: 0; height: 2px; width: 26%;
+  background: linear-gradient(90deg, transparent, rgba(200, 64, 26, 0.42), transparent);
+  transform: translateX(-120%);
+  animation: sp-packet-run 9s cubic-bezier(0.45, 0, 0.3, 1) infinite;
+}
+@keyframes sp-packet-run {
+  0%   { transform: translateX(-120%); opacity: 0; }
+  10%  { opacity: 1; }
+  72%  { opacity: 1; }
+  100% { transform: translateX(400%); opacity: 0; }
+}
+.sp-p1 { top: 12%;  animation-duration: 8s;  animation-delay: 0.4s; }
+.sp-p2 { top: 34%;  animation-duration: 12s; animation-delay: 2.6s; width: 18%; }
+.sp-p3 { top: 58%;  animation-duration: 10s; animation-delay: 5.1s; width: 32%; }
+.sp-p4 { top: 82%;  animation-duration: 14s; animation-delay: 7.4s; width: 21%; }
+
+/* Detect → contain: a blip appears, flags, then a ring closes on it and
+   it is gone. The four AI Shield stages, told in the background. */
+.sp-threat { position: absolute; width: 9px; height: 9px; }
+.sp-threat::before,
+.sp-threat::after { content: ""; position: absolute; inset: 0; border-radius: 999px; }
+.sp-threat::before {
+  background: #C8401A; opacity: 0;
+  animation: sp-threat-dot 7.5s ease-in-out infinite;
+}
+.sp-threat::after {
+  border: 1.5px solid rgba(200, 64, 26, 0.7); opacity: 0;
+  animation: sp-threat-ring 7.5s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+@keyframes sp-threat-dot {
+  0%, 6%   { opacity: 0; transform: scale(0.4); }
+  14%      { opacity: 0.9; transform: scale(1); }
+  46%      { opacity: 0.9; transform: scale(1); }
+  58%      { opacity: 0; transform: scale(0.2); }
+  100%     { opacity: 0; transform: scale(0.2); }
+}
+@keyframes sp-threat-ring {
+  0%, 16% { opacity: 0; transform: scale(4.2); }
+  26%     { opacity: 0.85; transform: scale(4.2); }
+  54%     { opacity: 0.55; transform: scale(1); }
+  62%     { opacity: 0; transform: scale(0.6); }
+  100%    { opacity: 0; transform: scale(0.6); }
+}
+.sp-t1 { left: 14%; top: 24%; animation-delay: 0s; }
+.sp-t2 { left: 62%; top: 68%; }
+.sp-t3 { left: 39%; top: 46%; }
+.sp-t2::before, .sp-t2::after { animation-delay: 2.5s; }
+.sp-t3::before, .sp-t3::after { animation-delay: 5s; }
+.sp-sweep {
+  position: absolute; top: -20%; bottom: -20%; width: 30%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.55) 48%, transparent);
+  transform: translateX(-160%) skewX(-14deg);
+  animation: sp-sweep-x 13s ease-in-out 1.4s infinite;
+}
+@keyframes sp-sweep-x {
+  0%, 58% { transform: translateX(-160%) skewX(-14deg); }
+  100%    { transform: translateX(420%) skewX(-14deg); }
+}
+.sp-ping {
+  position: absolute; right: 6%; bottom: 12%;
+  width: 14px; height: 14px; border-radius: 999px;
+  border: 1.5px solid rgba(200, 64, 26, 0.55); opacity: 0;
+  animation: sp-ping-out 5.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+/* All .sp-bg children are spans, so nth-of-type can't isolate the pings. */
+.sp-ping + .sp-ping { animation-delay: 1.7s; }
+.sp-ping + .sp-ping + .sp-ping { animation-delay: 3.4s; }
+@keyframes sp-ping-out {
+  0%   { transform: scale(1); opacity: 0.75; }
+  70%  { opacity: 0.1; }
+  100% { transform: scale(16); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sp-dots, .sp-wash, .sp-sweep, .sp-ping,
+  .sp-packet, .sp-threat::before, .sp-threat::after { animation: none; }
+  .sp-sweep, .sp-ping, .sp-packet, .sp-threat { opacity: 0; }
+}
+
+/* Security products: the diagrams animate the idea they draw — traffic
+   flows along the wires, the audited layer pulses, the log chains up. */
+@keyframes sp-in { to { opacity: 1; transform: none; } }
+@keyframes sp-march { to { stroke-dashoffset: -20; } }
+@keyframes sp-pulse {
+  0%, 72%, 100% { stroke-width: 1.1; opacity: 0.75; }
+  36%           { stroke-width: 2.1; opacity: 1; }
+}
+@keyframes sp-row-in {
+  0%, 8%  { opacity: 0; transform: translateX(-6px); }
+  22%, 92% { opacity: 1; transform: none; }
+  100%    { opacity: 0; transform: none; }
+}
+@keyframes sp-block-in {
+  0%, 6%   { opacity: 0.25; }
+  18%, 88% { opacity: 1; }
+  100%     { opacity: 0.25; }
+}
+.sp.is-armed .sp-card { opacity: 0; transform: translateY(16px); }
+.sp.is-armed.is-in .sp-card {
+  animation: sp-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(var(--i) * 0.09s + 0.1s);
+}
+.sp.is-in .sp-wire { stroke-dasharray: 4 6; animation: sp-march 1.4s linear infinite; }
+.sp.is-in .sp-pulse rect { animation: sp-pulse 3.6s ease-in-out infinite; animation-delay: calc(var(--i) * 0.4s); }
+.sp.is-in .sp-row { animation: sp-row-in 4.2s ease-in-out infinite; animation-delay: calc(var(--i) * 0.45s + 0.6s); }
+.sp.is-in .sp-block { animation: sp-block-in 3.8s ease-in-out infinite; animation-delay: calc(var(--i) * 0.22s); }
+.sp-card:hover .sp-wire { animation-duration: 0.55s; }
+@media (prefers-reduced-motion: reduce) {
+  .sp.is-armed .sp-card { opacity: 1; transform: none; animation: none; }
+  .sp.is-in .sp-wire, .sp.is-in .sp-pulse rect,
+  .sp.is-in .sp-row, .sp.is-in .sp-block { animation: none; }
+  .sp.is-in .sp-wire { stroke-dasharray: none; }
+}
