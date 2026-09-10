@@ -27,7 +27,7 @@ export function CtaCallback() {
         <div className="lg:sticky lg:top-28">
           <Reveal>
             <p className="eyebrow">Talk to Vibrant</p>
-            <h2 className="mt-3">Book a 30-minute call with a senior advisor.</h2>
+            <h2 className="mt-3">Request a call with a senior advisor.</h2>
             <p className="mt-5 text-muted leading-relaxed">
               Thirty minutes with a senior advisor, not a sales rep. Tell us what you&apos;re
               carrying, ERP modernization, cloud, analytics, or managed support, and we&apos;ll

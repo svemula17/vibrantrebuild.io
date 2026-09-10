@@ -178,7 +178,7 @@ export function Footer() {
             href="/contact"
             className="mt-6 btn bg-white text-brand-700 shadow-card hover:bg-neutral-100 hover:-translate-y-0.5 hover:shadow-cardHover px-5 py-2.5"
           >
-            Book a 30-minute call →
+            Request a call →
           </Link>
         </div>
       </div>

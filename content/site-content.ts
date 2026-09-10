@@ -1178,11 +1178,28 @@ export function getServiceBySlug(slug: string) {
    underneath, because it spans all three. Shared by the homepage (full cards)
    and the services index (compact map), so the two can't drift apart. */
 
-const capabilityStages: { label: string; nodes: { slug: string; description: string }[] }[] = [
+const capabilityStages: {
+  label: string;
+  nodes: { slug: string; description: string; includes?: string[]; products?: { name: string; blurb: string }[] }[];
+}[] = [
   {
     label: "Secure the estate",
     nodes: [
-      { slug: "cybersecurity", description: "Zero-trust identity, 24\u00d77 SOC, audit-ready SOC 2, HIPAA, PCI and CMMC." }
+      {
+        slug: "cybersecurity",
+        description: "Zero-trust identity, 24\u00d77 SOC, audit-ready SOC 2, HIPAA, PCI and CMMC.",
+        includes: [
+          "Zero Trust Architecture",
+          "Managed Detection & Response",
+          "Compliance Readiness",
+          "Managed IT"
+        ],
+        products: [
+          { name: "kaveo", blurb: "Cloud security posture management, read-only, inside your own account." },
+          { name: "Vectasec", blurb: "Middleware security for API gateways, brokers and service meshes." },
+          { name: "aegis", blurb: "Authenticated, audited gateway for MCP tool calls." }
+        ]
+      }
     ]
   },
   {
@@ -1210,18 +1227,30 @@ const capabilityRail = {
     "And we run all of it, 24×7. Always-on support across cloud, security, ERP and end-user computing."
 };
 
-export type CapabilityFlowNode = { slug: string; title: string; iconPath: string; description: string };
+export type CapabilityFlowNode = {
+  slug: string;
+  title: string;
+  iconPath: string;
+  description: string;
+  /** Stage 01 holds one node against three-node columns, so the Security card
+      carries its sub-practices and products to fill the stretched column
+      rather than leaving dead space. Per the design canvas. */
+  includes?: string[];
+  products?: { name: string; blurb: string }[];
+};
 export type CapabilityFlowStage = { label: string; nodes: CapabilityFlowNode[] };
 
 export function getCapabilityFlow() {
-  const resolve = (slug: string, description: string): CapabilityFlowNode[] => {
-    const service = getServiceBySlug(slug);
-    return service ? [{ slug, title: service.title, iconPath: service.iconPath, description }] : [];
+  const resolve = (node: { slug: string; description: string; includes?: string[]; products?: { name: string; blurb: string }[] }): CapabilityFlowNode[] => {
+    const service = getServiceBySlug(node.slug);
+    return service
+      ? [{ slug: node.slug, title: service.title, iconPath: service.iconPath, description: node.description, includes: node.includes, products: node.products }]
+      : [];
   };
 
   const stages: CapabilityFlowStage[] = capabilityStages.map((stage) => ({
     label: stage.label,
-    nodes: stage.nodes.flatMap((node) => resolve(node.slug, node.description))
+    nodes: stage.nodes.flatMap((node) => resolve(node))
   }));
 
   const railService = getServiceBySlug(capabilityRail.slug);

@@ -15,7 +15,15 @@ import { Fragment, useEffect, useRef, type CSSProperties } from "react";
    resting state without JS, and so reduced-motion users never see the
    pre-animation state at all. */
 
-export type FlowNode = { slug: string; title: string; iconPath: string; description: string };
+export type FlowNode = {
+  slug: string;
+  title: string;
+  iconPath: string;
+  description: string;
+  /** Only stage 01 carries these; see the render below. */
+  includes?: string[];
+  products?: { name: string; blurb: string }[];
+};
 export type FlowStage = { label: string; nodes: FlowNode[] };
 export type FlowRail = {
   slug: string;
@@ -109,7 +117,39 @@ export function CapabilityFlow({
                   <h3 className="fw-t">{node.title}</h3>
                   {!isMap && (
                     <>
-                      <p className="fw-d">{node.description}</p>
+                      <p className="fw-d" style={node.includes ? { flex: "0 0 auto" } : undefined}>
+                        {node.description}
+                      </p>
+
+                      {/* Stage 01 is one node against three-node columns, so the
+                          Security card carries its sub-practices and the three
+                          products, filling the stretched column instead of
+                          leaving dead space. Per the design canvas. */}
+                      {node.includes && (
+                        <>
+                          <p className="fw-label">Includes</p>
+                          <ul className="fw-sub">
+                            {node.includes.map((it) => (
+                              <li key={it}>{it}</li>
+                            ))}
+                          </ul>
+                        </>
+                      )}
+                      {node.products && (
+                        <div className="fw-prods" style={{ flex: "1 1 auto" }}>
+                          <p className="fw-label" style={{ marginTop: 0 }}>
+                            Products we build
+                          </p>
+                          <ul className="fw-plist">
+                            {node.products.map((pr) => (
+                              <li key={pr.name}>
+                                <b>{pr.name}</b>
+                                {pr.blurb}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                       <span className="fw-more">
                         Learn more
                         <Arrow />

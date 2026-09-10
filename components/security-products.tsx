@@ -196,8 +196,8 @@ export function SecurityProducts() {
               <p className="mt-6 text-xs font-bold uppercase tracking-[0.16em] text-brand-700">
                 {p.name}
               </p>
-              <h3 className="mt-2 text-lg font-semibold text-navy-700 leading-snug">{p.heading}</h3>
-              <p className="mt-3 text-sm text-muted leading-relaxed">{p.body}</p>
+              <h3 className="mt-2 text-xl font-semibold text-navy-700 leading-snug">{p.heading}</h3>
+              <p className="mt-3 text-base text-muted leading-relaxed">{p.body}</p>
             </article>
           ))}
         </div>
