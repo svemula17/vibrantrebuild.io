@@ -499,7 +499,8 @@ export const serviceCards: ServiceCard[] = [
       "Mid-market and enterprise companies modernizing security alongside cloud and AI programs, especially those seeking AI-augmented threat response.",
     featured: true,
     carouselOrder: 3,
-    heroTagline: "Zero-trust architecture, always-on SOC coverage, audit-ready compliance.",
+    heroTagline:
+      "Detect it in minutes. Prove it to the auditor. Without pausing the business.",
     heroTeaser:
       "Security that enables the business instead of slowing it down. We design zero-trust architecture, harden identity, run round-the-clock SOC coverage, and keep you audit-ready across SOC 2, HIPAA, PCI, and CMMC, backed by our AI Shield detection platform.",
     heroHighlights: ["Zero-trust & identity", "24×7 SOC operations", "SOC 2 · HIPAA · PCI · CMMC"]

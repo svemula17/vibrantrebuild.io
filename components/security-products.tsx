@@ -12,7 +12,7 @@ const INK = "#292420";
 const LINE = "#E7E3DE";
 
 /** kaveo: three clouds collected read-only into a boundary that nothing leaves. */
-function KaveoArt() {
+export function KaveoArt() {
   return (
     <svg viewBox="0 0 340 150" className="w-full h-auto" role="img"
          aria-label="AWS, Azure and GCP accounts feeding a read-only collector inside your own boundary, with findings staying inside it.">
@@ -44,7 +44,7 @@ function KaveoArt() {
 }
 
 /** Vectasec: the layer between services, which is the part usually unaudited. */
-function VectasecArt() {
+export function VectasecArt() {
   return (
     <svg viewBox="0 0 340 150" className="w-full h-auto" role="img"
          aria-label="Services connecting through an audited middleware layer of API gateways, message brokers and service meshes.">
@@ -77,7 +77,7 @@ function VectasecArt() {
 }
 
 /** aegis: every tool call authenticated, then hash-chained into an audit log. */
-function AegisArt() {
+export function AegisArt() {
   return (
     <svg viewBox="0 0 340 150" className="w-full h-auto" role="img"
          aria-label="Agents calling MCP servers through a gateway that authenticates, authorizes and rate limits, writing a hash-chained audit log.">
@@ -115,7 +115,7 @@ function AegisArt() {
   );
 }
 
-const PRODUCTS = [
+export const PRODUCTS = [
   {
     art: <KaveoArt />,
     name: "kaveo",

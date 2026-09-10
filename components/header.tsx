@@ -43,6 +43,7 @@ const SERVICES_MENU: { heading: string; links: [string, string][] }[] = [
     heading: "Explore",
     links: [
       ["All services", "/services"],
+      ["Products: kaveo · Vectasec · aegis", "/services/cybersecurity#products"],
       ["Industries", "/industries"],
       ["S/4HANA Cost Calculator", "/resources/sap-cost-calculator"],
       ["Guides & insights", "/resources"]

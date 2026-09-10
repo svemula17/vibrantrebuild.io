@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 /* The attack-lifecycle spine, ported from the design canvas.
@@ -146,6 +147,12 @@ export function AttackLifecycle() {
             <p className="eyebrow">Tooling at this stage</p>
             <p className="cy-prod">{stage.tool}</p>
             <p className="mt-2 text-sm text-muted leading-relaxed">{stage.toolBlurb}</p>
+            <Link
+              href="#products"
+              className="mt-4 inline-flex text-sm font-semibold text-brand-700 underline underline-offset-4 decoration-brand-600/40 hover:decoration-brand-600"
+            >
+              See the products&nbsp;→
+            </Link>
           </aside>
         </div>
       </div>

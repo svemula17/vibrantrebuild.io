@@ -9,12 +9,13 @@ import {
   getServiceBySlug,
   serviceCards,
   serviceInterestMap,
-  siteSettings
+  siteSettings,
+  yearsInBusiness
 } from "@/content/site-content";
 import { CaseStudyCard } from "@/components/case-study-card";
 import { pageMeta } from "@/lib/seo";
 import { ServiceSchema, BreadcrumbSchema } from "@/components/structured-data";
-import { SecurityProducts } from "@/components/security-products";
+import { SecurityProductSections } from "@/components/security-product-sections";
 import { AttackLifecycle } from "@/components/attack-lifecycle";
 
 type Params = { slug: string };
@@ -60,7 +61,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
       />
       <PageHero
         eyebrow={service.kicker}
-        title={service.title}
+        /* Cybersecurity leads with the promise, not the category name. The
+           category still shows as the eyebrow, so the H1 can do real work. */
+        title={service.slug === "cybersecurity" && service.heroTagline ? service.heroTagline : service.title}
         description={service.summary}
         crumbs={[
           { label: "Home", href: "/" },
@@ -78,6 +81,40 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
             </span>
           ))}
         </div>
+
+        {/* Cybersecurity leads with its own tooling and the numbers that make
+            the "nothing leaves your account" claim concrete. Per the canvas. */}
+        {service.slug === "cybersecurity" && (
+          <>
+            <div className="cy-prodstrip mt-8">
+              <span className="cy-prodlabel">Our own tools</span>
+              {[
+                ["kaveo", "Cloud security posture"],
+                ["Vectasec", "Middleware security"],
+                ["aegis", "MCP gateway"]
+              ].map(([name, kind]) => (
+                <Link key={name} href="#products" className="cy-prod">
+                  <b>{name}</b>
+                  {kind}
+                </Link>
+              ))}
+            </div>
+
+            <dl className="cy-band mt-10">
+              {[
+                ["24\u00d77", "Managed SOC coverage, not business hours"],
+                ["4", "Frameworks we carry clients through: SOC 2, HIPAA, PCI, CMMC"],
+                [`${yearsInBusiness}+`, "Years delivering under change control, founder-led"],
+                ["0", "Bytes of configuration or log data leaving your account"]
+              ].map(([n, label]) => (
+                <div key={label}>
+                  <dt>{n}</dt>
+                  <dd>{label}</dd>
+                </div>
+              ))}
+            </dl>
+          </>
+        )}
       </PageHero>
 
       <section className="section">
@@ -175,6 +212,16 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
                 >
                   Book a Call
                 </Link>
+                {/* The free assessment is the security practice's lead magnet,
+                    so it only appears where it is actually being offered. */}
+                {service.slug === "cybersecurity" && (
+                  <Link
+                    href={`/contact/?interest=${encodeURIComponent(serviceInterestMap[service.slug] ?? "")}&topic=assessment`}
+                    className="btn-ghost"
+                  >
+                    Free security assessment
+                  </Link>
+                )}
                 <a href={`tel:${siteSettings.phonePrimary}`} className="btn-ghost">{siteSettings.phonePrimary}</a>
               </div>
               <hr className="my-6 border-line" />
@@ -194,7 +241,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
       </section>
 
       {/* Products live only on the cybersecurity parent page. */}
-      {service.slug === "cybersecurity" && <SecurityProducts />}
+      {service.slug === "cybersecurity" && <SecurityProductSections />}
       {service.slug === "cybersecurity" && <AttackLifecycle />}
 
       <section className="section-soft">
