@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const { slug } = await params;
   const ind = getIndustryBySlug(slug);
   if (!ind) return { title: "Industry not found" };
-  return pageMeta({ title: ind.title, description: ind.metaDescription, path: `/industries/${slug}` });
+  return pageMeta({ title: ind.seoTitle ?? ind.title, description: ind.metaDescription, path: `/industries/${slug}` });
 }
 
 export default async function IndustryDetailPage({ params }: { params: Promise<Params> }) {
@@ -32,7 +32,7 @@ export default async function IndustryDetailPage({ params }: { params: Promise<P
     <>
       <PageHero
         eyebrow={ind.kicker}
-        title={ind.title}
+        title={ind.seoTitle ?? ind.title}
         description={ind.summary}
         crumbs={[
           { label: "Home", href: "/" },

@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const service = getServiceBySlug(slug);
   if (!service) return { title: "Service not found" };
   return pageMeta({
-    title: service.title,
+    title: service.seoTitle ?? service.title,
     description: service.metaDescription ?? service.summary,
     path: `/services/${slug}`
   });

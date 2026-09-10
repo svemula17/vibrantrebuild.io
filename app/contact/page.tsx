@@ -15,9 +15,9 @@ const officePhotos: Record<string, StaticImageData> = {
 };
 
 export const metadata: Metadata = pageMeta({
-  title: "Contact an ERP & Cybersecurity Consultant",
+  title: "ERP & Cybersecurity Consultants in Princeton, NJ",
   description:
-    "Reach Vibrant Inc in Princeton, NJ or Hyderabad, India, get a call back from a senior advisor within one business day.",
+    "Reach Vibrant Inc in Princeton, New Jersey or Hyderabad, India. A senior ERP or cybersecurity advisor calls back within one business day.",
   path: "/contact"
 });
 

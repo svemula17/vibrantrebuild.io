@@ -20,6 +20,8 @@ export type IndustryCapability = {
 
 export type Industry = {
   slug: string;
+  /** <title> and hero H1. `title` stays short for nav and index cards. */
+  seoTitle?: string;
   kicker: string;
   title: string;
   summary: string;
@@ -35,6 +37,7 @@ export type Industry = {
 export const industries: Industry[] = [
   {
     slug: "healthcare",
+    seoTitle: "Healthcare IT Consulting & EHR Modernization",
     kicker: "Industries",
     title: "Healthcare",
     summary:
@@ -107,6 +110,7 @@ export const industries: Industry[] = [
   },
   {
     slug: "insurance",
+    seoTitle: "Insurance Technology Consulting",
     kicker: "Industries",
     title: "Insurance",
     summary:

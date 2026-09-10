@@ -15,9 +15,9 @@ import {
 import anniversary from "@/assets/anniversary.png";
 
 export const metadata: Metadata = pageMeta({
-  title: "ERP & Cybersecurity Consultants Since 2000",
+  title: "ERP & Cybersecurity Consultants, New Jersey",
   description:
-    "Founder-led since 2000, Vibrant Inc modernizes ERP, cloud, and data for companies across North America, senior practitioners who own the outcome.",
+    "Founder-led since 2000 in Princeton, New Jersey. Vibrant Inc modernizes ERP, cloud, and cybersecurity for companies across North America.",
   path: "/about"
 });
 

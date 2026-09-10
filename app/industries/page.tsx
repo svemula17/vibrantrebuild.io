@@ -7,7 +7,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata: Metadata = pageMeta({
   title: "Healthcare & Insurance IT Consulting",
   description:
-    "Where Vibrant Inc has deep vertical experience: healthcare providers and healthcare insurance carriers.",
+    "Where Vibrant Inc has deep vertical experience: IT consulting for healthcare providers and insurance carriers, from Princeton, New Jersey.",
   path: "/industries"
 });
 

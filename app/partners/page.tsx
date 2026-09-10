@@ -11,7 +11,7 @@ import microsoftLogo from "@/assets/partners/microsoft.svg";
 export const metadata: Metadata = pageMeta({
   title: "Oracle, Microsoft & Wrike Certified Partner",
   description:
-    "Vibrant Inc maintains certified partnerships with Oracle, Wrike, and Microsoft, giving clients right-sized licensing, vendor-validated architecture, and fast support escalation.",
+    "Certified Oracle, Microsoft, and Wrike partner. Clients get right-sized licensing, vendor-validated architecture, and fast escalation when it matters.",
   path: "/partners"
 });
 

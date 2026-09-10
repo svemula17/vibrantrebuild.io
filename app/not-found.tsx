@@ -1,4 +1,13 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+
+/* Without this the 404 inherits the layout defaults, which made it a byte-for-
+   byte duplicate of the homepage title and description, and indexable. */
+export const metadata: Metadata = {
+  title: "Page not found",
+  description: "That page has moved or no longer exists. Head back to the Vibrant Inc homepage or use the navigation.",
+  robots: { index: false, follow: true }
+};
 
 export default function NotFound() {
   return (

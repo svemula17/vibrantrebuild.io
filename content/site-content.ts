@@ -7,6 +7,9 @@ export type ServiceCard = {
   summary: string;
   /** SERP copy (≤160 chars, sentence form), falls back to summary */
   metaDescription?: string;
+  /** <title> only (≤49 chars; the layout appends " | Vibrant Inc"). Written for
+      search intent, so it can differ from the on-page title. Falls back to title. */
+  seoTitle?: string;
   longDescription: string;
   iconPath: string;
   metaTags: string[];
@@ -243,6 +246,7 @@ const ICONS = {
 export const serviceCards: ServiceCard[] = [
   {
     slug: "ai-readiness",
+    seoTitle: "AI Readiness Assessment & Consulting",
     kicker: "AI Readiness",
     title: "AI Readiness",
     summary:
@@ -293,10 +297,11 @@ export const serviceCards: ServiceCard[] = [
   },
   {
     slug: "cloud-modernization",
+    seoTitle: "Cloud Migration & Modernization Consulting",
     kicker: "Cloud Modernization",
     title: "Cloud Modernization",
     summary:
-      "Rationalize, replatform, and refactor your estate on Azure, AWS, or GCP, without the rip-and-replace risk.",
+      "Cloud migration and modernization consulting: rationalize, replatform, and refactor your estate on Azure, AWS, or GCP without rip-and-replace risk.",
     longDescription:
       "We modernize legacy estates incrementally, landing zones, migrations, microservices, and platform engineering, so the business keeps shipping while the foundation gets stronger.",
     iconPath: ICONS.cloud,
@@ -330,6 +335,7 @@ export const serviceCards: ServiceCard[] = [
   },
   {
     slug: "cybersecurity",
+    seoTitle: "Cybersecurity Consulting & Compliance Services",
     metaDescription:
       "Zero-trust security, 24×7 SOC coverage, and audit-ready SOC 2, HIPAA, PCI, and CMMC compliance, backed by Vibrant's AI Shield detection platform.",
     kicker: "Cybersecurity & Compliance",
@@ -401,6 +407,7 @@ export const serviceCards: ServiceCard[] = [
   },
   {
     slug: "zero-trust-architecture",
+    seoTitle: "Zero Trust Architecture Consulting",
     hideFromGrid: true,
     metaDescription:
       "Zero-trust architecture consulting: identity-first access design, segmentation, and a phased roadmap you can fund one quarter at a time.",
@@ -440,6 +447,7 @@ export const serviceCards: ServiceCard[] = [
   },
   {
     slug: "managed-detection-response",
+    seoTitle: "Managed Detection & Response (MDR) Services",
     hideFromGrid: true,
     metaDescription:
       "Managed detection and response with a 24\u00d77 SOC, AI Shield behavioral analytics, and response playbooks agreed with your team. Runs on the SIEM you already own.",
@@ -479,6 +487,7 @@ export const serviceCards: ServiceCard[] = [
   },
   {
     slug: "compliance-readiness",
+    seoTitle: "SOC 2, HIPAA, PCI & CMMC Compliance Consulting",
     hideFromGrid: true,
     metaDescription:
       "SOC 2, HIPAA, PCI, and CMMC readiness. We map controls to what your business already does and gather the evidence auditors ask for.",
@@ -512,8 +521,9 @@ export const serviceCards: ServiceCard[] = [
   },
   {
     slug: "erp-optimization",
+    seoTitle: "ERP Consulting: SAP, JD Edwards & PeopleSoft",
     metaDescription:
-      "One partner for SAP, JD Edwards, PeopleSoft, Oracle EBS, Workday, and Dynamics 365, implementation, upgrades, and managed support, owned end to end.",
+      "One New Jersey partner for SAP, JD Edwards, PeopleSoft, Oracle EBS, Workday, and Dynamics 365: implementation, upgrades, and managed support.",
     kicker: "ERP & Enterprise Applications",
     title: "ERP & Enterprise Applications",
     summary:
@@ -585,10 +595,11 @@ export const serviceCards: ServiceCard[] = [
   },
   {
     slug: "data-analytics",
+    seoTitle: "Data Analytics & BI Consulting Services",
     kicker: "Data & Analytics",
     title: "Data & Analytics",
     summary:
-      "Modern data platforms, self-service BI, and decision-grade reporting on Snowflake, Databricks, Power BI, and Oracle BI.",
+      "Data analytics and BI consulting: modern data platforms, self-service BI, and decision-grade reporting on Snowflake, Databricks, Power BI, and Oracle BI.",
     longDescription:
       "From data strategy to dashboards, we build the platform and the reporting layer that gives leadership numbers they trust, and gives analysts the freedom to answer their own questions.",
     iconPath: ICONS.chart,
@@ -622,6 +633,7 @@ export const serviceCards: ServiceCard[] = [
   },
   {
     slug: "managed-it",
+    seoTitle: "Managed IT Services for Mid-Market Companies",
     kicker: "Managed IT",
     title: "Managed IT",
     summary:
@@ -662,6 +674,7 @@ export const serviceCards: ServiceCard[] = [
   /* ───── SAP SOLUTIONS. One umbrella carousel slide ───── */
   {
     slug: "sap-solutions",
+    seoTitle: "SAP Consulting & S/4HANA Migration Services",
     metaDescription:
       "Full-lifecycle SAP services from one senior-led team. S/4HANA implementation, AMS support, supply chain, BTP integration, Fiori UX, and clean core.",
     kicker: "SAP Solutions",
@@ -1267,7 +1280,7 @@ export const resourceGuides: ResourceGuide[] = [
     category: "Guide",
     title: "SAP S/4HANA Migration Guide",
     description:
-      "Greenfield, brownfield, or selective data transition? A practical walkthrough of the three migration paths, the timeline phases, and the pitfalls that blow up budgets.",
+      "Greenfield, brownfield, or selective data transition? A practical walkthrough of the three S/4HANA migration paths, phases, and the pitfalls that blow budgets.",
     readTime: "9 min read",
     relatedServices: ["sap-solutions", "sap-solutions", "sap-solutions"],
     sections: [
@@ -1370,7 +1383,7 @@ export const resourceGuides: ResourceGuide[] = [
     category: "Roadmap",
     title: "ERP Modernization Roadmap",
     description:
-      "A sequenced, board-defensible plan for moving off legacy ERP, assess, rationalize, sequence, execute, measure.",
+      "An ERP modernization roadmap you can defend to the board: assess, rationalize, sequence, execute, measure. A sequenced plan for moving off legacy ERP.",
     readTime: "8 min read",
     relatedServices: ["erp-optimization", "sap-solutions", "managed-it"],
     sections: [
@@ -1478,7 +1491,7 @@ export const resourceGuides: ResourceGuide[] = [
     category: "White Paper",
     title: "The VIBRANT Method™. Agile Delivery for Enterprise Programs",
     description:
-      "How a seven-phase agile framework keeps ERP, cloud, and AI programs on time and on budget, without disrupting operations. The methodology behind every Vibrant engagement.",
+      "A seven-phase agile framework that keeps ERP, cloud, and AI programs on time and on budget without disrupting operations.",
     readTime: "5 min read",
     relatedServices: ["erp-optimization", "cloud-modernization", "ai-readiness"],
     sections: [
