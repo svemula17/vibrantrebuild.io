@@ -97,6 +97,21 @@ export function Header() {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     closeTimer.current = setTimeout(() => setServicesOpen(false), 150);
   };
+  /* Hover alone strands touch users: tapping "Services" or "Company" just
+     navigates, so the menu is unreachable on a phone or a trackpad tap. The
+     chevron is a real button that toggles, which also makes both menus
+     keyboard-operable. */
+  const toggleMega = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setAboutOpen(false);
+    setServicesOpen((v) => !v);
+  };
+  const toggleAbout = () => {
+    if (aboutTimer.current) clearTimeout(aboutTimer.current);
+    setServicesOpen(false);
+    setAboutOpen((v) => !v);
+  };
+
   const openAbout = () => {
     if (aboutTimer.current) clearTimeout(aboutTimer.current);
     setAboutOpen(true);
@@ -230,33 +245,22 @@ export function Header() {
             const menuOpen = isServices ? servicesOpen : isAbout ? aboutOpen : false;
             const openFn = isServices ? openMega : isAbout ? openAbout : undefined;
             const closeFn = isServices ? scheduleMegaClose : isAbout ? scheduleAboutClose : undefined;
+            const toggleFn = isServices ? toggleMega : isAbout ? toggleAbout : undefined;
             return (
               <span
                 key={item.href}
-                className={isAbout ? "relative" : undefined}
+                className={`inline-flex items-center${isAbout ? " relative" : ""}`}
                 onMouseEnter={openFn}
                 onMouseLeave={closeFn}
               >
                 <Link
                   href={item.href}
                   onFocus={openFn}
-                  aria-expanded={hasMenu ? menuOpen : undefined}
-                  aria-haspopup={hasMenu ? "true" : undefined}
                   className={`relative inline-flex items-center gap-1 px-2 xl:px-2.5 py-2 text-[13px] font-medium rounded-full whitespace-nowrap transition-colors ${
                     active ? "text-navy-700" : "text-ink/70 hover:text-brand-700"
                   }`}
                 >
                   {item.label}
-                  {hasMenu && (
-                    <svg
-                      viewBox="0 0 24 24"
-                      className={`h-3 w-3 transition-transform duration-200 ${menuOpen ? "rotate-180 text-brand-600" : ""}`}
-                      fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-                      aria-hidden="true"
-                    >
-                      <polyline points="6 9 12 15 18 9" />
-                    </svg>
-                  )}
                   {active &&
                     (mounted ? (
                       <motion.span
@@ -268,6 +272,26 @@ export function Header() {
                       <span className="absolute inset-x-2 -bottom-0.5 h-0.5 bg-brand-600 rounded" />
                     ))}
                 </Link>
+
+                {hasMenu && (
+                  <button
+                    type="button"
+                    onClick={toggleFn}
+                    aria-expanded={menuOpen}
+                    aria-haspopup="true"
+                    aria-label={`${item.label} menu`}
+                    className="-ml-1 grid h-7 w-6 place-items-center rounded-full text-ink/70 hover:text-brand-700 transition-colors"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      className={`h-3 w-3 transition-transform duration-200 ${menuOpen ? "rotate-180 text-brand-600" : ""}`}
+                      fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </button>
+                )}
 
                 {/* Compact About dropdown, anchored to the nav item */}
                 {isAbout && (
