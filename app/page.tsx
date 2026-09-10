@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Hero }         from "@/components/home/hero";
 import { ClientLogos }  from "@/components/home/client-logos";
+import { SecurityProducts } from "@/components/security-products";
 import { AboutIntro }   from "@/components/home/about-intro";
 import { Capabilities } from "@/components/home/capabilities";
 import { AiShieldBand } from "@/components/home/ai-shield-band";
@@ -19,6 +20,7 @@ export default function HomePage() {
       <Hero />          {/* split: ruled copy panel + team photograph */}
       <ClientLogos credentials />  {/* white, credential row + 19-client marquee */}
       <AboutIntro />    {/* white, who Vibrant is, in one tight section */}
+      <SecurityProducts />{/* cream, the three products, per the design canvas */}
       <AiShieldBand />  {/* brand gradient, AI Shield: the security proof, moved
                             up from fifth so the security claim in the hero has
                             evidence under it before the reader scrolls past */}

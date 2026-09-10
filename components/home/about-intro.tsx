@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/reveal";
 import { YearsRail } from "@/components/home/years-rail";
-import { foundedYear, withBasePath, yearsInBusiness } from "@/content/site-content";
+import { aboutFacts, foundedYear, withBasePath, yearsInBusiness } from "@/content/site-content";
 import anniversary from "@/assets/anniversary.png";
 
 /* Compact homepage About section, the full story lives on /about */
@@ -18,6 +18,14 @@ export function AboutIntro() {
               Founder-led for 26 years, senior practitioners modernizing ERP, cloud,
               data, and security for companies that can&apos;t afford downtime.
             </p>
+            <dl className="mt-7 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-line pt-6">
+              {aboutFacts.map((f) => (
+                <div key={f.label} className="pl-4 border-l-2 border-brand-600">
+                  <dt className="text-2xl font-semibold tracking-tight text-navy-700">{f.value}</dt>
+                  <dd className="mt-1 text-xs text-muted leading-snug">{f.label}</dd>
+                </div>
+              ))}
+            </dl>
             <p className="mt-4 text-muted leading-relaxed">
               From Princeton and Hyderabad, our teams take ownership from the first
               blueprint to the first quiet month after go-live. Most of our work
