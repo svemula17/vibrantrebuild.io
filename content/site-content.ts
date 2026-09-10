@@ -450,7 +450,7 @@ export const serviceCards: ServiceCard[] = [
       "Security assessments & gap analysis",
       "kaveo. Cloud security posture management, read-only, in your own account",
       "Vectasec. Middleware security for gateways, brokers and service meshes",
-      "aegis. Authenticated, audited gateway for MCP tool calls",
+      "Aegis. Authenticated, audited gateway for MCP tool calls",
       "Zero-trust architecture design",
       "Identity & access management",
       "SOC operations (24×7 managed)",
@@ -477,7 +477,7 @@ export const serviceCards: ServiceCard[] = [
         items: [
           "kaveo. Cloud security posture management for AWS, Azure, GCP and Kubernetes. Runs read-only inside your own account, so no configuration or log data leaves it.",
           "Vectasec. Middleware security for the layer between services. Audits API gateways, message brokers and service meshes for authentication gaps, over-broad routing and policy drift.",
-          "aegis. A gateway for MCP tool calls, adding authentication, role-based authorization, threat filtering and rate limiting, with a tamper-evident audit trail.",
+          "Aegis. A gateway for MCP tool calls, adding authentication, role-based authorization, threat filtering and rate limiting, with a tamper-evident audit trail.",
           "Every finding cites the stored observation that produced it, so auditors get evidence rather than dashboard screenshots."
         ]
       },
@@ -1536,7 +1536,7 @@ const capabilityStages: {
         products: [
           { name: "kaveo", blurb: "Cloud security posture management, read-only, inside your own account." },
           { name: "Vectasec", blurb: "Middleware security for API gateways, brokers and service meshes." },
-          { name: "aegis", blurb: "Authenticated, audited gateway for MCP tool calls." }
+          { name: "Aegis", blurb: "Authenticated, audited gateway for MCP tool calls." }
         ]
       }
     ]

@@ -435,7 +435,7 @@
   border-radius: 999px; background: #C8401A; box-shadow: 0 0 0 3px #FFFFFF, 0 0 0 4px rgba(200, 64, 26, 0.28);
 }
 .ab-tick { position: absolute; top: -4px; width: 1px; height: 10px; background: #D6D0C9; }
-.ab-tick.is-major { background: #A8A198; }
+.ab-tick.is-major { background: #78716C; }
 .ab-tick i {
   position: absolute; top: 14px; left: 0; transform: translateX(-50%);
   font-style: normal; font-size: 11px; color: #78716C; white-space: nowrap;
@@ -534,16 +534,18 @@
    surface and each diagram animates the idea it draws. .is-in is set by
    an IntersectionObserver so nothing animates off-screen. */
 /* Security products: the band itself reads as a monitored surface — a
-   drifting dot lattice, two counter-moving brand washes, a slow sweep and
-   a radar ping out of the corner. All under 8% so the ink stays legible. */
+   dot lattice that drifts only on hover, two counter-moving brand washes and
+   a slow sweep. All under 8% so the ink stays legible. */
 .sp-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.sp:hover .sp-dots { animation: sp-lattice 3.2s linear infinite; }
 .sp-dots {
   position: absolute; inset: -40px;
   background-image: radial-gradient(rgba(200, 64, 26, 0.22) 1px, transparent 1.4px);
   background-size: 22px 22px;
   -webkit-mask-image: radial-gradient(120% 100% at 50% 0%, #000 0%, rgba(0, 0, 0, 0.45) 55%, transparent 88%);
   mask-image: radial-gradient(120% 100% at 50% 0%, #000 0%, rgba(0, 0, 0, 0.45) 55%, transparent 88%);
-  animation: sp-lattice 24s linear infinite;
+  /* Still at rest — a lattice that drifts unprompted reads as a broken loop. */
+  animation: none;
 }
 @keyframes sp-lattice { to { background-position: 22px 22px; } }
 .sp-wash {
@@ -617,24 +619,8 @@
   0%, 58% { transform: translateX(-160%) skewX(-14deg); }
   100%    { transform: translateX(420%) skewX(-14deg); }
 }
-.sp-ping {
-  position: absolute; right: 6%; bottom: 12%;
-  width: 14px; height: 14px; border-radius: 999px;
-  border: 1.5px solid rgba(200, 64, 26, 0.55); opacity: 0;
-  animation: sp-ping-out 5.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
-}
-/* All .sp-bg children are spans, so nth-of-type can't isolate the pings. */
-.sp-ping + .sp-ping { animation-delay: 1.7s; }
-.sp-ping + .sp-ping + .sp-ping { animation-delay: 3.4s; }
-@keyframes sp-ping-out {
-  0%   { transform: scale(1); opacity: 0.75; }
-  70%  { opacity: 0.1; }
-  100% { transform: scale(16); opacity: 0; }
-}
 @media (prefers-reduced-motion: reduce) {
-  .sp-dots, .sp-wash, .sp-sweep, .sp-ping,
-  .sp-packet, .sp-threat::before, .sp-threat::after { animation: none; }
-  .sp-sweep, .sp-ping, .sp-packet, .sp-threat { opacity: 0; }
+  .sp-dots, .sp-wash, .sp-sweep, .sp:hover .sp-dots { animation: none; }
 }
 
 /* Security products: the diagrams animate the idea they draw — traffic
@@ -760,7 +746,8 @@
    instead of empty space. */
 .fw-label {
   margin: 16px 0 8px; font-size: 10px; font-weight: 700; letter-spacing: 0.16em;
-  text-transform: uppercase; color: #A8A198;
+  /* neutral-600, 7.63:1. The old neutral-400 measured 2.56:1 at 10px. */
+  text-transform: uppercase; color: #57534E;
 }
 .fw-sub { display: flex; flex-direction: column; gap: 6px; margin: 0; padding: 0; list-style: none; }
 .fw-sub li {
@@ -897,7 +884,7 @@
       border: 1px solid rgba(200, 64, 26, 0.3); color: #A33315; background: rgba(200, 64, 26, 0.06);
       border-radius: 999px; font-size: 11px; font-weight: 700;}
 .cy-spine {display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;}
-.cy-spine {grid-template-columns: repeat(2, 1fr);}
+@media (max-width: 720px) { .cy-spine {grid-template-columns: repeat(2, 1fr);} }
 .cy-stage {appearance: none; cursor: pointer; text-align: left; display: flex; flex-direction: column; gap: 4px;
       padding: 16px 16px 18px; background: #fff; border: 1px solid #E7E3DE; border-top: 3px solid #E7E3DE;
       border-radius: 14px; transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;}
@@ -908,7 +895,7 @@
 .cy-stagelabel {font-size: 1rem; font-weight: 600; color: #1B2A41;}
 .cy-stagesub {font-size: 0.75rem; line-height: 1.4; color: #57534E;}
 .cy-detail {display: grid; grid-template-columns: minmax(0, 1fr) 20rem; gap: 24px;}
-.cy-detail {grid-template-columns: minmax(0, 1fr);}
+@media (max-width: 900px) { .cy-detail {grid-template-columns: minmax(0, 1fr);} }
 .cy-detailmain {background: #fff; border: 1px solid #E7E3DE; border-radius: 18px; padding: 28px;}
 .cy-detailside {background: #fff; border: 1px solid rgba(200, 64, 26, 0.25); border-radius: 18px; padding: 28px;
       align-self: start;}
@@ -922,7 +909,7 @@
 .cy-result {position: sticky; top: 7rem;}
 .cy-caps {columns: 2; column-gap: 32px;}
 .cy-caps li {break-inside: avoid;}
-.cy-caps {columns: 1;}
+@media (max-width: 720px) { .cy-caps {columns: 1;} }
 .cy-prodstrip {display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
       padding-top: 20px; border-top: 1px solid rgba(200, 64, 26, 0.18);}
 .cy-prodlabel {font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #57534E;
@@ -984,3 +971,281 @@
   .sp-split { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .sp-split.is-flip .sp-art { order: 0; }
 }
+
+/* The marquee caption must never wrap: at 360px a two-line caption pushes the
+   rail down and the band loses its horizon. Shrink the type instead. */
+.cl-cap {
+  /* The global measure cap is in ch, so it shrinks in lockstep with the font
+     and the clamp could never catch up. Clear it. */
+  max-width: none;
+  white-space: nowrap;
+  font-size: clamp(5.8px, 1.2vw, 12px);
+  letter-spacing: clamp(0.05px, 0.14vw, 1.7px);
+}
+
+/* ── Products band on a dark ground ──────────────────────────────────────
+   The homepage runs light the whole way down; the products band is the one
+   place Vibrant is the vendor rather than the integrator, so it inverts to
+   mark the shift. Contrast measured against navy-700 (#1A1512): body copy
+   13.4:1, product names 8.8:1, eyebrow 4.9:1.
+   The diagrams keep a light panel — inverting an SVG whose strokes are tuned
+   for paper turns three legible schematics into mud. */
+.is-dark h2,
+.is-dark h3 { color: #fff; }
+.is-dark .text-muted,
+.is-dark p { color: rgba(255, 255, 255, 0.85); }
+.is-dark .eyebrow { color: #E05A1F; }
+
+.is-dark .sp-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+}
+.is-dark .sp-card:hover { border-color: rgba(224, 90, 31, 0.45); }
+
+/* The diagram panel stays paper. */
+.is-dark .sp-card > div:first-child,
+.is-dark .sp-art > div {
+  background: #F7F5F2;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.is-dark .sp-lock { border-top-color: rgba(224, 90, 31, 0.35); }
+.is-dark .sp-built {
+  background: rgba(224, 90, 31, 0.14);
+  border-color: rgba(224, 90, 31, 0.4);
+  color: #F0A17E;
+}
+.is-dark .sp-name,
+.is-dark .sp-card:hover .sp-name { color: #F0A17E; }
+.is-dark .sp-kind { color: rgba(255, 255, 255, 0.72); }
+.is-dark .sp-facts li { color: rgba(255, 255, 255, 0.85); }
+.is-dark .sp-facts li::before { background: #E05A1F; }
+.is-dark .sp-stage { color: rgba(255, 255, 255, 0.72); }
+
+/* The brand-gradient button disappears against navy; invert it. */
+.is-dark .btn-primary {
+  background: #fff;
+  background-image: none;
+  color: #A33315;
+}
+.is-dark .btn-primary:hover { background: #F7F5F2; color: #8A2B11; }
+
+/* ── Product sections: entrance ───────────────────────────────────────────
+   Art and copy arrive from opposite sides so the split reads as one gesture.
+   Gated on .is-armed (set from JS) so the content is at rest without it. */
+.sp.is-armed .sp-art,
+.sp.is-armed .sp-copy { opacity: 0; }
+.sp.is-armed .sp-art { transform: translateX(-28px) scale(0.97); }
+.sp.is-armed .is-flip .sp-art { transform: translateX(28px) scale(0.97); }
+.sp.is-armed .sp-copy { transform: translateY(20px); }
+.sp.is-armed.is-in .sp-art {
+  opacity: 1; transform: none;
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.sp.is-armed.is-in .sp-copy {
+  opacity: 1; transform: none;
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.22s, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.22s;
+}
+/* Once settled, the diagram breathes. Slow enough to read as ambient. */
+.sp.is-in .sp-art > div { animation: sp-float 7s ease-in-out 1s infinite; }
+@keyframes sp-float { 50% { transform: translateY(-6px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .sp.is-armed .sp-art,
+  .sp.is-armed .sp-copy,
+  .sp.is-armed .is-flip .sp-art { opacity: 1; transform: none; }
+  .sp.is-in .sp-art > div { animation: none; }
+}
+
+/* ── Service detail: compact rhythm ───────────────────────────────────────
+   Losing the 22rem rail widened the measure, so the vertical spacing that
+   suited a narrow column now reads loose. Scoped to #main so nothing else
+   on the site inherits it. */
+#main .svc-body { max-width: 68ch; }
+#main .svc-body h3 { margin-top: 2.5rem; }
+#main .svc-body > p { margin-top: 1.1rem; }
+
+.svc-cta {
+  display: flex; flex-wrap: wrap; gap: 20px 32px;
+  align-items: center; justify-content: space-between;
+  padding: 24px 28px; border: 1px solid var(--line, #E7E3DE);
+  border-radius: 18px; background: #F7F5F2;
+}
+.svc-ctatitle { margin: 6px 0 0; font-size: 1.0625rem; font-weight: 600; color: #1B2A41; }
+.svc-ctabtns { display: flex; flex-wrap: wrap; gap: 10px; }
+.svc-related { padding-top: 20px; border-top: 1px solid var(--line, #E7E3DE); }
+
+/* Outcome cards lift like every other card on the site. */
+.svc-outcome { transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; }
+.svc-outcome:hover {
+  transform: translateY(-3px);
+  border-color: rgba(200, 64, 26, 0.35);
+  box-shadow: 0 14px 34px rgba(27, 42, 65, 0.1);
+}
+
+/* ── Capability accordions ────────────────────────────────────────────────
+   grid-template-rows 1fr → 0fr animates to the content's real height. It needs
+   exactly one grid child under .svc-accbody, and align-self: start on the card,
+   or the parent grid stretches a collapsed panel to its open sibling's height. */
+.svc-acc {
+  align-self: start;
+  border: 1px solid var(--line, #E7E3DE);
+  border-radius: 18px;
+  background: #F7F5F2;
+  transition: border-color 0.25s;
+}
+.svc-acc[data-open="true"] { border-color: rgba(200, 64, 26, 0.3); }
+.svc-acc > h4 { margin: 0; font-size: inherit; font-weight: inherit; }
+.svc-acchead {
+  appearance: none; cursor: pointer; background: none; border: 0;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  width: 100%; padding: 18px; text-align: left;
+  font-size: 0.875rem; font-weight: 600; color: #1B2A41;
+}
+.svc-acchead:hover { color: #A33315; }
+.svc-accchev { width: 16px; height: 16px; flex: 0 0 auto; color: #57534E; transition: transform 0.35s; }
+.svc-acc[data-open="true"] .svc-accchev { transform: rotate(180deg); color: #A33315; }
+.svc-accbody {
+  display: grid; grid-template-rows: 1fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s;
+}
+.svc-acc[data-open="false"] .svc-accbody { grid-template-rows: 0fr; opacity: 0; }
+.svc-accbody > div { overflow: hidden; min-height: 0; }
+.svc-accinner { padding: 0 18px 18px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .svc-accbody, .svc-accchev { transition: none; }
+}
+
+/* ── Section reveal ───────────────────────────────────────────────────────
+   .svc-rev is added from JS, so with JS off nothing is ever hidden. */
+.svc-rev { opacity: 0; transform: translateY(18px); }
+.svc-rev.is-in {
+  opacity: 1; transform: none;
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .svc-rev { opacity: 1; transform: none; }
+}
+
+/* ── Hero motif ───────────────────────────────────────────────────────────
+   Five spans the CSS reshapes per practice. Decorative only: aria-hidden,
+   pointer-events off, and low enough contrast to stay behind the type. */
+.ph-motif {
+  position: absolute; inset: 0; z-index: 0;
+  pointer-events: none; overflow: hidden;
+  opacity: 0.5;
+}
+.ph-motif > span { position: absolute; display: block; }
+
+/* scan — sweeping horizontals over a monitored surface */
+.ph-motif[data-motif="scan"] > span {
+  right: -4%; height: 1px; width: 46%;
+  background: linear-gradient(90deg, transparent, rgba(200, 64, 26, 0.42));
+  animation: ph-scan 6s ease-in-out infinite;
+}
+.ph-motif[data-motif="scan"] > span:nth-child(1) { top: 18%; animation-delay: 0s; }
+.ph-motif[data-motif="scan"] > span:nth-child(2) { top: 34%; animation-delay: 0.5s; width: 34%; }
+.ph-motif[data-motif="scan"] > span:nth-child(3) { top: 52%; animation-delay: 1s; }
+.ph-motif[data-motif="scan"] > span:nth-child(4) { top: 70%; animation-delay: 1.5s; width: 28%; }
+.ph-motif[data-motif="scan"] > span:nth-child(5) { top: 86%; animation-delay: 2s; }
+@keyframes ph-scan { 0%, 100% { transform: translateX(0); opacity: 0.35; } 50% { transform: translateX(-14%); opacity: 1; } }
+
+/* pulse — concentric rings, something alive and being watched */
+.ph-motif[data-motif="pulse"] > span {
+  top: 50%; right: 6%; border-radius: 999px;
+  border: 1px solid rgba(200, 64, 26, 0.3);
+  animation: ph-pulse 5.5s ease-out infinite;
+}
+.ph-motif[data-motif="pulse"] > span:nth-child(1) { width: 7rem;  height: 7rem;  margin: -3.5rem 0 0; animation-delay: 0s; }
+.ph-motif[data-motif="pulse"] > span:nth-child(2) { width: 12rem; height: 12rem; margin: -6rem 0 0;   animation-delay: 0.7s; }
+.ph-motif[data-motif="pulse"] > span:nth-child(3) { width: 17rem; height: 17rem; margin: -8.5rem 0 0; animation-delay: 1.4s; }
+.ph-motif[data-motif="pulse"] > span:nth-child(4) { width: 22rem; height: 22rem; margin: -11rem 0 0;  animation-delay: 2.1s; }
+.ph-motif[data-motif="pulse"] > span:nth-child(5) { width: 27rem; height: 27rem; margin: -13.5rem 0 0; animation-delay: 2.8s; }
+@keyframes ph-pulse { 0% { opacity: 0.75; transform: scale(0.94); } 100% { opacity: 0; transform: scale(1.06); } }
+
+/* stack — layered planes, a system with tiers */
+.ph-motif[data-motif="stack"] > span {
+  right: 8%; height: 2.6rem; border-radius: 8px;
+  border: 1px solid rgba(200, 64, 26, 0.26);
+  background: rgba(200, 64, 26, 0.04);
+  animation: ph-stack 7s ease-in-out infinite;
+}
+.ph-motif[data-motif="stack"] > span:nth-child(1) { top: 14%; width: 15rem; animation-delay: 0s; }
+.ph-motif[data-motif="stack"] > span:nth-child(2) { top: 30%; width: 17rem; animation-delay: 0.35s; }
+.ph-motif[data-motif="stack"] > span:nth-child(3) { top: 46%; width: 19rem; animation-delay: 0.7s; }
+.ph-motif[data-motif="stack"] > span:nth-child(4) { top: 62%; width: 17rem; animation-delay: 1.05s; }
+.ph-motif[data-motif="stack"] > span:nth-child(5) { top: 78%; width: 15rem; animation-delay: 1.4s; }
+@keyframes ph-stack { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-10px); } }
+
+/* flow — packets crossing left to right */
+.ph-motif[data-motif="flow"] > span {
+  right: 0; height: 4px; width: 4px; border-radius: 999px;
+  background: rgba(200, 64, 26, 0.5);
+  animation: ph-flow 8s linear infinite;
+}
+.ph-motif[data-motif="flow"] > span:nth-child(1) { top: 20%; animation-delay: 0s; }
+.ph-motif[data-motif="flow"] > span:nth-child(2) { top: 36%; animation-delay: 1.6s; }
+.ph-motif[data-motif="flow"] > span:nth-child(3) { top: 52%; animation-delay: 3.2s; }
+.ph-motif[data-motif="flow"] > span:nth-child(4) { top: 68%; animation-delay: 4.8s; }
+.ph-motif[data-motif="flow"] > span:nth-child(5) { top: 84%; animation-delay: 6.4s; }
+@keyframes ph-flow {
+  0%   { transform: translateX(0) scaleX(1); opacity: 0; }
+  10%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: translateX(-30rem) scaleX(7); opacity: 0; }
+}
+
+/* chart — bars that grow, the shape of a measurement */
+.ph-motif[data-motif="chart"] > span {
+  bottom: 12%; width: 2.2rem; border-radius: 5px 5px 0 0;
+  background: linear-gradient(180deg, rgba(200, 64, 26, 0.32), rgba(200, 64, 26, 0.06));
+  transform-origin: bottom center;
+  animation: ph-chart 5s ease-in-out infinite;
+}
+.ph-motif[data-motif="chart"] > span:nth-child(1) { right: 22rem; height: 5rem;  animation-delay: 0s; }
+.ph-motif[data-motif="chart"] > span:nth-child(2) { right: 18rem; height: 8rem;  animation-delay: 0.3s; }
+.ph-motif[data-motif="chart"] > span:nth-child(3) { right: 14rem; height: 6rem;  animation-delay: 0.6s; }
+.ph-motif[data-motif="chart"] > span:nth-child(4) { right: 10rem; height: 11rem; animation-delay: 0.9s; }
+.ph-motif[data-motif="chart"] > span:nth-child(5) { right: 6rem;  height: 8.5rem; animation-delay: 1.2s; }
+@keyframes ph-chart { 0%, 100% { transform: scaleY(0.82); } 50% { transform: scaleY(1); } }
+
+/* Below the desk the motif competes with the copy for the same space. */
+@media (max-width: 900px) { .ph-motif { display: none; } }
+@media (prefers-reduced-motion: reduce) { .ph-motif > span { animation: none; } }
+
+/* ── Cards on a dark ground ───────────────────────────────────────────────
+   .is-dark paints headings and body copy white, so any card that stayed on a
+   white ground would lose its own text. These invert with the section rather
+   than fighting it. The diagram panels are the deliberate exception above. */
+.is-dark .cy-stage,
+.is-dark .cy-detailmain,
+.is-dark .cy-detailside,
+.is-dark .svc-othercard {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: none;
+}
+/* Item 17: the selected stage keeps its brand top border — 3.66:1 on navy,
+   over the 3:1 a non-text control needs. */
+.is-dark .cy-stage { border-top-color: rgba(255, 255, 255, 0.12); }
+.is-dark .cy-stage[data-on="true"] {
+  border-color: rgba(224, 90, 31, 0.5);
+  border-top-color: #C8401A;
+  background: rgba(224, 90, 31, 0.1);
+}
+.is-dark .cy-stage:hover { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35); }
+.is-dark .cy-stagelabel { color: #fff; }
+.is-dark .cy-stagen,
+.is-dark .cy-stagesub { color: rgba(255, 255, 255, 0.72); }
+.is-dark .cy-stage[data-on="true"] .cy-stagen { color: #F0A17E; }
+.is-dark .cy-detailside { border-color: rgba(224, 90, 31, 0.4); }
+.is-dark .cy-prod { background: rgba(255, 255, 255, 0.06); border-color: rgba(224, 90, 31, 0.4); color: rgba(255, 255, 255, 0.72); }
+.is-dark .cy-prod b { color: #F0A17E; }
+.is-dark .svc-list li { color: rgba(255, 255, 255, 0.85); }
+.is-dark .svc-othercard h3 { color: #fff; }
+.is-dark .svc-othercard:hover { border-color: rgba(224, 90, 31, 0.5); box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4); }
+.is-dark .svc-othercard span.grid { background: rgba(224, 90, 31, 0.16); color: #F0A17E; }
+.is-dark .text-brand-700 { color: #F0A17E; }
+.is-dark .chip-accent { background: rgba(224, 90, 31, 0.16); color: #F0A17E; border-color: rgba(224, 90, 31, 0.4); }

@@ -68,7 +68,7 @@ const STAGES: Stage[] = [
       "Gated tool calls for AI agents touching internal systems",
       "24×7 managed SOC operations"
     ],
-    tool: "aegis",
+    tool: "Aegis",
     toolBlurb:
       "An authenticated, audited gateway in front of your MCP servers: role-based authorization, threat filtering, rate limiting and a hash-chained audit log."
   },
@@ -91,12 +91,12 @@ const STAGES: Stage[] = [
   }
 ];
 
-export function AttackLifecycle() {
+export function AttackLifecycle({ dark = false }: { dark?: boolean } = {}) {
   const [active, setActive] = useState(0);
   const stage = STAGES[active];
 
   return (
-    <section className="section-soft">
+    <section className={dark ? "section is-dark bg-navy-700" : "section-soft"}>
       <div className="container">
         <div className="max-w-2xl">
           <p className="eyebrow">How AI Shield works</p>
@@ -148,7 +148,7 @@ export function AttackLifecycle() {
             <p className="cy-prod">{stage.tool}</p>
             <p className="mt-2 text-sm text-muted leading-relaxed">{stage.toolBlurb}</p>
             <Link
-              href="#products"
+              href="#product-kaveo"
               className="mt-4 inline-flex text-sm font-semibold text-brand-700 underline underline-offset-4 decoration-brand-600/40 hover:decoration-brand-600"
             >
               See the products&nbsp;→

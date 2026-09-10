@@ -75,13 +75,19 @@ export function Footer() {
 
         {/* Brand + tagline + social */}
         <div>
-          <Image
-            src={logoSrc}
-            alt="Vibrant Inc"
-            width={240}
-            height={203}
-            className="h-20 w-auto object-contain brightness-0 invert"
-          />
+          {/* The mark is solid brand orange and red, so on the brand gradient it
+              measures 1.1:1–2.1:1 — invisible. Dropping the invert (per the
+              handoff) means it needs a ground of its own; this is the same
+              white-plate treatment the client-logo strip below already uses. */}
+          <span className="inline-flex rounded-xl bg-white px-4 py-3 shadow-card">
+            <Image
+              src={logoSrc}
+              alt="Vibrant Inc"
+              width={240}
+              height={203}
+              className="h-16 w-auto object-contain"
+            />
+          </span>
           <p className="mt-4 text-sm leading-relaxed text-white/85">
             {siteSettings.tagline} Established in 2000,
             Vibrant delivers cloud, data, ERP, and managed IT solutions across North America.

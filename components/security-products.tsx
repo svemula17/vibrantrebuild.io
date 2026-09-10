@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 /* Three product cards: illustration, then heading, then two lines.
    The illustrations are inline SVG rather than screenshots, because there are no
@@ -90,7 +91,7 @@ export function AegisArt() {
       ))}
 
       <rect x="104" y="14" width="96" height="84" rx="8" fill={INK} />
-      <text x="152" y="34" textAnchor="middle" fontSize="10.5" fill="#fff" fontWeight="700">aegis</text>
+      <text x="152" y="34" textAnchor="middle" fontSize="10.5" fill="#fff" fontWeight="700">Aegis</text>
       {["Authenticate", "Authorize", "Rate limit"].map((t, i) => (
         <text key={t} x="152" y={52 + i * 15} textAnchor="middle" fontSize="8" fill="#fff" opacity="0.82">{t}</text>
       ))}
@@ -118,6 +119,7 @@ export function AegisArt() {
 export const PRODUCTS = [
   {
     art: <KaveoArt />,
+    slug: "kaveo",
     name: "kaveo",
     kind: "Cloud security posture",
     short: "CSPM",
@@ -126,6 +128,7 @@ export const PRODUCTS = [
   },
   {
     art: <VectasecArt />,
+    slug: "vectasec",
     name: "Vectasec",
     kind: "Middleware security",
     short: "API · Mesh",
@@ -134,7 +137,8 @@ export const PRODUCTS = [
   },
   {
     art: <AegisArt />,
-    name: "aegis",
+    slug: "aegis",
+    name: "Aegis",
     kind: "MCP gateway",
     short: "AuthN · AuthZ · Audit",
     heading: "Every tool call authenticated and logged",
@@ -142,48 +146,167 @@ export const PRODUCTS = [
   }
 ];
 
-export function SecurityProducts() {
-  const ref = useRef<HTMLElement>(null);
+/* Which lifecycle stage each product runs at, and the four things about it
+   worth a line. Only the expanded sections variant shows these; the homepage
+   band stays a three-up summary. */
+const FACTS: Record<string, { stage: string; facts: string[] }> = {
+  kaveo: {
+    stage: "Runs at the Detect stage",
+    facts: [
+      "Read-only role, deployed inside your own account",
+      "AWS, Azure, GCP and Kubernetes in one view",
+      "Findings become dated, cited evidence artifacts",
+      "Nothing egresses: no configuration, no logs, no telemetry"
+    ]
+  },
+  Vectasec: {
+    stage: "Runs at the Analyze stage",
+    facts: [
+      "API gateways, message brokers and service meshes",
+      "Authentication gaps and over-broad routing surfaced",
+      "Policy drift caught between environments",
+      "The layer most scanners never look at"
+    ]
+  },
+  Aegis: {
+    stage: "Runs at the Respond stage",
+    facts: [
+      "Authentication and role-based authorization per tool call",
+      "Threat filtering and rate limiting at the gateway",
+      "Guardrails in place before agents become load-bearing"
+    ]
+  }
+};
 
-  /* The design gates every animation on .is-in so nothing runs off-screen.
-     .is-armed is added from JS, so with JS off the cards render at rest
-     instead of stuck at opacity 0. */
+/* Every animation is gated on .is-in so nothing runs off-screen, and .is-armed
+   is added from JS, so with JS off the content renders at rest rather than
+   stuck at opacity 0. */
+function useArmedOnView<T extends HTMLElement>(rootMargin: string) {
+  const ref = useRef<T>(null);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     el.classList.add("is-armed");
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.classList.add("is-in");
+      return;
+    }
     const io = new IntersectionObserver(
       ([e]) => e.isIntersecting && (el.classList.add("is-in"), io.disconnect()),
-      { rootMargin: "-10%" }
+      { rootMargin }
     );
     io.observe(el);
     return () => io.disconnect();
-  }, []);
+  }, [rootMargin]);
+  return ref;
+}
+
+/* The monitored-surface backdrop. Every .sp section carries one. */
+function SpBackdrop() {
+  return (
+    <div className="sp-bg" aria-hidden="true">
+      <span className="sp-dots" />
+      <span className="sp-wash sp-w1" />
+      <span className="sp-packet sp-p1" />
+      <span className="sp-packet sp-p2" />
+      <span className="sp-packet sp-p3" />
+      <span className="sp-packet sp-p4" />
+      <span className="sp-threat sp-t1" />
+      <span className="sp-threat sp-t2" />
+      <span className="sp-threat sp-t3" />
+      <span className="sp-sweep" />
+    </div>
+  );
+}
+
+/* One full-width section per product, art on one side and copy on the other,
+   alternating so Vectasec mirrors the two either side of it. Each is its own
+   anchor target, so the nav and the hero strip can land on a single product. */
+function ProductSection({
+  product,
+  dark,
+  flip
+}: {
+  product: (typeof PRODUCTS)[number];
+  dark: boolean;
+  flip: boolean;
+}) {
+  const ref = useArmedOnView<HTMLElement>("-8%");
+  const extra = FACTS[product.name];
 
   return (
-    <section ref={ref} className="section section-soft sp relative isolate overflow-hidden" id="security-products">
-      {/* Monitored surface: drifting lattice, brand wash, packets crossing,
-          threats that flag then get contained, a sweep and radar pings. */}
-      <div className="sp-bg" aria-hidden="true">
-        <span className="sp-dots" />
-        <span className="sp-wash sp-w1" />
-        <span className="sp-packet sp-p1" />
-        <span className="sp-packet sp-p2" />
-        <span className="sp-packet sp-p3" />
-        <span className="sp-packet sp-p4" />
-        <span className="sp-threat sp-t1" />
-        <span className="sp-threat sp-t2" />
-        <span className="sp-threat sp-t3" />
-        <span className="sp-sweep" />
-        <span className="sp-ping" />
-        <span className="sp-ping" />
-        <span className="sp-ping" />
+    <section
+      ref={ref}
+      id={`product-${product.slug}`}
+      className={`section sp relative isolate overflow-hidden scroll-mt-24 ${
+        dark ? "is-dark bg-navy-700" : "bg-white"
+      }`}
+    >
+      <SpBackdrop />
+      <div className={`container relative sp-split${flip ? " is-flip" : ""}`}>
+        <div className="sp-art">
+          <div className="rounded-xl border border-line bg-neutral-50 p-5">{product.art}</div>
+        </div>
+
+        <div className="sp-copy">
+          <div className="sp-lock">
+            <span className="sp-built">Built by Vibrant</span>
+            <p className="sp-name">{product.name}</p>
+            <p className="sp-kind">
+              {product.kind}
+              <span className="sp-dot" aria-hidden>·</span>
+              {product.short}
+            </p>
+          </div>
+
+          <h2 className="mt-5 text-2xl font-semibold leading-snug text-navy-700">
+            {product.heading}
+          </h2>
+          <p className="mt-4 text-base text-muted leading-relaxed">{product.body}</p>
+
+          {extra && (
+            <>
+              <ul className="sp-facts">
+                {extra.facts.map((f) => (
+                  <li key={f}>{f}</li>
+                ))}
+              </ul>
+              <p className="sp-stage">{extra.stage}</p>
+            </>
+          )}
+
+          <div className="mt-6">
+            <Link href="/contact" className="btn-primary">
+              Talk to us about {product.name}&nbsp;→
+            </Link>
+          </div>
+        </div>
       </div>
+    </section>
+  );
+}
+
+export function SecurityProductSections() {
+  return (
+    <>
+      {PRODUCTS.map((p, i) => (
+        <ProductSection key={p.slug} product={p} dark={i % 2 === 1} flip={i % 2 === 1} />
+      ))}
+    </>
+  );
+}
+
+export function SecurityProducts() {
+  const ref = useArmedOnView<HTMLElement>("-10%");
+
+  return (
+    <section ref={ref} className="section sp is-dark bg-navy-700 relative isolate overflow-hidden" id="security-products">
+      <SpBackdrop />
 
       <div className="container relative">
         <div className="max-w-2xl">
           <p className="eyebrow">Security products we build</p>
-          <h2 className="mt-3">Tools that run inside your estate, not ours.</h2>
+          <h2 className="mt-3">kaveo, Vectasec and Aegis. Tools that run inside your estate, not ours.</h2>
           <p className="mt-4 text-muted">
             Three products built by our own engineers, for teams who cannot ship telemetry to a
             vendor cloud. Every finding cites the stored observation that produced it, so auditors

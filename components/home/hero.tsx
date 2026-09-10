@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
-import { siteSettings } from "@/content/site-content";
+import { siteSettings, withBasePath } from "@/content/site-content";
 import heroTeam from "@/assets/hero-team.jpg";
 import { HeroCursor } from "@/components/home/hero-cursor";
 
@@ -80,12 +80,18 @@ export function Hero() {
             <Link href="/contact" className="btn-primary">
               Request a call →
             </Link>
-            <Link
-              href="/resources/sap-cost-calculator"
-              className="btn border border-neutral-900/20 bg-white text-neutral-900 hover:border-neutral-900/30"
+            {/* The calculator asks for a commitment before we have earned one.
+                The brochure is the lower-friction second step. */}
+            <a
+              href={withBasePath("/Vibrant-Company-Brochure.pdf")}
+              download
+              className="btn gap-2 border border-neutral-900/20 bg-white text-neutral-900 hover:border-neutral-900/30"
             >
-              Estimate your S/4HANA cost
-            </Link>
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+              </svg>
+              Download the brochure
+            </a>
             <a
               href={`tel:${siteSettings.phonePrimary}`}
               className="inline-flex items-center gap-2 px-1 text-sm font-semibold text-neutral-900 hover:text-brand-700 transition-colors"

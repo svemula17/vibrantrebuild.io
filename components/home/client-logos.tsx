@@ -123,7 +123,7 @@ export function ClientLogos({
             </div>
           )}
           <p
-            className={`text-center text-xs font-semibold uppercase tracking-[0.18em] text-muted${
+            className={`cl-cap text-center font-semibold uppercase text-muted${
               showCredentials ? " mt-9" : ""
             }`}
           >

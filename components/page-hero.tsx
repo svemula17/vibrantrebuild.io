@@ -8,16 +8,25 @@ type Props = {
   title: string;
   description?: string;
   crumbs?: Crumb[];
+  /* A drawn motif behind the hero, so a service page reads as that service
+     before a word is read: scanning lines, a pulse, stacked planes, a flow,
+     a chart. Purely decorative — five spans the CSS shapes by data-motif. */
+  motif?: "scan" | "pulse" | "stack" | "flow" | "chart";
   children?: ReactNode;
 };
 
-export function PageHero({ eyebrow, title, description, crumbs, children }: Props) {
+export function PageHero({ eyebrow, title, description, crumbs, motif, children }: Props) {
   return (
     <section className="relative overflow-hidden border-b border-brand-600/10 bg-gradient-to-b from-[#FDF0E8] via-[#FDF6F2] to-neutral-50">
       <div
         aria-hidden
         className="absolute -top-24 -right-24 h-[26rem] w-[26rem] rounded-full bg-brand-500/15 blur-3xl"
       />
+      {motif && (
+        <div className="ph-motif" data-motif={motif} aria-hidden>
+          <span /><span /><span /><span /><span />
+        </div>
+      )}
       <div className="container relative pt-16 pb-12 md:pt-24 md:pb-14">
         {crumbs && crumbs.length > 0 && (
           <nav aria-label="Breadcrumb" className="crumbs mb-6">
