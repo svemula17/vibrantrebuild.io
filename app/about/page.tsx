@@ -15,7 +15,7 @@ import {
 import anniversary from "@/assets/anniversary.png";
 
 export const metadata: Metadata = pageMeta({
-  title: "ERP & Cybersecurity Consultants, New Jersey",
+  title: "About Us: Founder-Led Since 2000, Princeton, NJ",
   description:
     "Founder-led since 2000 in Princeton, New Jersey. Vibrant Inc modernizes ERP, cloud, and cybersecurity for companies across North America.",
   path: "/about"

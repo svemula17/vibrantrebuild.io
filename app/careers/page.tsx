@@ -12,7 +12,7 @@ import {
 export const metadata: Metadata = pageMeta({
   title: "ERP, Cloud & Cybersecurity Consulting Careers",
   description:
-    "Careers at Vibrant Inc: senior consulting roles across ERP, cloud, data, and AI, real ownership, ongoing training, and clients who stay for years.",
+    "Careers at Vibrant Inc: senior consulting roles across ERP, cloud, data, and AI, with real ownership, ongoing training, and clients who stay for years.",
   path: "/careers"
 });
 

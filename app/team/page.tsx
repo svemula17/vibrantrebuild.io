@@ -6,9 +6,9 @@ import { PageHero } from "@/components/page-hero";
 import { leadership, type Leader } from "@/content/site-content";
 
 export const metadata: Metadata = pageMeta({
-  title: "Leadership | ERP & Security Practitioners",
+  title: "Leadership Team: ERP & Security Practitioners",
   description:
-    "Meet the Vibrant Inc leadership team, founder-led delivery backed by principal architects across ERP, cloud, SAP, cybersecurity, and AI.",
+    "Meet the Vibrant Inc leadership team: founder-led delivery backed by principal architects across ERP, cloud, SAP, cybersecurity, and AI.",
   path: "/team"
 });
 

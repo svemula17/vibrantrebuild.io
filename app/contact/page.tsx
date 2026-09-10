@@ -15,7 +15,7 @@ const officePhotos: Record<string, StaticImageData> = {
 };
 
 export const metadata: Metadata = pageMeta({
-  title: "ERP & Cybersecurity Consultants in Princeton, NJ",
+  title: "Contact ERP & Security Consultants, Princeton NJ",
   description:
     "Reach Vibrant Inc in Princeton, New Jersey or Hyderabad, India. A senior ERP or cybersecurity advisor calls back within one business day.",
   path: "/contact"

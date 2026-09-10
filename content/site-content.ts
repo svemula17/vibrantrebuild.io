@@ -42,7 +42,7 @@ export const siteSettings = {
   siteUrl: "https://vibrantinc.com",
   // ~60 chars so search results don't truncate; the full positioning
   // statement lives in the homepage H1 (hero-slider).
-  defaultTitle: "Vibrant Inc | ERP, Cloud & AI Modernization Without Disruption",
+  defaultTitle: "Vibrant Inc | Cybersecurity, ERP & Cloud Modernization",
   defaultDescription:
     "Vibrant Inc modernizes ERP, cloud, security, data, and AI for mid-market and enterprise companies, without disrupting operations. Trusted delivery since 2000.",
   careersUrl: "/careers",
@@ -250,7 +250,7 @@ export const serviceCards: ServiceCard[] = [
     kicker: "AI Readiness",
     title: "AI Readiness",
     summary:
-      "AI as an accelerator, not a science project, we assess your data, talent, and infrastructure, then ship use cases that move real business KPIs.",
+      "AI as an accelerator, not a science project. We assess your data, talent, and infrastructure, then ship use cases that move real business KPIs.",
     longDescription:
       "Vibrant helps enterprises move from AI curiosity to AI value. We assess data, talent, and infrastructure readiness, then prioritize and deliver use cases that show up in the P&L.",
     iconPath: ICONS.ai,
@@ -521,7 +521,7 @@ export const serviceCards: ServiceCard[] = [
   },
   {
     slug: "erp-optimization",
-    seoTitle: "ERP Consulting: SAP, JD Edwards & PeopleSoft",
+    seoTitle: "ERP Consulting: JD Edwards, PeopleSoft & Oracle",
     metaDescription:
       "One New Jersey partner for SAP, JD Edwards, PeopleSoft, Oracle EBS, Workday, and Dynamics 365: implementation, upgrades, and managed support.",
     kicker: "ERP & Enterprise Applications",
@@ -1429,7 +1429,7 @@ export const resourceGuides: ResourceGuide[] = [
     category: "Checklist",
     title: "Cloud Migration Checklist",
     description:
-      "Everything to verify before, during, and after a production cloud migration, landing zones, security, waves, cutover, and the first 90 days of FinOps.",
+      "What to verify before, during, and after a production cloud migration: landing zones, security, migration waves, cutover, and the first 90 days of FinOps.",
     readTime: "7 min read",
     relatedServices: ["cloud-modernization", "managed-it", "cybersecurity"],
     sections: [
@@ -1547,7 +1547,7 @@ export const insights: Insight[] = [
     date: "July 2026",
     tag: "ERP",
     summary:
-      "Rising maintenance, shadow spreadsheets, and a shrinking talent pool, the symptoms show up long before the invoice does.",
+      "Rising maintenance, shadow spreadsheets, and a shrinking talent pool: the symptoms of an overpriced ERP show up long before the invoice does.",
     body: [
       "ERP cost problems rarely announce themselves. They accumulate quietly: another year of maintenance uplift, another customization nobody remembers the reason for, another spreadsheet built because the system report 'doesn't quite work.' By the time the run-rate gets executive attention, the estate has usually been overpaying for years.",
       "The five signs we see most: maintenance and support costs rising faster than usage; a customization portfolio nobody can fully inventory; month-end close that takes longer every year; critical knowledge held by one or two people near retirement; and a growing shadow layer of spreadsheets and Access databases doing what the ERP was bought to do.",
@@ -1578,7 +1578,7 @@ export const insights: Insight[] = [
     date: "May 2026",
     tag: "Security",
     summary:
-      "Nobody sells zero trust in a box. It's a multi-year re-architecture of identity, network, and access, sequenced right, it pays for itself early.",
+      "Nobody sells zero trust in a box. It's a multi-year re-architecture of identity, network, and access. Sequenced right, it pays for itself early.",
     body: [
       "Every security vendor now sells 'zero trust.' None of them can, because zero trust isn't a product, it's an architectural principle: never trust by default, verify explicitly, grant least privilege, assume breach. Getting there is a sequence of projects, not a purchase order.",
       "The sequence that works: identity first (MFA everywhere, single directory, conditional access), because identity is the new perimeter. Then device posture, you can't trust a session from a laptop you know nothing about. Then network segmentation, replacing the flat internal network where one phished credential reaches everything. Application-level access policies come last, once the foundations make them meaningful.",

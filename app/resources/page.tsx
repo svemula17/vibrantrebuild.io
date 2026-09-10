@@ -7,7 +7,7 @@ import { insights, resourceGuides } from "@/content/site-content";
 export const metadata: Metadata = pageMeta({
   title: "ERP & Cybersecurity Guides, Tools & Insights",
   description:
-    "White papers, migration guides, readiness checklists, an SAP S/4HANA cost calculator, and insights from 26+ years of ERP, cloud, and AI delivery.",
+    "White papers, migration guides, readiness checklists, an SAP S/4HANA cost calculator, and insights from 26+ years of enterprise delivery.",
   path: "/resources"
 });
 
