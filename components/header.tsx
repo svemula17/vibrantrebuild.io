@@ -17,58 +17,59 @@ const SERVICES_MENU: { heading: string; links: [string, string][] }[] = [
       ["Cybersecurity & Compliance", "/services/cybersecurity"],
       ["Zero Trust Architecture", "/services/zero-trust-architecture"],
       ["Managed Detection & Response", "/services/managed-detection-response"],
-      ["Compliance Readiness", "/services/compliance-readiness"],
-      ["Managed IT", "/services/managed-it"]
+      ["Compliance Readiness", "/services/compliance-readiness"]
+    ]
+  },
+  {
+    heading: "AI",
+    links: [
+      ["Generative AI", "/services/ai-readiness"],
+      ["AI Digital Experience", "/services/ai-digital-experience"]
     ]
   },
   {
     heading: "ERP",
-    links: [
-      ["ERP & Enterprise Applications", "/services/erp-optimization"],
-      ["SAP Solutions", "/services/sap-solutions"]
-    ]
+    links: [["ERP & Enterprise Applications", "/services/erp-optimization"]]
   },
   {
-    heading: "Cloud, Data & AI",
+    heading: "Cloud & Data",
     links: [
-      ["Cloud Modernization", "/services/cloud-modernization"],
-      ["Data & Analytics", "/services/data-analytics"],
-      ["AI Readiness", "/services/ai-readiness"]
-    ]
-  },
-  {
-    heading: "Industries",
-    links: [
-      ["Healthcare", "/industries/healthcare"],
-      ["Insurance", "/industries/insurance"],
-      ["All industries", "/industries"]
+      ["Cloud & Platform Engineering", "/services/cloud-modernization"],
+      ["Automation & Managed IT", "/services/managed-it"],
+      ["Data & Analytics", "/services/data-analytics"]
     ]
   },
   {
     heading: "Explore",
     links: [
       ["All services", "/services"],
+      ["Industries", "/industries"],
       ["S/4HANA Cost Calculator", "/resources/sap-cost-calculator"],
-      ["Guides & insights", "/resources"],
-      ["Book a Call", "/contact"]
+      ["Guides & insights", "/resources"]
     ]
   }
 ];
 
 /* The mobile drawer reads this rather than navigationItems directly: Industries
    lives inside the Services mega-menu on desktop, which never renders below lg. */
+/* navigationItems now carries Industries, so the drawer just appends the
+   Company sub-links, which have no top-level home on mobile. */
 const MOBILE_NAV: { href: string; label: string }[] = [
-  ...navigationItems.slice(0, 4),
-  { href: "/industries", label: "Industries" },
-  ...navigationItems.slice(4)
+  ...navigationItems.filter((n) => n.href !== "/about"),
+  { href: "/about", label: "About Us" },
+  { href: "/careers", label: "Careers" },
+  { href: "/partners", label: "Partners" },
+  { href: "/social-responsibility", label: "Social Responsibility" }
 ];
 
 /* About dropdown, compact section menu (reference-style, our content) */
 const ABOUT_MENU: [string, string][] = [
-  ["Who We Are", "/about"],
+  ["About Us", "/about"],
+  ["Careers", "/careers"],
+  ["Partners", "/partners"],
+  ["Social Responsibility", "/social-responsibility"],
   ["Vision", "/about#vision"],
-  ["Core Values", "/about#values"],
-  ["Service Delivery Model", "/services#vibrant-method"]
+  ["Core Values", "/about#values"]
 ];
 
 export function Header() {
@@ -76,6 +77,10 @@ export function Header() {
   const [servicesOpen, setServicesOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  /* framer-motion writes an inline opacity onto a layoutId element on the
+     client that the static export does not contain, so hydration fails with
+     React #418. Render the plain span until mounted, then upgrade. */
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const panelRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -99,6 +104,8 @@ export function Header() {
     if (aboutTimer.current) clearTimeout(aboutTimer.current);
     aboutTimer.current = setTimeout(() => setAboutOpen(false), 150);
   };
+
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -249,16 +256,16 @@ export function Header() {
                       <polyline points="6 9 12 15 18 9" />
                     </svg>
                   )}
-                  {active && (
-                    // Shared layoutId, so the bar slides between items instead
-                    // of hard-cutting. MotionConfig reducedMotion="user" in
-                    // providers.tsx neutralizes it for reduced-motion users.
-                    <motion.span
-                      layoutId="nav-underline"
-                      className="absolute inset-x-2 -bottom-0.5 h-0.5 bg-brand-600 rounded"
-                      transition={{ type: "spring", stiffness: 480, damping: 38 }}
-                    />
-                  )}
+                  {active &&
+                    (mounted ? (
+                      <motion.span
+                        layoutId="nav-underline"
+                        className="absolute inset-x-2 -bottom-0.5 h-0.5 bg-brand-600 rounded"
+                        transition={{ type: "spring", stiffness: 480, damping: 38 }}
+                      />
+                    ) : (
+                      <span className="absolute inset-x-2 -bottom-0.5 h-0.5 bg-brand-600 rounded" />
+                    ))}
                 </Link>
 
                 {/* Compact About dropdown, anchored to the nav item */}
@@ -266,7 +273,7 @@ export function Header() {
                   <div
                     inert={!aboutOpen}
                     aria-hidden={!aboutOpen}
-                    className={`absolute left-0 top-full z-50 w-60 pt-2 transition-all duration-200 ease-brand ${
+                    className={`absolute left-0 top-full z-50 w-64 pt-2 transition-all duration-200 ease-brand ${
                       aboutOpen ? "visible opacity-100 translate-y-0" : "invisible opacity-0 -translate-y-1 pointer-events-none"
                     }`}
                   >

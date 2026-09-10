@@ -10,7 +10,7 @@ import { HeroCursor } from "@/components/home/hero-cursor";
    "Home hero" block in globals.css. Everything animates on load, in CSS, so
    this stays a server component and ships no JS. */
 
-const HEADLINE = "Secure the systems you can't afford to shut down.";
+const HEADLINE = "Transforming enterprises with AI, cloud and intelligent digital experiences.";
 
 const PROMISES = [
   "30 minutes with a senior advisor who understands your estate",
@@ -71,9 +71,9 @@ export function Hero() {
           </h1>
 
           <p className="vh-3 mt-5 text-neutral-800 leading-relaxed [text-wrap:pretty]">
-            Zero-trust architecture, 24&#215;7 detection, and audit-ready compliance for the
-            SAP, JD Edwards, and PeopleSoft estates that run your business, on your
-            timeline and without disrupting your close calendar. Founder-led since 2000.
+            We help organizations modernize legacy systems, harness Generative AI, automate
+            business processes, and build secure cloud-native digital platforms that accelerate
+            innovation and create exceptional customer experiences.
           </p>
 
           <div className="vh-4 mt-8 flex flex-wrap items-center gap-3">

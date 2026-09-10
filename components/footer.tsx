@@ -17,9 +17,15 @@ const clientLogos = [
   { src: mouri,      alt: "MOURI Tech"      },
 ];
 
+/* navigationItems now carries Industries itself, so appending it here produced
+   two children with the same /industries key. The Company dropdown's sub-links
+   have no top-level entry, so they are added explicitly instead. */
 const footerNav = [
-  ...navigationItems.filter((n) => n.href !== "/"),
-  { label: "Industries", href: "/industries" }
+  ...navigationItems.filter((n) => n.href !== "/" && n.href !== "/about"),
+  { label: "About Us", href: "/about" },
+  { label: "Careers", href: "/careers" },
+  { label: "Partners", href: "/partners" },
+  { label: "Social Responsibility", href: "/social-responsibility" }
 ];
 
 // Footer shows only top-level services, not the full 18-item catalog.
@@ -29,12 +35,12 @@ const footerSlugs = [
   "zero-trust-architecture",
   "managed-detection-response",
   "compliance-readiness",
+  "ai-readiness",
   "erp-optimization",
-  "sap-solutions",
+  "ai-digital-experience",
   "cloud-modernization",
   "managed-it",
-  "data-analytics",
-  "ai-readiness"
+  "data-analytics"
 ];
 const footerServices = footerSlugs
   .map((slug) => serviceCards.find((s) => s.slug === slug))

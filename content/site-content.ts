@@ -194,6 +194,18 @@ export const leadership: Leader[] = [
     expertise: ["Generative AI", "Agentic AI", "Machine Learning", "Intelligent Automation"]
   },
   {
+    id: "vamsee-gulipalli",
+    name: "Vamsee Gulipalli",
+    role: "Enterprise Applications & Digital Architect",
+    initials: "VG",
+    bio: [
+      "A seasoned technology leader with extensive experience in enterprise applications, Oracle ERP, digital transformation, and cloud technologies. Vamsee designs and delivers scalable enterprise solutions, helping organizations modernize business processes, integrate complex application ecosystems, and accelerate digital innovation.",
+      "With deep expertise in Oracle ERP, enterprise architecture, cloud platforms, and systems integration, he has led large-scale transformation initiatives across finance, supply chain, human resources, and customer engagement. His strategic approach combines business insight with technical excellence to deliver secure, intelligent, and future-ready solutions that improve operational efficiency and support long-term growth.",
+      "He works closely with executive leadership to align technology investments with business objectives, applying emerging technologies including AI, automation, and cloud-native architectures so organizations can innovate with confidence and stay competitive."
+    ],
+    expertise: ["Oracle ERP", "Enterprise Architecture", "Cloud Platforms", "Systems Integration"]
+  },
+  {
     id: "sai-vemula",
     name: "Sai Vemula",
     role: "Product Security Engineer",
@@ -215,15 +227,18 @@ export const leadership: Leader[] = [
   }
 ];
 
+/* Cybersecurity is a top-level item, not a service sub-link: it is the practice
+   the site now leads with. About, Careers, Partners and Social Responsibility
+   collapse into a Company dropdown, which keeps the bar from overflowing once
+   Cybersecurity is promoted. */
 export const navigationItems: NavigationItem[] = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About Us" },
-  { href: "/team", label: "Leadership" },
+  { href: "/services/cybersecurity", label: "Cybersecurity" },
   { href: "/services", label: "Services" },
+  { href: "/industries", label: "Industries" },
+  { href: "/team", label: "Leadership" },
+  { href: "/about", label: "Company" },
   { href: "/resources", label: "Resources" },
-  { href: "/careers", label: "Careers" },
-  { href: "/social-responsibility", label: "Social Responsibility" },
-  { href: "/partners", label: "Partners" },
   { href: "/contact", label: "Contact Us" }
 ];
 
@@ -247,8 +262,8 @@ export const serviceCards: ServiceCard[] = [
   {
     slug: "ai-readiness",
     seoTitle: "AI Readiness Assessment & Consulting",
-    kicker: "AI Readiness",
-    title: "AI Readiness",
+    kicker: "Generative AI",
+    title: "Generative AI",
     summary:
       "AI as an accelerator, not a science project. We assess your data, talent, and infrastructure, then ship use cases that move real business KPIs.",
     longDescription:
@@ -275,14 +290,58 @@ export const serviceCards: ServiceCard[] = [
     ],
     capabilityGroups: [
       {
-        label: "Intelligent Automation",
+        label: "Generative AI solutions",
         items: [
-          "Process discovery & mining",
-          "RPA (UiPath, Automation Anywhere, Power Automate)",
-          "Intelligent document processing",
-          "Workflow automation",
-          "Business process redesign",
-          "Citizen developer enablement"
+          "AI chatbots",
+          "AI virtual assistants",
+          "AI customer support",
+          "AI sales assistants",
+          "AI knowledge assistants",
+          "AI proposal generation",
+          "AI content creation",
+          "AI document summarization",
+          "AI email generation",
+          "AI workflow automation"
+        ]
+      },
+      {
+        label: "Enterprise AI search",
+        items: [
+          "Natural language search",
+          "Semantic search",
+          "Enterprise knowledge search",
+          "Vector databases",
+          "Retrieval-Augmented Generation (RAG)",
+          "AI-powered FAQs",
+          "Intelligent recommendations",
+          "Context-aware responses"
+        ]
+      },
+      {
+        label: "AI integration",
+        items: [
+          "Microsoft Copilot",
+          "Azure AI",
+          "OpenAI",
+          "Anthropic Claude",
+          "Google Gemini",
+          "AWS Bedrock",
+          "Salesforce AI",
+          "SAP Business AI",
+          "Oracle AI"
+        ]
+      },
+      {
+        label: "Built on",
+        items: [
+          "OpenAI GPT",
+          "Azure OpenAI",
+          "LangChain",
+          "LlamaIndex",
+          "Semantic Kernel",
+          "Pinecone",
+          "Azure AI Search",
+          "Elasticsearch"
         ]
       }
     ],
@@ -298,8 +357,8 @@ export const serviceCards: ServiceCard[] = [
   {
     slug: "cloud-modernization",
     seoTitle: "Cloud Migration & Modernization Consulting",
-    kicker: "Cloud Modernization",
-    title: "Cloud Modernization",
+    kicker: "Cloud & Platform Engineering",
+    title: "Cloud & Platform Engineering",
     summary:
       "Cloud migration and modernization consulting: rationalize, replatform, and refactor your estate on Azure, AWS, or GCP without rip-and-replace risk.",
     longDescription:
@@ -323,6 +382,33 @@ export const serviceCards: ServiceCard[] = [
       "Microservices & Kubernetes",
       "Platform engineering",
       "FinOps & cost optimization"
+    ],
+    capabilityGroups: [
+      {
+        label: "Cloud-native digital platforms",
+        items: [
+          "Microsoft Azure",
+          "AWS",
+          "Google Cloud Platform",
+          "Kubernetes",
+          "Docker",
+          "Serverless computing",
+          "Microservices",
+          "API-first architecture"
+        ]
+      },
+      {
+        label: "DevOps",
+        items: [
+          "GitHub",
+          "GitLab",
+          "Azure DevOps",
+          "Jenkins",
+          "Terraform",
+          "Docker",
+          "Kubernetes"
+        ]
+      }
     ],
     bestFit:
       "Organizations with legacy data centers or fragmented cloud estates needing a defensible plan.",
@@ -393,6 +479,19 @@ export const serviceCards: ServiceCard[] = [
           "Vectasec. Middleware security for the layer between services. Audits API gateways, message brokers and service meshes for authentication gaps, over-broad routing and policy drift.",
           "aegis. A gateway for MCP tool calls, adding authentication, role-based authorization, threat filtering and rate limiting, with a tamper-evident audit trail.",
           "Every finding cites the stored observation that produced it, so auditors get evidence rather than dashboard screenshots."
+        ]
+      },
+      {
+        label: "AI security & governance",
+        items: [
+          "AI governance frameworks",
+          "Responsible AI implementation",
+          "Model monitoring",
+          "Secure AI APIs",
+          "Data privacy",
+          "Identity & access management",
+          "Compliance",
+          "Cybersecurity best practices"
         ]
       }
     ],
@@ -521,7 +620,7 @@ export const serviceCards: ServiceCard[] = [
   },
   {
     slug: "erp-optimization",
-    seoTitle: "ERP Consulting: JD Edwards, PeopleSoft & Oracle",
+    seoTitle: "ERP Consulting: SAP, JD Edwards & PeopleSoft",
     metaDescription:
       "One New Jersey partner for SAP, JD Edwards, PeopleSoft, Oracle EBS, Workday, and Dynamics 365: implementation, upgrades, and managed support.",
     kicker: "ERP & Enterprise Applications",
@@ -582,6 +681,101 @@ export const serviceCards: ServiceCard[] = [
           "User enablement & training",
           "24×7 production support"
         ]
+      },
+      {
+        label: "S/4HANA Implementation & Migration",
+        items: [
+          "SAP S/4HANA greenfield implementation",
+          "ECC to S/4HANA migration",
+          "Implementation roadmap & sequencing",
+          "Blueprint & design workshops",
+          "Data migration & cleansing",
+          "Testing strategy & execution",
+          "Go-live & hypercare support"
+        ]
+      },
+      {
+        label: "Application Management Services (AMS)",
+        items: [
+          "24×7 SAP monitoring & alerting",
+          "Incident management & resolution",
+          "Performance tuning & optimization",
+          "SAP Enhancement Package (SP) management",
+          "Basis & system administration",
+          "Database optimization",
+          "Backup & disaster recovery",
+          "Quarterly business reviews"
+        ]
+      },
+      {
+        label: "Supply Chain: EWM, TM, IBP & PP",
+        items: [
+          "SAP Extended Warehouse Management (EWM)",
+          "Transportation Management (TM)",
+          "Integrated Business Planning (IBP)",
+          "Production Planning (PP/GATP)",
+          "Network optimization",
+          "Demand-driven planning",
+          "Inventory optimization",
+          "Warehouse automation integration"
+        ]
+      },
+      {
+        label: "Business Technology Platform (BTP)",
+        items: [
+          "SAP BTP architecture design",
+          "Cloud Integration Suite",
+          "Workflow automation (low-code)",
+          "API management & governance",
+          "Analytics Cloud extensions",
+          "AI & ML services integration",
+          "Third-party SaaS connectivity"
+        ]
+      },
+      {
+        label: "Integration Services",
+        items: [
+          "SAP API management",
+          "EDI & IDoc configuration",
+          "Message brokers & async patterns",
+          "REST & SOAP integrations",
+          "Cloud middleware (BTP, iPaaS)",
+          "Real-time data pipelines",
+          "Partner ecosystem connectivity"
+        ]
+      },
+      {
+        label: "Enterprise UX: Fiori & UI5",
+        items: [
+          "SAP Fiori UX assessment",
+          "Custom UI5 application development",
+          "Responsive & mobile-first design",
+          "Design system creation",
+          "User research & usability testing",
+          "Portal & launchpad configuration"
+        ]
+      },
+      {
+        label: "Clean Core & Upgrades",
+        items: [
+          "Clean core assessment",
+          "Custom code analysis & remediation",
+          "S/4HANA readiness evaluation",
+          "Phased upgrade planning",
+          "Enhancement replacement with standard SAP",
+          "Post-upgrade stabilization"
+        ]
+      },
+      {
+        label: "ABAP & Custom Development",
+        items: [
+          "ABAP custom development",
+          "SAP Query & InfoSet development",
+          "Form design (SAPScript, Adobe Forms)",
+          "Enhancement points & exits (BADI, User Exits)",
+          "Batch jobs & background processing",
+          "Testing, documentation & handover"
+        ]
       }
     ],
     bestFit:
@@ -592,6 +786,89 @@ export const serviceCards: ServiceCard[] = [
     heroTeaser:
       "Your ERP is the heart of the business, modernize it without missing a beat. Vibrant's 26-year practice spans SAP Implementation & Support, JD Edwards CNC Services, and PeopleSoft Implementation & Support, alongside Oracle EBS, Workday, and Dynamics 365.",
     heroHighlights: ["SAP ECC / S/4HANA · AMS", "JD Edwards CNC & EnterpriseOne", "PeopleSoft HCM / FSCM"]
+  },
+  {
+    slug: "ai-digital-experience",
+    metaDescription:
+      "AI-powered websites, intelligent content management, enterprise AI search and customer portals that personalize, automate and improve on their own.",
+    seoTitle: "AI Digital Experience & Web Development",
+    kicker: "AI Digital Experience",
+    title: "AI Digital Experience",
+    summary:
+      "Digital experiences that understand users, personalize interactions, automate business processes, and keep improving from the data they generate.",
+    longDescription:
+      "The future of business is not just digital, it is intelligent. We build enterprise-grade web platforms that combine modern web technologies, Generative AI, automation and enterprise integration, so the experience adapts to the person using it. Content writes and tags itself, search answers in natural language, and portals give customers a self-service path that used to need a phone call.",
+    iconPath: "M3 5h18v14H3zM3 9h18M8 13h8",
+    metaTags: ["AI-first websites", "Intelligent CMS", "Enterprise AI search", "Customer portals"],
+    outcomes: [
+      "Visitors find the right answer without contacting support",
+      "Content ships faster, tagged and optimized without manual effort",
+      "Customer journeys personalize themselves from real behavior"
+    ],
+    capabilities: [
+      "AI-first website development",
+      "Intelligent content management",
+      "Enterprise AI search",
+      "Customer experience platforms",
+      "Conversational interfaces",
+      "Personalization and recommendations",
+      "Multi-language translation",
+      "Customer behavior analytics"
+    ],
+    capabilityGroups: [
+      {
+        label: "AI-first website development",
+        items: [
+          "AI-powered personalization",
+          "Dynamic content delivery",
+          "Conversational interfaces",
+          "Intelligent recommendations",
+          "Predictive search",
+          "Customer behavior analytics",
+          "Real-time engagement",
+          "Multi-device optimization"
+        ]
+      },
+      {
+        label: "Intelligent content management",
+        items: [
+          "AI-generated content",
+          "Automated SEO optimization",
+          "Content recommendations",
+          "Multi-language translation",
+          "Brand consistency validation",
+          "AI proofreading",
+          "Automatic tagging",
+          "Image recognition",
+          "Smart document management"
+        ]
+      },
+      {
+        label: "Customer experience platforms",
+        items: [
+          "Customer portals",
+          "Self-service platforms",
+          "Digital onboarding",
+          "Personalized dashboards",
+          "Customer analytics",
+          "AI-driven recommendations",
+          "Loyalty platforms",
+          "Intelligent engagement"
+        ]
+      },
+      {
+        label: "Built on",
+        items: ["React", "Next.js", "Angular", "Vue.js", "TypeScript", "Node.js", ".NET", "Python"]
+      }
+    ],
+    bestFit:
+      "Organizations whose website is a brochure rather than a working part of the business, and who want customers, employees and partners served by the same intelligent platform.",
+    featured: true,
+    carouselOrder: 4,
+    heroTagline: "Digital experiences that learn, adapt and grow.",
+    heroTeaser:
+      "We build AI-powered web platforms that understand users, personalize interactions and automate the work behind them, combining modern web technologies with Generative AI and enterprise integration.",
+    heroHighlights: ["AI-first websites", "Enterprise AI search", "Customer portals"]
   },
   {
     slug: "data-analytics",
@@ -622,6 +899,33 @@ export const serviceCards: ServiceCard[] = [
       "Data quality & governance",
       "Self-service analytics enablement"
     ],
+    capabilityGroups: [
+      {
+        label: "AI analytics & business intelligence",
+        items: [
+          "Executive dashboards",
+          "Predictive analytics",
+          "Customer insights",
+          "Sales forecasting",
+          "AI reporting",
+          "Data visualization",
+          "KPI monitoring",
+          "Business intelligence platforms"
+        ]
+      },
+      {
+        label: "Data platforms",
+        items: [
+          "SQL Server",
+          "PostgreSQL",
+          "MongoDB",
+          "Snowflake",
+          "Databricks",
+          "Power BI",
+          "Oracle BI"
+        ]
+      }
+    ],
     bestFit:
       "Organizations with data, but no consistent decision-grade reporting.",
     featured: true,
@@ -634,8 +938,8 @@ export const serviceCards: ServiceCard[] = [
   {
     slug: "managed-it",
     seoTitle: "Managed IT Services for Mid-Market Companies",
-    kicker: "Managed IT",
-    title: "Managed IT",
+    kicker: "Automation & Managed IT",
+    title: "Automation & Managed IT",
     summary:
       "Always-on managed services across cloud, security, ERP, and end-user computing, so your internal team stays focused on growth.",
     longDescription:
@@ -659,6 +963,39 @@ export const serviceCards: ServiceCard[] = [
       "Service desk & end-user support",
       "Database administration",
       "Staff augmentation"
+    ],
+    capabilityGroups: [
+      {
+        label: "AI automation",
+        items: [
+          "Workflow automation",
+          "Intelligent document processing",
+          "OCR",
+          "Invoice automation",
+          "Approval workflows",
+          "HR onboarding",
+          "IT service desk automation",
+          "AI ticket classification"
+        ]
+      },
+      {
+        label: "Enterprise application integration",
+        items: [
+          "SAP",
+          "Oracle",
+          "JD Edwards",
+          "Salesforce",
+          "Microsoft Dynamics",
+          "ServiceNow",
+          "Workday",
+          "Microsoft 365",
+          "SharePoint",
+          "Payment gateways",
+          "CRM",
+          "ERP",
+          "HRMS"
+        ]
+      }
     ],
     bestFit:
       "Lean IT teams that need depth, coverage, and senior escalation paths without hiring.",
@@ -807,6 +1144,7 @@ export const serviceCards: ServiceCard[] = [
         ]
       }
     ],
+    hideFromGrid: true,
     bestFit:
       "Enterprises running or implementing SAP, JD Edwards, or PeopleSoft who need a single trusted partner across the full ERP lifecycle.",
     category: "SAP Solutions"
@@ -1203,18 +1541,18 @@ const capabilityStages: {
     ]
   },
   {
-    label: "Run the core",
+    label: "Build with AI",
     nodes: [
-      { slug: "erp-optimization", description: "SAP, JD Edwards and PeopleSoft, modernized without missing a beat." },
-      { slug: "sap-solutions", description: "S/4HANA, AMS, supply chain, BTP, Fiori and clean core under one roof." }
+      { slug: "ai-readiness", description: "Assistants, copilots and enterprise AI search, grounded in your own content." },
+      { slug: "ai-digital-experience", description: "Websites and portals that personalize, search and automate on their own." }
     ]
   },
   {
-    label: "Modernize and get the value out",
+    label: "Run and modernize the core",
     nodes: [
+      { slug: "erp-optimization", description: "SAP, JD Edwards and PeopleSoft, modernized without missing a beat." },
       { slug: "cloud-modernization", description: "Azure, AWS or GCP, moved incrementally, never rip-and-replace." },
-      { slug: "data-analytics", description: "Decision-grade reporting on Snowflake, Databricks, Power BI and Oracle BI." },
-      { slug: "ai-readiness", description: "We assess data, talent and infrastructure, then ship the use cases that move KPIs." }
+      { slug: "data-analytics", description: "Decision-grade reporting on Snowflake, Databricks, Power BI and Oracle BI." }
     ]
   }
 ];

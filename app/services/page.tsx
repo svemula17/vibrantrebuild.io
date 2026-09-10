@@ -20,12 +20,12 @@ export const metadata: Metadata = pageMeta({
    the 26 years of proof sit, so it stays second rather than buried. */
 const ORDER = [
   "cybersecurity",
+  "ai-readiness",
   "erp-optimization",
-  "sap-solutions",
+  "ai-digital-experience",
   "cloud-modernization",
   "managed-it",
-  "data-analytics",
-  "ai-readiness"
+  "data-analytics"
 ];
 
 export default function ServicesPage() {
