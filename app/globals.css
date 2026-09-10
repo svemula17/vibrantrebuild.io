@@ -671,3 +671,158 @@
   .sp.is-in .sp-row, .sp.is-in .sp-block { animation: none; }
   .sp.is-in .sp-wire { stroke-dasharray: none; }
 }
+
+/* ─── Design-canvas motion: hero grid, capability flow, outcome cards ──────
+   Ported from the Claude Design export. vh-* adds a cursor-reactive pool to
+   the hero panel, fw-* adds the sub-practice lists and flow motion, cs-*
+   makes the outcome cards selectable. Reduced-motion block carried over. */
+/* Hero left panel: the ruled grid now breathes and a second glow
+   counter-drifts, so the panel keeps moving after the entrance settles. */
+@keyframes vh-grid-breathe {
+  0%, 100% { background-position: 0 0, 0 0; opacity: 1; }
+  50%      { background-position: 28px 14px, 14px 28px; opacity: 0.62; }
+}
+@keyframes vh-drift-2 {
+  0%   { transform: translate3d(0, 0, 0) scale(1.06); }
+  100% { transform: translate3d(-14%, -10%, 0) scale(0.88); }
+}
+@keyframes vh-scan-down {
+  0%   { transform: translateY(-8%); opacity: 0; }
+  14%  { opacity: 1; }
+  82%  { opacity: 1; }
+  100% { transform: translateY(108%); opacity: 0; }
+}
+@keyframes vh-node-blink {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50%      { opacity: 0.85; transform: scale(1.5); }
+}
+.vh-bg::before { animation: vh-grid-breathe 18s ease-in-out infinite; }
+.vh-glow-2 {
+  position: absolute; right: -10%; bottom: -18%; width: 46%; aspect-ratio: 1; border-radius: 999px;
+  background: radial-gradient(circle, rgba(163, 51, 21, 0.14) 0%, rgba(163, 51, 21, 0.05) 48%, transparent 72%);
+  filter: blur(30px); animation: vh-drift-2 21s ease-in-out infinite alternate;
+}
+.vh-scan {
+  position: absolute; left: 0; right: 0; top: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(200, 64, 26, 0.22) 35%, rgba(245, 166, 35, 0.28) 55%, transparent);
+  animation: vh-scan-down 14s cubic-bezier(0.45, 0, 0.35, 1) 2.2s infinite;
+}
+
+
+/* Cursor-reactive grid: the rules light up in a pool around the pointer. */
+.vh-cursor {
+  position: absolute; inset: -2px; opacity: 0;
+  transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  background-image:
+    linear-gradient(rgba(200, 64, 26, 0.38) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200, 64, 26, 0.38) 1px, transparent 1px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(var(--pool, 170px) var(--pool, 170px) at var(--mx, 50%) var(--my, 50%), #000 0%, rgba(0, 0, 0, 0.45) 46%, transparent 74%);
+  mask-image: radial-gradient(var(--pool, 170px) var(--pool, 170px) at var(--mx, 50%) var(--my, 50%), #000 0%, rgba(0, 0, 0, 0.45) 46%, transparent 74%);
+}
+.vh-spark {
+  position: absolute; width: 190px; height: 190px; border-radius: 999px; opacity: 0;
+  left: var(--mx, 50%); top: var(--my, 50%); transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(224, 90, 31, 0.16) 0%, transparent 68%);
+  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes vh-cursor-flow {
+  0%   { background-position: 0 0, 0 0; }
+  100% { background-position: 0 28px, 28px 0; }
+}
+@keyframes vh-cursor-pulse {
+  0%, 100% { --pool: 150px; }
+  50%      { --pool: 210px; }
+}
+@keyframes vh-spark-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.75; }
+  50%      { transform: translate(-50%, -50%) scale(1.12); opacity: 1; }
+}
+@property --pool { syntax: "<length>"; initial-value: 170px; inherits: true; }
+.vh-left:hover .vh-cursor, .vh-left:hover .vh-spark { opacity: 1; }
+.vh-left:hover .vh-cursor {
+  animation: vh-cursor-flow 2.6s linear infinite, vh-cursor-pulse 3.4s ease-in-out infinite;
+}
+.vh-left:hover .vh-spark { animation: vh-spark-pulse 2.8s ease-in-out infinite; }
+.vh-node {
+  position: absolute; width: 3px; height: 3px; border-radius: 999px; background: #C8401A;
+  animation: vh-node-blink 4.6s ease-in-out infinite;
+}
+.vh-n1 { left: 8%;  top: 26%; animation-delay: 0.4s; }
+.vh-n2 { left: 22%; top: 62%; animation-delay: 1.7s; }
+.vh-n3 { left: 13%; top: 84%; animation-delay: 2.9s; }
+.vh-n4 { left: 31%; top: 14%; animation-delay: 3.6s; }
+
+
+
+/* Stage 01 holds one node against a three-node column, so the card carries
+   the Security sub-practices — it fills the stretched column with content
+   instead of empty space. */
+.fw-label {
+  margin: 16px 0 8px; font-size: 10px; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: #A8A198;
+}
+.fw-sub { display: flex; flex-direction: column; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.fw-sub li {
+  position: relative; padding-left: 14px; font-size: 0.8125rem; line-height: 1.45; color: #57534E;
+}
+.fw-sub li::before {
+  content: ""; position: absolute; left: 0; top: 7px;
+  width: 4px; height: 4px; border-radius: 999px; background: #C8401A; opacity: 0.6;
+}
+.fw-prods { margin-top: 16px; padding-top: 14px; border-top: 1px solid #E7E3DE; }
+.fw-plist { display: flex; flex-direction: column; gap: 9px; margin: 0; padding: 0; list-style: none; }
+.fw-plist li { font-size: 0.75rem; line-height: 1.45; color: #57534E; }
+.fw-plist b {
+  display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: #A33315; margin-bottom: 2px;
+}
+.fw.is-in .fw-head { transform-origin: left center; }
+.fw.is-in .fw-head { animation: fw-rule-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.fw.is-in .fw-stage:nth-child(3) .fw-head { animation-delay: 0.14s; }
+.fw.is-in .fw-stage:nth-child(5) .fw-head { animation-delay: 0.28s; }
+.fw.is-in .fw-ico { animation: fw-ico-glow 3.6s ease-in-out infinite; }
+.fw.is-in .fw-node:nth-child(3) .fw-ico { animation-delay: 1.2s; }
+.fw.is-in .fw-tip { animation: fw-tip-travel 2.6s ease-in-out 1.4s infinite; }
+.fw-node:hover .fw-t { color: #A33315; }
+.fw-node .fw-t { transition: color 0.3s; }
+@media (max-width: 1023px) {
+  .fw.is-in .fw-tip { animation: none; }
+}
+
+
+
+/* Client outcomes: the selected card leads, the others recede. */
+.cs-card { cursor: pointer; }
+.cs-card[data-active="true"] { border-color: rgba(200, 64, 26, 0.45); }
+.cs-card[data-active="true"] .cs-bar { opacity: 1; }
+.cs-card[data-active="true"] .cs-metric { color: #A33315; }
+.cs-card[data-active="false"] { opacity: 0.72; }
+.cs-card[data-active="false"]:hover { opacity: 1; }
+.cs-detail {
+  display: grid; grid-template-rows: 0fr; opacity: 0;
+  transition: grid-template-rows 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s;
+}
+.cs-card[data-active="true"] .cs-detail { grid-template-rows: 1fr; opacity: 1; }
+.cs-detail > div { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .vh-bg::before, .vh-glow-2, .vh-scan, .vh-node,
+  .vh-left:hover .vh-cursor, .vh-left:hover .vh-spark,
+  .fw.is-in .fw-head, .fw.is-in .fw-ico, .fw.is-in .fw-tip { animation: none; }
+  .vh-scan { opacity: 0; }
+}
+
+/* Keyframes referenced by the ported fw-/vh- rules above. They sat in their
+   own comment block in the canvas with no class selector, so the first
+   extraction pass missed them and the rules had nothing to run. */
+@keyframes fw-rule-in { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes fw-ico-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(200, 64, 26, 0); }
+  50%      { box-shadow: 0 0 0 6px rgba(200, 64, 26, 0.09); }
+}
+@keyframes fw-tip-travel {
+  0%, 70% { transform: rotate(45deg) translate(0, 0); }
+  85%     { transform: rotate(45deg) translate(3px, -3px); }
+  100%    { transform: rotate(45deg) translate(0, 0); }
+}

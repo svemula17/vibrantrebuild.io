@@ -1,12 +1,16 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Reveal } from "@/components/reveal";
 import { caseStudies } from "@/content/site-content";
 import { CaseStudyCard } from "@/components/case-study-card";
 
 export function CaseStudies() {
+  /* Pick-one row, per the design canvas: first card leads on load. */
+  const [active, setActive] = useState(0);
+
   return (
     <section className="section bg-white">
       <div className="container">
@@ -39,7 +43,7 @@ export function CaseStudies() {
               transition={{ duration: 0.35, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
               className="h-full"
             >
-              <CaseStudyCard cs={cs} />
+              <CaseStudyCard cs={cs} active={i === active} onSelect={() => setActive(i)} />
             </motion.div>
           ))}
         </div>

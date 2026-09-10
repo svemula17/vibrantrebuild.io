@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Fragment } from "react";
 import { siteSettings } from "@/content/site-content";
 import heroTeam from "@/assets/hero-team.jpg";
+import { HeroCursor } from "@/components/home/hero-cursor";
 
 /* Split hero: copy on a ruled panel, the team photograph alongside it. The
    photo spans the whole section and the panel sits on top of it — see the
@@ -40,8 +41,17 @@ export function Hero() {
   return (
     <section className="relative isolate overflow-hidden bg-neutral-50 hero-min-h vh-hero">
       <div className="vh-left">
+        <HeroCursor />
         <div className="vh-bg" aria-hidden>
           <span className="vh-glow" />
+          <span className="vh-glow-2" />
+          <span className="vh-scan" />
+          <span className="vh-cursor" />
+          <span className="vh-spark" />
+          <span className="vh-node vh-n1" />
+          <span className="vh-node vh-n2" />
+          <span className="vh-node vh-n3" />
+          <span className="vh-node vh-n4" />
           <span className="vh-traces">
             <span className="vh-trace vh-t1" />
             <span className="vh-trace vh-t2" />
