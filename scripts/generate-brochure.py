@@ -240,7 +240,7 @@ def load_service(slug):
     # The three products get their own block on the cybersecurity page, so drop
     # them from the capability grid rather than printing each one twice.
     if slug == "cybersecurity":
-        caps = [c for c in caps if not c.split(".")[0].strip() in ("kaveo", "Vectasec", "aegis")]
+        caps = [c for c in caps if not c.split(".")[0].strip() in ("kaveo", "Vectasec", "Aegis")]
         # This page also prints the products block, so it shows a shorter grid
         # to stay clear of the anchored CTA strip.
         caps = caps[:6]
@@ -268,7 +268,7 @@ SERVICES = [
 PRODUCTS = [
     ("kaveo",    "Cloud security posture management, read-only, inside your own account."),
     ("Vectasec", "Middleware security for API gateways, brokers and service meshes."),
-    ("aegis",    "Authenticated, audited gateway for MCP tool calls."),
+    ("Aegis",    "Authenticated, audited gateway for MCP tool calls."),
 ]
 
 

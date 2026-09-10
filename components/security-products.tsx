@@ -77,7 +77,7 @@ export function VectasecArt() {
   );
 }
 
-/** aegis: every tool call authenticated, then hash-chained into an audit log. */
+/** Aegis: every tool call authenticated, then hash-chained into an audit log. */
 export function AegisArt() {
   return (
     <svg viewBox="0 0 340 150" className="w-full h-auto" role="img"

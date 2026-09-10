@@ -86,9 +86,9 @@ export function ClientLogos({
 }: { tinted?: boolean; credentials?: boolean } = {}) {
   const bg = tinted ? "#FDF6F2" : "#ffffff";
   return (
-    <section className="border-y border-line overflow-hidden" style={{ backgroundColor: bg }}>
+    <section className="cl-band border-y border-line overflow-hidden" style={{ backgroundColor: bg }}>
       {/* Sits directly under the hero, one quiet qualifier line, no heading block */}
-      <div className={showCredentials ? "container pt-10 pb-5" : "container pt-8 pb-5"}>
+      <div className={showCredentials ? "container pt-8 pb-4" : "container pt-7 pb-4"}>
         <Reveal>
           {showCredentials && (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 items-start">
@@ -124,7 +124,7 @@ export function ClientLogos({
           )}
           <p
             className={`cl-cap text-center font-semibold uppercase text-muted${
-              showCredentials ? " mt-9" : ""
+              showCredentials ? " mt-6" : ""
             }`}
           >
             {showCredentials
@@ -135,7 +135,7 @@ export function ClientLogos({
       </div>
 
       {/* Marquee, duplicated track scrolls 50%, pauses on hover */}
-      <Reveal delay={0.1} className="relative pb-8">
+      <Reveal delay={0.1} className="relative pb-6">
         <div
           aria-hidden
           className="absolute inset-y-0 left-0 w-10 sm:w-24 z-10 pointer-events-none"

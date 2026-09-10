@@ -1249,3 +1249,17 @@
 .is-dark .svc-othercard span.grid { background: rgba(224, 90, 31, 0.16); color: #F0A17E; }
 .is-dark .text-brand-700 { color: #F0A17E; }
 .is-dark .chip-accent { background: rgba(224, 90, 31, 0.16); color: #F0A17E; border-color: rgba(224, 90, 31, 0.4); }
+
+/* ── Client band rhythm ───────────────────────────────────────────────────
+   The client band is a thin strip, not a full section, so it should not carry
+   a section's rhythm on either side. It was picking up 48px from the
+   after-the-hero rule on top of its own container padding, and the section
+   below it then opened with a further 112px — roughly 160px of dead space
+   around a 100px-tall strip. */
+main > section:first-of-type + section.cl-band { padding-top: 0; }
+.cl-band + .section,
+.cl-band + .section-soft { padding-top: 4rem; }
+@media (min-width: 768px) {
+  .cl-band + .section,
+  .cl-band + .section-soft { padding-top: 4.5rem; }
+}
