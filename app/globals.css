@@ -826,3 +826,110 @@
   85%     { transform: rotate(45deg) translate(3px, -3px); }
   100%    { transform: rotate(45deg) translate(0, 0); }
 }
+
+/* ─── Security product name lockup ────────────────────────────────────────
+   The three tools carry Vibrant's own name, so they get display treatment
+   rather than a caption above a heading. Ported from the design canvas. */
+.sp-lock {
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 2px solid rgba(200, 64, 26, 0.18);
+}
+.sp-built {
+  display: inline-block;
+  padding: 3px 8px;
+  margin-bottom: 10px;
+  background: rgba(200, 64, 26, 0.08);
+  border: 1px solid rgba(200, 64, 26, 0.22);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #a33315;
+}
+.sp-name {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: #a33315;
+  transition: color 0.25s;
+}
+.sp-card:hover .sp-name { color: #c8401a; }
+/* min-height keeps the three headings aligned when one kind line wraps */
+.sp-kind {
+  margin: 6px 0 0;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #57534e;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: flex-start;
+  gap: 8px;
+  min-height: 2.6em;
+}
+.sp-dot { color: rgba(200, 64, 26, 0.6); }
+
+/* ─── Cybersecurity page: attack-lifecycle spine ───────────────────────────
+   Ported from the design canvas (Vibrant Cybersecurity v2). The four stages
+   share one spine so the page reads as a sequence rather than four features. */
+/* ── Cybersecurity page: proof band, tracks, lifecycle spine, posture check ── */
+    .cy-band {display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      column-gap: 28px; row-gap: 22px; margin: 0; padding-top: 28px; border-top: 2px solid rgba(200, 64, 26, 0.18);}
+.cy-band div {display: flex; flex-direction: column; gap: 6px;}
+.cy-band dt {font-size: 2.25rem; font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: #A33315;}
+.cy-band dd {margin: 0; font-size: 0.8125rem; line-height: 1.45; color: #57534E;}
+.cy-seg {display: inline-flex; border: 1px solid #E7E3DE; background: #fff; border-radius: 999px; padding: 4px; gap: 2px;}
+.cy-segopt {appearance: none; border: 0; cursor: pointer; border-radius: 999px;
+      padding: 8px 18px; font-size: 13px; font-weight: 600; color: #57534E; background: transparent;
+      transition: background 0.2s, color 0.2s; white-space: nowrap;}
+.cy-segopt:hover {color: #A33315;}
+.cy-segopt[data-on="true"] {background: #C8401A; color: #fff;}
+.cy-steps {display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 0; list-style: none;}
+.cy-steps li {display: flex; gap: 10px; align-items: flex-start; font-size: 0.875rem; line-height: 1.45; color: #1B2A41;}
+.cy-steps li > span:last-child {padding-top: 1px;}
+.cy-steps b {display: block; color: #1B2A41; font-weight: 600; margin-bottom: 2px;}
+.cy-stepn {flex: 0 0 auto; width: 22px; height: 22px; display: grid; place-items: center;
+      border: 1px solid rgba(200, 64, 26, 0.3); color: #A33315; background: rgba(200, 64, 26, 0.06);
+      border-radius: 999px; font-size: 11px; font-weight: 700;}
+.cy-spine {display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;}
+.cy-spine {grid-template-columns: repeat(2, 1fr);}
+.cy-stage {appearance: none; cursor: pointer; text-align: left; display: flex; flex-direction: column; gap: 4px;
+      padding: 16px 16px 18px; background: #fff; border: 1px solid #E7E3DE; border-top: 3px solid #E7E3DE;
+      border-radius: 14px; transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;}
+.cy-stage:hover {transform: translateY(-2px); box-shadow: 0 8px 24px rgba(27, 42, 65, 0.08);}
+.cy-stage[data-on="true"] {border-color: rgba(200, 64, 26, 0.35); border-top-color: #C8401A;}
+.cy-stagen {font-size: 10px; font-weight: 700; letter-spacing: 0.18em; color: #57534E;}
+.cy-stage[data-on="true"] .cy-stagen {color: #A33315;}
+.cy-stagelabel {font-size: 1rem; font-weight: 600; color: #1B2A41;}
+.cy-stagesub {font-size: 0.75rem; line-height: 1.4; color: #57534E;}
+.cy-detail {display: grid; grid-template-columns: minmax(0, 1fr) 20rem; gap: 24px;}
+.cy-detail {grid-template-columns: minmax(0, 1fr);}
+.cy-detailmain {background: #fff; border: 1px solid #E7E3DE; border-radius: 18px; padding: 28px;}
+.cy-detailside {background: #fff; border: 1px solid rgba(200, 64, 26, 0.25); border-radius: 18px; padding: 28px;
+      align-self: start;}
+.cy-opts {display: flex; flex-wrap: wrap; gap: 8px;}
+.cy-opt {appearance: none; cursor: pointer; border: 1px solid #E7E3DE; background: #fff; color: #57534E;
+      border-radius: 999px; padding: 7px 14px; font-size: 13px; font-weight: 500; transition: all 0.2s;}
+.cy-opt:hover {border-color: rgba(200, 64, 26, 0.4); color: #A33315;}
+.cy-opt[data-on="true"] {background: rgba(200, 64, 26, 0.08); border-color: #C8401A; color: #A33315; font-weight: 600;}
+.cy-result {background: #fff; border: 1px solid #E7E3DE; border-radius: 18px; padding: 28px;
+      box-shadow: 0 10px 30px rgba(27, 42, 65, 0.06);}
+.cy-result {position: sticky; top: 7rem;}
+.cy-caps {columns: 2; column-gap: 32px;}
+.cy-caps li {break-inside: avoid;}
+.cy-caps {columns: 1;}
+.cy-prodstrip {display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+      padding-top: 20px; border-top: 1px solid rgba(200, 64, 26, 0.18);}
+.cy-prodlabel {font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #57534E;
+      margin-right: 4px;}
+.cy-prod {display: inline-flex; align-items: baseline; gap: 8px;
+      padding: 8px 14px; background: #fff; border: 1px solid rgba(200, 64, 26, 0.25);
+      border-radius: 999px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: #57534E; transition: all 0.2s;}
+.cy-prod b {font-size: 15px; font-weight: 700; letter-spacing: -0.01em; text-transform: none; color: #A33315;}
+.cy-prod:hover {border-color: #C8401A; box-shadow: 0 6px 18px rgba(200, 64, 26, 0.12); transform: translateY(-1px);}

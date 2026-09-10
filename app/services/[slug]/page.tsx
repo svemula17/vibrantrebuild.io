@@ -15,6 +15,7 @@ import { CaseStudyCard } from "@/components/case-study-card";
 import { pageMeta } from "@/lib/seo";
 import { ServiceSchema, BreadcrumbSchema } from "@/components/structured-data";
 import { SecurityProducts } from "@/components/security-products";
+import { AttackLifecycle } from "@/components/attack-lifecycle";
 
 type Params = { slug: string };
 
@@ -194,6 +195,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
 
       {/* Products live only on the cybersecurity parent page. */}
       {service.slug === "cybersecurity" && <SecurityProducts />}
+      {service.slug === "cybersecurity" && <AttackLifecycle />}
 
       <section className="section-soft">
         <div className="container">

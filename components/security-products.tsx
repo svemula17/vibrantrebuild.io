@@ -119,18 +119,24 @@ const PRODUCTS = [
   {
     art: <KaveoArt />,
     name: "kaveo",
+    kind: "Cloud security posture",
+    short: "CSPM",
     heading: "Posture that never leaves your account",
     body: "Finds misconfigurations across AWS, Azure, GCP and Kubernetes through a read-only role inside your own environment. No configuration or log data is shipped to a vendor cloud."
   },
   {
     art: <VectasecArt />,
     name: "Vectasec",
+    kind: "Middleware security",
+    short: "API · Mesh",
     heading: "Security for the layer between services",
     body: "Audits the connective tissue most tools skip: API gateways, message brokers and service meshes. Catches authentication gaps, over-broad routing and policy drift between environments."
   },
   {
     art: <AegisArt />,
     name: "aegis",
+    kind: "MCP gateway",
+    short: "AuthN · AuthZ · Audit",
     heading: "Every tool call authenticated and logged",
     body: "A gateway in front of your MCP servers adding authentication, role-based authorization, threat filtering and rate limiting. Writes a hash-chained audit log you can verify independently."
   }
@@ -193,9 +199,15 @@ export function SecurityProducts() {
               className="sp-card flex flex-col rounded-2xl border border-line bg-white p-7 md:p-8 shadow-card transition-all hover:-translate-y-1 hover:shadow-cardHover hover:border-sky/40"
             >
               <div className="rounded-xl border border-line bg-neutral-50 p-5">{p.art}</div>
-              <p className="mt-6 text-xs font-bold uppercase tracking-[0.16em] text-brand-700">
-                {p.name}
-              </p>
+              <div className="sp-lock">
+                <span className="sp-built">Built by Vibrant</span>
+                <p className="sp-name">{p.name}</p>
+                <p className="sp-kind">
+                  {p.kind}
+                  <span className="sp-dot" aria-hidden>·</span>
+                  {p.short}
+                </p>
+              </div>
               <h3 className="mt-2 text-xl font-semibold text-navy-700 leading-snug">{p.heading}</h3>
               <p className="mt-3 text-base text-muted leading-relaxed">{p.body}</p>
             </article>
