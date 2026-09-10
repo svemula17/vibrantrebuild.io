@@ -261,7 +261,7 @@ const ICONS = {
 export const serviceCards: ServiceCard[] = [
   {
     slug: "ai-readiness",
-    seoTitle: "AI Readiness Assessment & Consulting",
+    seoTitle: "Generative AI Consulting & Enterprise AI Search",
     kicker: "Generative AI",
     title: "Generative AI",
     summary:
@@ -356,7 +356,7 @@ export const serviceCards: ServiceCard[] = [
   },
   {
     slug: "cloud-modernization",
-    seoTitle: "Cloud Migration & Modernization Consulting",
+    seoTitle: "Cloud Modernization & Platform Engineering",
     kicker: "Cloud & Platform Engineering",
     title: "Cloud & Platform Engineering",
     summary:
@@ -937,7 +937,7 @@ export const serviceCards: ServiceCard[] = [
   },
   {
     slug: "managed-it",
-    seoTitle: "Managed IT Services for Mid-Market Companies",
+    seoTitle: "AI Automation & Managed IT Services",
     kicker: "Automation & Managed IT",
     title: "Automation & Managed IT",
     summary:
