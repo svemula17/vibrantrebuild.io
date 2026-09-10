@@ -236,8 +236,17 @@ def load_service(slug):
         fm = _re.search(name + r': \[(.*?)\]', block, _re.S)
         return [_clean(x) for x in _re.findall(r'"((?:[^"\\]|\\.)*)"', fm.group(1))] if fm else []
 
+    caps = list_field("capabilities")
+    # The three products get their own block on the cybersecurity page, so drop
+    # them from the capability grid rather than printing each one twice.
+    if slug == "cybersecurity":
+        caps = [c for c in caps if not c.split(".")[0].strip() in ("kaveo", "Vectasec", "aegis")]
+        # This page also prints the products block, so it shows a shorter grid
+        # to stay clear of the anchored CTA strip.
+        caps = caps[:6]
+
     return dict(title=field("title"), long=field("longDescription"),
-                outcomes=list_field("outcomes"), caps=list_field("capabilities")[:8],
+                outcomes=list_field("outcomes"), caps=caps[:8],
                 best=field("bestFit"))
 
 
@@ -245,13 +254,21 @@ def load_service(slug):
 # brochure shipped an "Automation" page for a slug that no longer exists, and
 # omitted SAP Solutions entirely.
 SERVICES = [
+    ("cybersecurity",       "assets/services/cybersecurity.jpg"),
     ("erp-optimization",    "assets/services/erp.jpg"),
     ("sap-solutions",       None),  # no SAP photo in assets/, gradient band instead
     ("cloud-modernization", "assets/services/cloud.jpg"),
-    ("cybersecurity",       "assets/services/cybersecurity.jpg"),
     ("data-analytics",      "assets/services/data-analytics.jpg"),
     ("ai-readiness",        "assets/services/ai.jpg"),
     ("managed-it",          "assets/services/managed-it.jpg"),
+]
+
+# Printed on the Cybersecurity page only. The site carries these on the
+# homepage and the cybersecurity page; the brochure had no mention of them.
+PRODUCTS = [
+    ("kaveo",    "Cloud security posture management, read-only, inside your own account."),
+    ("Vectasec", "Middleware security for API gateways, brokers and service meshes."),
+    ("aegis",    "Authenticated, audited gateway for MCP tool calls."),
 ]
 
 
@@ -317,8 +334,26 @@ def service_page(idx, slug, band_img, page_no):
             c.drawString(x + 15, yy - j * 10.5, ln)
     y = top_y - rows * row_h
 
+    # Products, cybersecurity page only. The site sells three; the brochure
+    # named none of them.
+    if slug == "cybersecurity":
+        y -= 18
+        eyebrow(M, y, "Security products we build", size=8.5, track=1.8)
+        y -= 16
+        for name, blurb in PRODUCTS:
+            c.setFont(FB, 10)
+            c.setFillColor(B700)
+            c.drawString(M, y, name)
+            nw = c.stringWidth(name, FB, 10)
+            c.setFont(FO, 9.6)
+            c.setFillColor(INK)
+            lines = wrap(blurb, FO, 9.6, W - 2 * M - nw - 14)
+            for i, ln in enumerate(lines):
+                c.drawString(M + nw + 10 if i == 0 else M, y - i * 13, ln)
+            y -= max(len(lines) * 12.5, 12.5) + 4
+
     # best fit
-    y -= 26
+    y -= 26 if slug != "cybersecurity" else 14
     bf_lines = wrap("Best fit: " + s["best"], FO, 9.8, W - 2 * M - 44)
     bh = len(bf_lines) * 14 + 24
     c.setFillColor(CREAM2)
@@ -329,6 +364,13 @@ def service_page(idx, slug, band_img, page_no):
     c.setFillColor(INK)
     for i, ln in enumerate(bf_lines):
         c.drawString(M + 20, y - 26 - i * 14, ln)
+
+    # The CTA strip is anchored at a fixed y, so any block added above it can
+    # silently overlap. Fail the build instead of shipping a collided page.
+    if y - bh < 74 + 54 + 12:
+        raise SystemExit(
+            f"generate-brochure: '{slug}' page content ends at y={y - bh:.0f}, "
+            f"which collides with the CTA strip at y=140. Shorten the page.")
 
     # Anchored CTA strip. Service pages used to trail off into half a page of
     # white; this closes the page and repeats the ask.
@@ -365,7 +407,7 @@ c.drawString(M, H - 436, "Strengthening your bottom line.")
 
 c.setFont(F, 12.5)
 c.setFillColor(MUTED)
-c.drawString(M, H - 470, "ERP   ·   Cloud   ·   Cybersecurity   ·   Data   ·   AI")
+c.drawString(M, H - 470, "Cybersecurity   ·   ERP   ·   Cloud   ·   Data   ·   AI")
 
 pill_txt = f"CELEBRATING {YEARS} YEARS IN BUSINESS"
 pill_w = c.stringWidth(pill_txt, FB, 9.5) + 1.6 * len(pill_txt) + 34
@@ -379,7 +421,7 @@ iy = 178
 eyebrow(M, iy + 44, "Inside")
 c.setFont(F, 9.5)
 c.setFillColor(MUTED)
-c.drawString(M, iy + 22, "Seven capabilities, one page each  ·  Deep SAP bench  ·  The VIBRANT Method")
+c.drawString(M, iy + 22, "Seven capabilities, one page each  ·  Security products we build  ·  The VIBRANT Method")
 c.drawString(M, iy + 6, "AI Shield platform  ·  Client outcomes  ·  Leadership and offices")
 
 gradient(0, 0, W, 110)
@@ -408,7 +450,7 @@ y = para(M, y, f"Vibrant Inc opened its doors in {FOUNDED} with a simple model: 
                f"years on, clients across North America still call us when ERP, cloud, or "
                f"data work has to land on time and keep running.", W - 2 * M - 190)
 y -= 6
-y = para(M, y, "From ERP and cloud to data, cybersecurity, and AI, our architects and "
+y = para(M, y, "From cybersecurity and ERP to cloud, data, and AI, our architects and "
                "engagement managers own every engagement from discovery through steady "
                "state. We are NMSDC Certified, an E-Verify Partner, and Oracle and "
                "Microsoft partners. Those credentials show in how we build teams and "
