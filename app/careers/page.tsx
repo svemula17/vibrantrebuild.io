@@ -87,7 +87,7 @@ export default function CareersPage() {
             <p className="eyebrow">Open roles</p>
             <h2 className="mt-3">Where we&apos;re hiring right now.</h2>
             <p className="mt-4 text-muted">
-              If you don&apos;t see a perfect match, send us your résumé anyway, we hire ahead of demand for senior practitioners.
+              If you don&apos;t see a perfect match, send us your resume anyway, we hire ahead of demand for senior practitioners.
             </p>
           </div>
           {/* Flex-wrap so the trailing row centers as roles are added or filled,
@@ -120,16 +120,16 @@ export default function CareersPage() {
         <div className="container grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
             <p className="eyebrow">Don&apos;t see your role?</p>
-            <h2 className="mt-3">Send us your résumé anyway.</h2>
+            <h2 className="mt-3">Send us your resume anyway.</h2>
             <p className="mt-5 text-muted">
               We hire experienced consultants ahead of demand. If you&apos;d be a fit on a future engagement, we want to know now.
             </p>
           </div>
           <div className="card p-8 text-center">
-            <h3 className="text-lg font-semibold text-navy-700">Email us your résumé</h3>
+            <h3 className="text-lg font-semibold text-navy-700">Email us your resume</h3>
             <p className="mt-2 text-sm text-muted">A senior recruiter will reach out within one business day.</p>
             <a href={`mailto:${siteSettings.emailCareers}`} className="btn-ghost mt-5">
-              Email your résumé
+              Email your resume
             </a>
             <p className="mt-2 text-xs text-muted break-all">{siteSettings.emailCareers}</p>
           </div>
