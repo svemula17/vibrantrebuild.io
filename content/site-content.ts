@@ -1354,7 +1354,7 @@ export const careersCriteria = [
   "Hands-on functional or technical depth (not just slideware)",
   "Ownership mindset, you finish what you start",
   "Comfortable with client-facing communication",
-  "Curious about cloud, data, and ERP modernization"
+  "Curious about security, AI, and enterprise modernization"
 ];
 
 export type Opening = {
@@ -1365,43 +1365,40 @@ export type Opening = {
 
 export const careerOpenings: Opening[] = [
   {
-    category: "ERP",
-    title: "JD Edwards EnterpriseOne Functional Consultant",
+    category: "Security",
+    title: "Product Security Engineer",
     summary:
-      "Lead JDE implementations, CNC administration, and post go-live optimization for clients modernizing their Oracle ERP estate."
+      "Threat model and harden kaveo, Vectasec, and Aegis, the three security products we build. Run design and code reviews for client engineering teams, and write the CI guardrails that keep vulnerabilities out before release."
   },
   {
-    category: "ERP",
-    title: "SAP Functional / Technical Consultant",
+    category: "AI",
+    title: "AI Engineer",
     summary:
-      "Deliver SAP ECC and S/4HANA implementations, support engagements, and system integrations across mid-market and enterprise clients."
+      "Build RAG pipelines, tool-calling agents, and evaluation harnesses on Azure OpenAI, AWS Bedrock, and Anthropic Claude. The systems run inside the client's own cloud tenant, under their security controls."
   },
   {
     category: "Cloud",
-    title: "Senior Azure Architect",
+    title: "Cloud Platform Engineer",
     summary:
-      "Design and lead Azure modernization programs, landing zones, microservices, and data platform."
-  },
-  {
-    category: "Analytics",
-    title: "BI & Analytics Lead",
-    summary: "Own analytics strategy and Oracle BI delivery for mid-market and enterprise clients."
+      "Build Terraform landing zones, Kubernetes clusters, and CI/CD pipelines on AWS, Azure, and GCP. Hand each platform over with runbooks and FinOps guardrails so the client's own team can run it."
   },
   {
     category: "ERP",
-    title: "Workday HCM Consultant",
+    title: "SAP S/4HANA Solution Architect",
     summary:
-      "Functional configuration, integrations, and stabilization across complex multi-country deployments."
+      "Lead ECC to S/4HANA conversions, greenfield builds, and selective data transitions for clients moving ahead of the 2027 deadline. Keep extensions on BTP and ABAP Cloud so the core stays standard and upgradable."
   },
   {
-    category: "ERP",
-    title: "Microsoft Dynamics 365 Lead",
-    summary: "Lead end-to-end D365 F&O / CE engagements across mid-market clients."
+    category: "Security",
+    title: "Detection & Response Engineer",
+    summary:
+      "Write and tune detection rules for our 24\u00d77 managed SOC, on whatever SIEM and endpoint tooling each client already owns. Build response playbooks, tune behavioral baselines, and keep monitoring evidence ready for SOC 2 and CMMC audits."
   },
   {
-    category: "Delivery",
-    title: "Engagement Manager",
-    summary: "Run senior-led, multi-stream programs from kickoff through hypercare."
+    category: "Data",
+    title: "Data Engineer",
+    summary:
+      "Migrate legacy warehouses onto Snowflake and Databricks. Build the pipelines, data contracts, and quality tests that put one governed number behind every dashboard, and the lineage that shows where it came from."
   }
 ];
 

@@ -93,10 +93,15 @@ export default function CareersPage() {
           {/* Flex-wrap so the trailing row centers as roles are added or filled,
               rather than leaving dead cells (7 roles in 3 cols = 3 + 3 + 1). */}
           <div className="mt-8 flex flex-wrap justify-center gap-5">
+            {/* Applications go to careers@ rather than the contact form: an
+                application needs a resume attached, which the form cannot take,
+                and the form has no provider configured. */}
             {careerOpenings.map((o) => (
-              <Link
+              <a
                 key={o.title}
-                href="/contact"
+                href={`mailto:${siteSettings.emailCareers}?subject=${encodeURIComponent(
+                  `Application: ${o.title}`
+                )}`}
                 className="group flex flex-col rounded-2xl border border-line bg-white p-6 shadow-card hover:-translate-y-1 hover:shadow-cardHover hover:border-sky/40 transition-all basis-full md:basis-[calc(50%-0.625rem)] xl:basis-[calc(33.333%-0.834rem)]"
               >
                 <p className="eyebrow text-[0.7rem]">{o.category}</p>
@@ -105,7 +110,7 @@ export default function CareersPage() {
                 <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 group-hover:gap-2.5 transition-all">
                   Apply →
                 </span>
-              </Link>
+              </a>
             ))}
           </div>
         </div>
