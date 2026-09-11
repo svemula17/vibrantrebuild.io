@@ -236,7 +236,6 @@ export const navigationItems: NavigationItem[] = [
   { href: "/services/cybersecurity", label: "Cybersecurity" },
   { href: "/services", label: "Services" },
   { href: "/industries", label: "Industries" },
-  { href: "/team", label: "Leadership" },
   { href: "/about", label: "Company" },
   { href: "/resources", label: "Resources" },
   { href: "/contact", label: "Contact Us" }

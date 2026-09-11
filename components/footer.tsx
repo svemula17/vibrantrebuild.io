@@ -23,6 +23,7 @@ const clientLogos = [
 const footerNav = [
   ...navigationItems.filter((n) => n.href !== "/" && n.href !== "/about"),
   { label: "About Us", href: "/about" },
+  { label: "Leadership", href: "/team" },
   { label: "Careers", href: "/careers" },
   { label: "Partners", href: "/partners" },
   { label: "Social Responsibility", href: "/social-responsibility" }

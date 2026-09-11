@@ -126,6 +126,7 @@ const PRODUCTS_LINK: MenuLink = {
 const MOBILE_NAV: { href: string; label: string }[] = [
   ...navigationItems.filter((n) => n.href !== "/about"),
   { href: "/about", label: "About Us" },
+  { href: "/team", label: "Leadership" },
   { href: "/careers", label: "Careers" },
   { href: "/partners", label: "Partners" },
   { href: "/social-responsibility", label: "Social Responsibility" }
@@ -134,6 +135,7 @@ const MOBILE_NAV: { href: string; label: string }[] = [
 /* About dropdown, compact section menu (reference-style, our content) */
 const ABOUT_MENU: [string, string][] = [
   ["About Us", "/about"],
+  ["Leadership", "/team"],
   ["Careers", "/careers"],
   ["Partners", "/partners"],
   ["Social Responsibility", "/social-responsibility"],
