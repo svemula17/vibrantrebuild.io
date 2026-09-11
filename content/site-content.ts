@@ -1237,7 +1237,7 @@ export const visionStatement =
 export const aboutFacts = [
   { value: "2000", label: "Founded in Princeton, New Jersey" },
   { value: "26+", label: "Years of trusted enterprise delivery" },
-  { value: "5", label: "Practice areas across cloud, data, ERP & managed IT" },
+  { value: "7", label: "Practice areas across security, AI, ERP, cloud and data" },
   { value: "Global", label: "Onshore and offshore delivery" }
 ];
 
