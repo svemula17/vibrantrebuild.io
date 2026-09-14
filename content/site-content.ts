@@ -1226,24 +1226,28 @@ export const partnerBenefits = [
   }
 ];
 
+/* ── /about ───────────────────────────────────────────────────────────────
+   Every paragraph below is the owner's supplied copy, verbatim. If it reads
+   differently from the rest of the site, that is deliberate: this is their
+   wording, not ours. Paragraph numbers refer to "About US.docx". */
+
+/* 2, 3 */
 export const companyOverview = [
-  "Vibrant, Inc. is an IT services and solutions company helping businesses transform, modernize, and manage their technology environments, with a focus on cybersecurity, ERP modernization and digital transformation.",
-  "We combine deep enterprise technology experience with the agility and personal attention of a trusted technology partner. From complex enterprise systems to modern digital experiences, our focus is simple: understand the business challenge, recommend the right solution, and deliver measurable value."
+  "We combine deep enterprise technology experience with the agility and personal attention of a trusted technology partner. From complex enterprise systems to modern digital experiences, our focus is simple: understand the business challenge, recommend the right solution, and deliver measurable value.",
+  "Our capabilities span Cybersecurity, Enterprise Applications & ERP, Cloud & DevOps, Digital Transformation, AI & Automation, Legacy Modernization, Digital Experience, and IT Talent Solutions."
 ];
 
-/* "Experience That Makes a Difference" on /about. The argument is that most
-   organizations cannot replace what they already run, so the partner has to
-   know both the legacy platform and the modern one. */
+/* 5-8, under the heading "Experience That Makes a Difference" */
 export const companyExperience = [
-  "Vibrant's leadership brings decades of combined experience delivering and managing technology across complex enterprise environments. That expertise spans cybersecurity, SAP, Oracle, PeopleSoft, JD Edwards EnterpriseOne, cloud, DevOps, enterprise infrastructure, application modernization, data, digital technologies, and AI-enabled solutions.",
-  "We understand that most organizations cannot simply replace their existing technology. They need a partner who understands both legacy and modern platforms, and who can help create a practical path from where they are today to where they want to be tomorrow.",
+  "Vibrant's leadership brings decades of combined experience delivering and managing technology across complex enterprise environments.",
+  "Our expertise includes Cybersecurity, SAP, Oracle, PeopleSoft, JD Edwards EnterpriseOne, Cloud, DevOps, Enterprise infrastructure, Application modernization, data, digital technologies, and AI-enabled solutions.",
+  "We understand that most organizations cannot simply replace their existing technology. They need a partner who understands both legacy and modern platforms and can help create a practical path from where they are today to where they want to be tomorrow.",
   "Whether modernizing an ERP environment, moving applications to the cloud, automating technology operations, developing a modern digital platform, or introducing AI into business processes, Vibrant approaches technology from a business perspective."
 ];
 
-/* The capability set as the company describes itself on /about. Five of the
-   seven have a service page behind them; Legacy Modernization and IT Talent
-   Solutions do not yet, so they render without a link rather than pointing
-   somewhere that does not exist. */
+/* 10-24, "What We Do". Five of the seven have a service page behind them;
+   Legacy Modernization and IT Talent Solutions do not, so they render without
+   a link rather than pointing somewhere that does not exist. */
 export type AboutCapability = { title: string; body: string; href?: string };
 
 export const aboutCapabilities: AboutCapability[] = [
@@ -1282,16 +1286,42 @@ export const aboutCapabilities: AboutCapability[] = [
   }
 ];
 
-/* "Supporting Businesses in Our Community" on /about. */
+/* 26-28 and 33, under the heading "Why Vibrant?" */
+export const whyVibrantLead =
+  "Technology is important. Understanding the client's business is more important.";
+
+export const whyVibrantBody = [
+  "We don't believe every challenge requires the newest technology or the largest transformation program. We believe in finding the right solution for the business.",
+  "Our approach is built around four principles:"
+];
+
+export const whyVibrantClose =
+  "This allows Vibrant to serve organizations ranging from established enterprises with complex technology environments to growing businesses that need experienced technology guidance without building large internal IT organizations.";
+
+/* 35, 36, under the heading "Leadership with Purpose". 37 is visionStatement. */
+export const companyLeadership = [
+  "Vibrant was founded by an experienced technology leader with more than 20 years of hands-on IT leadership experience, spanning enterprise applications, ERP, cloud transformation, DevOps, infrastructure and technology modernization.",
+  "That experience established an important principle behind Vibrant:"
+];
+
+/* 39-41, "Supporting Businesses in Our Community" */
 export const companyCommunity = [
   "While our experience comes from large and complex enterprise environments, we believe smaller and local businesses should also have access to high-quality technology expertise.",
   "Vibrant works with local businesses and community organizations to help them strengthen their digital presence, modernize websites and applications, adopt cloud technologies, explore AI opportunities and make better technology decisions.",
-  "Sometimes the most valuable technology engagement is not a large transformation. It is simply having the right technology partner available when you need one."
+  "Sometimes the most valuable technology engagement isn't a large transformation\u2014it is simply having the right technology partner available when you need one."
 ];
 
-export const companyCommitment =
-  "Our goal is straightforward: become a technology partner our clients trust for the long term. We bring together enterprise experience, modern technology, responsive service and personal commitment to help organizations operate more efficiently, modernize confidently and prepare for what is next.";
+/* 43, 44, "Our Commitment" */
+export const companyCommitment = [
+  "Our goal is straightforward: become a technology partner our clients trust for the long term.",
+  "We bring together enterprise experience, modern technology, responsive service and personal commitment to help organizations operate more efficiently, modernize confidently and prepare for what's next."
+];
 
+/* 45, the closing line */
+export const companyClosingLine =
+  "Vibrant, Inc. \u2014 Your efficiency and bottom line are our business";
+
+/* 37 */
 export const visionStatement =
   "Technology should solve business problems\u2014not create additional complexity.";
 
@@ -1302,6 +1332,7 @@ export const aboutFacts = [
   { value: "Global", label: "Onshore and offshore delivery" }
 ];
 
+/* 29-32, the four principles */
 export const coreValues = [
   { title: "Experience", body: "Bring proven enterprise technology knowledge to every engagement." },
   { title: "Agility", body: "Respond quickly and adapt solutions to each client's requirements." },

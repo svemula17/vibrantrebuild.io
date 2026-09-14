@@ -6,13 +6,18 @@ import { PageHero } from "@/components/page-hero";
 import {
   aboutCapabilities,
   aboutFacts,
+  companyClosingLine,
   companyCommitment,
   companyCommunity,
   companyExperience,
+  companyLeadership,
   companyOverview,
   coreValues,
   siteSettings,
   visionStatement,
+  whyVibrantBody,
+  whyVibrantClose,
+  whyVibrantLead,
   yearsInBusiness,
   withBasePath
 } from "@/content/site-content";
@@ -21,36 +26,31 @@ import anniversary from "@/assets/anniversary.png";
 export const metadata: Metadata = pageMeta({
   title: "About Us: Enterprise Experience, Founder-Led Since 2000",
   description:
-    "Vibrant Inc is an IT services company focused on cybersecurity, ERP modernization and digital transformation. Founder-led since 2000 in Princeton, New Jersey.",
+    "Vibrant Inc is an IT services and solutions company helping businesses transform, modernize, and manage their technology environments, with a focus on cybersecurity, ERP modernization and digital transformation.",
   path: "/about"
 });
 
+/* Every heading and paragraph on this page is the owner's supplied copy from
+   "About US.docx", used verbatim and in its original order. The section
+   headings are theirs too, which is why this page drops the eyebrow-plus-
+   headline pattern the rest of the site uses: adding a headline would mean
+   inventing words the owner did not write. */
 export default function AboutPage() {
   return (
     <>
       <PageHero
         eyebrow="About Vibrant"
-        title="Enterprise experience. Modern technology. Personal commitment."
-        description="Vibrant Inc helps businesses transform, modernize, and manage their technology environments, with a focus on cybersecurity, ERP modernization and digital transformation."
+        title="Enterprise Experience. Modern Technology. Personal Commitment."
+        description="Vibrant, Inc. is an IT services and solutions company helping businesses transform, modernize, and manage their technology environments. We focus more on Cybersecurity, ERP modernization and digital transformation."
         crumbs={[{ label: "Home", href: "/" }, { label: "About" }]}
       />
 
       <section className="section">
         <div className="container grid gap-12 lg:grid-cols-2 lg:items-start">
-          <div>
-            <p className="eyebrow">Who we are</p>
-            <h2 className="mt-3">A trusted technology partner, not a vendor.</h2>
-            <div className="mt-6 space-y-4">
-              {companyOverview.map((p, i) => (
-                <p key={i} className="text-muted">{p}</p>
-              ))}
-            </div>
-
-            {/* The principle the company was founded on. #vision is linked from
-                the Company dropdown, so the id has to stay. */}
-            <blockquote id="vision" className="mt-6 scroll-mt-28 border-l-2 border-brand-600 pl-4 text-[15px] font-medium text-neutral-700 leading-relaxed">
-              &ldquo;{visionStatement}&rdquo;
-            </blockquote>
+          <div className="space-y-4">
+            {companyOverview.map((p, i) => (
+              <p key={i} className="text-muted">{p}</p>
+            ))}
           </div>
 
           {/* Right: one compact card, small 26-year graphic + key facts */}
@@ -78,44 +78,21 @@ export default function AboutPage() {
       </section>
 
       <section className="section-soft">
-        <div className="container grid gap-12 lg:grid-cols-[1fr_20rem] lg:items-start">
-          <div>
-            <p className="eyebrow">Experience that makes a difference</p>
-            <h2 className="mt-3">We know the platform you are on, and the one you are moving to.</h2>
+        <div className="container">
+          <div className="max-w-3xl">
+            <h2>Experience That Makes a Difference</h2>
             <div className="mt-6 space-y-4">
               {companyExperience.map((p, i) => (
                 <p key={i} className="text-muted">{p}</p>
               ))}
             </div>
           </div>
-          <div className="card p-7">
-            <p className="eyebrow">Leadership with purpose</p>
-            <p className="mt-3 text-sm text-muted leading-relaxed">
-              Vibrant was founded by an experienced technology leader whose career spans
-              enterprise applications, ERP, cloud transformation, DevOps, infrastructure and
-              technology modernization. That experience set the principle the company still
-              runs on.
-            </p>
-            <Link
-              href="/team"
-              className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:gap-2.5 transition-all"
-            >
-              Meet the leadership team →
-            </Link>
-          </div>
         </div>
       </section>
 
       <section className="section">
         <div className="container">
-          <div className="max-w-2xl">
-            <p className="eyebrow">What we do</p>
-            <h2 className="mt-3">Capabilities that span the estate.</h2>
-            <p className="mt-4 text-muted">
-              From complex enterprise systems to modern digital experiences, built around the
-              business challenge rather than the technology.
-            </p>
-          </div>
+          <h2>What We Do</h2>
           {/* Seven items, flex-wrap so the trailing row centers rather than
               leaving dead cells in a fixed three-column grid. */}
           <ul className="mt-8 flex flex-wrap justify-center gap-5">
@@ -154,14 +131,14 @@ export default function AboutPage() {
 
       <section id="values" className="section-soft scroll-mt-28">
         <div className="container">
-          <div className="max-w-2xl">
-            <p className="eyebrow">Why Vibrant</p>
-            <h2 className="mt-3">Technology is important. Understanding the business is more important.</h2>
-            <p className="mt-4 text-muted">
-              We don&apos;t believe every challenge requires the newest technology or the largest
-              transformation program. We believe in finding the right solution for the business.
-              Our approach is built around four principles.
-            </p>
+          <div className="max-w-3xl">
+            <h2>Why Vibrant?</h2>
+            <p className="mt-4 text-lg font-medium text-navy-700 leading-relaxed">{whyVibrantLead}</p>
+            <div className="mt-4 space-y-4">
+              {whyVibrantBody.map((p, i) => (
+                <p key={i} className="text-muted">{p}</p>
+              ))}
+            </div>
           </div>
           <ul className="mt-8 flex flex-wrap justify-center gap-3">
             {coreValues.map((v) => (
@@ -174,19 +151,34 @@ export default function AboutPage() {
               </li>
             ))}
           </ul>
-          <p className="mt-8 max-w-3xl text-muted">
-            This allows Vibrant to serve organizations ranging from established enterprises with
-            complex technology environments to growing businesses that need experienced technology
-            guidance without building large internal IT organizations.
-          </p>
+          <p className="mt-8 max-w-3xl text-muted">{whyVibrantClose}</p>
         </div>
       </section>
 
       <section className="section">
-        <div className="container grid gap-12 lg:grid-cols-2 lg:items-center">
+        <div className="container grid gap-12 lg:grid-cols-2 lg:items-start">
           <div>
-            <p className="eyebrow">Supporting businesses in our community</p>
-            <h2 className="mt-3">Enterprise expertise, available to smaller businesses too.</h2>
+            <h2>Leadership with Purpose</h2>
+            <div className="mt-6 space-y-4">
+              {companyLeadership.map((p, i) => (
+                <p key={i} className="text-muted">{p}</p>
+              ))}
+            </div>
+            {/* The founding principle. #vision is linked from the Company
+                dropdown, so the id has to stay wherever this quote lives. */}
+            <blockquote id="vision" className="mt-5 scroll-mt-28 border-l-2 border-brand-600 pl-4 text-[15px] font-medium text-neutral-700 leading-relaxed">
+              &ldquo;{visionStatement}&rdquo;
+            </blockquote>
+            <Link
+              href="/team"
+              className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:gap-2.5 transition-all"
+            >
+              Meet the leadership team →
+            </Link>
+          </div>
+
+          <div>
+            <h2>Supporting Businesses in Our Community</h2>
             <div className="mt-6 space-y-4">
               {companyCommunity.map((p, i) => (
                 <p key={i} className="text-muted">{p}</p>
@@ -199,17 +191,26 @@ export default function AboutPage() {
               How we give back →
             </Link>
           </div>
-          <div className="card p-8">
-            <p className="eyebrow">Our commitment</p>
-            <p className="mt-3 text-muted leading-relaxed">{companyCommitment}</p>
+        </div>
+      </section>
+
+      <section className="section-soft">
+        <div className="container">
+          <div className="card mx-auto max-w-3xl p-8 text-center">
+            <h2>Our Commitment</h2>
+            <div className="mt-5 space-y-4">
+              {companyCommitment.map((p, i) => (
+                <p key={i} className="text-muted">{p}</p>
+              ))}
+            </div>
             <hr className="my-6 border-line" />
-            <p className="text-base font-semibold text-navy-700">{siteSettings.tagline}</p>
+            <p className="text-base font-semibold text-navy-700">{companyClosingLine}</p>
           </div>
         </div>
       </section>
 
       {/* ── Brochure download ── */}
-      <section className="section-soft">
+      <section className="section">
         <div className="container">
           <div className="relative overflow-hidden rounded-3xl bg-brand-gradient p-8 md:p-10">
             {/* The old orange glow is pointless on an orange ground. This is the
@@ -263,7 +264,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section-soft">
         <div className="container grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
             <p className="eyebrow">Ready to talk</p>
