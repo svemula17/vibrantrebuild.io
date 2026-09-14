@@ -1227,12 +1227,73 @@ export const partnerBenefits = [
 ];
 
 export const companyOverview = [
-  "Vibrant Inc opened its doors in 2000 with a simple model: put senior practitioners on every engagement and finish what we start. Twenty-six years on, clients across North America still call us when ERP, cloud, or data work has to land on time and keep running.",
-  "From ERP and cloud to data, cybersecurity, and AI, our architects and engagement managers own every engagement from discovery through steady state. We're NMSDC Certified, an E-Verify Partner, and Oracle and Microsoft partners, credentials that show in how we build teams and deliver."
+  "Vibrant, Inc. is an IT services and solutions company helping businesses transform, modernize, and manage their technology environments, with a focus on cybersecurity, ERP modernization and digital transformation.",
+  "We combine deep enterprise technology experience with the agility and personal attention of a trusted technology partner. From complex enterprise systems to modern digital experiences, our focus is simple: understand the business challenge, recommend the right solution, and deliver measurable value."
 ];
 
+/* "Experience That Makes a Difference" on /about. The argument is that most
+   organizations cannot replace what they already run, so the partner has to
+   know both the legacy platform and the modern one. */
+export const companyExperience = [
+  "Vibrant's leadership brings decades of combined experience delivering and managing technology across complex enterprise environments. That expertise spans cybersecurity, SAP, Oracle, PeopleSoft, JD Edwards EnterpriseOne, cloud, DevOps, enterprise infrastructure, application modernization, data, digital technologies, and AI-enabled solutions.",
+  "We understand that most organizations cannot simply replace their existing technology. They need a partner who understands both legacy and modern platforms, and who can help create a practical path from where they are today to where they want to be tomorrow.",
+  "Whether modernizing an ERP environment, moving applications to the cloud, automating technology operations, developing a modern digital platform, or introducing AI into business processes, Vibrant approaches technology from a business perspective."
+];
+
+/* The capability set as the company describes itself on /about. Five of the
+   seven have a service page behind them; Legacy Modernization and IT Talent
+   Solutions do not yet, so they render without a link rather than pointing
+   somewhere that does not exist. */
+export type AboutCapability = { title: string; body: string; href?: string };
+
+export const aboutCapabilities: AboutCapability[] = [
+  {
+    title: "Cybersecurity",
+    href: "/services/cybersecurity",
+    body: "Security-focused technology solutions and practices designed to help organizations protect applications, infrastructure, data and digital operations."
+  },
+  {
+    title: "Enterprise Applications & ERP",
+    href: "/services/erp-optimization",
+    body: "Implementation, integration, modernization and support services across SAP, Oracle, PeopleSoft and JD Edwards EnterpriseOne environments."
+  },
+  {
+    title: "Cloud & DevOps",
+    href: "/services/cloud-modernization",
+    body: "Cloud transformation, infrastructure modernization, CI/CD, automation, DevOps engineering and governance designed to improve agility, reliability and operational efficiency."
+  },
+  {
+    title: "Digital Experience",
+    href: "/services/ai-digital-experience",
+    body: "Modern websites, customer and employee portals, web applications, content management and AI-powered digital experiences that help organizations strengthen their digital presence."
+  },
+  {
+    title: "AI & Intelligent Automation",
+    href: "/services/ai-readiness",
+    body: "Practical application of artificial intelligence and automation to improve productivity, enhance customer experiences and streamline business processes."
+  },
+  {
+    title: "Legacy Modernization",
+    body: "Assessment and transformation of legacy applications and infrastructure, helping organizations reduce technical debt while protecting critical business functionality and technology investments."
+  },
+  {
+    title: "IT Talent Solutions",
+    body: "Experienced technology professionals available through consulting, staff augmentation and direct-hire models across enterprise applications, cloud, digital and emerging technologies."
+  }
+];
+
+/* "Supporting Businesses in Our Community" on /about. */
+export const companyCommunity = [
+  "While our experience comes from large and complex enterprise environments, we believe smaller and local businesses should also have access to high-quality technology expertise.",
+  "Vibrant works with local businesses and community organizations to help them strengthen their digital presence, modernize websites and applications, adopt cloud technologies, explore AI opportunities and make better technology decisions.",
+  "Sometimes the most valuable technology engagement is not a large transformation. It is simply having the right technology partner available when you need one."
+];
+
+export const companyCommitment =
+  "Our goal is straightforward: become a technology partner our clients trust for the long term. We bring together enterprise experience, modern technology, responsive service and personal commitment to help organizations operate more efficiently, modernize confidently and prepare for what is next.";
+
 export const visionStatement =
-  "Be the partner of choice, empowering businesses to leverage cloud technology and data analytics for competitive advantage, sustained performance, and long-term growth.";
+  "Technology should solve business problems\u2014not create additional complexity.";
 
 export const aboutFacts = [
   { value: "2000", label: "Founded in Princeton, New Jersey" },
@@ -1242,17 +1303,10 @@ export const aboutFacts = [
 ];
 
 export const coreValues = [
-  {
-    title: "Broad SDLC services",
-    body: "End-to-end delivery across the software development lifecycle."
-  },
-  { title: "Deep professional pool", body: "Senior consultants with functional and technical depth." },
-  { title: "Long-term relationships", body: "Most clients return, built on trust, not transactions." },
-  {
-    title: "Proven delivery methodology",
-    body: "Repeatable execution, accelerators, and reusable assets."
-  },
-  { title: "Customer centricity", body: "Every engagement starts and ends with the customer." }
+  { title: "Experience", body: "Bring proven enterprise technology knowledge to every engagement." },
+  { title: "Agility", body: "Respond quickly and adapt solutions to each client's requirements." },
+  { title: "Accountability", body: "Take ownership of commitments and focus on successful outcomes." },
+  { title: "Relationships", body: "Build long-term partnerships based on trust, transparency and integrity." }
 ];
 
 export const deliverySteps = [
