@@ -34,7 +34,12 @@ export const metadata: Metadata = pageMeta({
    "About US.docx", used verbatim and in its original order. The section
    headings are theirs too, which is why this page drops the eyebrow-plus-
    headline pattern the rest of the site uses: adding a headline would mean
-   inventing words the owner did not write. */
+   inventing words the owner did not write.
+
+   Layout note: the copy is long and there is little furniture to break it up,
+   so every section runs the tighter .sec-tight rhythm, and the prose blocks
+   sit in a heading-left / body-right split rather than a narrow measure in a
+   full-width row, which left the right 40% of the page empty. */
 export default function AboutPage() {
   return (
     <>
@@ -45,8 +50,8 @@ export default function AboutPage() {
         crumbs={[{ label: "Home", href: "/" }, { label: "About" }]}
       />
 
-      <section className="section">
-        <div className="container grid gap-12 lg:grid-cols-2 lg:items-start">
+      <section className="section sec-tight">
+        <div className="container grid gap-10 lg:grid-cols-[1.15fr_1fr] lg:items-center">
           <div className="space-y-4">
             {companyOverview.map((p, i) => (
               <p key={i} className="text-muted">{p}</p>
@@ -55,7 +60,7 @@ export default function AboutPage() {
 
           {/* Right: one compact card, small 26-year graphic + key facts */}
           <div className="card p-7">
-            <div className="mx-auto overflow-hidden rounded-xl" style={{ maxWidth: 180 }}>
+            <div className="mx-auto overflow-hidden rounded-xl" style={{ maxWidth: 150 }}>
               <Image
                 src={anniversary}
                 alt={`Vibrant Inc. Celebrating ${yearsInBusiness} Years in Business`}
@@ -63,12 +68,12 @@ export default function AboutPage() {
                 priority
               />
             </div>
-            <hr className="my-6 border-line" />
+            <hr className="my-5 border-line" />
             <p className="eyebrow">By the numbers</p>
             <div className="mt-4 grid grid-cols-2 gap-5">
               {aboutFacts.map((f) => (
                 <div key={f.label}>
-                  <div className="text-3xl font-semibold tracking-tight text-navy-700">{f.value}</div>
+                  <div className="text-2xl font-semibold tracking-tight text-navy-700">{f.value}</div>
                   <p className="mt-1 text-xs text-muted">{f.label}</p>
                 </div>
               ))}
@@ -77,25 +82,25 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section-soft">
-        <div className="container">
-          <div className="max-w-3xl">
-            <h2>Experience That Makes a Difference</h2>
-            <div className="mt-6 space-y-4">
-              {companyExperience.map((p, i) => (
-                <p key={i} className="text-muted">{p}</p>
-              ))}
-            </div>
+      {/* Heading left, body right: four paragraphs at a readable measure that
+          still use the full width of the row. */}
+      <section className="section-soft sec-tight">
+        <div className="container grid gap-x-12 gap-y-6 lg:grid-cols-[minmax(0,20rem)_1fr] lg:items-start">
+          <h2 className="lg:sticky lg:top-28">Experience That Makes a Difference</h2>
+          <div className="space-y-4">
+            {companyExperience.map((p, i) => (
+              <p key={i} className="text-muted">{p}</p>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="section">
+      <section className="section sec-tight">
         <div className="container">
           <h2>What We Do</h2>
-          {/* Seven items, flex-wrap so the trailing row centers rather than
-              leaving dead cells in a fixed three-column grid. */}
-          <ul className="mt-8 flex flex-wrap justify-center gap-5">
+          {/* Four across on xl so seven items fall 4 + 3 rather than 3 + 3 + 1,
+              which left a single card stranded in its own row. */}
+          <ul className="mt-7 flex flex-wrap justify-center gap-4">
             {aboutCapabilities.map((c) => {
               const inner = (
                 <>
@@ -109,7 +114,7 @@ export default function AboutPage() {
                 </>
               );
               const base =
-                "flex flex-col rounded-2xl border border-line bg-white p-6 shadow-card basis-full md:basis-[calc(50%-0.625rem)] xl:basis-[calc(33.333%-0.834rem)]";
+                "flex flex-col rounded-2xl border border-line bg-white p-5 shadow-card basis-full sm:basis-[calc(50%-0.5rem)] xl:basis-[calc(25%-0.75rem)]";
               return (
                 <li key={c.title} className="contents">
                   {c.href ? (
@@ -129,49 +134,53 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section id="values" className="section-soft scroll-mt-28">
+      <section id="values" className="section-soft sec-tight scroll-mt-28">
         <div className="container">
-          <div className="max-w-3xl">
-            <h2>Why Vibrant?</h2>
-            <p className="mt-4 text-lg font-medium text-navy-700 leading-relaxed">{whyVibrantLead}</p>
-            <div className="mt-4 space-y-4">
+          {/* Heading and the lead statement left, the supporting copy right. */}
+          <div className="grid gap-x-12 gap-y-4 lg:grid-cols-2 lg:items-start">
+            <div>
+              <h2>Why Vibrant?</h2>
+              <p className="mt-3 text-lg font-medium text-navy-700 leading-relaxed">{whyVibrantLead}</p>
+            </div>
+            <div className="space-y-4 lg:pt-2">
               {whyVibrantBody.map((p, i) => (
                 <p key={i} className="text-muted">{p}</p>
               ))}
             </div>
           </div>
-          <ul className="mt-8 flex flex-wrap justify-center gap-3">
+
+          <ul className="mt-7 flex flex-wrap justify-center gap-3">
             {coreValues.map((v) => (
               <li
                 key={v.title}
-                className="card p-5 hover:border-sky/40 hover:shadow-cardHover transition-all basis-full md:basis-[calc(50%-0.375rem)] lg:basis-[calc(25%-0.5625rem)]"
+                className="card p-5 hover:border-sky/40 hover:shadow-cardHover transition-all basis-full sm:basis-[calc(50%-0.375rem)] lg:basis-[calc(25%-0.5625rem)]"
               >
                 <h3 className="text-base font-semibold text-navy-700">{v.title}</h3>
                 <p className="mt-1.5 text-sm text-muted leading-relaxed">{v.body}</p>
               </li>
             ))}
           </ul>
-          <p className="mt-8 max-w-3xl text-muted">{whyVibrantClose}</p>
+          <p className="mt-7 text-muted">{whyVibrantClose}</p>
         </div>
       </section>
 
-      <section className="section">
-        <div className="container grid gap-12 lg:grid-cols-2 lg:items-start">
+      <section className="section sec-tight">
+        <div className="container grid gap-x-12 gap-y-10 lg:grid-cols-2 lg:items-start">
           <div>
             <h2>Leadership with Purpose</h2>
-            <div className="mt-6 space-y-4">
+            <div className="mt-5 space-y-4">
               {companyLeadership.map((p, i) => (
                 <p key={i} className="text-muted">{p}</p>
               ))}
             </div>
             {/* The founding principle. #vision is linked from the Company
                 dropdown, so the id has to stay wherever this quote lives. */}
-            <blockquote id="vision" className="mt-5 scroll-mt-28 border-l-2 border-brand-600 pl-4 text-[15px] font-medium text-neutral-700 leading-relaxed">
+            <blockquote id="vision" className="mt-4 scroll-mt-28 border-l-2 border-brand-600 pl-4 text-[15px] font-medium text-neutral-700 leading-relaxed">
               &ldquo;{visionStatement}&rdquo;
             </blockquote>
             <Link
               href="/team"
-              className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:gap-2.5 transition-all"
+              className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:gap-2.5 transition-all"
             >
               Meet the leadership team →
             </Link>
@@ -179,14 +188,14 @@ export default function AboutPage() {
 
           <div>
             <h2>Supporting Businesses in Our Community</h2>
-            <div className="mt-6 space-y-4">
+            <div className="mt-5 space-y-4">
               {companyCommunity.map((p, i) => (
                 <p key={i} className="text-muted">{p}</p>
               ))}
             </div>
             <Link
               href="/social-responsibility"
-              className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:gap-2.5 transition-all"
+              className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:gap-2.5 transition-all"
             >
               How we give back →
             </Link>
@@ -194,23 +203,24 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section-soft">
+      {/* A slim tinted band rather than a narrow card floating in a tall
+          section, which is what made this read as empty. */}
+      <section className="section-tint sec-tight">
         <div className="container">
-          <div className="card mx-auto max-w-3xl p-8 text-center">
+          <div className="grid gap-x-12 gap-y-5 lg:grid-cols-[minmax(0,20rem)_1fr] lg:items-start">
             <h2>Our Commitment</h2>
-            <div className="mt-5 space-y-4">
+            <div className="space-y-4">
               {companyCommitment.map((p, i) => (
                 <p key={i} className="text-muted">{p}</p>
               ))}
+              <p className="pt-1 text-base font-semibold text-navy-700">{companyClosingLine}</p>
             </div>
-            <hr className="my-6 border-line" />
-            <p className="text-base font-semibold text-navy-700">{companyClosingLine}</p>
           </div>
         </div>
       </section>
 
       {/* ── Brochure download ── */}
-      <section className="section">
+      <section className="section sec-tight">
         <div className="container">
           <div className="relative overflow-hidden rounded-3xl bg-brand-gradient p-8 md:p-10">
             {/* The old orange glow is pointless on an orange ground. This is the
@@ -228,7 +238,7 @@ export default function AboutPage() {
                 <p className="mt-4 text-white/90 leading-relaxed">
                   Our company brochure covers our full range of services, delivery model, corporate values, and career opportunities, everything you need to know about partnering with Vibrant.
                 </p>
-                <div className="mt-8 flex flex-wrap gap-4">
+                <div className="mt-7 flex flex-wrap gap-4">
                   <a
                     href={withBasePath("/Vibrant-Company-Brochure.pdf")}
                     download
@@ -264,27 +274,27 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section-soft">
-        <div className="container grid gap-12 lg:grid-cols-2 lg:items-center">
+      <section className="section-soft sec-tight">
+        <div className="container grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
             <p className="eyebrow">Ready to talk</p>
             <h2 className="mt-3">A conversation, not a pitch.</h2>
-            <p className="mt-5 text-muted">
+            <p className="mt-4 text-muted">
               Tell us where you want to be in 12 months. We&apos;ll help you get there with senior
               practitioners and a {yearsInBusiness}-year delivery track record.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-7 flex flex-wrap gap-3">
               <Link href="/contact" className="btn-primary">Schedule a Call</Link>
               <Link href="/services" className="btn-ghost">See our services</Link>
             </div>
           </div>
-          <div className="card p-8">
+          <div className="card p-7">
             <p className="eyebrow">Headquartered in</p>
             <h3 className="mt-2 text-xl font-semibold text-navy-700">{siteSettings.address}</h3>
             <p className="mt-2 text-sm text-muted">
               Consultants are distributed across the country and travel to client sites as required.
             </p>
-            <hr className="my-6 border-line" />
+            <hr className="my-5 border-line" />
             <p className="eyebrow">Talk to us</p>
             <p className="mt-2 text-navy-700 font-medium">
               <a href={`tel:${siteSettings.phonePrimary}`} className="hover:text-brand-700">{siteSettings.phonePrimary}</a>

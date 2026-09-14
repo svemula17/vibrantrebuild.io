@@ -1305,3 +1305,17 @@ main > section:first-of-type + section.cl-band { padding-top: 0; }
   visibility: hidden;
   transition: visibility 0s linear 0.35s;
 }
+
+/* ── Tighter section rhythm ───────────────────────────────────────────────
+   /about is nine sections of mostly copy. At the site default (80px mobile,
+   112px desktop, top and bottom) padding was 24-43% of every section and the
+   page ran 6700px. This trims it to 48/72 without touching the rest of the
+   site. Unlayered, so it beats the .section rule in @layer components. */
+.section.sec-tight,
+.section-soft.sec-tight,
+.section-tint.sec-tight { padding-top: 3rem; padding-bottom: 3rem; }
+@media (min-width: 768px) {
+  .section.sec-tight,
+  .section-soft.sec-tight,
+  .section-tint.sec-tight { padding-top: 4.5rem; padding-bottom: 4.5rem; }
+}
