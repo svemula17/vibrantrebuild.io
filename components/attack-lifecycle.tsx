@@ -148,7 +148,7 @@ export function AttackLifecycle({ dark = false }: { dark?: boolean } = {}) {
             <p className="cy-prodname">{stage.tool}</p>
             <p className="mt-2 text-sm text-muted leading-relaxed">{stage.toolBlurb}</p>
             <Link
-              href="#product-kaveo"
+              href="/products"
               className="mt-4 inline-flex text-sm font-semibold text-brand-700 underline underline-offset-4 decoration-brand-600/40 hover:decoration-brand-600"
             >
               See the products&nbsp;→

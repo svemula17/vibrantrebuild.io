@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/services",
     "/about",
+    "/products",
     "/team",
     "/resources",
     "/resources/sap-cost-calculator",

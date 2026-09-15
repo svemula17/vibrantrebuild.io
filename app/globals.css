@@ -1341,3 +1341,84 @@ main > section:first-of-type + section.cl-band { padding-top: 0; }
   .rv,
   .rv-in { opacity: 1; transform: none; transition: none; }
 }
+
+/* ── /products ────────────────────────────────────────────────────────────
+   The at-a-glance spec rows, the lifecycle spine, and the oversized section
+   numeral. All entrance motion is gated on .sp.is-armed, which JS adds, so
+   nothing here is hidden without JS. */
+.pd-specs {
+  display: grid; gap: 0; margin: 22px 0 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+.pd-specs > div {
+  display: grid; grid-template-columns: minmax(0, 8.5rem) 1fr; gap: 16px;
+  padding: 11px 0; border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+.pd-specs dt {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: #57534E; padding-top: 2px;
+}
+.pd-specs dd { margin: 0; font-size: 0.9375rem; line-height: 1.5; color: #1B2A41; }
+.is-dark .pd-specs { border-top-color: rgba(255, 255, 255, 0.16); }
+.is-dark .pd-specs > div { border-bottom-color: rgba(255, 255, 255, 0.16); }
+.is-dark .pd-specs dt { color: rgba(255, 255, 255, 0.72); }
+.is-dark .pd-specs dd { color: rgba(255, 255, 255, 0.85); }
+
+/* Rows stagger in behind the copy column. */
+.sp.is-armed .pd-specs > div { opacity: 0; transform: translateY(10px); }
+.sp.is-armed.is-in .pd-specs > div {
+  opacity: 1; transform: none;
+  transition:
+    opacity 0.5s var(--ease-brand) calc(0.34s + var(--i, 0) * 0.07s),
+    transform 0.5s var(--ease-brand) calc(0.34s + var(--i, 0) * 0.07s);
+}
+
+/* The numeral sits behind the section, big and nearly invisible. */
+.pd-count {
+  position: absolute; right: 2.5rem; bottom: 1rem; z-index: 0;
+  font-size: clamp(5rem, 12vw, 11rem); font-weight: 800; line-height: 0.8;
+  letter-spacing: -0.04em; color: rgba(200, 64, 26, 0.07);
+  pointer-events: none; user-select: none;
+}
+.is-dark .pd-count { color: rgba(240, 161, 126, 0.1); }
+
+.pd-spine { display: flex; flex-direction: column; gap: 10px; margin: 8px 0 0; padding: 0; list-style: none; }
+.pd-spine a {
+  display: grid; grid-template-columns: 2.4rem 6.5rem auto 1fr; align-items: baseline; gap: 12px;
+  padding: 12px 14px; border: 1px solid var(--line, #E7E3DE); border-radius: 14px;
+  background: #fff; transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+.pd-spine a:hover {
+  border-color: rgba(200, 64, 26, 0.35); transform: translateX(3px);
+  box-shadow: 0 10px 26px rgba(27, 42, 65, 0.08);
+}
+.pd-spine-n { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; color: #A33315; }
+.pd-spine-stage { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #57534E; }
+.pd-spine b { font-size: 1.0625rem; font-weight: 700; letter-spacing: -0.01em; color: #A33315; }
+.pd-spine-line { font-size: 0.875rem; color: #57534E; }
+@media (max-width: 720px) {
+  .pd-spine a { grid-template-columns: 2.4rem 1fr; row-gap: 4px; }
+  .pd-spine-line { grid-column: 1 / -1; }
+  .pd-specs > div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .pd-count { right: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sp.is-armed .pd-specs > div { opacity: 1; transform: none; }
+  .pd-spine a:hover { transform: none; }
+}
+
+/* .btn-ghost is a light-ground button: neutral-900 text on a neutral-200
+   outline. Dropped onto navy-700 its label computes rgb(26,21,18), which is
+   the section background exactly — 1.00:1, an outlined pill with nothing in
+   it. .btn-primary already had an .is-dark treatment; this is its pair.
+   White on navy is 16:1, and the 35% white outline is 3.26:1, over the 3:1
+   a non-text boundary needs. */
+.is-dark .btn-ghost {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+.is-dark .btn-ghost:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.55);
+}

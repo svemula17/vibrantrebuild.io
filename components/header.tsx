@@ -114,7 +114,7 @@ const SERVICES_MENU: { heading: string; links: MenuLink[] }[] = [
    appears there and nowhere else. */
 const PRODUCTS_LINK: MenuLink = {
   label: "Products: kaveo · Vectasec · Aegis",
-  href: "/services/cybersecurity#product-kaveo",
+  href: "/products",
   blurb: "The three tools we build and run inside your estate",
   icon: "M12 2 3 7v10l9 5 9-5V7zM3 7l9 5 9-5M12 12v10"
 };
@@ -154,7 +154,21 @@ export function Header() {
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   /* Item 10: Products appears only inside the security practice. */
-  const onSecurity = pathname.startsWith("/services/cybersecurity");
+  const onProducts = pathname.startsWith("/products");
+  /* Products is a page of its own now, so the entry shows inside the security
+     practice and on the page itself — otherwise it vanishes the moment you
+     arrive there. */
+  const onSecurity = pathname.startsWith("/services/cybersecurity") || onProducts;
+
+  /* Only the most specific match is active. A plain prefix test lit up both
+     Cybersecurity and Services on /services/cybersecurity/, because that path
+     starts with /services/ too — which also gave two elements the same
+     layoutId and made the underline fight itself. Longest href wins, so a
+     child page with no nav entry of its own (say /services/erp-optimization/)
+     still highlights its parent. */
+  const activeHref = navigationItems
+    .filter((n) => n.href !== "/" && (pathname === n.href || pathname.startsWith(n.href + "/")))
+    .sort((a, b) => b.href.length - a.href.length)[0]?.href;
   const panelRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const headerRef = useRef<HTMLElement>(null);
@@ -309,8 +323,7 @@ export function Header() {
             right-side utility button instead */}
         <nav className="hidden lg:flex items-center gap-0.5" aria-label="Primary">
           {navigationItems.filter((item) => item.href !== "/resources").map((item) => {
-            const active =
-              item.href === "/" ? pathname === "/" : pathname === item.href || pathname.startsWith(item.href + "/");
+            const active = item.href === "/" ? pathname === "/" : item.href === activeHref;
             const isServices = item.href === "/services";
             const isAbout = item.href === "/about";
             const hasMenu = isServices || isAbout;
@@ -370,9 +383,14 @@ export function Header() {
                 {isServices && onSecurity && (
                   <Link
                     href={PRODUCTS_LINK.href}
-                    className="ml-1 inline-flex items-center px-2 xl:px-2.5 py-2 text-[13px] font-medium rounded-full whitespace-nowrap text-ink/70 hover:text-brand-700 transition-colors"
+                    className={`ml-1 relative inline-flex items-center px-2 xl:px-2.5 py-2 text-[13px] font-medium rounded-full whitespace-nowrap transition-colors ${
+                      onProducts ? "text-navy-700" : "text-ink/70 hover:text-brand-700"
+                    }`}
                   >
                     Products
+                    {onProducts && (
+                      <span className="absolute inset-x-2 -bottom-0.5 h-0.5 bg-brand-600 rounded" />
+                    )}
                   </Link>
                 )}
 
@@ -526,9 +544,9 @@ export function Header() {
                       </p>
                       <ul className="mt-2.5 space-y-1.5">
                         {[
-                          ["kaveo", "Cloud security posture", "/services/cybersecurity#product-kaveo"],
-                          ["Vectasec", "Middleware security", "/services/cybersecurity#product-vectasec"],
-                          ["Aegis", "MCP gateway", "/services/cybersecurity#product-aegis"]
+                          ["kaveo", "Cloud security posture", "/products#kaveo"],
+                          ["Vectasec", "Middleware security", "/products#vectasec"],
+                          ["Aegis", "MCP gateway", "/products#aegis"]
                         ].map(([name, kind, href]) => (
                           <li key={name}>
                             <Link
