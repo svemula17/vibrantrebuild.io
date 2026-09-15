@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { Reveal } from "@/components/reveal";
 import { caseStudies } from "@/content/site-content";
 import { CaseStudyCard } from "@/components/case-study-card";
@@ -35,16 +34,13 @@ export function CaseStudies() {
 
         <div className="mt-12 grid gap-6 lg:grid-cols-3">
           {caseStudies.map((cs, i) => (
-            <motion.div
+            <Reveal
               key={cs.sector}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-6%" }}
-              transition={{ duration: 0.35, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+              delay={i * 0.06}
               className="h-full"
             >
               <CaseStudyCard cs={cs} active={i === active} onSelect={() => setActive(i)} />
-            </motion.div>
+            </Reveal>
           ))}
         </div>
 

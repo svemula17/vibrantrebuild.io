@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/reveal";
 import { vibrantMethod } from "@/content/site-content";
 
 export function VibrantMethod() {
@@ -23,12 +23,9 @@ export function VibrantMethod() {
             wrapped the body copy to one or two words per line. */}
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {vibrantMethod.map((item, i) => (
-            <motion.div
+            <Reveal
               key={item.letter}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-6%" }}
-              transition={{ duration: 0.35, delay: Math.min(i, 6) * 0.05, ease: [0.22, 1, 0.36, 1] }}
+              delay={Math.min(i, 6) * 0.05}
               className="group relative flex flex-col rounded-2xl border border-line bg-white p-6 shadow-card hover:shadow-cardHover hover:border-sky/40 hover:-translate-y-1 transition-all overflow-hidden"
             >
               {/* Watermark letter */}
@@ -40,16 +37,11 @@ export function VibrantMethod() {
               </span>
 
               {/* Brand letter badge */}
-              <motion.span
-                initial={{ scale: 0.6, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true, margin: "-6%" }}
-                transition={{ type: "spring", stiffness: 520, damping: 24,
-                              delay: Math.min(i, 6) * 0.05 + 0.12 }}
+              <span
                 className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-600 text-lg font-black text-white shadow-sm"
               >
                 {item.letter}
-              </motion.span>
+              </span>
 
               <h3 className="mt-4 text-base font-semibold text-navy-700">{item.step}</h3>
               <p className="mt-2 text-sm text-muted leading-relaxed flex-1">{item.body}</p>
@@ -58,7 +50,7 @@ export function VibrantMethod() {
               <span className="mt-4 text-xs font-bold uppercase tracking-widest text-brand-700">
                 Phase {i + 1}
               </span>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
 

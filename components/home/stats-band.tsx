@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Reveal } from "@/components/reveal";
 import { AnimatedCounter } from "@/components/animated-counter";
 import { stats } from "@/content/site-content";
@@ -32,12 +31,9 @@ export function StatsBand() {
 
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((s, i) => (
-            <motion.div
+            <Reveal
               key={s.label}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-8%" }}
-              transition={{ duration: 0.35, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+              delay={i * 0.06}
               className="border-l-2 border-white/45 pl-5"
             >
               {s.highlight ? (
@@ -59,7 +55,7 @@ export function StatsBand() {
                   <p className="mt-2 text-sm text-white/90">{s.label}</p>
                 </>
               )}
-            </motion.div>
+            </Reveal>
           ))}
         </div>
       </div>

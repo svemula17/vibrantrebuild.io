@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
 import { Reveal } from "@/components/reveal";
 
 /* The four tiles read as one pipeline rather than four equal features, so they
@@ -122,12 +121,9 @@ export function AiShieldBand() {
           {/* Right, feature tiles */}
           <div className="grid sm:grid-cols-2 gap-4 ais-cards">
             {features.map((f, i) => (
-              <motion.div
+              <Reveal
                 key={f.title}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-6%" }}
-                transition={{ duration: 0.35, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                delay={i * 0.06}
                 className={`group card-dark p-6 hover:bg-white/15 hover:border-white/40 transition-all${
                   live === i ? " is-live" : ""
                 }`}
@@ -140,7 +136,7 @@ export function AiShieldBand() {
                 <h3 className="mt-4 text-sm font-semibold text-white leading-snug">{f.title}</h3>
                 <p className="mt-2 text-sm text-white/90 leading-relaxed">{f.body}</p>
                 <span className="ais-stage" aria-hidden>{STAGES[i]}</span>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
         </div>

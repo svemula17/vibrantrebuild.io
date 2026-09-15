@@ -1319,3 +1319,25 @@ main > section:first-of-type + section.cl-band { padding-top: 0; }
   .section-soft.sec-tight,
   .section-tint.sec-tight { padding-top: 4.5rem; padding-bottom: 4.5rem; }
 }
+
+/* ── Scroll reveal ────────────────────────────────────────────────────────
+   Paired with <Reveal>. The resting state is visible: an element is only
+   hidden once JavaScript has added .rv, which it does only for elements below
+   the fold and only when it is actually running. If JS never runs, neither
+   class is ever applied and the content simply shows, which is the point.
+   See the note in components/reveal.tsx. */
+.rv {
+  opacity: 0;
+  transform: translateY(18px);
+}
+.rv-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.5s var(--ease-brand) var(--rv-delay, 0s),
+    transform 0.5s var(--ease-brand) var(--rv-delay, 0s);
+}
+@media (prefers-reduced-motion: reduce) {
+  .rv,
+  .rv-in { opacity: 1; transform: none; transition: none; }
+}
