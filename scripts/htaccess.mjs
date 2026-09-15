@@ -55,7 +55,10 @@ ErrorDocument 404 /404.html
 </IfModule>
 
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml application/xml
+  # Apache 2.4 maps .js to text/javascript, not application/javascript, so the
+  # old list compressed no JavaScript at all. Both are listed deliberately.
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript \
+                                application/json application/xml text/xml image/svg+xml text/plain
 </IfModule>
 `;
 

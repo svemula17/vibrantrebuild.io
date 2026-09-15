@@ -147,9 +147,17 @@ export function ClientLogos({
           style={{ background: `linear-gradient(to left, ${bg}, transparent)` }}
         />
         <div className="flex w-max animate-marquee gap-6 px-6">
-          {[...logos, ...logos].map((logo, i) => (
+          {logos.map((logo, i) => (
             <LogoItem key={`${logo.name}-${i}`} logo={logo} />
           ))}
+          {/* The second pass is what makes the loop seamless. display:contents
+              keeps these as flex children of the rail; under reduced motion it
+              is dropped so the rail can wrap without showing every logo twice. */}
+          <div className="mq-dup" aria-hidden>
+            {logos.map((logo, i) => (
+              <LogoItem key={`dup-${logo.name}-${i}`} logo={logo} />
+            ))}
+          </div>
         </div>
       </Reveal>
     </section>

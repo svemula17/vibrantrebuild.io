@@ -312,14 +312,18 @@ export function SecurityProducts() {
             vendor cloud. Every finding cites the stored observation that produced it, so auditors
             get evidence rather than dashboard screenshots.
           </p>
+          <Link href="/products" className="btn-primary mt-6">
+            Explore the products&nbsp;&rarr;
+          </Link>
         </div>
 
         <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {PRODUCTS.map((p, i) => (
-            <article
+            <Link
               key={p.name}
+              href={`/products#${p.slug}`}
               style={{ "--i": i } as React.CSSProperties}
-              className="sp-card flex flex-col rounded-2xl border border-line bg-white p-7 md:p-8 shadow-card transition-all hover:-translate-y-1 hover:shadow-cardHover hover:border-sky/40"
+              className="sp-card group flex flex-col rounded-2xl border border-line bg-white p-7 md:p-8 shadow-card transition-all hover:-translate-y-1 hover:shadow-cardHover hover:border-sky/40"
             >
               <div className="rounded-xl border border-line bg-neutral-50 p-5">{p.art}</div>
               <div className="sp-lock">
@@ -333,7 +337,10 @@ export function SecurityProducts() {
               </div>
               <h3 className="mt-2 text-xl font-semibold text-navy-700 leading-snug">{p.heading}</h3>
               <p className="mt-3 text-base text-muted leading-relaxed">{p.body}</p>
-            </article>
+              <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 group-hover:gap-2.5 transition-all">
+                More about {p.name}&nbsp;&rarr;
+              </span>
+            </Link>
           ))}
         </div>
       </div>

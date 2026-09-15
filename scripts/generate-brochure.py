@@ -45,6 +45,10 @@ HERO   = "assets/hero-team.jpg"
 SURESH = "assets/team/suresh-reddy.jpg"
 US_OFF = "assets/offices/us-office.jpg"
 ANNIV  = "assets/anniversary.png"
+# The web copy is 480px wide, sized for a 240px slot. Print needs more:
+# fit() pins an image to dpi_scale x the draw box, and at the default 2x
+# that is 144 ppi, which visibly blurred the 7pt type inside the badge.
+ANNIV_PRINT = "assets/anniversary-print.png"   # 928x1131 master
 IN_OFF = "assets/offices/india-office.jpg"
 
 # Company age is derived, not hardcoded: founded 2000. assets/anniversary.png
@@ -456,8 +460,13 @@ y = para(M, y, "From cybersecurity and ERP to cloud, data, and AI, our architect
                "Microsoft partners. Those credentials show in how we build teams and "
                "how we deliver.", W - 2 * M - 190)
 
-c.drawImage(ANNIV, W - M - 158, H - 372, width=158, height=193,
-            preserveAspectRatio=True, anchor="c", mask="auto")
+# Every other image goes through fit(), which downsamples to 2x the draw box
+# and saves JPEG. This one did not, so ReportLab embedded the source as a
+# lossless Flate bitmap: roughly half the finished PDF for a badge printed at
+# 158x193pt. The box aspect (0.819) matches the source (0.821), so fit()'s
+# centre-crop takes essentially nothing.
+c.drawImage(fit(ANNIV_PRINT, 158, 193, dpi_scale=4.2, quality=88),
+            W - M - 158, H - 372, width=158, height=193)
 
 qy = y - 26
 c.setFillColor(B600)

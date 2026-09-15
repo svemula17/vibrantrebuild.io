@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/page-hero";
 import {
+  articleFor,
   getCaseStudyForService,
   getRelatedResourcesForService,
   getRelatedServices,
@@ -151,7 +152,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
             <div className="svc-cta mt-12">
               <div>
                 <p className="eyebrow">Talk to an expert</p>
-                <p className="svc-ctatitle">{`Talk to a ${service.kicker} expert.`}</p>
+                <p className="svc-ctatitle">{`Talk to ${articleFor(service.kicker)} ${service.kicker} expert.`}</p>
                 <p className="mt-1.5 text-sm text-muted">
                   A 30-minute senior-led call to understand your situation and share what
                   we&apos;d typically recommend.

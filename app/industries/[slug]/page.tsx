@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/page-hero";
 import { getIndustryBySlug, industries } from "@/content/industries";
-import { getServiceBySlug } from "@/content/site-content";
+import { articleFor, getServiceBySlug } from "@/content/site-content";
 import { pageMeta } from "@/lib/seo";
 
 type Params = { slug: string };
@@ -115,7 +115,7 @@ export default async function IndustryDetailPage({ params }: { params: Promise<P
 
           <div className="mt-10">
             <Link href="/contact" className="btn-primary">
-              Talk to a {ind.title.toLowerCase()} specialist &rarr;
+              Talk to {articleFor(ind.title)} {ind.title.toLowerCase()} specialist &rarr;
             </Link>
           </div>
         </div>

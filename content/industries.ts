@@ -187,7 +187,7 @@ export const industries: Industry[] = [
     metaDescription:
       "Technology consulting from Vibrant Inc: SOC 2 readiness, cloud modernization on Azure, AWS, and GCP, 24x7 security monitoring, and governed AI features.",
     intro: [
-      "Software and product companies get audited by their own customers. A security questionnaire, a SOC 2 report, a security questionnaire, and an architecture diagram now sit between a signed proposal and a closed deal, and every one of them lands on the engineers who are supposed to be shipping the roadmap. The cloud footprint that got the product to market was built for release speed, not for that level of reading, and the AI features you shipped most recently raise a second round of questions about where customer data goes.",
+      "Software and product companies get audited by their own customers. A security questionnaire, a SOC 2 report, a penetration test, and an architecture diagram now sit between a signed proposal and a closed deal, and every one of them lands on the engineers who are supposed to be shipping the roadmap. The cloud footprint that got the product to market was built for release speed, not for that level of reading, and the AI features you shipped most recently raise a second round of questions about where customer data goes.",
       "Vibrant does that work alongside the product team instead of in place of it. We run SOC 2 readiness and evidence collection, rebuild the account structure and identity model underneath the platform, monitor the result around the clock, and put governance around the AI in the product, so the security review becomes a step in the sales cycle rather than unplanned engineering work."
     ],
     capabilities: [

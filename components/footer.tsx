@@ -47,9 +47,6 @@ const footerServices = footerSlugs
   .map((slug) => serviceCards.find((s) => s.slug === slug))
   .filter((s): s is NonNullable<typeof s> => Boolean(s));
 
-// Count of services shown on /services (everything except carousel-only umbrella entries)
-const totalServices = serviceCards.filter((s) => !s.hideFromGrid).length;
-
 export function Footer() {
   return (
     // Brand gradient, same treatment as ai-shield-band and stats-band. On this
@@ -163,7 +160,7 @@ export function Footer() {
                 href="/services"
                 className="inline-flex items-center gap-1 text-white hover:text-white/80 text-xs font-semibold underline underline-offset-4 decoration-white/40 transition-colors"
               >
-                View all {totalServices} services →
+                View all services →
               </Link>
             </li>
           </ul>

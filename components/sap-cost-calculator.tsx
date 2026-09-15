@@ -167,19 +167,30 @@ export function SapCostCalculator() {
       {/* Result */}
       <div className="lg:sticky lg:top-28 space-y-4">
         <div className="relative isolate overflow-hidden rounded-2xl bg-brand-gradient p-7 text-white shadow-cardHover">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/50">
+          {/* Every other brand-gradient surface on the site composites a
+              darkening wash under its text; this card did not, so its copy
+              measured 2.2-3.8:1 against the orange. Same wash as the footer. */}
+          <div
+            aria-hidden
+            className="absolute inset-0 -z-10 pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(circle at 85% 15%, rgba(255,255,255,0.06) 0%, transparent 45%), linear-gradient(180deg, rgba(60,10,0,0.30) 0%, rgba(60,10,0,0.42) 100%)"
+            }}
+          />
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/90">
             Indicative range
           </p>
-          <p className="mt-3 text-4xl font-bold tracking-tight" aria-live="polite">
-            {fmt(low)} <span className="text-white/40">–</span> {fmt(high)}
+          <p className="mt-3 text-4xl font-bold tracking-tight text-white" aria-live="polite">
+            {fmt(low)} <span className="text-white/80">–</span> {fmt(high)}
           </p>
-          <p className="mt-3 text-sm text-white/65">
+          <p className="mt-3 text-sm text-white/90">
             {users.toLocaleString()} users · {modules.length}{" "}
             {modules.length === 1 ? "module" : "modules"} ·{" "}
             {LANDSCAPES.find((l) => l.id === landscape)?.label.toLowerCase()} ·{" "}
             {APPROACHES.find((a) => a.id === approach)?.label.split(" ")[0].toLowerCase()}
           </p>
-          <div className="mt-5 border-t border-white/10 pt-4 text-xs leading-relaxed text-white/50">
+          <div className="mt-5 border-t border-white/25 pt-4 text-xs leading-relaxed text-white/90">
             Directional planning figure only. Actual cost depends on data quality,
             customizations, integrations, and change-management scope, a 30-minute scoping
             call gets you a real estimate.
@@ -194,11 +205,11 @@ export function SapCostCalculator() {
             href={`mailto:info@vibrantinc.com?subject=${encodeURIComponent("My S/4HANA cost estimate")}&body=${encodeURIComponent(
               `My calculator inputs:\n\n• Users: ${users.toLocaleString()}\n• Modules: ${modules.join(", ") || "none selected"}\n• Landscape: ${LANDSCAPES.find((l) => l.id === landscape)?.label ?? landscape}\n• Approach: ${APPROACHES.find((a) => a.id === approach)?.label ?? approach}\n• Indicative range: ${fmt(low)} – ${fmt(high)}\n\nPlease send me the full cost breakdown.`
             )}`}
-            className="mt-2.5 block w-full rounded-full border border-white/25 px-6 py-2.5 text-center text-sm font-semibold text-white/85 hover:bg-white/10 transition-colors"
+            className="mt-2.5 block w-full rounded-full border border-white/25 px-6 py-2.5 text-center text-sm font-semibold text-white hover:bg-white/15 transition-colors"
           >
             Email me the full breakdown
           </a>
-          <p className="mt-2 text-center text-[11px] text-white/40">
+          <p className="mt-2 text-center text-[11px] text-white/80">
             Opens your email app with your inputs prefilled.
           </p>
         </div>

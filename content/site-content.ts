@@ -628,7 +628,7 @@ export const serviceCards: ServiceCard[] = [
     summary:
       "One ERP practice, every major platform. SAP Implementation & Support, JD Edwards CNC Services, PeopleSoft Implementation & Support, plus Oracle E-Business Suite, Workday, and Dynamics 365. From first blueprint to the first quiet month after go-live, owned end to end.",
     longDescription:
-      "Whether you're running a complex JD Edwards environment, launching a PeopleSoft or SAP program, or stabilizing a Dynamics 365 rollout that is still short of its go-live targets. Vibrant's 26-year ERP practice covers the full Oracle stack (JD Edwards EnterpriseOne, PeopleSoft, Oracle E-Business Suite), SAP (ECC / S/4HANA), Workday HCM/Financials, and Microsoft Dynamics 365. Our certified practitioners take ownership from blueprint through go-live and the stabilization weeks that follow.",
+      "Whether you're running a complex JD Edwards environment, launching a PeopleSoft or SAP program, or stabilizing a Dynamics 365 rollout that is still short of its go-live targets, Vibrant's 26-year ERP practice covers the full Oracle stack (JD Edwards EnterpriseOne, PeopleSoft, Oracle E-Business Suite), SAP (ECC / S/4HANA), Workday HCM/Financials, and Microsoft Dynamics 365. Our certified practitioners take ownership from blueprint through go-live and the stabilization weeks that follow.",
     iconPath: ICONS.layers,
     metaTags: [
       "SAP Implementation & Support (ECC / S/4HANA)",
@@ -1322,6 +1322,23 @@ export const companyClosingLine =
   "Vibrant, Inc. \u2014 Your efficiency and bottom line are our business";
 
 /* 37 */
+/* "Talk to a AI Digital Experience expert" — the article has to agree with the
+   word after it. A vowel-letter test is correct for every kicker and industry
+   name on this site, initialisms included: an AI, an ERP, an Automation. */
+/* The article has to agree with how the next word SOUNDS, not how it is spelled.
+   A vowel-letter test covers most of this site (an AI, an ERP, an Automation),
+   but initialisms read as letters break it: SAP is "ess-ay-pee", and the site
+   writes "an SAP architect" and "an SAP S/4HANA" everywhere else. */
+const SOUNDS_VOWEL = /^(sap\b|s\/4|sql|sla\b|mba\b|x\b)/i;
+const SOUNDS_CONSONANT = /^(uni|use|user|usab|eu\b|one\b|once\b)/i;
+
+export const articleFor = (s: string) => {
+  const w = s.trim();
+  if (SOUNDS_VOWEL.test(w)) return "an";
+  if (SOUNDS_CONSONANT.test(w)) return "a";
+  return /^[aeiou]/i.test(w) ? "an" : "a";
+};
+
 export const visionStatement =
   "Technology should solve business problems\u2014not create additional complexity.";
 

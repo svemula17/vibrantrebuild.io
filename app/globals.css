@@ -784,8 +784,10 @@
 .cs-card[data-active="true"] { border-color: rgba(200, 64, 26, 0.45); }
 .cs-card[data-active="true"] .cs-bar { opacity: 1; }
 .cs-card[data-active="true"] .cs-metric { color: #A33315; }
-.cs-card[data-active="false"] { opacity: 0.72; }
-.cs-card[data-active="false"]:hover { opacity: 1; }
+/* These used to ship at opacity .72, which put the body copy at 3.76:1 on
+   first paint with :hover the only way back to AA — unreachable on touch.
+   The active card is already distinguished by its border, its bar and its
+   metric colour, so the dimming was redundant as well as inaccessible. */
 .cs-detail {
   display: grid; grid-template-rows: 0fr; opacity: 0;
   transition: grid-template-rows 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s;
@@ -984,7 +986,11 @@
      and the clamp could never catch up. Clear it. */
   max-width: none;
   white-space: nowrap;
-  font-size: clamp(9px, 1.2vw, 12px);
+  /* 1.2vw only reaches the 12px ceiling at a 1000px viewport, so a 9px floor
+     left the whole 701-999px range rendering at 9.0-10.8px — a hairline on an
+     iPad in portrait. An 11px floor closes that gap; the caption still holds
+     one line, because at 701px it needs ~400px inside a ~660px container. */
+  font-size: clamp(11px, 1.2vw, 12px);
   letter-spacing: clamp(0.05px, 0.14vw, 1.7px);
 }
 /* Below this the one-line rule would need type under 9px, which is not a
@@ -1421,4 +1427,57 @@ main > section:first-of-type + section.cl-band { padding-top: 0; }
   color: #fff;
   background: rgba(255, 255, 255, 0.12);
   border-color: rgba(255, 255, 255, 0.55);
+}
+
+/* The marquee's second pass exists only to make the loop seamless.
+   display:contents keeps those logos as flex children of the rail. Under
+   reduced motion the rail stops and must wrap instead, which the old fallback
+   could not do: flex-wrap has nothing to wrap against on a w-max (max-content)
+   track, so 29 of 38 items sat off-screen permanently. Give it a real width
+   and drop the duplicate pass. */
+.mq-dup { display: contents; }
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+    width: 100%;
+    max-width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .mq-dup { display: none; }
+}
+
+/* Turning the homepage product cards into links made them focusable for the
+   first time — and the focus ring could not paint on them. The site's ring is a
+   Tailwind ring, i.e. a box-shadow at specificity (0,1,0) in a layer, while
+   `.is-dark .sp-card { box-shadow: none }` is unlayered at (0,2,0) and later in
+   the sheet, so it won. What was left was `outline: 2px solid transparent`:
+   nothing at all, 1.00:1 against the band. An explicit outline instead, which
+   no box-shadow rule can suppress. #F0A17E is 8.8:1 on navy-700, #C8401A is
+   5.0:1 on white — both well over the 3:1 a focus indicator needs. */
+.sp-card:focus-visible {
+  outline: 3px solid #C8401A;
+  outline-offset: 3px;
+}
+.is-dark .sp-card:focus-visible {
+  outline: 3px solid #F0A17E;
+  outline-offset: 3px;
+}
+
+/* .btn-primary applies the shared brand-gradient, whose lightest stop #E05A1F
+   is 3.72:1 against white — so every primary button on the site carries a label
+   under AA across its lighter half. That is pre-existing, not new, but it is
+   the one text run on the SAP calculator card the contrast pass could not fix:
+   the card's darkening wash sits at -z-10 inside an isolated stacking context,
+   so it composites under the button, not over it.
+   The shared token is left alone: eight large surfaces (footer, mega-menu,
+   stats band, AI Shield band, hero cards) composite washes tuned to its current
+   stops. Buttons get their own ramp instead, dropping the lightest stop. Worst
+   case anywhere along it is #C8401A at 5.00:1; the dark end is 6.90:1.
+   .is-dark .btn-primary is (0,2,0) so it still wins where it applies. */
+.btn-primary {
+  background-image: linear-gradient(135deg, #A33315 0%, #C8401A 100%);
+}
+.btn-primary:hover {
+  background-image: linear-gradient(135deg, #7D250E 0%, #A33315 100%);
 }
