@@ -6,7 +6,7 @@ export const dynamic = "force-static";
 
 /* Stable lastModified — bump on material content changes. A build-time
    new Date() makes every deploy look like a full-site update to crawlers. */
-const LAST_UPDATED = new Date("2026-07-21");
+const LAST_UPDATED = new Date("2026-09-16");
 
 const INSIGHT_DATES: Record<string, string> = {
   "five-signs-your-erp-is-costing-too-much": "2026-07-01",
