@@ -42,9 +42,12 @@ export const siteSettings = {
   siteUrl: "https://vibrantinc.com",
   // ~60 chars so search results don't truncate; the full positioning
   // statement lives in the homepage H1 (hero-slider).
-  defaultTitle: "Vibrant Inc | Cybersecurity, ERP & Cloud Modernization",
+  // Leads with cybersecurity and AI, which is what the practice leads with.
+  // ERP, cloud and data keep their keywords in the description rather than
+  // the title, which has room for two ideas, not five.
+  defaultTitle: "Cybersecurity & AI Solutions | Vibrant Inc",
   defaultDescription:
-    "Vibrant Inc modernizes ERP, cloud, security, data, and AI for mid-market and enterprise companies, without disrupting operations. Trusted delivery since 2000.",
+    "Vibrant Inc secures and modernizes the enterprise: cybersecurity, AI, cloud, ERP and data for mid-market and enterprise teams. Founder-led since 2000.",
   careersUrl: "/careers",
   phonePrimary: "609-945-2244",
   phoneSecondary: "609-945-0442",
